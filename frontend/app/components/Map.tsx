@@ -5,6 +5,8 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { useEffect, useRef } from "react";
 
 const maptilerApiKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY?.trim();
+const defaultMapStyle =
+  maptilersdk.MapStyle.STREETS.getDefaultVariant().getExpandedStyleURL();
 
 export default function Map() {
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -17,7 +19,7 @@ export default function Map() {
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
-      style: maptilersdk.MapStyle.STREETS,
+      style: defaultMapStyle,
       center: [17.0385, 51.1079],
       zoom: 12,
     });
