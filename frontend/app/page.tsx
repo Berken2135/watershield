@@ -1,6 +1,11 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Droplets } from "lucide-react";
+
+const Map = dynamic(() => import("./components/Map"), { ssr: false });
 
 export default function Home() {
   return (
@@ -44,12 +49,8 @@ export default function Home() {
 
         {/* Map Section */}
         <section className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-10">
-          <div className="rounded-xl border bg-muted/40 flex items-center justify-center h-[500px] w-full">
-            <div className="text-center text-muted-foreground">
-              <Droplets className="h-12 w-12 mx-auto mb-3 opacity-30" />
-              <p className="text-sm font-medium">Map coming soon</p>
-              <p className="text-xs mt-1">Interactive water quality map will appear here</p>
-            </div>
+          <div className="rounded-xl border overflow-hidden h-[500px] w-full">
+            <Map />
           </div>
         </section>
       </main>
