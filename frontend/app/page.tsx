@@ -1,11 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Droplets } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Droplets, Search } from "lucide-react";
+import { Map } from "../components/ui/map";
 
-const Map = dynamic(() => import("./components/Map"), { ssr: false });
 
 export default function Home() {
   return (
@@ -50,7 +49,7 @@ export default function Home() {
         {/* Map Section */}
         <section className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-10">
           <div className="rounded-xl border overflow-hidden h-[500px] w-full">
-            <Map />
+            <Map/>
           </div>
         </section>
       </main>
