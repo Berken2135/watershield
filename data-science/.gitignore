@@ -8,9 +8,11 @@ data/processed/*
 !data/processed/europe/
 data/processed/europe/*.parquet
 
-# Outputs are large — keep only tracked GeoJSON committed if desired
+# Outputs — commit pre-computed data files, exclude large model/ML artefacts
 data/outputs/*.pkl
 data/outputs/*.parquet
+!data/outputs/historical_monthly.parquet
+!data/outputs/historical_monthly_countries.parquet
 
 # Python
 __pycache__/

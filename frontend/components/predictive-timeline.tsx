@@ -142,38 +142,16 @@ export default function PredictiveTimeline({
       role="group"
       aria-label="Predictive timeline"
     >
-      {/* Header strip */}
+      {/* Header strip — date only */}
       <div className="flex items-center justify-between mb-4 px-1">
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-            Timeline
+        <span className="text-xs text-foreground/80 font-mono">
+          {fmtDate(value)}
+        </span>
+        {isPredictive && (
+          <span className="text-[10px] tracking-[0.18em] uppercase text-primary/70 font-mono">
+            +{confidence}%
           </span>
-          <span className="text-xs text-foreground/80 font-mono">
-            {fmtDate(value)}
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          {isPredictive ? (
-            <div className="flex items-center gap-2 rounded-full bg-cyan-400/10 px-3 py-1 ring-1 ring-cyan-400/30">
-              <Sparkles className="h-3 w-3 text-[var(--color-cyan)]" />
-              <span className="text-[10px] tracking-[0.18em] uppercase text-cyan-300">
-                Predictive Mode
-              </span>
-              <span className="text-[10px] text-cyan-200/80 font-mono">
-                {confidence}% confidence
-              </span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 rounded-full bg-emerald-400/10 px-3 py-1 ring-1 ring-emerald-400/30">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]" />
-              <span className="text-[10px] tracking-[0.18em] uppercase text-emerald-300">
-                {value.getTime() === nowDate.getTime()
-                  ? "Real-time"
-                  : "Historical"}
-              </span>
-            </div>
-          )}
-        </div>
+        )}
       </div>
 
       {/* Track */}

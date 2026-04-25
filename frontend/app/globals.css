@@ -111,20 +111,56 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root, .dark {
-  /* Deep Sea base */
-  --background: #020617;          /* slate-950 deepest */
-  --foreground: #e2e8f0;          /* slate-200 */
-  --card: rgba(15, 23, 42, 0.6);  /* glass */
+:root {
+  /* ── Light (default · "white mode") ─────────────────────────────── */
+  --background: #ffffff;
+  --foreground: #0a0f1c;
+  --card: rgba(255, 255, 255, 0.7);
+  --card-foreground: #0a0f1c;
+  --popover: #ffffff;
+  --popover-foreground: #0a0f1c;
+  --primary: #06b6d4;             /* cyan-500 */
+  --primary-foreground: #ffffff;
+  --secondary: rgba(15, 23, 42, 0.04);
+  --secondary-foreground: #0a0f1c;
+  --muted: rgba(15, 23, 42, 0.03);
+  --muted-foreground: #64748b;
+  --accent: rgba(6, 182, 212, 0.08);
+  --accent-foreground: #0e7490;
+  --destructive: #dc2626;
+  --border: rgba(15, 23, 42, 0.08);
+  --input: rgba(15, 23, 42, 0.08);
+  --ring: rgba(6, 182, 212, 0.4);
+  --chart-1: #06b6d4;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #8b5cf6;
+  --radius: 0.5rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #475569;
+  --sidebar-primary: #06b6d4;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(15, 23, 42, 0.04);
+  --sidebar-accent-foreground: #0a0f1c;
+  --sidebar-border: rgba(15, 23, 42, 0.06);
+  --sidebar-ring: rgba(6, 182, 212, 0.35);
+}
+
+.dark {
+  /* ── Deep Sea (dark) ────────────────────────────────────────────── */
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --card: rgba(15, 23, 42, 0.6);
   --card-foreground: #f1f5f9;
   --popover: #0b1120;
   --popover-foreground: #e2e8f0;
-  --primary: #22d3ee;             /* neon cyan */
+  --primary: #22d3ee;
   --primary-foreground: #020617;
   --secondary: rgba(255, 255, 255, 0.04);
   --secondary-foreground: #e2e8f0;
   --muted: rgba(255, 255, 255, 0.03);
-  --muted-foreground: #64748b;    /* slate-500 */
+  --muted-foreground: #64748b;
   --accent: rgba(34, 211, 238, 0.08);
   --accent-foreground: #67e8f9;
   --destructive: #ef4444;
@@ -136,7 +172,6 @@
   --chart-3: #f59e0b;
   --chart-4: #ef4444;
   --chart-5: #8b5cf6;
-  --radius: 0.5rem;
   --sidebar: #020617;
   --sidebar-foreground: #94a3b8;
   --sidebar-primary: #22d3ee;
@@ -153,40 +188,59 @@
   }
   html {
     @apply font-sans antialiased;
-    color-scheme: dark;
+    color-scheme: light;
   }
+  html.dark { color-scheme: dark; }
   body {
     background: var(--background);
     color: var(--foreground);
-    /* Subtle radial glows — that "expensive" Stripe feel */
+    /* Subtle radial glows — light variant is barely-there */
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(6, 182, 212, 0.04), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(16, 185, 129, 0.03), transparent 60%);
+    background-attachment: fixed;
+  }
+  html.dark body {
     background-image:
       radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34, 211, 238, 0.08), transparent 60%),
       radial-gradient(ellipse 60% 40% at 100% 100%, rgba(16, 185, 129, 0.05), transparent 60%);
-    background-attachment: fixed;
   }
   ::selection {
+    background: rgba(6, 182, 212, 0.22);
+    color: #0a0f1c;
+  }
+  html.dark ::selection {
     background: rgba(34, 211, 238, 0.25);
     color: #f0fdff;
   }
-  /* Webkit scrollbar — thin, near-invisible */
+  /* Webkit scrollbar */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); border-radius: 999px; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.3); }
+  ::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.12); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(6, 182, 212, 0.35); }
+  html.dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); }
+  html.dark ::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.3); }
 
   .maplibregl-popup-content {
     @apply bg-transparent! shadow-none! p-0! rounded-none!;
   }
   .maplibregl-popup-tip { @apply hidden!; }
-  /* Maplibre control re-skin */
   .maplibregl-ctrl button {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+  }
+  html.dark .maplibregl-ctrl button {
     background-color: rgba(15, 23, 42, 0.85) !important;
     border-color: rgba(255, 255, 255, 0.06) !important;
   }
   .maplibregl-ctrl-attrib {
+    background: rgba(255, 255, 255, 0.7) !important;
+    color: #475569 !important;
+    backdrop-filter: blur(8px);
+  }
+  html.dark .maplibregl-ctrl-attrib {
     background: rgba(2, 6, 23, 0.6) !important;
     color: #64748b !important;
-    backdrop-filter: blur(8px);
   }
 }
 
@@ -195,25 +249,38 @@
    ============================================================ */
 @layer utilities {
   .glass {
-    background: rgba(15, 23, 42, 0.5);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+  }
+  html.dark .glass {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(255, 255, 255, 0.06);
   }
   .glass-strong {
-    background: rgba(8, 12, 28, 0.78);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+  html.dark .glass-strong {
+    background: rgba(8, 12, 28, 0.78);
+    border-color: rgba(255, 255, 255, 0.08);
   }
   .neon-border {
+    box-shadow:
+      0 0 0 1px rgba(6, 182, 212, 0.3),
+      0 0 24px -4px rgba(6, 182, 212, 0.4);
+  }
+  html.dark .neon-border {
     box-shadow:
       0 0 0 1px rgba(34, 211, 238, 0.3),
       0 0 24px -4px rgba(34, 211, 238, 0.4);
   }
   .neon-text {
-    color: #22d3ee;
-    text-shadow: 0 0 16px rgba(34, 211, 238, 0.5);
+    color: var(--primary);
+    text-shadow: 0 0 16px rgba(34, 211, 238, 0.35);
   }
   .danger-glow {
     box-shadow:

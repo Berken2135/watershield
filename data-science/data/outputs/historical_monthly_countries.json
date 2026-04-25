@@ -1,0 +1,7058 @@
+[
+  {
+    "country": "Austria",
+    "date": "2024-01-01",
+    "wqi": 210.5,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-02-01",
+    "wqi": 201.9,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-03-01",
+    "wqi": 184.6,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-04-01",
+    "wqi": 199.5,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-05-01",
+    "wqi": 179.4,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-06-01",
+    "wqi": 204.9,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-07-01",
+    "wqi": 220.0,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-08-01",
+    "wqi": 237.3,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-09-01",
+    "wqi": 244.2,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-10-01",
+    "wqi": 224.2,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-11-01",
+    "wqi": 230.1,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2024-12-01",
+    "wqi": 230.4,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-01-01",
+    "wqi": 145.8,
+    "country_code": "AT",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-02-01",
+    "wqi": 155.2,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-03-01",
+    "wqi": 181.4,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-04-01",
+    "wqi": 186.5,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-05-01",
+    "wqi": 198.8,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-06-01",
+    "wqi": 191.0,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-07-01",
+    "wqi": 206.5,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-08-01",
+    "wqi": 218.9,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-09-01",
+    "wqi": 220.9,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-10-01",
+    "wqi": 235.9,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-11-01",
+    "wqi": 227.5,
+    "country_code": "AT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2025-12-01",
+    "wqi": 161.9,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2026-01-01",
+    "wqi": 160.8,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2026-02-01",
+    "wqi": 188.8,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2026-03-01",
+    "wqi": 179.8,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Austria",
+    "date": "2026-04-01",
+    "wqi": 184.2,
+    "country_code": "AT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-01-01",
+    "wqi": 179.3,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-02-01",
+    "wqi": 183.7,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-03-01",
+    "wqi": 167.6,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-04-01",
+    "wqi": 161.6,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-05-01",
+    "wqi": 172.0,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-06-01",
+    "wqi": 130.6,
+    "country_code": "BE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-07-01",
+    "wqi": 167.3,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-08-01",
+    "wqi": 199.2,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-09-01",
+    "wqi": 212.7,
+    "country_code": "BE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-10-01",
+    "wqi": 195.4,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-11-01",
+    "wqi": 211.1,
+    "country_code": "BE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2024-12-01",
+    "wqi": 182.7,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-01-01",
+    "wqi": 194.8,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-02-01",
+    "wqi": 194.1,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-03-01",
+    "wqi": 166.4,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-04-01",
+    "wqi": 159.3,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-05-01",
+    "wqi": 152.8,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-06-01",
+    "wqi": 171.2,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-07-01",
+    "wqi": 186.6,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-08-01",
+    "wqi": 192.4,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-09-01",
+    "wqi": 219.0,
+    "country_code": "BE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-10-01",
+    "wqi": 182.6,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-11-01",
+    "wqi": 202.1,
+    "country_code": "BE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2025-12-01",
+    "wqi": 218.4,
+    "country_code": "BE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2026-01-01",
+    "wqi": 163.4,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2026-02-01",
+    "wqi": 177.0,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2026-03-01",
+    "wqi": 172.3,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Belgium",
+    "date": "2026-04-01",
+    "wqi": 174.9,
+    "country_code": "BE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-01-01",
+    "wqi": 172.5,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-02-01",
+    "wqi": 169.1,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-03-01",
+    "wqi": 152.6,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-04-01",
+    "wqi": 144.9,
+    "country_code": "BG",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-05-01",
+    "wqi": 154.9,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-06-01",
+    "wqi": 160.5,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-07-01",
+    "wqi": 182.9,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-08-01",
+    "wqi": 151.6,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-09-01",
+    "wqi": 181.9,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-10-01",
+    "wqi": 216.5,
+    "country_code": "BG",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-11-01",
+    "wqi": 211.1,
+    "country_code": "BG",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2024-12-01",
+    "wqi": 207.0,
+    "country_code": "BG",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-01-01",
+    "wqi": 168.0,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-02-01",
+    "wqi": 160.5,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-03-01",
+    "wqi": 160.4,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-04-01",
+    "wqi": 158.6,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-05-01",
+    "wqi": 155.9,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-06-01",
+    "wqi": 166.4,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-07-01",
+    "wqi": 180.5,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-08-01",
+    "wqi": 198.3,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-09-01",
+    "wqi": 205.6,
+    "country_code": "BG",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-10-01",
+    "wqi": 208.4,
+    "country_code": "BG",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-11-01",
+    "wqi": 202.8,
+    "country_code": "BG",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2025-12-01",
+    "wqi": 202.6,
+    "country_code": "BG",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2026-01-01",
+    "wqi": 175.5,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2026-02-01",
+    "wqi": 162.5,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2026-03-01",
+    "wqi": 159.1,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Bulgaria",
+    "date": "2026-04-01",
+    "wqi": 165.9,
+    "country_code": "BG",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-01-01",
+    "wqi": 205.7,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-02-01",
+    "wqi": 167.6,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-03-01",
+    "wqi": 180.1,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-04-01",
+    "wqi": 176.2,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-05-01",
+    "wqi": 174.1,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-06-01",
+    "wqi": 188.1,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-07-01",
+    "wqi": 211.9,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-08-01",
+    "wqi": 208.8,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-09-01",
+    "wqi": 197.4,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-10-01",
+    "wqi": 223.4,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-11-01",
+    "wqi": 170.5,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2024-12-01",
+    "wqi": 185.1,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-01-01",
+    "wqi": 193.2,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-02-01",
+    "wqi": 181.4,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-03-01",
+    "wqi": 175.1,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-04-01",
+    "wqi": 164.6,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-05-01",
+    "wqi": 175.6,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-06-01",
+    "wqi": 190.3,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-07-01",
+    "wqi": 190.8,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-08-01",
+    "wqi": 212.7,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-09-01",
+    "wqi": 171.7,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-10-01",
+    "wqi": 193.7,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-11-01",
+    "wqi": 201.5,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2025-12-01",
+    "wqi": 204.6,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2026-01-01",
+    "wqi": 203.9,
+    "country_code": "HR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2026-02-01",
+    "wqi": 171.0,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2026-03-01",
+    "wqi": 155.6,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Croatia",
+    "date": "2026-04-01",
+    "wqi": 175.7,
+    "country_code": "HR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-01-01",
+    "wqi": 245.8,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-02-01",
+    "wqi": 213.0,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-03-01",
+    "wqi": 215.0,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-04-01",
+    "wqi": 221.6,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-05-01",
+    "wqi": 218.9,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-06-01",
+    "wqi": 228.4,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-07-01",
+    "wqi": 244.1,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-08-01",
+    "wqi": 272.7,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-09-01",
+    "wqi": 270.0,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-10-01",
+    "wqi": 286.6,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-11-01",
+    "wqi": 275.7,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2024-12-01",
+    "wqi": 258.3,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-01-01",
+    "wqi": 247.7,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-02-01",
+    "wqi": 235.2,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-03-01",
+    "wqi": 198.2,
+    "country_code": "CY",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-04-01",
+    "wqi": 189.7,
+    "country_code": "CY",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-05-01",
+    "wqi": 207.5,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-06-01",
+    "wqi": 215.7,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-07-01",
+    "wqi": 236.6,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-08-01",
+    "wqi": 260.0,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-09-01",
+    "wqi": 275.8,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-10-01",
+    "wqi": 277.7,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-11-01",
+    "wqi": 271.8,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2025-12-01",
+    "wqi": 196.5,
+    "country_code": "CY",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2026-01-01",
+    "wqi": 207.7,
+    "country_code": "CY",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2026-02-01",
+    "wqi": 160.8,
+    "country_code": "CY",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2026-03-01",
+    "wqi": 182.7,
+    "country_code": "CY",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Cyprus",
+    "date": "2026-04-01",
+    "wqi": 198.2,
+    "country_code": "CY",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-01-01",
+    "wqi": 205.6,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-02-01",
+    "wqi": 196.4,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-03-01",
+    "wqi": 182.1,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-04-01",
+    "wqi": 184.3,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-05-01",
+    "wqi": 197.7,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-06-01",
+    "wqi": 207.5,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-07-01",
+    "wqi": 213.0,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-08-01",
+    "wqi": 210.2,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-09-01",
+    "wqi": 240.4,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-10-01",
+    "wqi": 229.9,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-11-01",
+    "wqi": 231.4,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2024-12-01",
+    "wqi": 163.1,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-01-01",
+    "wqi": 175.1,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-02-01",
+    "wqi": 200.9,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-03-01",
+    "wqi": 194.4,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-04-01",
+    "wqi": 188.9,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-05-01",
+    "wqi": 199.6,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-06-01",
+    "wqi": 191.2,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-07-01",
+    "wqi": 209.6,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-08-01",
+    "wqi": 206.8,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-09-01",
+    "wqi": 227.9,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-10-01",
+    "wqi": 232.6,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-11-01",
+    "wqi": 234.6,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2025-12-01",
+    "wqi": 163.7,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2026-01-01",
+    "wqi": 177.7,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2026-02-01",
+    "wqi": 200.0,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2026-03-01",
+    "wqi": 206.7,
+    "country_code": "CZ",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Czechia",
+    "date": "2026-04-01",
+    "wqi": 176.1,
+    "country_code": "CZ",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-01-01",
+    "wqi": 210.8,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-02-01",
+    "wqi": 216.0,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-03-01",
+    "wqi": 207.2,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-04-01",
+    "wqi": 138.2,
+    "country_code": "DK",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-05-01",
+    "wqi": 184.5,
+    "country_code": "DK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-06-01",
+    "wqi": 217.3,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-07-01",
+    "wqi": 214.7,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-08-01",
+    "wqi": 231.9,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-09-01",
+    "wqi": 246.5,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-10-01",
+    "wqi": 239.3,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-11-01",
+    "wqi": 236.9,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2024-12-01",
+    "wqi": 214.3,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-01-01",
+    "wqi": 224.8,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-02-01",
+    "wqi": 206.3,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-03-01",
+    "wqi": 190.7,
+    "country_code": "DK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-04-01",
+    "wqi": 195.4,
+    "country_code": "DK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-05-01",
+    "wqi": 216.9,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-06-01",
+    "wqi": 213.0,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-07-01",
+    "wqi": 221.5,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-08-01",
+    "wqi": 243.9,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-09-01",
+    "wqi": 168.2,
+    "country_code": "DK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-10-01",
+    "wqi": 220.0,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-11-01",
+    "wqi": 233.9,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2025-12-01",
+    "wqi": 243.0,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2026-01-01",
+    "wqi": 223.9,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2026-02-01",
+    "wqi": 210.2,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2026-03-01",
+    "wqi": 212.6,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Denmark",
+    "date": "2026-04-01",
+    "wqi": 213.2,
+    "country_code": "DK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-01-01",
+    "wqi": 199.2,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-02-01",
+    "wqi": 181.6,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-03-01",
+    "wqi": 174.8,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-04-01",
+    "wqi": 179.8,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-05-01",
+    "wqi": 187.2,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-06-01",
+    "wqi": 192.0,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-07-01",
+    "wqi": 194.5,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-08-01",
+    "wqi": 218.9,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-09-01",
+    "wqi": 214.5,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-10-01",
+    "wqi": 236.8,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-11-01",
+    "wqi": 218.5,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2024-12-01",
+    "wqi": 217.3,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-01-01",
+    "wqi": 197.8,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-02-01",
+    "wqi": 190.5,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-03-01",
+    "wqi": 127.5,
+    "country_code": "EE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-04-01",
+    "wqi": 151.0,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-05-01",
+    "wqi": 112.3,
+    "country_code": "EE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-06-01",
+    "wqi": 146.3,
+    "country_code": "EE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-07-01",
+    "wqi": 193.6,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-08-01",
+    "wqi": 209.5,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-09-01",
+    "wqi": 223.5,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-10-01",
+    "wqi": 225.4,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-11-01",
+    "wqi": 222.8,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2025-12-01",
+    "wqi": 210.0,
+    "country_code": "EE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2026-01-01",
+    "wqi": 183.2,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2026-02-01",
+    "wqi": 193.5,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2026-03-01",
+    "wqi": 179.5,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Estonia",
+    "date": "2026-04-01",
+    "wqi": 164.0,
+    "country_code": "EE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-01-01",
+    "wqi": 209.6,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-02-01",
+    "wqi": 193.0,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-03-01",
+    "wqi": 205.7,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-04-01",
+    "wqi": 181.8,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-05-01",
+    "wqi": 200.6,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-06-01",
+    "wqi": 195.2,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-07-01",
+    "wqi": 210.1,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-08-01",
+    "wqi": 223.6,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-09-01",
+    "wqi": 224.0,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-10-01",
+    "wqi": 235.8,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-11-01",
+    "wqi": 235.3,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2024-12-01",
+    "wqi": 232.9,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-01-01",
+    "wqi": 218.1,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-02-01",
+    "wqi": 215.6,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-03-01",
+    "wqi": 198.6,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-04-01",
+    "wqi": 193.6,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-05-01",
+    "wqi": 195.0,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-06-01",
+    "wqi": 207.7,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-07-01",
+    "wqi": 198.7,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-08-01",
+    "wqi": 236.4,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-09-01",
+    "wqi": 235.3,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-10-01",
+    "wqi": 241.8,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-11-01",
+    "wqi": 233.3,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2025-12-01",
+    "wqi": 229.3,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2026-01-01",
+    "wqi": 217.2,
+    "country_code": "FI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2026-02-01",
+    "wqi": 149.5,
+    "country_code": "FI",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2026-03-01",
+    "wqi": 163.7,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Finland",
+    "date": "2026-04-01",
+    "wqi": 194.4,
+    "country_code": "FI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-01-01",
+    "wqi": 232.1,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-02-01",
+    "wqi": 196.5,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-03-01",
+    "wqi": 131.0,
+    "country_code": "FR",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-04-01",
+    "wqi": 163.7,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-05-01",
+    "wqi": 189.7,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-06-01",
+    "wqi": 196.2,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-07-01",
+    "wqi": 205.8,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-08-01",
+    "wqi": 232.5,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-09-01",
+    "wqi": 227.3,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-10-01",
+    "wqi": 228.7,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-11-01",
+    "wqi": 220.3,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2024-12-01",
+    "wqi": 230.4,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-01-01",
+    "wqi": 213.7,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-02-01",
+    "wqi": 213.5,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-03-01",
+    "wqi": 176.4,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-04-01",
+    "wqi": 192.8,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-05-01",
+    "wqi": 209.8,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-06-01",
+    "wqi": 208.2,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-07-01",
+    "wqi": 215.0,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-08-01",
+    "wqi": 144.7,
+    "country_code": "FR",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-09-01",
+    "wqi": 193.6,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-10-01",
+    "wqi": 218.0,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-11-01",
+    "wqi": 227.9,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2025-12-01",
+    "wqi": 221.5,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2026-01-01",
+    "wqi": 209.3,
+    "country_code": "FR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2026-02-01",
+    "wqi": 189.0,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2026-03-01",
+    "wqi": 179.3,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "France",
+    "date": "2026-04-01",
+    "wqi": 191.7,
+    "country_code": "FR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-01-01",
+    "wqi": 202.0,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-02-01",
+    "wqi": 192.4,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-03-01",
+    "wqi": 189.9,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-04-01",
+    "wqi": 193.1,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-05-01",
+    "wqi": 181.2,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-06-01",
+    "wqi": 191.7,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-07-01",
+    "wqi": 200.9,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-08-01",
+    "wqi": 218.5,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-09-01",
+    "wqi": 239.6,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-10-01",
+    "wqi": 226.5,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-11-01",
+    "wqi": 222.5,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2024-12-01",
+    "wqi": 206.5,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-01-01",
+    "wqi": 199.6,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-02-01",
+    "wqi": 184.4,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-03-01",
+    "wqi": 137.4,
+    "country_code": "DE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-04-01",
+    "wqi": 148.1,
+    "country_code": "DE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-05-01",
+    "wqi": 177.1,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-06-01",
+    "wqi": 200.7,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-07-01",
+    "wqi": 212.4,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-08-01",
+    "wqi": 163.5,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-09-01",
+    "wqi": 186.4,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-10-01",
+    "wqi": 219.2,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-11-01",
+    "wqi": 228.4,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2025-12-01",
+    "wqi": 225.5,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2026-01-01",
+    "wqi": 211.6,
+    "country_code": "DE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2026-02-01",
+    "wqi": 186.0,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2026-03-01",
+    "wqi": 192.0,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Germany",
+    "date": "2026-04-01",
+    "wqi": 179.0,
+    "country_code": "DE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-01-01",
+    "wqi": 222.0,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-02-01",
+    "wqi": 234.2,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-03-01",
+    "wqi": 202.0,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-04-01",
+    "wqi": 210.2,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-05-01",
+    "wqi": 209.6,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-06-01",
+    "wqi": 218.6,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-07-01",
+    "wqi": 227.1,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-08-01",
+    "wqi": 254.7,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-09-01",
+    "wqi": 276.7,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-10-01",
+    "wqi": 266.7,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-11-01",
+    "wqi": 278.3,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2024-12-01",
+    "wqi": 259.2,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-01-01",
+    "wqi": 188.5,
+    "country_code": "GR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-02-01",
+    "wqi": 199.4,
+    "country_code": "GR",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-03-01",
+    "wqi": 210.7,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-04-01",
+    "wqi": 207.3,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-05-01",
+    "wqi": 220.6,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-06-01",
+    "wqi": 235.0,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-07-01",
+    "wqi": 238.2,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-08-01",
+    "wqi": 266.8,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-09-01",
+    "wqi": 278.6,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-10-01",
+    "wqi": 280.7,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-11-01",
+    "wqi": 284.4,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2025-12-01",
+    "wqi": 256.4,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2026-01-01",
+    "wqi": 238.3,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2026-02-01",
+    "wqi": 228.3,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2026-03-01",
+    "wqi": 206.4,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Greece",
+    "date": "2026-04-01",
+    "wqi": 210.0,
+    "country_code": "GR",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-01-01",
+    "wqi": 228.9,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-02-01",
+    "wqi": 198.0,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-03-01",
+    "wqi": 131.6,
+    "country_code": "HU",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-04-01",
+    "wqi": 145.8,
+    "country_code": "HU",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-05-01",
+    "wqi": 191.5,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-06-01",
+    "wqi": 192.8,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-07-01",
+    "wqi": 203.5,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-08-01",
+    "wqi": 223.7,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-09-01",
+    "wqi": 232.1,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-10-01",
+    "wqi": 236.1,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-11-01",
+    "wqi": 223.5,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2024-12-01",
+    "wqi": 205.5,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-01-01",
+    "wqi": 204.9,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-02-01",
+    "wqi": 192.8,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-03-01",
+    "wqi": 187.8,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-04-01",
+    "wqi": 163.2,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-05-01",
+    "wqi": 137.2,
+    "country_code": "HU",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-06-01",
+    "wqi": 177.0,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-07-01",
+    "wqi": 195.0,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-08-01",
+    "wqi": 223.5,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-09-01",
+    "wqi": 235.9,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-10-01",
+    "wqi": 231.0,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-11-01",
+    "wqi": 240.2,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2025-12-01",
+    "wqi": 207.2,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2026-01-01",
+    "wqi": 208.9,
+    "country_code": "HU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2026-02-01",
+    "wqi": 192.1,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2026-03-01",
+    "wqi": 173.9,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Hungary",
+    "date": "2026-04-01",
+    "wqi": 161.6,
+    "country_code": "HU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-01-01",
+    "wqi": 179.9,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-02-01",
+    "wqi": 173.8,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-03-01",
+    "wqi": 164.3,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-04-01",
+    "wqi": 158.2,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-05-01",
+    "wqi": 168.8,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-06-01",
+    "wqi": 184.8,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-07-01",
+    "wqi": 189.8,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-08-01",
+    "wqi": 201.8,
+    "country_code": "IE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-09-01",
+    "wqi": 216.7,
+    "country_code": "IE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-10-01",
+    "wqi": 204.1,
+    "country_code": "IE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-11-01",
+    "wqi": 202.1,
+    "country_code": "IE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2024-12-01",
+    "wqi": 187.5,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-01-01",
+    "wqi": 187.6,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-02-01",
+    "wqi": 130.1,
+    "country_code": "IE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-03-01",
+    "wqi": 142.4,
+    "country_code": "IE",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-04-01",
+    "wqi": 177.0,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-05-01",
+    "wqi": 167.9,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-06-01",
+    "wqi": 176.4,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-07-01",
+    "wqi": 178.6,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-08-01",
+    "wqi": 191.3,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-09-01",
+    "wqi": 208.5,
+    "country_code": "IE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-10-01",
+    "wqi": 201.9,
+    "country_code": "IE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-11-01",
+    "wqi": 193.9,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2025-12-01",
+    "wqi": 173.6,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2026-01-01",
+    "wqi": 183.5,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2026-02-01",
+    "wqi": 164.4,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2026-03-01",
+    "wqi": 180.0,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Ireland",
+    "date": "2026-04-01",
+    "wqi": 162.8,
+    "country_code": "IE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-01-01",
+    "wqi": 216.6,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-02-01",
+    "wqi": 205.0,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-03-01",
+    "wqi": 205.1,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-04-01",
+    "wqi": 194.0,
+    "country_code": "IT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-05-01",
+    "wqi": 211.7,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-06-01",
+    "wqi": 200.7,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-07-01",
+    "wqi": 224.1,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-08-01",
+    "wqi": 239.8,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-09-01",
+    "wqi": 271.3,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-10-01",
+    "wqi": 267.0,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-11-01",
+    "wqi": 264.0,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2024-12-01",
+    "wqi": 238.9,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-01-01",
+    "wqi": 223.9,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-02-01",
+    "wqi": 224.8,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-03-01",
+    "wqi": 207.6,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-04-01",
+    "wqi": 165.4,
+    "country_code": "IT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-05-01",
+    "wqi": 181.5,
+    "country_code": "IT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-06-01",
+    "wqi": 218.6,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-07-01",
+    "wqi": 225.7,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-08-01",
+    "wqi": 198.2,
+    "country_code": "IT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-09-01",
+    "wqi": 240.2,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-10-01",
+    "wqi": 258.3,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-11-01",
+    "wqi": 252.1,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2025-12-01",
+    "wqi": 254.0,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2026-01-01",
+    "wqi": 237.8,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2026-02-01",
+    "wqi": 231.4,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2026-03-01",
+    "wqi": 232.0,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Italy",
+    "date": "2026-04-01",
+    "wqi": 200.5,
+    "country_code": "IT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-01-01",
+    "wqi": 185.1,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-02-01",
+    "wqi": 198.4,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-03-01",
+    "wqi": 173.6,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-04-01",
+    "wqi": 171.9,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-05-01",
+    "wqi": 180.4,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-06-01",
+    "wqi": 205.5,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-07-01",
+    "wqi": 199.4,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-08-01",
+    "wqi": 194.2,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-09-01",
+    "wqi": 233.9,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-10-01",
+    "wqi": 223.3,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-11-01",
+    "wqi": 218.2,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2024-12-01",
+    "wqi": 208.3,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-01-01",
+    "wqi": 206.1,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-02-01",
+    "wqi": 177.7,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-03-01",
+    "wqi": 189.6,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-04-01",
+    "wqi": 189.8,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-05-01",
+    "wqi": 183.5,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-06-01",
+    "wqi": 196.2,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-07-01",
+    "wqi": 206.4,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-08-01",
+    "wqi": 175.2,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-09-01",
+    "wqi": 185.2,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-10-01",
+    "wqi": 220.0,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-11-01",
+    "wqi": 233.2,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2025-12-01",
+    "wqi": 220.4,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2026-01-01",
+    "wqi": 209.1,
+    "country_code": "LV",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2026-02-01",
+    "wqi": 178.5,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2026-03-01",
+    "wqi": 175.6,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Latvia",
+    "date": "2026-04-01",
+    "wqi": 169.1,
+    "country_code": "LV",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-01-01",
+    "wqi": 191.3,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-02-01",
+    "wqi": 187.1,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-03-01",
+    "wqi": 187.4,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-04-01",
+    "wqi": 170.8,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-05-01",
+    "wqi": 179.7,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-06-01",
+    "wqi": 190.0,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-07-01",
+    "wqi": 191.6,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-08-01",
+    "wqi": 206.2,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-09-01",
+    "wqi": 220.2,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-10-01",
+    "wqi": 172.8,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-11-01",
+    "wqi": 196.9,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2024-12-01",
+    "wqi": 214.1,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-01-01",
+    "wqi": 219.0,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-02-01",
+    "wqi": 178.3,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-03-01",
+    "wqi": 188.3,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-04-01",
+    "wqi": 181.1,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-05-01",
+    "wqi": 183.6,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-06-01",
+    "wqi": 186.9,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-07-01",
+    "wqi": 195.9,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-08-01",
+    "wqi": 225.2,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-09-01",
+    "wqi": 227.0,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-10-01",
+    "wqi": 225.8,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-11-01",
+    "wqi": 214.6,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2025-12-01",
+    "wqi": 206.7,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2026-01-01",
+    "wqi": 192.9,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2026-02-01",
+    "wqi": 188.7,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2026-03-01",
+    "wqi": 200.0,
+    "country_code": "LT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Lithuania",
+    "date": "2026-04-01",
+    "wqi": 161.0,
+    "country_code": "LT",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-01-01",
+    "wqi": 173.7,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-02-01",
+    "wqi": 170.6,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-03-01",
+    "wqi": 177.0,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-04-01",
+    "wqi": 158.9,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-05-01",
+    "wqi": 178.5,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-06-01",
+    "wqi": 103.3,
+    "country_code": "LU",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-07-01",
+    "wqi": 140.8,
+    "country_code": "LU",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-08-01",
+    "wqi": 209.6,
+    "country_code": "LU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-09-01",
+    "wqi": 190.4,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-10-01",
+    "wqi": 209.1,
+    "country_code": "LU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-11-01",
+    "wqi": 205.8,
+    "country_code": "LU",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2024-12-01",
+    "wqi": 196.2,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-01-01",
+    "wqi": 177.0,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-02-01",
+    "wqi": 155.6,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-03-01",
+    "wqi": 166.4,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-04-01",
+    "wqi": 155.5,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-05-01",
+    "wqi": 177.6,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-06-01",
+    "wqi": 177.6,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-07-01",
+    "wqi": 183.8,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-08-01",
+    "wqi": 181.9,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-09-01",
+    "wqi": 197.9,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-10-01",
+    "wqi": 192.2,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-11-01",
+    "wqi": 193.2,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2025-12-01",
+    "wqi": 192.4,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2026-01-01",
+    "wqi": 181.1,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2026-02-01",
+    "wqi": 169.7,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2026-03-01",
+    "wqi": 145.3,
+    "country_code": "LU",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Luxembourg",
+    "date": "2026-04-01",
+    "wqi": 154.9,
+    "country_code": "LU",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-01-01",
+    "wqi": 241.8,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-02-01",
+    "wqi": 246.1,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-03-01",
+    "wqi": 212.1,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-04-01",
+    "wqi": 200.9,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-05-01",
+    "wqi": 206.2,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-06-01",
+    "wqi": 230.5,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-07-01",
+    "wqi": 247.8,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-08-01",
+    "wqi": 215.8,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-09-01",
+    "wqi": 255.0,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-10-01",
+    "wqi": 282.8,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-11-01",
+    "wqi": 274.4,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2024-12-01",
+    "wqi": 248.8,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-01-01",
+    "wqi": 254.8,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-02-01",
+    "wqi": 231.0,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-03-01",
+    "wqi": 220.5,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-04-01",
+    "wqi": 218.7,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-05-01",
+    "wqi": 228.3,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-06-01",
+    "wqi": 233.3,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-07-01",
+    "wqi": 247.6,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-08-01",
+    "wqi": 225.0,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-09-01",
+    "wqi": 275.6,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-10-01",
+    "wqi": 280.6,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-11-01",
+    "wqi": 282.6,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2025-12-01",
+    "wqi": 261.3,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2026-01-01",
+    "wqi": 247.7,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2026-02-01",
+    "wqi": 236.2,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2026-03-01",
+    "wqi": 219.1,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Malta",
+    "date": "2026-04-01",
+    "wqi": 217.2,
+    "country_code": "MT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-01-01",
+    "wqi": 176.4,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-02-01",
+    "wqi": 169.7,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-03-01",
+    "wqi": 162.3,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-04-01",
+    "wqi": 160.3,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-05-01",
+    "wqi": 174.7,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-06-01",
+    "wqi": 170.9,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-07-01",
+    "wqi": 168.6,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-08-01",
+    "wqi": 188.5,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-09-01",
+    "wqi": 125.0,
+    "country_code": "NL",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-10-01",
+    "wqi": 150.8,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-11-01",
+    "wqi": 177.2,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2024-12-01",
+    "wqi": 185.7,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-01-01",
+    "wqi": 176.8,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-02-01",
+    "wqi": 175.4,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-03-01",
+    "wqi": 146.3,
+    "country_code": "NL",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-04-01",
+    "wqi": 155.7,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-05-01",
+    "wqi": 156.1,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-06-01",
+    "wqi": 173.1,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-07-01",
+    "wqi": 185.6,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-08-01",
+    "wqi": 184.0,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-09-01",
+    "wqi": 119.1,
+    "country_code": "NL",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-10-01",
+    "wqi": 166.4,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-11-01",
+    "wqi": 190.1,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2025-12-01",
+    "wqi": 176.7,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2026-01-01",
+    "wqi": 171.6,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2026-02-01",
+    "wqi": 178.9,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2026-03-01",
+    "wqi": 170.7,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Netherlands",
+    "date": "2026-04-01",
+    "wqi": 158.3,
+    "country_code": "NL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-01-01",
+    "wqi": 219.6,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-02-01",
+    "wqi": 197.8,
+    "country_code": "NO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-03-01",
+    "wqi": 208.5,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-04-01",
+    "wqi": 192.0,
+    "country_code": "NO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-05-01",
+    "wqi": 214.1,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-06-01",
+    "wqi": 214.5,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-07-01",
+    "wqi": 214.6,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-08-01",
+    "wqi": 236.1,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-09-01",
+    "wqi": 239.7,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-10-01",
+    "wqi": 247.1,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-11-01",
+    "wqi": 236.9,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2024-12-01",
+    "wqi": 237.7,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-01-01",
+    "wqi": 224.8,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-02-01",
+    "wqi": 159.6,
+    "country_code": "NO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-03-01",
+    "wqi": 171.5,
+    "country_code": "NO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-04-01",
+    "wqi": 215.0,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-05-01",
+    "wqi": 212.8,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-06-01",
+    "wqi": 214.7,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-07-01",
+    "wqi": 209.8,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-08-01",
+    "wqi": 234.9,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-09-01",
+    "wqi": 234.7,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-10-01",
+    "wqi": 241.2,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-11-01",
+    "wqi": 244.0,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2025-12-01",
+    "wqi": 241.1,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2026-01-01",
+    "wqi": 216.1,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2026-02-01",
+    "wqi": 232.1,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2026-03-01",
+    "wqi": 207.3,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Norway",
+    "date": "2026-04-01",
+    "wqi": 220.7,
+    "country_code": "NO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Poland",
+    "date": "2024-01-01",
+    "wqi": 188.1,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-02-01",
+    "wqi": 168.0,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-03-01",
+    "wqi": 161.5,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-04-01",
+    "wqi": 172.3,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-05-01",
+    "wqi": 160.7,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-06-01",
+    "wqi": 149.2,
+    "country_code": "PL",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-07-01",
+    "wqi": 178.2,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-08-01",
+    "wqi": 212.8,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-09-01",
+    "wqi": 210.7,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-10-01",
+    "wqi": 198.4,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-11-01",
+    "wqi": 204.4,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2024-12-01",
+    "wqi": 204.8,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-01-01",
+    "wqi": 185.4,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-02-01",
+    "wqi": 174.9,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-03-01",
+    "wqi": 161.2,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-04-01",
+    "wqi": 165.5,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-05-01",
+    "wqi": 157.8,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-06-01",
+    "wqi": 179.8,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-07-01",
+    "wqi": 177.6,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-08-01",
+    "wqi": 198.5,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-09-01",
+    "wqi": 216.8,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-10-01",
+    "wqi": 210.8,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-11-01",
+    "wqi": 221.3,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2025-12-01",
+    "wqi": 208.5,
+    "country_code": "PL",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2026-01-01",
+    "wqi": 185.4,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2026-02-01",
+    "wqi": 156.3,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2026-03-01",
+    "wqi": 167.7,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Poland",
+    "date": "2026-04-01",
+    "wqi": 161.7,
+    "country_code": "PL",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 3
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-01-01",
+    "wqi": 254.1,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-02-01",
+    "wqi": 220.9,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-03-01",
+    "wqi": 226.9,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-04-01",
+    "wqi": 210.7,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-05-01",
+    "wqi": 224.6,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-06-01",
+    "wqi": 226.7,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-07-01",
+    "wqi": 247.7,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-08-01",
+    "wqi": 276.8,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-09-01",
+    "wqi": 268.4,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-10-01",
+    "wqi": 274.9,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-11-01",
+    "wqi": 272.2,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2024-12-01",
+    "wqi": 265.6,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-01-01",
+    "wqi": 249.9,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-02-01",
+    "wqi": 227.9,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-03-01",
+    "wqi": 226.8,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-04-01",
+    "wqi": 240.2,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-05-01",
+    "wqi": 229.7,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-06-01",
+    "wqi": 246.2,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-07-01",
+    "wqi": 264.4,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-08-01",
+    "wqi": 275.4,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-09-01",
+    "wqi": 280.6,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-10-01",
+    "wqi": 285.0,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-11-01",
+    "wqi": 239.7,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2025-12-01",
+    "wqi": 263.0,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2026-01-01",
+    "wqi": 257.8,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2026-02-01",
+    "wqi": 244.7,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2026-03-01",
+    "wqi": 241.4,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Portugal",
+    "date": "2026-04-01",
+    "wqi": 224.1,
+    "country_code": "PT",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-01-01",
+    "wqi": 162.9,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-02-01",
+    "wqi": 166.6,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-03-01",
+    "wqi": 152.9,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-04-01",
+    "wqi": 155.1,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-05-01",
+    "wqi": 148.5,
+    "country_code": "RO",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-06-01",
+    "wqi": 170.8,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-07-01",
+    "wqi": 183.5,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-08-01",
+    "wqi": 204.6,
+    "country_code": "RO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-09-01",
+    "wqi": 183.6,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-10-01",
+    "wqi": 211.9,
+    "country_code": "RO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-11-01",
+    "wqi": 196.8,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2024-12-01",
+    "wqi": 181.3,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-01-01",
+    "wqi": 174.6,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-02-01",
+    "wqi": 159.6,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-03-01",
+    "wqi": 136.8,
+    "country_code": "RO",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-04-01",
+    "wqi": 161.6,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-05-01",
+    "wqi": 151.7,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-06-01",
+    "wqi": 153.0,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-07-01",
+    "wqi": 175.6,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-08-01",
+    "wqi": 134.5,
+    "country_code": "RO",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-09-01",
+    "wqi": 171.7,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-10-01",
+    "wqi": 205.5,
+    "country_code": "RO",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-11-01",
+    "wqi": 192.6,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2025-12-01",
+    "wqi": 195.7,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2026-01-01",
+    "wqi": 190.5,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2026-02-01",
+    "wqi": 173.9,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2026-03-01",
+    "wqi": 162.5,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Romania",
+    "date": "2026-04-01",
+    "wqi": 150.1,
+    "country_code": "RO",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-01-01",
+    "wqi": 215.2,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-02-01",
+    "wqi": 191.6,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-03-01",
+    "wqi": 194.4,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-04-01",
+    "wqi": 126.2,
+    "country_code": "SK",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-05-01",
+    "wqi": 146.3,
+    "country_code": "SK",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-06-01",
+    "wqi": 209.9,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-07-01",
+    "wqi": 214.4,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-08-01",
+    "wqi": 205.7,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-09-01",
+    "wqi": 222.9,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-10-01",
+    "wqi": 234.5,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-11-01",
+    "wqi": 224.2,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2024-12-01",
+    "wqi": 221.3,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-01-01",
+    "wqi": 201.2,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-02-01",
+    "wqi": 179.6,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-03-01",
+    "wqi": 205.9,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-04-01",
+    "wqi": 144.8,
+    "country_code": "SK",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-05-01",
+    "wqi": 170.9,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-06-01",
+    "wqi": 197.1,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-07-01",
+    "wqi": 203.7,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-08-01",
+    "wqi": 236.2,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-09-01",
+    "wqi": 236.5,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-10-01",
+    "wqi": 243.8,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-11-01",
+    "wqi": 223.1,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2025-12-01",
+    "wqi": 234.0,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2026-01-01",
+    "wqi": 206.1,
+    "country_code": "SK",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2026-02-01",
+    "wqi": 197.7,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2026-03-01",
+    "wqi": 189.5,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovakia",
+    "date": "2026-04-01",
+    "wqi": 168.2,
+    "country_code": "SK",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-01-01",
+    "wqi": 194.1,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-02-01",
+    "wqi": 183.1,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-03-01",
+    "wqi": 177.7,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-04-01",
+    "wqi": 179.1,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-05-01",
+    "wqi": 173.6,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-06-01",
+    "wqi": 188.5,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-07-01",
+    "wqi": 133.1,
+    "country_code": "SI",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-08-01",
+    "wqi": 132.4,
+    "country_code": "SI",
+    "risk_level": "high",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-09-01",
+    "wqi": 192.6,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-10-01",
+    "wqi": 221.9,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-11-01",
+    "wqi": 208.9,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2024-12-01",
+    "wqi": 225.4,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-01-01",
+    "wqi": 214.2,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-02-01",
+    "wqi": 190.7,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-03-01",
+    "wqi": 195.2,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-04-01",
+    "wqi": 180.1,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-05-01",
+    "wqi": 183.9,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-06-01",
+    "wqi": 192.0,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-07-01",
+    "wqi": 203.0,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-08-01",
+    "wqi": 199.6,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-09-01",
+    "wqi": 211.4,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-10-01",
+    "wqi": 215.1,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-11-01",
+    "wqi": 223.6,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2025-12-01",
+    "wqi": 218.9,
+    "country_code": "SI",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2026-01-01",
+    "wqi": 199.7,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2026-02-01",
+    "wqi": 194.6,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2026-03-01",
+    "wqi": 179.9,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Slovenia",
+    "date": "2026-04-01",
+    "wqi": 174.5,
+    "country_code": "SI",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-01-01",
+    "wqi": 264.9,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-02-01",
+    "wqi": 233.6,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-03-01",
+    "wqi": 224.2,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-04-01",
+    "wqi": 232.3,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-05-01",
+    "wqi": 216.4,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-06-01",
+    "wqi": 241.3,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-07-01",
+    "wqi": 255.4,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-08-01",
+    "wqi": 275.1,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-09-01",
+    "wqi": 295.3,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-10-01",
+    "wqi": 293.8,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-11-01",
+    "wqi": 293.3,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2024-12-01",
+    "wqi": 263.2,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-01-01",
+    "wqi": 259.3,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-02-01",
+    "wqi": 246.2,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-03-01",
+    "wqi": 228.2,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-04-01",
+    "wqi": 230.4,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-05-01",
+    "wqi": 233.9,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-06-01",
+    "wqi": 231.7,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-07-01",
+    "wqi": 259.1,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-08-01",
+    "wqi": 284.7,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-09-01",
+    "wqi": 287.8,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-10-01",
+    "wqi": 312.3,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-11-01",
+    "wqi": 308.3,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2025-12-01",
+    "wqi": 228.8,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2026-01-01",
+    "wqi": 235.9,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2026-02-01",
+    "wqi": 263.7,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2026-03-01",
+    "wqi": 234.5,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Spain",
+    "date": "2026-04-01",
+    "wqi": 225.1,
+    "country_code": "ES",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-01-01",
+    "wqi": 214.2,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-02-01",
+    "wqi": 196.0,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-03-01",
+    "wqi": 212.1,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-04-01",
+    "wqi": 211.3,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-05-01",
+    "wqi": 194.7,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-06-01",
+    "wqi": 214.5,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-07-01",
+    "wqi": 200.7,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-08-01",
+    "wqi": 227.1,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-09-01",
+    "wqi": 230.7,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-10-01",
+    "wqi": 230.1,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-11-01",
+    "wqi": 225.1,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2024-12-01",
+    "wqi": 217.8,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-01-01",
+    "wqi": 220.3,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-02-01",
+    "wqi": 204.7,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-03-01",
+    "wqi": 212.8,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-04-01",
+    "wqi": 178.1,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-05-01",
+    "wqi": 175.6,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-06-01",
+    "wqi": 194.9,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-07-01",
+    "wqi": 213.0,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-08-01",
+    "wqi": 219.1,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-09-01",
+    "wqi": 169.3,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-10-01",
+    "wqi": 193.4,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-11-01",
+    "wqi": 232.6,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2025-12-01",
+    "wqi": 218.8,
+    "country_code": "SE",
+    "risk_level": "clean",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2026-01-01",
+    "wqi": 192.0,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2026-02-01",
+    "wqi": 196.1,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2026-03-01",
+    "wqi": 194.6,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  },
+  {
+    "country": "Sweden",
+    "date": "2026-04-01",
+    "wqi": 165.4,
+    "country_code": "SE",
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical",
+    "cities_count": 1
+  }
+]

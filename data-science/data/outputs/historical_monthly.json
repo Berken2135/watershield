@@ -1,0 +1,8402 @@
+[
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-01-01",
+    "wqi": 185.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-02-01",
+    "wqi": 174.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-03-01",
+    "wqi": 150.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-04-01",
+    "wqi": 169.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-05-01",
+    "wqi": 159.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-06-01",
+    "wqi": 108.3,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-07-01",
+    "wqi": 157.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-08-01",
+    "wqi": 208.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-09-01",
+    "wqi": 202.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-10-01",
+    "wqi": 210.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-11-01",
+    "wqi": 213.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2024-12-01",
+    "wqi": 203.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-01-01",
+    "wqi": 180.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-02-01",
+    "wqi": 171.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-03-01",
+    "wqi": 153.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-04-01",
+    "wqi": 148.8,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-05-01",
+    "wqi": 147.7,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-06-01",
+    "wqi": 175.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-07-01",
+    "wqi": 190.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-08-01",
+    "wqi": 204.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-09-01",
+    "wqi": 215.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-10-01",
+    "wqi": 202.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-11-01",
+    "wqi": 211.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2025-12-01",
+    "wqi": 202.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2026-01-01",
+    "wqi": 194.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2026-02-01",
+    "wqi": 155.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2026-03-01",
+    "wqi": 149.4,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Wrocław",
+    "country": "Poland",
+    "lat": 51.1079,
+    "lon": 17.0385,
+    "date": "2026-04-01",
+    "wqi": 166.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-01-01",
+    "wqi": 184.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-02-01",
+    "wqi": 151.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-03-01",
+    "wqi": 163.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-04-01",
+    "wqi": 159.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-05-01",
+    "wqi": 150.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-06-01",
+    "wqi": 149.7,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-07-01",
+    "wqi": 182.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-08-01",
+    "wqi": 202.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-09-01",
+    "wqi": 207.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-10-01",
+    "wqi": 139.4,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-11-01",
+    "wqi": 173.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2024-12-01",
+    "wqi": 203.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-01-01",
+    "wqi": 181.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-02-01",
+    "wqi": 159.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-03-01",
+    "wqi": 169.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-04-01",
+    "wqi": 165.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-05-01",
+    "wqi": 146.2,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-06-01",
+    "wqi": 177.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-07-01",
+    "wqi": 127.5,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-08-01",
+    "wqi": 164.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-09-01",
+    "wqi": 197.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-10-01",
+    "wqi": 197.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-11-01",
+    "wqi": 216.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2025-12-01",
+    "wqi": 204.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2026-01-01",
+    "wqi": 185.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2026-02-01",
+    "wqi": 160.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2026-03-01",
+    "wqi": 172.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Kraków",
+    "country": "Poland",
+    "lat": 50.0647,
+    "lon": 19.945,
+    "date": "2026-04-01",
+    "wqi": 154.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-01-01",
+    "wqi": 194.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-02-01",
+    "wqi": 177.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-03-01",
+    "wqi": 171.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-04-01",
+    "wqi": 187.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-05-01",
+    "wqi": 173.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-06-01",
+    "wqi": 189.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-07-01",
+    "wqi": 194.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-08-01",
+    "wqi": 226.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-09-01",
+    "wqi": 222.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-10-01",
+    "wqi": 245.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-11-01",
+    "wqi": 226.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2024-12-01",
+    "wqi": 208.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-01-01",
+    "wqi": 194.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-02-01",
+    "wqi": 193.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-03-01",
+    "wqi": 160.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-04-01",
+    "wqi": 182.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-05-01",
+    "wqi": 179.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-06-01",
+    "wqi": 187.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-07-01",
+    "wqi": 214.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-08-01",
+    "wqi": 225.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-09-01",
+    "wqi": 237.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-10-01",
+    "wqi": 232.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-11-01",
+    "wqi": 236.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2025-12-01",
+    "wqi": 218.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2026-01-01",
+    "wqi": 176.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2026-02-01",
+    "wqi": 153.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2026-03-01",
+    "wqi": 181.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Warsaw",
+    "country": "Poland",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "date": "2026-04-01",
+    "wqi": 164.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-01-01",
+    "wqi": 202.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-02-01",
+    "wqi": 192.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-03-01",
+    "wqi": 189.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-04-01",
+    "wqi": 193.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-05-01",
+    "wqi": 181.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-06-01",
+    "wqi": 191.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-07-01",
+    "wqi": 200.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-08-01",
+    "wqi": 218.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-09-01",
+    "wqi": 239.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-10-01",
+    "wqi": 226.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-11-01",
+    "wqi": 222.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2024-12-01",
+    "wqi": 206.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-01-01",
+    "wqi": 199.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-02-01",
+    "wqi": 184.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-03-01",
+    "wqi": 137.4,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-04-01",
+    "wqi": 148.1,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-05-01",
+    "wqi": 177.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-06-01",
+    "wqi": 200.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-07-01",
+    "wqi": 212.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-08-01",
+    "wqi": 163.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-09-01",
+    "wqi": 186.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-10-01",
+    "wqi": 219.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-11-01",
+    "wqi": 228.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2025-12-01",
+    "wqi": 225.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2026-01-01",
+    "wqi": 211.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2026-02-01",
+    "wqi": 186.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2026-03-01",
+    "wqi": 192.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.405,
+    "date": "2026-04-01",
+    "wqi": 179.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-01-01",
+    "wqi": 232.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-02-01",
+    "wqi": 196.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-03-01",
+    "wqi": 131.0,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-04-01",
+    "wqi": 163.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-05-01",
+    "wqi": 189.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-06-01",
+    "wqi": 196.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-07-01",
+    "wqi": 205.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-08-01",
+    "wqi": 232.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-09-01",
+    "wqi": 227.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-10-01",
+    "wqi": 228.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-11-01",
+    "wqi": 220.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2024-12-01",
+    "wqi": 230.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-01-01",
+    "wqi": 213.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-02-01",
+    "wqi": 213.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-03-01",
+    "wqi": 176.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-04-01",
+    "wqi": 192.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-05-01",
+    "wqi": 209.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-06-01",
+    "wqi": 208.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-07-01",
+    "wqi": 215.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-08-01",
+    "wqi": 144.7,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-09-01",
+    "wqi": 193.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-10-01",
+    "wqi": 218.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-11-01",
+    "wqi": 227.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2025-12-01",
+    "wqi": 221.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2026-01-01",
+    "wqi": 209.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2026-02-01",
+    "wqi": 189.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2026-03-01",
+    "wqi": 179.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "date": "2026-04-01",
+    "wqi": 191.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-01-01",
+    "wqi": 176.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-02-01",
+    "wqi": 169.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-03-01",
+    "wqi": 162.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-04-01",
+    "wqi": 160.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-05-01",
+    "wqi": 174.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-06-01",
+    "wqi": 170.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-07-01",
+    "wqi": 168.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-08-01",
+    "wqi": 188.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-09-01",
+    "wqi": 125.0,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-10-01",
+    "wqi": 150.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-11-01",
+    "wqi": 177.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2024-12-01",
+    "wqi": 185.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-01-01",
+    "wqi": 176.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-02-01",
+    "wqi": 175.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-03-01",
+    "wqi": 146.3,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-04-01",
+    "wqi": 155.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-05-01",
+    "wqi": 156.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-06-01",
+    "wqi": 173.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-07-01",
+    "wqi": 185.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-08-01",
+    "wqi": 184.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-09-01",
+    "wqi": 119.1,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-10-01",
+    "wqi": 166.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-11-01",
+    "wqi": 190.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2025-12-01",
+    "wqi": 176.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2026-01-01",
+    "wqi": 171.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2026-02-01",
+    "wqi": 178.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2026-03-01",
+    "wqi": 170.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "date": "2026-04-01",
+    "wqi": 158.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-01-01",
+    "wqi": 179.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-02-01",
+    "wqi": 183.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-03-01",
+    "wqi": 167.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-04-01",
+    "wqi": 161.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-05-01",
+    "wqi": 172.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-06-01",
+    "wqi": 130.6,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-07-01",
+    "wqi": 167.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-08-01",
+    "wqi": 199.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-09-01",
+    "wqi": 212.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-10-01",
+    "wqi": 195.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-11-01",
+    "wqi": 211.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2024-12-01",
+    "wqi": 182.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-01-01",
+    "wqi": 194.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-02-01",
+    "wqi": 194.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-03-01",
+    "wqi": 166.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-04-01",
+    "wqi": 159.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-05-01",
+    "wqi": 152.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-06-01",
+    "wqi": 171.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-07-01",
+    "wqi": 186.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-08-01",
+    "wqi": 192.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-09-01",
+    "wqi": 219.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-10-01",
+    "wqi": 182.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-11-01",
+    "wqi": 202.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2025-12-01",
+    "wqi": 218.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2026-01-01",
+    "wqi": 163.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2026-02-01",
+    "wqi": 177.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2026-03-01",
+    "wqi": 172.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Brussels",
+    "country": "Belgium",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "date": "2026-04-01",
+    "wqi": 174.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-01-01",
+    "wqi": 173.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-02-01",
+    "wqi": 170.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-03-01",
+    "wqi": 177.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-04-01",
+    "wqi": 158.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-05-01",
+    "wqi": 178.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-06-01",
+    "wqi": 103.3,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-07-01",
+    "wqi": 140.8,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-08-01",
+    "wqi": 209.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-09-01",
+    "wqi": 190.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-10-01",
+    "wqi": 209.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-11-01",
+    "wqi": 205.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2024-12-01",
+    "wqi": 196.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-01-01",
+    "wqi": 177.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-02-01",
+    "wqi": 155.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-03-01",
+    "wqi": 166.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-04-01",
+    "wqi": 155.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-05-01",
+    "wqi": 177.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-06-01",
+    "wqi": 177.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-07-01",
+    "wqi": 183.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-08-01",
+    "wqi": 181.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-09-01",
+    "wqi": 197.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-10-01",
+    "wqi": 192.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-11-01",
+    "wqi": 193.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2025-12-01",
+    "wqi": 192.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2026-01-01",
+    "wqi": 181.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2026-02-01",
+    "wqi": 169.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2026-03-01",
+    "wqi": 145.3,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1319,
+    "date": "2026-04-01",
+    "wqi": 154.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-01-01",
+    "wqi": 179.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-02-01",
+    "wqi": 173.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-03-01",
+    "wqi": 164.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-04-01",
+    "wqi": 158.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-05-01",
+    "wqi": 168.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-06-01",
+    "wqi": 184.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-07-01",
+    "wqi": 189.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-08-01",
+    "wqi": 201.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-09-01",
+    "wqi": 216.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-10-01",
+    "wqi": 204.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-11-01",
+    "wqi": 202.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2024-12-01",
+    "wqi": 187.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-01-01",
+    "wqi": 187.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-02-01",
+    "wqi": 130.1,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-03-01",
+    "wqi": 142.4,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-04-01",
+    "wqi": 177.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-05-01",
+    "wqi": 167.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-06-01",
+    "wqi": 176.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-07-01",
+    "wqi": 178.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-08-01",
+    "wqi": 191.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-09-01",
+    "wqi": 208.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-10-01",
+    "wqi": 201.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-11-01",
+    "wqi": 193.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2025-12-01",
+    "wqi": 173.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2026-01-01",
+    "wqi": 183.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2026-02-01",
+    "wqi": 164.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2026-03-01",
+    "wqi": 180.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Dublin",
+    "country": "Ireland",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "date": "2026-04-01",
+    "wqi": 162.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-01-01",
+    "wqi": 264.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-02-01",
+    "wqi": 233.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-03-01",
+    "wqi": 224.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-04-01",
+    "wqi": 232.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-05-01",
+    "wqi": 216.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-06-01",
+    "wqi": 241.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-07-01",
+    "wqi": 255.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-08-01",
+    "wqi": 275.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-09-01",
+    "wqi": 295.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-10-01",
+    "wqi": 293.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-11-01",
+    "wqi": 293.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2024-12-01",
+    "wqi": 263.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-01-01",
+    "wqi": 259.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-02-01",
+    "wqi": 246.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-03-01",
+    "wqi": 228.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-04-01",
+    "wqi": 230.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-05-01",
+    "wqi": 233.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-06-01",
+    "wqi": 231.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-07-01",
+    "wqi": 259.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-08-01",
+    "wqi": 284.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-09-01",
+    "wqi": 287.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-10-01",
+    "wqi": 312.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-11-01",
+    "wqi": 308.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2025-12-01",
+    "wqi": 228.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2026-01-01",
+    "wqi": 235.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2026-02-01",
+    "wqi": 263.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2026-03-01",
+    "wqi": 234.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "date": "2026-04-01",
+    "wqi": 225.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-01-01",
+    "wqi": 254.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-02-01",
+    "wqi": 220.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-03-01",
+    "wqi": 226.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-04-01",
+    "wqi": 210.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-05-01",
+    "wqi": 224.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-06-01",
+    "wqi": 226.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-07-01",
+    "wqi": 247.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-08-01",
+    "wqi": 276.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-09-01",
+    "wqi": 268.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-10-01",
+    "wqi": 274.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-11-01",
+    "wqi": 272.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2024-12-01",
+    "wqi": 265.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-01-01",
+    "wqi": 249.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-02-01",
+    "wqi": 227.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-03-01",
+    "wqi": 226.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-04-01",
+    "wqi": 240.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-05-01",
+    "wqi": 229.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-06-01",
+    "wqi": 246.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-07-01",
+    "wqi": 264.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-08-01",
+    "wqi": 275.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-09-01",
+    "wqi": 280.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-10-01",
+    "wqi": 285.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-11-01",
+    "wqi": 239.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2025-12-01",
+    "wqi": 263.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2026-01-01",
+    "wqi": 257.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2026-02-01",
+    "wqi": 244.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2026-03-01",
+    "wqi": 241.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "date": "2026-04-01",
+    "wqi": 224.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-01-01",
+    "wqi": 216.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-02-01",
+    "wqi": 205.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-03-01",
+    "wqi": 205.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-04-01",
+    "wqi": 194.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-05-01",
+    "wqi": 211.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-06-01",
+    "wqi": 200.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-07-01",
+    "wqi": 224.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-08-01",
+    "wqi": 239.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-09-01",
+    "wqi": 271.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-10-01",
+    "wqi": 267.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-11-01",
+    "wqi": 264.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2024-12-01",
+    "wqi": 238.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-01-01",
+    "wqi": 223.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-02-01",
+    "wqi": 224.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-03-01",
+    "wqi": 207.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-04-01",
+    "wqi": 165.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-05-01",
+    "wqi": 181.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-06-01",
+    "wqi": 218.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-07-01",
+    "wqi": 225.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-08-01",
+    "wqi": 198.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-09-01",
+    "wqi": 240.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-10-01",
+    "wqi": 258.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-11-01",
+    "wqi": 252.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2025-12-01",
+    "wqi": 254.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2026-01-01",
+    "wqi": 237.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2026-02-01",
+    "wqi": 231.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2026-03-01",
+    "wqi": 232.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "date": "2026-04-01",
+    "wqi": 200.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-01-01",
+    "wqi": 222.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-02-01",
+    "wqi": 234.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-03-01",
+    "wqi": 202.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-04-01",
+    "wqi": 210.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-05-01",
+    "wqi": 209.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-06-01",
+    "wqi": 218.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-07-01",
+    "wqi": 227.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-08-01",
+    "wqi": 254.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-09-01",
+    "wqi": 276.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-10-01",
+    "wqi": 266.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-11-01",
+    "wqi": 278.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2024-12-01",
+    "wqi": 259.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-01-01",
+    "wqi": 188.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-02-01",
+    "wqi": 199.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-03-01",
+    "wqi": 210.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-04-01",
+    "wqi": 207.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-05-01",
+    "wqi": 220.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-06-01",
+    "wqi": 235.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-07-01",
+    "wqi": 238.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-08-01",
+    "wqi": 266.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-09-01",
+    "wqi": 278.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-10-01",
+    "wqi": 280.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-11-01",
+    "wqi": 284.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2025-12-01",
+    "wqi": 256.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2026-01-01",
+    "wqi": 238.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2026-02-01",
+    "wqi": 228.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2026-03-01",
+    "wqi": 206.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Athens",
+    "country": "Greece",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "date": "2026-04-01",
+    "wqi": 210.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-01-01",
+    "wqi": 241.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-02-01",
+    "wqi": 246.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-03-01",
+    "wqi": 212.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-04-01",
+    "wqi": 200.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-05-01",
+    "wqi": 206.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-06-01",
+    "wqi": 230.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-07-01",
+    "wqi": 247.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-08-01",
+    "wqi": 215.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-09-01",
+    "wqi": 255.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-10-01",
+    "wqi": 282.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-11-01",
+    "wqi": 274.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2024-12-01",
+    "wqi": 248.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-01-01",
+    "wqi": 254.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-02-01",
+    "wqi": 231.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-03-01",
+    "wqi": 220.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-04-01",
+    "wqi": 218.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-05-01",
+    "wqi": 228.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-06-01",
+    "wqi": 233.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-07-01",
+    "wqi": 247.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-08-01",
+    "wqi": 225.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-09-01",
+    "wqi": 275.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-10-01",
+    "wqi": 280.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-11-01",
+    "wqi": 282.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2025-12-01",
+    "wqi": 261.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2026-01-01",
+    "wqi": 247.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2026-02-01",
+    "wqi": 236.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2026-03-01",
+    "wqi": 219.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Valletta",
+    "country": "Malta",
+    "lat": 35.8997,
+    "lon": 14.5147,
+    "date": "2026-04-01",
+    "wqi": 217.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-01-01",
+    "wqi": 245.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-02-01",
+    "wqi": 213.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-03-01",
+    "wqi": 215.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-04-01",
+    "wqi": 221.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-05-01",
+    "wqi": 218.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-06-01",
+    "wqi": 228.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-07-01",
+    "wqi": 244.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-08-01",
+    "wqi": 272.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-09-01",
+    "wqi": 270.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-10-01",
+    "wqi": 286.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-11-01",
+    "wqi": 275.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2024-12-01",
+    "wqi": 258.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-01-01",
+    "wqi": 247.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-02-01",
+    "wqi": 235.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-03-01",
+    "wqi": 198.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-04-01",
+    "wqi": 189.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-05-01",
+    "wqi": 207.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-06-01",
+    "wqi": 215.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-07-01",
+    "wqi": 236.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-08-01",
+    "wqi": 260.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-09-01",
+    "wqi": 275.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-10-01",
+    "wqi": 277.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-11-01",
+    "wqi": 271.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2025-12-01",
+    "wqi": 196.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2026-01-01",
+    "wqi": 207.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2026-02-01",
+    "wqi": 160.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2026-03-01",
+    "wqi": 182.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Nicosia",
+    "country": "Cyprus",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "date": "2026-04-01",
+    "wqi": 198.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-01-01",
+    "wqi": 210.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-02-01",
+    "wqi": 201.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-03-01",
+    "wqi": 184.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-04-01",
+    "wqi": 199.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-05-01",
+    "wqi": 179.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-06-01",
+    "wqi": 204.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-07-01",
+    "wqi": 220.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-08-01",
+    "wqi": 237.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-09-01",
+    "wqi": 244.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-10-01",
+    "wqi": 224.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-11-01",
+    "wqi": 230.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2024-12-01",
+    "wqi": 230.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-01-01",
+    "wqi": 145.8,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-02-01",
+    "wqi": 155.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-03-01",
+    "wqi": 181.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-04-01",
+    "wqi": 186.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-05-01",
+    "wqi": 198.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-06-01",
+    "wqi": 191.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-07-01",
+    "wqi": 206.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-08-01",
+    "wqi": 218.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-09-01",
+    "wqi": 220.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-10-01",
+    "wqi": 235.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-11-01",
+    "wqi": 227.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2025-12-01",
+    "wqi": 161.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2026-01-01",
+    "wqi": 160.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2026-02-01",
+    "wqi": 188.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2026-03-01",
+    "wqi": 179.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "date": "2026-04-01",
+    "wqi": 184.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-01-01",
+    "wqi": 205.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-02-01",
+    "wqi": 196.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-03-01",
+    "wqi": 182.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-04-01",
+    "wqi": 184.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-05-01",
+    "wqi": 197.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-06-01",
+    "wqi": 207.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-07-01",
+    "wqi": 213.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-08-01",
+    "wqi": 210.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-09-01",
+    "wqi": 240.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-10-01",
+    "wqi": 229.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-11-01",
+    "wqi": 231.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2024-12-01",
+    "wqi": 163.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-01-01",
+    "wqi": 175.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-02-01",
+    "wqi": 200.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-03-01",
+    "wqi": 194.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-04-01",
+    "wqi": 188.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-05-01",
+    "wqi": 199.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-06-01",
+    "wqi": 191.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-07-01",
+    "wqi": 209.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-08-01",
+    "wqi": 206.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-09-01",
+    "wqi": 227.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-10-01",
+    "wqi": 232.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-11-01",
+    "wqi": 234.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2025-12-01",
+    "wqi": 163.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2026-01-01",
+    "wqi": 177.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2026-02-01",
+    "wqi": 200.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2026-03-01",
+    "wqi": 206.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Prague",
+    "country": "Czechia",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "date": "2026-04-01",
+    "wqi": 176.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-01-01",
+    "wqi": 228.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-02-01",
+    "wqi": 198.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-03-01",
+    "wqi": 131.6,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-04-01",
+    "wqi": 145.8,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-05-01",
+    "wqi": 191.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-06-01",
+    "wqi": 192.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-07-01",
+    "wqi": 203.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-08-01",
+    "wqi": 223.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-09-01",
+    "wqi": 232.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-10-01",
+    "wqi": 236.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-11-01",
+    "wqi": 223.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2024-12-01",
+    "wqi": 205.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-01-01",
+    "wqi": 204.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-02-01",
+    "wqi": 192.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-03-01",
+    "wqi": 187.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-04-01",
+    "wqi": 163.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-05-01",
+    "wqi": 137.2,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-06-01",
+    "wqi": 177.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-07-01",
+    "wqi": 195.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-08-01",
+    "wqi": 223.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-09-01",
+    "wqi": 235.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-10-01",
+    "wqi": 231.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-11-01",
+    "wqi": 240.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2025-12-01",
+    "wqi": 207.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2026-01-01",
+    "wqi": 208.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2026-02-01",
+    "wqi": 192.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2026-03-01",
+    "wqi": 173.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Budapest",
+    "country": "Hungary",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "date": "2026-04-01",
+    "wqi": 161.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-01-01",
+    "wqi": 215.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-02-01",
+    "wqi": 191.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-03-01",
+    "wqi": 194.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-04-01",
+    "wqi": 126.2,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-05-01",
+    "wqi": 146.3,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-06-01",
+    "wqi": 209.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-07-01",
+    "wqi": 214.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-08-01",
+    "wqi": 205.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-09-01",
+    "wqi": 222.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-10-01",
+    "wqi": 234.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-11-01",
+    "wqi": 224.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2024-12-01",
+    "wqi": 221.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-01-01",
+    "wqi": 201.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-02-01",
+    "wqi": 179.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-03-01",
+    "wqi": 205.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-04-01",
+    "wqi": 144.8,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-05-01",
+    "wqi": 170.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-06-01",
+    "wqi": 197.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-07-01",
+    "wqi": 203.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-08-01",
+    "wqi": 236.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-09-01",
+    "wqi": 236.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-10-01",
+    "wqi": 243.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-11-01",
+    "wqi": 223.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2025-12-01",
+    "wqi": 234.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2026-01-01",
+    "wqi": 206.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2026-02-01",
+    "wqi": 197.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2026-03-01",
+    "wqi": 189.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bratislava",
+    "country": "Slovakia",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "date": "2026-04-01",
+    "wqi": 168.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-01-01",
+    "wqi": 194.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-02-01",
+    "wqi": 183.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-03-01",
+    "wqi": 177.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-04-01",
+    "wqi": 179.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-05-01",
+    "wqi": 173.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-06-01",
+    "wqi": 188.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-07-01",
+    "wqi": 133.1,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-08-01",
+    "wqi": 132.4,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-09-01",
+    "wqi": 192.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-10-01",
+    "wqi": 221.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-11-01",
+    "wqi": 208.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2024-12-01",
+    "wqi": 225.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-01-01",
+    "wqi": 214.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-02-01",
+    "wqi": 190.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-03-01",
+    "wqi": 195.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-04-01",
+    "wqi": 180.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-05-01",
+    "wqi": 183.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-06-01",
+    "wqi": 192.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-07-01",
+    "wqi": 203.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-08-01",
+    "wqi": 199.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-09-01",
+    "wqi": 211.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-10-01",
+    "wqi": 215.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-11-01",
+    "wqi": 223.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2025-12-01",
+    "wqi": 218.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2026-01-01",
+    "wqi": 199.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2026-02-01",
+    "wqi": 194.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2026-03-01",
+    "wqi": 179.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "date": "2026-04-01",
+    "wqi": 174.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-01-01",
+    "wqi": 205.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-02-01",
+    "wqi": 167.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-03-01",
+    "wqi": 180.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-04-01",
+    "wqi": 176.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-05-01",
+    "wqi": 174.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-06-01",
+    "wqi": 188.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-07-01",
+    "wqi": 211.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-08-01",
+    "wqi": 208.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-09-01",
+    "wqi": 197.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-10-01",
+    "wqi": 223.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-11-01",
+    "wqi": 170.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2024-12-01",
+    "wqi": 185.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-01-01",
+    "wqi": 193.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-02-01",
+    "wqi": 181.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-03-01",
+    "wqi": 175.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-04-01",
+    "wqi": 164.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-05-01",
+    "wqi": 175.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-06-01",
+    "wqi": 190.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-07-01",
+    "wqi": 190.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-08-01",
+    "wqi": 212.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-09-01",
+    "wqi": 171.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-10-01",
+    "wqi": 193.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-11-01",
+    "wqi": 201.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2025-12-01",
+    "wqi": 204.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2026-01-01",
+    "wqi": 203.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2026-02-01",
+    "wqi": 171.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2026-03-01",
+    "wqi": 155.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.815,
+    "lon": 15.9819,
+    "date": "2026-04-01",
+    "wqi": 175.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-01-01",
+    "wqi": 162.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-02-01",
+    "wqi": 166.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-03-01",
+    "wqi": 152.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-04-01",
+    "wqi": 155.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-05-01",
+    "wqi": 148.5,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-06-01",
+    "wqi": 170.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-07-01",
+    "wqi": 183.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-08-01",
+    "wqi": 204.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-09-01",
+    "wqi": 183.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-10-01",
+    "wqi": 211.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-11-01",
+    "wqi": 196.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2024-12-01",
+    "wqi": 181.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-01-01",
+    "wqi": 174.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-02-01",
+    "wqi": 159.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-03-01",
+    "wqi": 136.8,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-04-01",
+    "wqi": 161.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-05-01",
+    "wqi": 151.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-06-01",
+    "wqi": 153.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-07-01",
+    "wqi": 175.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-08-01",
+    "wqi": 134.5,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-09-01",
+    "wqi": 171.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-10-01",
+    "wqi": 205.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-11-01",
+    "wqi": 192.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2025-12-01",
+    "wqi": 195.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2026-01-01",
+    "wqi": 190.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2026-02-01",
+    "wqi": 173.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2026-03-01",
+    "wqi": 162.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Bucharest",
+    "country": "Romania",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "date": "2026-04-01",
+    "wqi": 150.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-01-01",
+    "wqi": 172.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-02-01",
+    "wqi": 169.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-03-01",
+    "wqi": 152.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-04-01",
+    "wqi": 144.9,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-05-01",
+    "wqi": 154.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-06-01",
+    "wqi": 160.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-07-01",
+    "wqi": 182.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-08-01",
+    "wqi": 151.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-09-01",
+    "wqi": 181.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-10-01",
+    "wqi": 216.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-11-01",
+    "wqi": 211.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2024-12-01",
+    "wqi": 207.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-01-01",
+    "wqi": 168.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-02-01",
+    "wqi": 160.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-03-01",
+    "wqi": 160.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-04-01",
+    "wqi": 158.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-05-01",
+    "wqi": 155.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-06-01",
+    "wqi": 166.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-07-01",
+    "wqi": 180.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-08-01",
+    "wqi": 198.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-09-01",
+    "wqi": 205.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-10-01",
+    "wqi": 208.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-11-01",
+    "wqi": 202.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2025-12-01",
+    "wqi": 202.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2026-01-01",
+    "wqi": 175.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2026-02-01",
+    "wqi": 162.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2026-03-01",
+    "wqi": 159.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "date": "2026-04-01",
+    "wqi": 165.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-01-01",
+    "wqi": 199.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-02-01",
+    "wqi": 181.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-03-01",
+    "wqi": 174.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-04-01",
+    "wqi": 179.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-05-01",
+    "wqi": 187.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-06-01",
+    "wqi": 192.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-07-01",
+    "wqi": 194.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-08-01",
+    "wqi": 218.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-09-01",
+    "wqi": 214.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-10-01",
+    "wqi": 236.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-11-01",
+    "wqi": 218.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2024-12-01",
+    "wqi": 217.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-01-01",
+    "wqi": 197.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-02-01",
+    "wqi": 190.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-03-01",
+    "wqi": 127.5,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-04-01",
+    "wqi": 151.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-05-01",
+    "wqi": 112.3,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-06-01",
+    "wqi": 146.3,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-07-01",
+    "wqi": 193.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-08-01",
+    "wqi": 209.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-09-01",
+    "wqi": 223.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-10-01",
+    "wqi": 225.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-11-01",
+    "wqi": 222.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2025-12-01",
+    "wqi": 210.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2026-01-01",
+    "wqi": 183.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2026-02-01",
+    "wqi": 193.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2026-03-01",
+    "wqi": 179.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "date": "2026-04-01",
+    "wqi": 164.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-01-01",
+    "wqi": 185.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-02-01",
+    "wqi": 198.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-03-01",
+    "wqi": 173.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-04-01",
+    "wqi": 171.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-05-01",
+    "wqi": 180.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-06-01",
+    "wqi": 205.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-07-01",
+    "wqi": 199.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-08-01",
+    "wqi": 194.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-09-01",
+    "wqi": 233.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-10-01",
+    "wqi": 223.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-11-01",
+    "wqi": 218.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2024-12-01",
+    "wqi": 208.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-01-01",
+    "wqi": 206.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-02-01",
+    "wqi": 177.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-03-01",
+    "wqi": 189.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-04-01",
+    "wqi": 189.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-05-01",
+    "wqi": 183.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-06-01",
+    "wqi": 196.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-07-01",
+    "wqi": 206.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-08-01",
+    "wqi": 175.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-09-01",
+    "wqi": 185.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-10-01",
+    "wqi": 220.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-11-01",
+    "wqi": 233.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2025-12-01",
+    "wqi": 220.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2026-01-01",
+    "wqi": 209.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2026-02-01",
+    "wqi": 178.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2026-03-01",
+    "wqi": 175.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Riga",
+    "country": "Latvia",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "date": "2026-04-01",
+    "wqi": 169.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-01-01",
+    "wqi": 191.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-02-01",
+    "wqi": 187.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-03-01",
+    "wqi": 187.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-04-01",
+    "wqi": 170.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-05-01",
+    "wqi": 179.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-06-01",
+    "wqi": 190.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-07-01",
+    "wqi": 191.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-08-01",
+    "wqi": 206.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-09-01",
+    "wqi": 220.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-10-01",
+    "wqi": 172.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-11-01",
+    "wqi": 196.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2024-12-01",
+    "wqi": 214.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-01-01",
+    "wqi": 219.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-02-01",
+    "wqi": 178.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-03-01",
+    "wqi": 188.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-04-01",
+    "wqi": 181.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-05-01",
+    "wqi": 183.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-06-01",
+    "wqi": 186.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-07-01",
+    "wqi": 195.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-08-01",
+    "wqi": 225.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-09-01",
+    "wqi": 227.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-10-01",
+    "wqi": 225.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-11-01",
+    "wqi": 214.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2025-12-01",
+    "wqi": 206.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2026-01-01",
+    "wqi": 192.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2026-02-01",
+    "wqi": 188.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2026-03-01",
+    "wqi": 200.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "date": "2026-04-01",
+    "wqi": 161.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-01-01",
+    "wqi": 214.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-02-01",
+    "wqi": 196.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-03-01",
+    "wqi": 212.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-04-01",
+    "wqi": 211.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-05-01",
+    "wqi": 194.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-06-01",
+    "wqi": 214.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-07-01",
+    "wqi": 200.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-08-01",
+    "wqi": 227.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-09-01",
+    "wqi": 230.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-10-01",
+    "wqi": 230.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-11-01",
+    "wqi": 225.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2024-12-01",
+    "wqi": 217.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-01-01",
+    "wqi": 220.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-02-01",
+    "wqi": 204.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-03-01",
+    "wqi": 212.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-04-01",
+    "wqi": 178.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-05-01",
+    "wqi": 175.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-06-01",
+    "wqi": 194.9,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-07-01",
+    "wqi": 213.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-08-01",
+    "wqi": 219.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-09-01",
+    "wqi": 169.3,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-10-01",
+    "wqi": 193.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-11-01",
+    "wqi": 232.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2025-12-01",
+    "wqi": 218.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2026-01-01",
+    "wqi": 192.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2026-02-01",
+    "wqi": 196.1,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2026-03-01",
+    "wqi": 194.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "date": "2026-04-01",
+    "wqi": 165.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-01-01",
+    "wqi": 219.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-02-01",
+    "wqi": 197.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-03-01",
+    "wqi": 208.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-04-01",
+    "wqi": 192.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-05-01",
+    "wqi": 214.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-06-01",
+    "wqi": 214.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-07-01",
+    "wqi": 214.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-08-01",
+    "wqi": 236.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-09-01",
+    "wqi": 239.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-10-01",
+    "wqi": 247.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-11-01",
+    "wqi": 236.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2024-12-01",
+    "wqi": 237.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-01-01",
+    "wqi": 224.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-02-01",
+    "wqi": 159.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-03-01",
+    "wqi": 171.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-04-01",
+    "wqi": 215.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-05-01",
+    "wqi": 212.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-06-01",
+    "wqi": 214.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-07-01",
+    "wqi": 209.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-08-01",
+    "wqi": 234.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-09-01",
+    "wqi": 234.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-10-01",
+    "wqi": 241.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-11-01",
+    "wqi": 244.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2025-12-01",
+    "wqi": 241.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2026-01-01",
+    "wqi": 216.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2026-02-01",
+    "wqi": 232.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2026-03-01",
+    "wqi": 207.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Oslo",
+    "country": "Norway",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "date": "2026-04-01",
+    "wqi": 220.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-01-01",
+    "wqi": 209.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-02-01",
+    "wqi": 193.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-03-01",
+    "wqi": 205.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-04-01",
+    "wqi": 181.8,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-05-01",
+    "wqi": 200.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-06-01",
+    "wqi": 195.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-07-01",
+    "wqi": 210.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-08-01",
+    "wqi": 223.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-09-01",
+    "wqi": 224.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-10-01",
+    "wqi": 235.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-11-01",
+    "wqi": 235.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2024-12-01",
+    "wqi": 232.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-01-01",
+    "wqi": 218.1,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-02-01",
+    "wqi": 215.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-03-01",
+    "wqi": 198.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-04-01",
+    "wqi": 193.6,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-05-01",
+    "wqi": 195.0,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-06-01",
+    "wqi": 207.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-07-01",
+    "wqi": 198.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-08-01",
+    "wqi": 236.4,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-09-01",
+    "wqi": 235.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-10-01",
+    "wqi": 241.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-11-01",
+    "wqi": 233.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2025-12-01",
+    "wqi": 229.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2026-01-01",
+    "wqi": 217.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2026-02-01",
+    "wqi": 149.5,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2026-03-01",
+    "wqi": 163.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Helsinki",
+    "country": "Finland",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "date": "2026-04-01",
+    "wqi": 194.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-01-01",
+    "wqi": 210.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-02-01",
+    "wqi": 216.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-03-01",
+    "wqi": 207.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-04-01",
+    "wqi": 138.2,
+    "risk_level": "high",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-05-01",
+    "wqi": 184.5,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-06-01",
+    "wqi": 217.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-07-01",
+    "wqi": 214.7,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-08-01",
+    "wqi": 231.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-09-01",
+    "wqi": 246.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-10-01",
+    "wqi": 239.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-11-01",
+    "wqi": 236.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2024-12-01",
+    "wqi": 214.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-01-01",
+    "wqi": 224.8,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-02-01",
+    "wqi": 206.3,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-03-01",
+    "wqi": 190.7,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-04-01",
+    "wqi": 195.4,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-05-01",
+    "wqi": 216.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-06-01",
+    "wqi": 213.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-07-01",
+    "wqi": 221.5,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-08-01",
+    "wqi": 243.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-09-01",
+    "wqi": 168.2,
+    "risk_level": "moderate",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-10-01",
+    "wqi": 220.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-11-01",
+    "wqi": 233.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2025-12-01",
+    "wqi": 243.0,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2026-01-01",
+    "wqi": 223.9,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2026-02-01",
+    "wqi": 210.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2026-03-01",
+    "wqi": 212.6,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  },
+  {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "date": "2026-04-01",
+    "wqi": 213.2,
+    "risk_level": "clean",
+    "data_source": "synthetic_historical"
+  }
+]

@@ -1,8 +1,8 @@
+from dotenv import load_dotenv
+load_dotenv()  # auto-load backend/.env (OPENAI_API_KEY, etc.)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-
-load_dotenv()
 
 from routers import auth, search, analysis, reports, data
 
