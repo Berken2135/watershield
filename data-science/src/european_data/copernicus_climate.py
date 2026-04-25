@@ -1,9 +1,9 @@
-"""Fetch ERA5 reanalysis climate data for 30 European cities.
+"""Fetch ERA5 reanalysis climate data for 105 European rivers.
 
 Primary path  : Copernicus Climate Data Store (CDS) API via `cdsapi`.
 Fallback path : Open-Meteo archive API (same ERA5 data, no key required).
 
-Output: data/processed/europe/era5_cities.parquet
+Output: data/processed/europe/era5_rivers.parquet
 Schema : city, country, lat, lon, date (YYYY-MM-DD, first of month),
          temperature_c (monthly mean °C), precipitation_mm (monthly sum),
          snow_cover_cm (monthly sum of daily snowfall cm w.e.), source
@@ -20,14 +20,14 @@ import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_PROCESSED
-from src.european_data.cities import CITIES
+from src.european_data.rivers import RIVERS as CITIES
 
-OUT_PATH = DATA_PROCESSED / "europe" / "era5_cities.parquet"
+OUT_PATH = DATA_PROCESSED / "europe" / "era5_rivers.parquet"
 OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 HIST_START = "2024-01-01"
-HIST_END   = "2024-12-31"
-BATCH_SIZE = 10          # cities per Open-Meteo request
+HIST_END   = "2026-04-25"
+BATCH_SIZE = 10          # rivers per Open-Meteo request
 
 
 # ── Open-Meteo fallback ───────────────────────────────────────────────────────
@@ -177,7 +177,7 @@ def load_or_fetch() -> pd.DataFrame:
 def main() -> None:
     print("ERA5 climate data fetcher")
     print(f"  Period : {HIST_START} → {HIST_END}")
-    print(f"  Cities : {len(CITIES)}")
+    print(f"  Rivers : {len(CITIES)}")
 
     df = load_or_fetch()
     df.to_parquet(OUT_PATH, index=False)

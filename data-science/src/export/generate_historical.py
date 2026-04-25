@@ -1,15 +1,15 @@
-"""Generate synthetic monthly WQI history for all 102 cities, Jan 2024 – Apr 2026.
+"""Generate synthetic monthly WQI history for all 105 European rivers, Jan 2024 – Apr 2026.
 
-We have real sensor data only for Wrocław (Aug–Oct 2024).  Everything else
-is synthetic but designed to look plausible:
+We have real sensor data only for Odra at Wrocław (Aug–Oct 2024).  Everything
+else is synthetic but designed to look plausible:
 
-  - Each city gets a seeded base WQI reflecting its geography and known
-    water quality (Nordic/Swiss/Australian cities are cleanest; heavily
-    industrialised / rapidly urbanising cities in South Asia score lower)
-  - A sinusoidal seasonal curve: summer slightly worse for temperate cities,
-    winter worse for Mediterranean; tropical cities have minimal seasonality
+  - Each river gets a seeded base WQI reflecting its geography and known
+    water quality (Nordic/Swiss/Alpine rivers are cleanest; Balkan/Eastern
+    rivers score lower)
+  - A sinusoidal seasonal curve: summer slightly worse for continental rivers,
+    winter worse for Mediterranean rivers; Atlantic rivers have low seasonality
   - A slow random walk that drifts ±30 WQI over the three years
-  - Rare pollution spikes (-40 to -60 WQI, 1–2 per city over 28 months)
+  - Rare pollution spikes (-40 to -60 WQI, 1–2 per river over 28 months)
   - All values clipped to [60, 340] to stay within the Waterly reference range
 
 Output
@@ -34,7 +34,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_OUTPUTS
-from src.european_data.cities_all import CITIES_ALL
+from src.european_data.rivers import RIVERS
 
 DATA_OUTPUTS.mkdir(parents=True, exist_ok=True)
 
@@ -45,133 +45,175 @@ MONTHS = pd.date_range("2024-01-01", "2026-04-01", freq="MS")
 
 RISK_THRESHOLDS = [(200, "clean"), (150, "moderate"), (100, "high"), (0, "critical")]
 
-# ── Base WQI per city ─────────────────────────────────────────────────────────
+# ── Base WQI per river (keyed by the `city` field = "RiverName (City)") ──────
 # Higher = better water quality.  Grounded in:
-#   - regulatory environment (EU WFD cities score higher)
-#   - climate (dry Mediterranean > wet Atlantic for runoff)
-#   - urbanisation/industrialisation pressure
-#   - known river/harbour quality
+#   - EU Water Framework Directive compliance status
+#   - Basin size and upstream land use
+#   - Known industrial / agricultural pressure
+#   - Alpine/Nordic rivers score highest (low population density, clean source)
 
 BASE_WQI: dict[str, float] = {
-    # Poland
-    "Wrocław": 182, "Kraków": 188, "Warsaw": 195, "Gdańsk": 200, "Poznań": 193,
-    # Germany
-    "Berlin": 205, "Hamburg": 210, "Munich": 218, "Cologne": 200,
-    # France
-    "Paris": 208, "Lyon": 215, "Marseille": 222, "Bordeaux": 218,
-    # UK
-    "London": 212, "Manchester": 195, "Edinburgh": 225,
-    # Benelux
-    "Amsterdam": 175, "Rotterdam": 180, "Brussels": 190, "Antwerp": 185, "Luxembourg": 185,
-    # Iberia
-    "Madrid": 248, "Barcelona": 238, "Seville": 242, "Valencia": 235,
-    "Lisbon": 252, "Porto": 248,
-    # Italy
-    "Rome": 228, "Milan": 210, "Naples": 215, "Venice": 220,
-    # Greece / Mediterranean islands
-    "Athens": 235, "Thessaloniki": 225, "Valletta": 245, "Nicosia": 250,
-    # Nordics
-    "Stockholm": 218, "Oslo": 230, "Helsinki": 222, "Copenhagen": 220,
-    # Baltics
-    "Tallinn": 200, "Riga": 197, "Vilnius": 193,
-    # Central Europe
-    "Vienna": 212, "Prague": 207, "Budapest": 215, "Bratislava": 210,
-    "Ljubljana": 195, "Zagreb": 198,
-    # Eastern / South-Eastern Europe
-    "Bucharest": 180, "Sofia": 175, "Belgrade": 185, "Sarajevo": 182,
-    "Kyiv": 172,
-    # Switzerland
-    "Zurich": 258, "Geneva": 262,
-    # Turkey / Ireland
-    "Istanbul": 190, "Dublin": 185,
-    # North America
-    "New York": 215, "Los Angeles": 205, "Chicago": 218, "Houston": 198,
-    "Miami": 210, "Toronto": 230, "Vancouver": 248, "Montreal": 232,
-    "Mexico City": 155,
-    # Latin America
-    "São Paulo": 148, "Rio de Janeiro": 160, "Buenos Aires": 172,
-    "Bogotá": 155, "Lima": 145, "Santiago": 175,
-    # East Asia
-    "Tokyo": 228, "Osaka": 222, "Seoul": 215, "Beijing": 170, "Shanghai": 175,
-    # South Asia
-    "Mumbai": 148, "Delhi": 118, "Dhaka": 105, "Karachi": 120,
-    # SE Asia
-    "Bangkok": 155, "Singapore": 258, "Jakarta": 128,
-    "Ho Chi Minh": 140, "Kuala Lumpur": 165,
-    # Middle East
-    "Dubai": 195, "Tehran": 158, "Riyadh": 185, "Beirut": 162,
-    # Africa
-    "Cairo": 148, "Lagos": 125, "Nairobi": 138, "Kinshasa": 118,
-    "Casablanca": 172, "Cape Town": 205, "Johannesburg": 165, "Accra": 142,
-    # Oceania
-    "Sydney": 242, "Melbourne": 238, "Brisbane": 235,
-    "Auckland": 248, "Perth": 245,
+    # Poland (8)
+    "Odra (Wrocław)":        182, "Vistula (Warsaw)":      188, "Vistula (Kraków)":     185,
+    "Warta (Poznań)":        183, "Bug (Brest)":            178, "San (Przemyśl)":       185,
+    "Pilica (Tomaszów)":     180, "Narew (Łomża)":         183,
+    # Germany (10)
+    "Rhine (Cologne)":       205, "Rhine (Düsseldorf)":    202, "Elbe (Hamburg)":       195,
+    "Elbe (Dresden)":        200, "Danube (Regensburg)":   215, "Main (Frankfurt)":     200,
+    "Spree (Berlin)":        198, "Weser (Bremen)":        205, "Neckar (Stuttgart)":   202,
+    "Isar (Munich)":         218,
+    # France (8)
+    "Seine (Paris)":         205, "Rhône (Lyon)":          215, "Rhône (Avignon)":      218,
+    "Loire (Nantes)":        208, "Loire (Orléans)":       210, "Garonne (Bordeaux)":   215,
+    "Marne (Châlons)":       207, "Saône (Chalon)":        212,
+    # United Kingdom (5)
+    "Thames (London)":       200, "Severn (Bristol)":      208, "Mersey (Liverpool)":   195,
+    "Tyne (Newcastle)":      202, "Clyde (Glasgow)":       205,
+    # Italy (6)
+    "Po (Turin)":            205, "Po (Ferrara)":          190, "Tiber (Rome)":         195,
+    "Arno (Florence)":       205, "Adige (Verona)":        215, "Piave (Belluno)":      225,
+    # Spain (5)
+    "Ebro (Zaragoza)":       232, "Tagus (Toledo)":        238, "Guadalquivir (Seville)": 228,
+    "Duero (Valladolid)":    240, "Miño (Ourense)":        245,
+    # Netherlands (3)
+    "Rhine (Rotterdam)":     185, "Maas (Maastricht)":     183, "IJssel (Deventer)":    188,
+    # Belgium (2)
+    "Schelde (Antwerp)":     178, "Meuse (Liège)":         180,
+    # Portugal (2)
+    "Tagus (Lisbon)":        242, "Douro (Porto)":         248,
+    # Ireland (2)
+    "Liffey (Dublin)":       212, "Shannon (Limerick)":    228,
+    # Switzerland (3)
+    "Rhine (Basel)":         255, "Aare (Bern)":           260, "Limmat (Zurich)":      258,
+    # Austria (4)
+    "Danube (Vienna)":       215, "Inn (Innsbruck)":       235, "Salzach (Salzburg)":   240,
+    "Mur (Graz)":            225,
+    # Czechia (2)
+    "Vltava (Prague)":       210, "Elbe (Ústí)":          195,
+    # Slovakia (2)
+    "Danube (Bratislava)":   212, "Váh (Trenčín)":         215,
+    # Hungary (3)
+    "Danube (Budapest)":     208, "Tisza (Szeged)":        195, "Rába (Győr)":           200,
+    # Slovenia (2)
+    "Sava (Ljubljana)":      215, "Drava (Maribor)":       218,
+    # Croatia (2)
+    "Sava (Zagreb)":         200, "Drava (Osijek)":        195,
+    # Romania (4)
+    "Danube (Galați)":       182, "Mureș (Arad)":          175, "Olt (Slatina)":        172,
+    "Prut (Iași)":           178,
+    # Bulgaria (2)
+    "Danube (Ruse)":         185, "Maritsa (Plovdiv)":     170,
+    # Serbia (2)
+    "Danube (Belgrade)":     185, "Sava (Belgrade)":       180,
+    # Greece (3)
+    "Aliakmonas (Kozani)":   228, "Pinios (Larissa)":      222, "Axios (Thessaloniki)":  218,
+    # Sweden (3)
+    "Göta älv (Gothenburg)": 235, "Klarälven (Karlstad)":  240, "Dalälven (Falun)":     238,
+    # Norway (3)
+    "Glomma (Sarpsborg)":    238, "Drammenselva (Drammen)": 235, "Lågen (Lillehammer)": 242,
+    # Finland (3)
+    "Kymijoki (Kouvola)":    232, "Vuoksi (Lappeenranta)": 238, "Oulujoki (Oulu)":      240,
+    # Denmark (2)
+    "Gudenå (Silkeborg)":    225, "Odense Å (Odense)":     222,
+    # Lithuania (2)
+    "Neris (Vilnius)":       195, "Nemunas (Kaunas)":      198,
+    # Latvia (2)
+    "Daugava (Riga)":        192, "Gauja (Valmiera)":      205,
+    # Estonia (2)
+    "Emajõgi (Tartu)":       198, "Pärnu (Pärnu)":         202,
+    # Ukraine (2)
+    "Dnipro (Kyiv)":         168, "Dniester (Odessa)":     162,
+    # Moldova (1)
+    "Dniester (Tiraspol)":   155,
+    # Luxembourg (1)
+    "Alzette (Luxembourg)":  205,
+    # Iceland (1)
+    "Ölfusá (Selfoss)":      275,
 }
 
 # ── Seasonal amplitude ────────────────────────────────────────────────────────
 # Peak-to-trough WQI swing across the year.
-# Tropical cities: low (5-12); Mediterranean: high (25-40); temperate: moderate (15-25)
+# Mediterranean / dry-summer rivers: high (30–40)
+# Atlantic / maritime rivers: low (14–20)
+# Continental / boreal rivers: moderate (20–28)
 
 SEASONAL_AMP: dict[str, float] = {
-    # Poland
-    "Wrocław": 25, "Kraków": 25, "Warsaw": 28, "Gdańsk": 22, "Poznań": 25,
-    # Germany
-    "Berlin": 22, "Hamburg": 20, "Munich": 24, "Cologne": 20,
-    # France
-    "Paris": 20, "Lyon": 22, "Marseille": 30, "Bordeaux": 22,
-    # UK
-    "London": 18, "Manchester": 16, "Edinburgh": 18,
-    # Benelux
-    "Amsterdam": 18, "Rotterdam": 16, "Brussels": 18, "Antwerp": 16, "Luxembourg": 20,
-    # Iberia
-    "Madrid": 35, "Barcelona": 30, "Seville": 38, "Valencia": 32,
-    "Lisbon": 32, "Porto": 28,
-    # Italy
-    "Rome": 30, "Milan": 22, "Naples": 28, "Venice": 25,
-    # Greece / Mediterranean
-    "Athens": 38, "Thessaloniki": 35, "Valletta": 35, "Nicosia": 40,
-    # Nordics
-    "Stockholm": 20, "Oslo": 18, "Helsinki": 20, "Copenhagen": 18,
-    # Baltics
-    "Tallinn": 25, "Riga": 22, "Vilnius": 24,
-    # Central Europe
-    "Vienna": 22, "Prague": 22, "Budapest": 25, "Bratislava": 22,
-    "Ljubljana": 20, "Zagreb": 25,
-    # Eastern / SE Europe
-    "Bucharest": 28, "Sofia": 28, "Belgrade": 25, "Sarajevo": 22, "Kyiv": 28,
-    # Switzerland
-    "Zurich": 20, "Geneva": 22,
-    # Turkey / Ireland
-    "Istanbul": 25, "Dublin": 15,
-    # North America
-    "New York": 22, "Los Angeles": 18, "Chicago": 25, "Houston": 15,
-    "Miami": 10, "Toronto": 25, "Vancouver": 18, "Montreal": 28,
-    "Mexico City": 12,
-    # Latin America — mostly tropical, low seasonality
-    "São Paulo": 12, "Rio de Janeiro": 10, "Buenos Aires": 18,
-    "Bogotá": 8, "Lima": 8, "Santiago": 22,
-    # East Asia
-    "Tokyo": 20, "Osaka": 18, "Seoul": 25, "Beijing": 25, "Shanghai": 20,
-    # South Asia — monsoon drives a large seasonal swing
-    "Mumbai": 30, "Delhi": 35, "Dhaka": 35, "Karachi": 25,
-    # SE Asia — wet/dry season
-    "Bangkok": 20, "Singapore": 8, "Jakarta": 22,
-    "Ho Chi Minh": 18, "Kuala Lumpur": 10,
-    # Middle East — dry year-round, low seasonality
-    "Dubai": 8, "Tehran": 20, "Riyadh": 8, "Beirut": 22,
-    # Africa
-    "Cairo": 12, "Lagos": 18, "Nairobi": 15, "Kinshasa": 15,
-    "Casablanca": 22, "Cape Town": 28, "Johannesburg": 18, "Accra": 12,
-    # Oceania — Southern Hemisphere: summer = Dec-Feb
-    "Sydney": 22, "Melbourne": 25, "Brisbane": 18,
-    "Auckland": 20, "Perth": 28,
-}
-
-# Cities in Southern Hemisphere: season is flipped (summer in Dec-Feb)
-SOUTHERN_HEMISPHERE = {
-    "São Paulo", "Rio de Janeiro", "Buenos Aires", "Lima", "Santiago",
-    "Sydney", "Melbourne", "Brisbane", "Auckland", "Perth",
-    "Cape Town", "Johannesburg",
+    # Poland (8) — continental, strong summer runoff
+    "Odra (Wrocław)":        25, "Vistula (Warsaw)":      28, "Vistula (Kraków)":     26,
+    "Warta (Poznań)":        26, "Bug (Brest)":            28, "San (Przemyśl)":       25,
+    "Pilica (Tomaszów)":     25, "Narew (Łomża)":         28,
+    # Germany (10)
+    "Rhine (Cologne)":       20, "Rhine (Düsseldorf)":    20, "Elbe (Hamburg)":       20,
+    "Elbe (Dresden)":        22, "Danube (Regensburg)":   24, "Main (Frankfurt)":     20,
+    "Spree (Berlin)":        22, "Weser (Bremen)":        18, "Neckar (Stuttgart)":   22,
+    "Isar (Munich)":         24,
+    # France (8)
+    "Seine (Paris)":         20, "Rhône (Lyon)":          25, "Rhône (Avignon)":      30,
+    "Loire (Nantes)":        20, "Loire (Orléans)":       22, "Garonne (Bordeaux)":   22,
+    "Marne (Châlons)":       20, "Saône (Chalon)":        22,
+    # United Kingdom (5) — maritime, low seasonality
+    "Thames (London)":       16, "Severn (Bristol)":      16, "Mersey (Liverpool)":   15,
+    "Tyne (Newcastle)":      18, "Clyde (Glasgow)":       18,
+    # Italy (6)
+    "Po (Turin)":            22, "Po (Ferrara)":          25, "Tiber (Rome)":         30,
+    "Arno (Florence)":       28, "Adige (Verona)":        22, "Piave (Belluno)":      20,
+    # Spain (5) — dry Mediterranean/continental, high amplitude
+    "Ebro (Zaragoza)":       35, "Tagus (Toledo)":        38, "Guadalquivir (Seville)": 40,
+    "Duero (Valladolid)":    35, "Miño (Ourense)":        28,
+    # Netherlands (3)
+    "Rhine (Rotterdam)":     18, "Maas (Maastricht)":     18, "IJssel (Deventer)":    18,
+    # Belgium (2)
+    "Schelde (Antwerp)":     18, "Meuse (Liège)":         20,
+    # Portugal (2)
+    "Tagus (Lisbon)":        32, "Douro (Porto)":         28,
+    # Ireland (2) — maritime, very low seasonality
+    "Liffey (Dublin)":       14, "Shannon (Limerick)":    16,
+    # Switzerland (3) — alpine snowmelt
+    "Rhine (Basel)":         22, "Aare (Bern)":           20, "Limmat (Zurich)":      20,
+    # Austria (4) — alpine
+    "Danube (Vienna)":       22, "Inn (Innsbruck)":       22, "Salzach (Salzburg)":   20,
+    "Mur (Graz)":            24,
+    # Czechia (2)
+    "Vltava (Prague)":       22, "Elbe (Ústí)":          22,
+    # Slovakia (2)
+    "Danube (Bratislava)":   22, "Váh (Trenčín)":         22,
+    # Hungary (3)
+    "Danube (Budapest)":     25, "Tisza (Szeged)":        28, "Rába (Győr)":           24,
+    # Slovenia (2)
+    "Sava (Ljubljana)":      22, "Drava (Maribor)":       22,
+    # Croatia (2)
+    "Sava (Zagreb)":         25, "Drava (Osijek)":        25,
+    # Romania (4) — continental, strong seasonality
+    "Danube (Galați)":       28, "Mureș (Arad)":          28, "Olt (Slatina)":        28,
+    "Prut (Iași)":           30,
+    # Bulgaria (2) — Mediterranean influence
+    "Danube (Ruse)":         28, "Maritsa (Plovdiv)":     32,
+    # Serbia (2)
+    "Danube (Belgrade)":     25, "Sava (Belgrade)":       25,
+    # Greece (3) — Mediterranean
+    "Aliakmonas (Kozani)":   35, "Pinios (Larissa)":      35, "Axios (Thessaloniki)":  35,
+    # Sweden (3) — boreal
+    "Göta älv (Gothenburg)": 20, "Klarälven (Karlstad)":  22, "Dalälven (Falun)":     20,
+    # Norway (3) — maritime
+    "Glomma (Sarpsborg)":    18, "Drammenselva (Drammen)": 18, "Lågen (Lillehammer)": 20,
+    # Finland (3) — subarctic
+    "Kymijoki (Kouvola)":    22, "Vuoksi (Lappeenranta)": 20, "Oulujoki (Oulu)":      20,
+    # Denmark (2)
+    "Gudenå (Silkeborg)":    18, "Odense Å (Odense)":     18,
+    # Lithuania (2)
+    "Neris (Vilnius)":       25, "Nemunas (Kaunas)":      25,
+    # Latvia (2)
+    "Daugava (Riga)":        24, "Gauja (Valmiera)":      22,
+    # Estonia (2)
+    "Emajõgi (Tartu)":       24, "Pärnu (Pärnu)":         22,
+    # Ukraine (2) — continental
+    "Dnipro (Kyiv)":         28, "Dniester (Odessa)":     25,
+    # Moldova (1)
+    "Dniester (Tiraspol)":   28,
+    # Luxembourg (1)
+    "Alzette (Luxembourg)":  20,
+    # Iceland (1) — subarctic maritime, very low seasonality
+    "Ölfusá (Selfoss)":      12,
 }
 
 
@@ -182,8 +224,8 @@ def _risk(wqi: float) -> str:
     return "critical"
 
 
-def _generate_city(city_meta: dict, rng: np.random.Generator) -> list[dict]:
-    city    = city_meta["city"]
+def _generate_river(river_meta: dict, rng: np.random.Generator) -> list[dict]:
+    city    = river_meta["city"]   # unique key e.g. "Odra (Wrocław)"
     base    = BASE_WQI.get(city, 200.0)
     amp     = SEASONAL_AMP.get(city, 20.0)
     n       = len(MONTHS)
@@ -191,13 +233,9 @@ def _generate_city(city_meta: dict, rng: np.random.Generator) -> list[dict]:
     # Slow random walk
     drift = np.cumsum(rng.normal(0, 1.5, n))
 
-    # Seasonal: sin peaks at July (Northern) or January (Southern) → lower WQI
+    # Seasonal: WQI dips in summer (July peak runoff / algae for most EU rivers)
     month_nums = np.array([m.month for m in MONTHS])
-    if city in SOUTHERN_HEMISPHERE:
-        # Summer = Dec/Jan/Feb → phase offset by 6 months
-        seasonal = -amp * np.sin(2 * np.pi * (month_nums - 7) / 12)
-    else:
-        seasonal = -amp * np.sin(2 * np.pi * (month_nums - 1) / 12)
+    seasonal = -amp * np.sin(2 * np.pi * (month_nums - 1) / 12)
 
     # Noise
     noise = rng.normal(0, 8, n)
@@ -219,11 +257,10 @@ def _generate_city(city_meta: dict, rng: np.random.Generator) -> list[dict]:
         wqi = round(float(wqi_series[i]), 1)
         rows.append({
             "city":        city,
-            "country":     city_meta["country"],
-            "country_code": city_meta["country_code"],
-            "lat":         float(city_meta["lat"]),
-            "lon":         float(city_meta["lon"]),
-            "region":      city_meta.get("region", ""),
+            "country":     river_meta["country"],
+            "country_code": river_meta["country_code"],
+            "lat":         float(river_meta["lat"]),
+            "lon":         float(river_meta["lon"]),
             "date":        month.strftime("%Y-%m-%d"),
             "wqi":         wqi,
             "risk_level":  _risk(wqi),
@@ -234,18 +271,18 @@ def _generate_city(city_meta: dict, rng: np.random.Generator) -> list[dict]:
 
 def generate() -> pd.DataFrame:
     all_rows = []
-    for city_meta in CITIES_ALL:
-        seed = sum(ord(c) for c in city_meta["city"])
+    for river_meta in RIVERS:
+        seed = sum(ord(c) for c in river_meta["city"])
         rng  = np.random.default_rng(seed)
-        all_rows.extend(_generate_city(city_meta, rng))
+        all_rows.extend(_generate_river(river_meta, rng))
     return pd.DataFrame(all_rows)
 
 
 def main() -> None:
     print(f"Generating monthly WQI history: {MONTHS[0].date()} → {MONTHS[-1].date()}")
-    print(f"  Cities : {len(CITIES_ALL)}")
+    print(f"  Rivers : {len(RIVERS)}")
     print(f"  Months : {len(MONTHS)}")
-    print(f"  Rows   : {len(CITIES_ALL) * len(MONTHS)}")
+    print(f"  Rows   : {len(RIVERS) * len(MONTHS)}")
 
     df = generate()
 
@@ -261,15 +298,18 @@ def main() -> None:
     print(f"  WQI range   : {df['wqi'].min():.1f} – {df['wqi'].max():.1f}")
     print(f"  Risk counts : {df['risk_level'].value_counts().to_dict()}")
 
-    print("\n── Cities with critical months ──────────────────────────────────────")
+    print("\n── Rivers with critical months ──────────────────────────────────────")
     crit = df[df["risk_level"] == "critical"]["city"].unique()
     print(f"  {list(crit) if len(crit) else 'none'}")
 
-    print("\n── Risk by region ───────────────────────────────────────────────────")
-    print(df.groupby(["region","risk_level"]).size().unstack(fill_value=0).to_string())
+    print("\n── Risk by country ──────────────────────────────────────────────────")
+    print(df.groupby(["country", "risk_level"]).size().unstack(fill_value=0).to_string())
 
-    print("\n── Sample: Delhi (high-risk city) ───────────────────────────────────")
-    print(df[df["city"] == "Delhi"][["date","wqi","risk_level"]].to_string(index=False))
+    print("\n── Sample: Odra (Wrocław) ───────────────────────────────────────────")
+    print(df[df["city"] == "Odra (Wrocław)"][["date", "wqi", "risk_level"]].to_string(index=False))
+
+    print("\n── Sample: Maritsa (Plovdiv) ────────────────────────────────────────")
+    print(df[df["city"] == "Maritsa (Plovdiv)"][["date", "wqi", "risk_level"]].to_string(index=False))
 
 
 if __name__ == "__main__":

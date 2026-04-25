@@ -22,16 +22,6 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_OUTPUTS
 
-COUNTRY_CODES = {
-    "Poland": "PL", "Germany": "DE", "France": "FR", "Netherlands": "NL",
-    "Belgium": "BE", "Luxembourg": "LU", "Ireland": "IE", "Spain": "ES",
-    "Portugal": "PT", "Italy": "IT", "Greece": "GR", "Malta": "MT",
-    "Cyprus": "CY", "Austria": "AT", "Czechia": "CZ", "Hungary": "HU",
-    "Slovakia": "SK", "Slovenia": "SI", "Croatia": "HR", "Romania": "RO",
-    "Bulgaria": "BG", "Estonia": "EE", "Latvia": "LV", "Lithuania": "LT",
-    "Sweden": "SE", "Norway": "NO", "Finland": "FI", "Denmark": "DK",
-}
-
 RISK_THRESHOLDS = [(200, "clean"), (150, "moderate"), (100, "high"), (0, "critical")]
 
 
@@ -45,13 +35,16 @@ def _risk(wqi: float) -> str:
 def main() -> None:
     city_df = pd.read_parquet(DATA_OUTPUTS / "historical_monthly.parquet")
 
+    # Build country_code map from parquet data (covers all countries in rivers.py)
+    country_code_map = city_df.groupby("country")["country_code"].first().to_dict()
+
     country_df = (
         city_df.groupby(["country", "date"])["wqi"]
         .mean()
         .round(1)
         .reset_index()
     )
-    country_df["country_code"] = country_df["country"].map(COUNTRY_CODES)
+    country_df["country_code"] = country_df["country"].map(country_code_map)
     country_df["risk_level"]   = country_df["wqi"].apply(_risk)
     country_df["data_source"]  = "synthetic_historical"
     country_df["cities_count"] = country_df["country"].map(

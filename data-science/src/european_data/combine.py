@@ -1,11 +1,11 @@
 """Merge all European climate sources into one combined parquet.
 
 Inputs  (all in data/processed/europe/):
-  era5_cities.parquet        – monthly ERA5 climate (temp, precip, snow)
-  hsaf_soil_moisture.parquet – monthly ERA5-Land soil moisture (H-SAF proxy)
-  ecmwf_forecast.parquet     – 7-day ECMWF IFS daily forecast
+  era5_rivers.parquet              – monthly ERA5 climate (temp, precip, snow)
+  hsaf_soil_moisture_rivers.parquet – monthly ERA5-Land soil moisture (H-SAF proxy)
+  ecmwf_forecast.parquet           – 7-day ECMWF IFS daily forecast
 
-Output: data/processed/europe/europe_combined.parquet
+Output: data/processed/europe/europe_rivers_combined.parquet
 Schema : city, country, lat, lon, date (YYYY-MM-DD),
          temperature, precipitation, snow_cover, soil_moisture, source
 """
@@ -21,11 +21,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_PROCESSED
 
 EUROPE_DIR = DATA_PROCESSED / "europe"
-OUT_PATH   = EUROPE_DIR / "europe_combined.parquet"
+OUT_PATH   = EUROPE_DIR / "europe_rivers_combined.parquet"
 
 
 def load_era5() -> pd.DataFrame:
-    path = EUROPE_DIR / "era5_cities.parquet"
+    path = EUROPE_DIR / "era5_rivers.parquet"
     if not path.exists():
         raise FileNotFoundError(f"Missing: {path}")
     df = pd.read_parquet(path)
@@ -37,7 +37,7 @@ def load_era5() -> pd.DataFrame:
 
 
 def load_soil() -> pd.DataFrame:
-    path = EUROPE_DIR / "hsaf_soil_moisture.parquet"
+    path = EUROPE_DIR / "hsaf_soil_moisture_rivers.parquet"
     if not path.exists():
         raise FileNotFoundError(f"Missing: {path}")
     df = pd.read_parquet(path)

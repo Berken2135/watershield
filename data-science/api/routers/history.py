@@ -9,13 +9,6 @@ from fastapi import APIRouter, HTTPException, Query, Request
 router = APIRouter(tags=["history"])
 
 
-def _id_to_city(water_body_id: str, features: list[dict]) -> str | None:
-    for f in features:
-        if f["properties"].get("water_body_id") == water_body_id:
-            return f["properties"]["name"].split(" - ")[-1].strip()
-    return None
-
-
 @router.get("/water-bodies/{water_body_id}/history")
 def get_history(
     water_body_id: str,
@@ -24,23 +17,24 @@ def get_history(
 ):
     """Return monthly WQI history for a water body (Jan 2024 – Apr 2026).
 
-    Wrocław Aug–Oct 2024 is backed by real Waterly sensor data; all other
-    months and cities are synthetic_historical.
+    Odra/Wrocław Aug–Oct 2024 is backed by real Waterly sensor data; all other
+    months and rivers are synthetic_historical.
     """
-    # Resolve city name from water_body_id via GeoJSON features
+    # Resolve city_key from water_body_id via GeoJSON features
+    # city_key matches the `city` column in historical_monthly.parquet
     features = request.app.state.geojson["features"]
-    city_name = None
+    city_key = None
     for f in features:
         if f["properties"].get("water_body_id") == water_body_id:
-            # name is like "Odra River - Wrocław" or "Spree - Berlin"
-            city_name = f["properties"]["name"].split(" - ")[-1].strip()
+            city_key = f["properties"].get("city_key") or \
+                       f["properties"]["name"].split(" - ")[-1].strip()
             break
 
-    if city_name is None:
+    if city_key is None:
         raise HTTPException(status_code=404, detail=f"Water body '{water_body_id}' not found")
 
     df = request.app.state.history_df
-    rows = df[df["city"] == city_name].copy()
+    rows = df[df["city"] == city_key].copy()
 
     if year is not None:
         rows = rows[rows["date"].str.startswith(str(year))]
@@ -52,7 +46,7 @@ def get_history(
 
     return {
         "water_body_id": water_body_id,
-        "city":          city_name,
+        "city":          city_key,
         "months":        len(records),
         "history":       records,
     }

@@ -1,4 +1,4 @@
-"""Fetch soil moisture data for 30 European cities.
+"""Fetch soil moisture data for 105 European rivers.
 
 H-SAF (EUMETSAT Satellite Application Facility on Support to Operational
 Hydrology and Water Management) products used as reference:
@@ -13,7 +13,7 @@ Open-Meteo as a physics-consistent proxy for H-SAF SWI (surface wetness
 index).  ERA5-Land soil moisture is produced by ECMWF and is used as
 background field for H-SAF retrievals, so the correlation is high.
 
-Output: data/processed/europe/hsaf_soil_moisture.parquet
+Output: data/processed/europe/hsaf_soil_moisture_rivers.parquet
 Schema : city, country, lat, lon, date (YYYY-MM-DD, first of month),
          soil_moisture_m3m3 (monthly mean volumetric moisture, m³/m³),
          source
@@ -30,13 +30,13 @@ import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_PROCESSED
-from src.european_data.cities import CITIES
+from src.european_data.rivers import RIVERS as CITIES
 
-OUT_PATH = DATA_PROCESSED / "europe" / "hsaf_soil_moisture.parquet"
+OUT_PATH = DATA_PROCESSED / "europe" / "hsaf_soil_moisture_rivers.parquet"
 OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 HIST_START  = "2024-01-01"
-HIST_END    = "2024-12-31"
+HIST_END    = "2026-04-25"
 BATCH_SIZE  = 5    # smaller batch for hourly data (larger response)
 
 
@@ -120,7 +120,7 @@ def fetch_soil_moisture() -> pd.DataFrame:
 def main() -> None:
     print("EUMETSAT H-SAF soil moisture fetcher (ERA5-Land proxy)")
     print(f"  Period : {HIST_START} → {HIST_END}")
-    print(f"  Cities : {len(CITIES)}")
+    print(f"  Rivers : {len(CITIES)}")
     print()
     print("  NOTE: Full H-SAF products (ASCAT-based SWI) require free")
     print("        registration at https://hsaf.meteoam.it/")

@@ -5,14 +5,14 @@ Inputs
 data/processed/waterly.parquet              – real-time Wrocław sensor data
 data/outputs/wqi_forecast_30d.json         – 30-day WQI forecast (Prophet/XGBoost)
 data/outputs/anomalies.parquet             – IsolationForest anomaly labels
-data/processed/europe/europe_combined.parquet – ERA5 + ECMWF European climate
+data/outputs/historical_monthly.parquet    – synthetic monthly WQI for all 105 rivers
 data/processed/mpwik_measurements.parquet  – MPWiK continuous measurements (turbidity)
-src/european_data/cities.py               – city metadata (lat, lon, water body)
+src/european_data/rivers.py               – river metadata (lat, lon, river_name, basin)
 
 Outputs
 -------
-data/outputs/watershield_europe.geojson    – full FeatureCollection (30 cities + Wrocław)
-data/outputs/watershield_wroclaw.geojson  – Wrocław-only (single feature)
+data/outputs/watershield_europe.geojson    – full FeatureCollection (105 rivers)
+data/outputs/watershield_wroclaw.geojson  – Wrocław/Odra-only (single feature)
 data/outputs/watershield_summary.json      – quick stats
 
 WQI thresholds (tuned to actual Waterly WQI range: 25–358)
@@ -64,11 +64,10 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_OUTPUTS, DATA_PROCESSED
-from src.european_data.cities_all import CITIES_ALL
+from src.european_data.rivers import RIVERS
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 
-EUROPE_DIR   = DATA_PROCESSED / "europe"
 OUT_EUROPE   = DATA_OUTPUTS / "watershield_europe.geojson"
 OUT_WROCLAW  = DATA_OUTPUTS / "watershield_wroclaw.geojson"
 OUT_SUMMARY  = DATA_OUTPUTS / "watershield_summary.json"
@@ -83,19 +82,6 @@ RISK_THRESHOLDS = [
     (100.0, "high",     "#EF4444"),
     (0.0,   "critical", "#7C2D12"),
 ]
-
-COUNTRY_CODES: dict[str, str] = {
-    "Poland":      "PL", "Germany":     "DE", "France":       "FR",
-    "Netherlands": "NL", "Belgium":     "BE", "Luxembourg":   "LU",
-    "Ireland":     "IE", "Spain":       "ES", "Portugal":     "PT",
-    "Italy":       "IT", "Greece":      "GR", "Malta":        "MT",
-    "Cyprus":      "CY", "Austria":     "AT", "Czechia":      "CZ",
-    "Hungary":     "HU", "Slovakia":    "SK", "Slovenia":     "SI",
-    "Croatia":     "HR", "Romania":     "RO", "Bulgaria":     "BG",
-    "Estonia":     "EE", "Latvia":      "LV", "Lithuania":    "LT",
-    "Sweden":      "SE", "Norway":      "NO", "Finland":      "FI",
-    "Denmark":     "DK",
-}
 
 TREND_THRESHOLD_PCT = 5.0   # ±5% → stable
 
@@ -162,20 +148,21 @@ def _load_wroclaw(now_iso: str) -> dict:
 
     trend, trend_pct = _trend(wqi_current, wqi_30d)
 
-    city_meta = next(c for c in CITIES_ALL if c["city"] == "Wrocław")
+    river_meta = next(r for r in RIVERS if r["city"] == "Odra (Wrocław)")
 
     return {
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [city_meta["lon"], city_meta["lat"]],
+            "coordinates": [river_meta["lon"], river_meta["lat"]],
         },
         "properties": {
-            "water_body_id":      _water_body_id("wroclaw", city_meta["water_body"]),
-            "name":               f"{city_meta['water_body']} River - Wrocław",
-            "country":            city_meta["country"],
-            "country_code":       city_meta.get("country_code", "PL"),
-            "water_body_type":    city_meta["water_body_type"],
+            "water_body_id":      _water_body_id(river_meta["representative_city"], river_meta["river_name"]),
+            "name":               f"{river_meta['river_name']} River - {river_meta['representative_city']}",
+            "country":            river_meta["country"],
+            "country_code":       river_meta["country_code"],
+            "water_body_type":    "river",
+            "city_key":           river_meta["city"],
             "wqi_current":        wqi_current,
             "wqi_predicted_7d":   wqi_7d,
             "wqi_predicted_30d":  wqi_30d,
@@ -198,29 +185,27 @@ def _load_wroclaw(now_iso: str) -> dict:
     }
 
 
-# ── All non-Wrocław cities (from historical_monthly.parquet) ──────────────────
+# ── All non-Wrocław rivers (from historical_monthly.parquet) ──────────────────
 
-def _load_all_cities(now_iso: str) -> list[dict]:
-    """Build features for all 101 non-Wrocław cities using historical WQI data."""
-    print("  Loading historical WQI data for all cities …")
+def _load_all_rivers(now_iso: str) -> list[dict]:
+    """Build features for all 104 non-Wrocław rivers using historical WQI data."""
+    print("  Loading historical WQI data for all rivers …")
     hist = pd.read_parquet(DATA_OUTPUTS / "historical_monthly.parquet")
 
-    # Latest available month per city
-    latest = hist.sort_values("date").groupby("city").last().reset_index()
-
-    city_meta = {c["city"]: c for c in CITIES_ALL}
+    # Latest available month per river (keyed by `city` field)
+    latest_wqi = (
+        hist.sort_values("date")
+        .groupby("city")["wqi"]
+        .last()
+        .to_dict()
+    )
 
     features = []
-    for _, row in latest.iterrows():
-        city = row["city"]
-        if city == "Wrocław":
-            continue
+    for river in RIVERS:
+        if river["city"] == "Odra (Wrocław)":
+            continue   # Wrocław handled by _load_wroclaw
 
-        meta = city_meta.get(city)
-        if meta is None:
-            continue
-
-        wqi     = float(row["wqi"])
+        wqi     = latest_wqi.get(river["city"], 200.0)
         wqi_30d = round(wqi + (200.0 - wqi) * 0.05, 1)
         wqi_7d  = round(wqi + (200.0 - wqi) * 0.01, 1)
         margin  = round(abs(wqi) * 0.20, 1)
@@ -231,15 +216,15 @@ def _load_all_cities(now_iso: str) -> list[dict]:
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [meta["lon"], meta["lat"]],
+                "coordinates": [river["lon"], river["lat"]],
             },
             "properties": {
-                "water_body_id":     _water_body_id(city, meta["water_body"]),
-                "name":              f"{meta['water_body']} - {city}",
-                "country":           meta["country"],
-                "country_code":      meta.get("country_code", "??"),
-                "water_body_type":   meta["water_body_type"],
-                "region":            meta.get("region", ""),
+                "water_body_id":     _water_body_id(river["representative_city"], river["river_name"]),
+                "name":              f"{river['river_name']} River - {river['representative_city']}",
+                "country":           river["country"],
+                "country_code":      river["country_code"],
+                "water_body_type":   "river",
+                "city_key":          river["city"],
                 "wqi_current":       round(wqi, 1),
                 "wqi_predicted_7d":  wqi_7d,
                 "wqi_predicted_30d": wqi_30d,
@@ -330,7 +315,7 @@ def main() -> None:
     print(f"WaterShield GeoJSON builder  [{now_iso}]")
 
     wroclaw_feature  = _load_wroclaw(now_iso)
-    european_features = _load_all_cities(now_iso)
+    european_features = _load_all_rivers(now_iso)
 
     all_features = [wroclaw_feature] + european_features
 
@@ -382,7 +367,7 @@ def main() -> None:
     if high_risk:
         print(f"  High/Critical  : {high_risk}")
     else:
-        print("  No high/critical cities")
+        print("  No high/critical rivers")
 
     # Pretty-print first feature as example
     print("\n── First feature (Wrocław) ──────────────────────────────────────────")
@@ -394,7 +379,7 @@ def main() -> None:
     print(f"  Usage   : Drop directly into MapLibre as a GeoJSON source")
     print(f"  Colors  : Use risk_color for circle-color paint property")
     print(f"  Note    : All properties are pre-computed; no client-side math needed")
-    print(f"  Sources : data_source='real' (Wrocław) | data_source='synthetic' (EU)")
+    print(f"  Sources : data_source='real' (Odra/Wrocław) | data_source='synthetic' (all other rivers)")
 
 
 if __name__ == "__main__":

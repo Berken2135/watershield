@@ -1,4 +1,4 @@
-"""Fetch ECMWF medium-range weather forecast for 30 European cities.
+"""Fetch ECMWF medium-range weather forecast for 105 European rivers.
 
 Primary path  : `ecmwf-opendata` Python package → downloads latest IFS HRES
                 GRIB2 from https://data.ecmwf.int (no API key required).
@@ -22,7 +22,7 @@ import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_PROCESSED
-from src.european_data.cities import CITIES
+from src.european_data.rivers import RIVERS as CITIES
 
 OUT_PATH = DATA_PROCESSED / "europe" / "ecmwf_forecast.parquet"
 OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -156,7 +156,7 @@ def main() -> None:
     today = date.today()
     print("ECMWF medium-range forecast fetcher")
     print(f"  Horizon : {today} → {today + timedelta(days=FORECAST_DAYS - 1)}")
-    print(f"  Cities  : {len(CITIES)}")
+    print(f"  Rivers  : {len(CITIES)}")
 
     df = load_or_fetch()
     df.to_parquet(OUT_PATH, index=False)
