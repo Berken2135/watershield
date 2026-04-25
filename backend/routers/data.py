@@ -10,6 +10,7 @@ Resolves files relative to the repo so no env wiring is needed:
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any, Optional
 
@@ -68,6 +69,14 @@ def _eu_only_geojson(fc: dict) -> dict:
 def _eu_only_records(records: list[dict]) -> list[dict]:
     """Filter a list of dicts to EU-27 countries only."""
     return [r for r in records if r.get("country") in EU_COUNTRIES]
+
+
+def _city_match(record_city: str, query: str) -> bool:
+    """Match a city query against records where city may be 'River (City)' format."""
+    if record_city.lower() == query.lower():
+        return True
+    m = re.search(r'\((.+?)\)', record_city)
+    return bool(m and m.group(1).strip().lower() == query.lower())
 
 
 # ── Static outputs ────────────────────────────────────────────────────────────
@@ -130,7 +139,7 @@ def history_cities(
     records: list[dict] = _eu_only_records(_load("history_cities"))
 
     if city:
-        records = [r for r in records if r["city"].lower() == city.lower()]
+        records = [r for r in records if _city_match(r["city"], city)]
         if not records:
             raise HTTPException(status_code=404, detail=f"City '{city}' not found")
 
@@ -166,7 +175,7 @@ def history_water_body(
         raise HTTPException(status_code=404, detail=f"Water body '{water_body_id}' not found")
 
     records: list[dict] = _eu_only_records(_load("history_cities"))
-    records = [r for r in records if r["city"] == city_name]
+    records = [r for r in records if _city_match(r["city"], city_name)]
 
     if year:
         records = [r for r in records if r["date"].startswith(str(year))]
@@ -305,7 +314,8 @@ def compare_water_body(water_body_id: str):
         raise HTTPException(status_code=404, detail=f"Water body '{water_body_id}' not found")
 
     records: list[dict] = [
-        r for r in _eu_only_records(_load("history_cities")) if r["city"] == city_name
+        r for r in _eu_only_records(_load("history_cities"))
+        if _city_match(r["city"], city_name)
     ]
 
     return {"water_body_id": water_body_id, "city": city_name,
