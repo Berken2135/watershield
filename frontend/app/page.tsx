@@ -343,6 +343,41 @@ export default function Home() {
     return () => { cancelled = true; };
   }, []);
 
+  // ---------- map: EEA EU Hydro river network (authoritative water bodies) ----------
+  // ArcGIS Dynamic Map Service exposed as raster tiles via the `export` endpoint.
+  // We request a transparent PNG per BBOX so MapLibre can stitch it on the fly.
+  useEffect(() => {
+    if (!mapInstance) return;
+    const SRC = "eu-hydro";
+    const LYR = "eu-hydro-raster";
+    const setup = () => {
+      if (!mapInstance.getSource(SRC)) {
+        mapInstance.addSource(SRC, {
+          type: "raster",
+          tiles: [
+            "https://copernicus.discomap.eea.europa.eu/arcgis/rest/services/EUHydro/EU_Hydro_RiverNetworkDatabase/MapServer/export?bbox={bbox-epsg-3857}&bboxSR=102100&imageSR=102100&size=512,512&dpi=96&format=png32&transparent=true&f=image",
+          ],
+          tileSize: 512,
+          attribution: "© European Environment Agency — EU-Hydro",
+          minzoom: 3,
+          maxzoom: 14,
+        });
+      }
+      if (!mapInstance.getLayer(LYR)) {
+        mapInstance.addLayer({
+          id: LYR,
+          type: "raster",
+          source: SRC,
+          paint: { "raster-opacity": 0.78 },
+        });
+      }
+    };
+    const onStyle = () => mapInstance.isStyleLoaded() && setup();
+    mapInstance.on("styledata", onStyle);
+    if (mapInstance.isStyleLoaded()) setup();
+    return () => { mapInstance.off("styledata", onStyle); };
+  }, [mapInstance]);
+
   // ---------- map: rivers (interactive) ----------
   const [hoveredRiver, setHoveredRiver] = useState<RiverInfo | null>(null);
   const [hoveredRiverPoint, setHoveredRiverPoint] = useState<{ x: number; y: number } | null>(null);
@@ -725,8 +760,8 @@ export default function Home() {
           onSignIn={() => setAuthOpen(true)}
           onSignOut={() => setAuthed(false)}
         />
-        {/* Top bar — minimalist: only search */}
-        <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border px-6 bg-background/40 backdrop-blur-md z-20 relative">
+        {/* Top bar — minimalist: only search. Hidden on mobile (MobileTopBar handles it). */}
+        <header className="hidden md:flex h-16 shrink-0 items-center gap-4 border-b border-border px-6 bg-background/40 backdrop-blur-md z-20 relative">
           <div className="flex items-center gap-3 w-full max-w-md">
             <div className="relative flex-1" ref={containerRef}>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground z-10" />
