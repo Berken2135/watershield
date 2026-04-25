@@ -13,7 +13,11 @@ import {
   generateReportPdf,
   type AnomalyResult,
 } from "@/lib/api";
-import { POLLUTION_EVENTS, type PollutionEvent } from "@/lib/pollution-data";
+import {
+  POLLUTION_EVENTS as MOCK_EVENTS,
+  fetchStations,
+  type PollutionEvent,
+} from "@/lib/pollution-data";
 import ChoroplethLayer from "@/components/map/choropleth-layer";
 import {
   Activity,
@@ -29,7 +33,6 @@ import {
   MapPin,
   Minus,
   Search,
-  Sparkles,
   TrendingDown,
   TrendingUp,
   Waves,
@@ -76,17 +79,19 @@ const TIMELINE_START = new Date("2024-01-01T00:00:00Z");
 const TIMELINE_END = new Date("2027-12-31T00:00:00Z");
 const CLUSTER_MAX_ZOOM = 11;
 
-const POLLUTION_GEOJSON: GeoJSON.FeatureCollection<
+function buildGeojson(events: PollutionEvent[]): GeoJSON.FeatureCollection<
   GeoJSON.Point,
   { id: string; severity: string }
-> = {
-  type: "FeatureCollection",
-  features: POLLUTION_EVENTS.map((e) => ({
-    type: "Feature",
-    properties: { id: e.id, severity: e.severity },
-    geometry: { type: "Point", coordinates: e.coordinates },
-  })),
-};
+> {
+  return {
+    type: "FeatureCollection",
+    features: events.map((e) => ({
+      type: "Feature",
+      properties: { id: e.id, severity: e.severity },
+      geometry: { type: "Point", coordinates: e.coordinates },
+    })),
+  };
+}
 
 const RIVERS_GEOJSON = {
   type: "FeatureCollection",
@@ -161,14 +166,23 @@ export default function Home() {
   const [authOpen, setAuthOpen] = useState(false);
   const [authed, setAuthed] = useState(false);
 
+  const [events, setEvents] = useState<PollutionEvent[]>(MOCK_EVENTS);
+  useEffect(() => {
+    let cancelled = false;
+    fetchStations()
+      .then((real) => { if (!cancelled && real.length) setEvents(real); })
+      .catch(() => { /* keep mock fallback */ });
+    return () => { cancelled = true; };
+  }, []);
+
   const [anomaly, setAnomaly] = useState<AnomalyResult | null>(null);
   const [anomalyLoading, setAnomalyLoading] = useState(false);
   const [anomalyError, setAnomalyError] = useState<string | null>(null);
   const [reportLoading, setReportLoading] = useState(false);
 
   const selectedEvent = useMemo(
-    () => POLLUTION_EVENTS.find((e) => e.id === selectedPollutionId) ?? null,
-    [selectedPollutionId],
+    () => events.find((e) => e.id === selectedPollutionId) ?? null,
+    [selectedPollutionId, events],
   );
 
   useEffect(() => {
@@ -316,11 +330,14 @@ export default function Home() {
       if (!mapInstance.getSource(SRC)) {
         mapInstance.addSource(SRC, {
           type: "geojson",
-          data: POLLUTION_GEOJSON,
+          data: buildGeojson(events),
           cluster: true,
           clusterMaxZoom: CLUSTER_MAX_ZOOM,
           clusterRadius: 45,
         });
+      } else {
+        const src = mapInstance.getSource(SRC) as MapLibreGL.GeoJSONSource;
+        src.setData(buildGeojson(events));
       }
       if (!mapInstance.getLayer(CL)) {
         mapInstance.addLayer({
@@ -362,6 +379,19 @@ export default function Home() {
       } catch { /* ignore */ }
     };
 
+    const onPointClick = (
+      e: MapLibreGL.MapMouseEvent & { features?: MapLibreGL.MapGeoJSONFeature[] },
+    ) => {
+      const features = mapInstance.queryRenderedFeatures(e.point, { layers: [PT] });
+      if (!features.length) return;
+      const id = features[0].properties?.id;
+      if (!id) return;
+      const ev = events.find((p) => p.id === id);
+      if (!ev) return;
+      setSelectedPollutionId(id);
+      mapInstance.flyTo({ center: ev.coordinates, zoom: CLUSTER_MAX_ZOOM + 1, duration: 1200 });
+    };
+
     const cursorOn = () => { mapInstance.getCanvas().style.cursor = "pointer"; };
     const cursorOff = () => { mapInstance.getCanvas().style.cursor = ""; };
 
@@ -377,7 +407,7 @@ export default function Home() {
       mapInstance.off("mouseenter", CL, cursorOn);
       mapInstance.off("mouseleave", CL, cursorOff);
     };
-  }, [mapInstance]);
+  }, [mapInstance, events]);
 
   // ---------- search (Nominatim) ----------
   const fetchSuggestions = useCallback(async (value: string) => {
@@ -458,23 +488,14 @@ export default function Home() {
       />
 
       <div className="flex flex-1 flex-col min-w-0">
-        {/* Top bar */}
+        {/* Top bar — minimalist: only search */}
         <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border px-6 bg-background/40 backdrop-blur-md">
-          <div className="hidden md:block">
-            <div className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground">
-              Live · Europe · Sentinel-2
-            </div>
-            <div className="text-[13px] font-medium text-foreground/90">
-              Pollution Intelligence Console
-            </div>
-          </div>
-
           <div className="ml-auto flex items-center gap-3 w-full max-w-md">
             <div className="relative flex-1" ref={containerRef}>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground z-10" />
               <Input
-                className="pl-9 h-9 bg-white/2 border-white/6 focus-visible:ring-cyan-400/30 focus-visible:border-cyan-400/40 placeholder:text-muted-foreground/60 text-sm"
-                placeholder="Search city, region or coordinates"
+                className="pl-9 h-9 bg-foreground/[0.02] border-foreground/[0.06] focus-visible:ring-primary/30 focus-visible:border-primary/40 placeholder:text-muted-foreground/60 text-sm"
+                placeholder="Search location"
                 type="text"
                 value={query}
                 onChange={handleInputChange}
@@ -486,11 +507,11 @@ export default function Home() {
                 autoComplete="off"
               />
               {showSuggestions && suggestions.length > 0 && (
-                <ul className="absolute left-0 right-0 top-full mt-2 z-50 rounded-lg glass-strong overflow-hidden divide-y divide-white/4">
+                <ul className="absolute left-0 right-0 top-full mt-2 z-50 rounded-lg overflow-hidden border border-border bg-background shadow-2xl divide-y divide-border/60">
                   {suggestions.map((s) => (
                     <li
                       key={s.place_id}
-                      className="px-4 py-2.5 cursor-pointer text-sm hover:bg-white/4 truncate text-foreground/85"
+                      className="px-4 py-2.5 cursor-pointer text-sm hover:bg-foreground/[0.05] truncate text-foreground"
                       onMouseDown={() => handleSelect(s)}
                     >
                       {s.display_name}
@@ -506,10 +527,10 @@ export default function Home() {
               variant="outline"
               size="sm"
               onClick={() => setAuthOpen(true)}
-              className="hidden md:inline-flex h-9 gap-2 bg-cyan-400/10 hover:bg-cyan-400/15 border-cyan-400/30 text-cyan-200 hover:text-cyan-100"
+              className="hidden md:inline-flex h-9 gap-2 bg-primary/10 hover:bg-primary/15 border-primary/30 text-primary"
             >
               <Fingerprint className="h-3.5 w-3.5" />
-              Sign In
+              Sign in
             </Button>
           )}
         </header>
@@ -577,35 +598,10 @@ export default function Home() {
               ))}
             </Map>
 
-            {isPredictive && (
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 rounded-full glass-strong px-4 py-2 ring-1 ring-cyan-400/40">
-                <Sparkles className="h-3.5 w-3.5 text-(--color-cyan)" />
-                <span className="text-[11px] tracking-[0.2em] uppercase text-cyan-200">
-                  AI Forecast
-                </span>
-                <span className="h-3 w-px bg-white/10" />
-                <span className="text-[11px] font-mono text-foreground/80">
-                  {fmtMonth(timelineDate)} · {confidence}%
-                </span>
-              </div>
-            )}
-
-            <button
-              onClick={() => setShowWqi((v) => !v)}
-              className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
-                showWqi
-                  ? "bg-blue-500/20 ring-1 ring-blue-400/50 text-blue-200 hover:bg-blue-500/30"
-                  : "bg-white/4 ring-1 ring-white/8 text-muted-foreground hover:bg-white/8"
-              }`}
-            >
-              <Droplets className="h-3 w-3" />
-              WQI Stations
-            </button>
-
             <div className="pointer-events-none absolute left-4 bottom-4 z-20 grid grid-cols-3 gap-2">
-              <Stat label="Active" value={POLLUTION_EVENTS.filter((e) => e.status === "Active").length} accent="red" />
-              <Stat label="Contained" value={POLLUTION_EVENTS.filter((e) => e.status === "Contained").length} accent="amber" />
-              <Stat label="Resolved" value={POLLUTION_EVENTS.filter((e) => e.status === "Resolved").length} accent="emerald" />
+              <Stat label="Active" value={events.filter((e) => e.status === "Active").length} accent="red" />
+              <Stat label="Contained" value={events.filter((e) => e.status === "Contained").length} accent="amber" />
+              <Stat label="Resolved" value={events.filter((e) => e.status === "Resolved").length} accent="emerald" />
             </div>
           </section>
 
@@ -631,10 +627,11 @@ export default function Home() {
                 />
               ) : (
                 <ListPanel
+                  events={events}
                   selectedId={selectedPollutionId}
                   onSelect={(id) => {
                     setSelectedPollutionId(id);
-                    const ev = POLLUTION_EVENTS.find((p) => p.id === id);
+                    const ev = events.find((p) => p.id === id);
                     if (ev) {
                       mapRef.current?.flyTo({ center: ev.coordinates, zoom: 13, duration: 1200 });
                     }
@@ -697,10 +694,12 @@ function Stat({ label, value, accent }: { label: string; value: number; accent: 
 }
 
 function ListPanel({
+  events,
   selectedId,
   onSelect,
   onClose,
 }: {
+  events: PollutionEvent[];
   selectedId: string | null;
   onSelect: (id: string) => void;
   onClose: () => void;
@@ -708,21 +707,21 @@ function ListPanel({
   return (
     <>
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <AlertTriangle className="h-3.5 w-3.5 text-red-400" />
+        <AlertTriangle className="h-3.5 w-3.5 text-red-500 dark:text-red-400" />
         <span className="font-medium text-[13px] tracking-tight">Active Events</span>
-        <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-500/10 ring-1 ring-red-500/30 text-red-300">
-          {POLLUTION_EVENTS.length}
+        <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-500/10 ring-1 ring-red-500/30 text-red-600 dark:text-red-300">
+          {events.length}
         </span>
         <button
           onClick={onClose}
-          className="rounded-sm p-1 hover:bg-white/4 transition-colors"
+          className="rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors"
           aria-label="Hide panel"
         >
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
       <ul className="flex flex-col gap-2 p-3 overflow-y-auto flex-1">
-        {POLLUTION_EVENTS.map((event) => (
+        {events.map((event) => (
           <li key={event.id}>
             <StationCard
               event={event}
