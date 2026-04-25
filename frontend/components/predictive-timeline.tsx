@@ -242,32 +242,30 @@ export default function PredictiveTimeline({
         </button>
       </div>
 
-      {/* Confidence gauge — only relevant in future */}
-      {isPredictive && (
-        <div className="mt-5 grid grid-cols-[auto_1fr_auto] items-center gap-3 px-1">
-          <span className="text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
-            AI Confidence
-          </span>
-          <div className="relative h-1 rounded-full bg-foreground/[0.05] overflow-hidden">
-            <div
-              className="absolute inset-y-0 left-0 rounded-full transition-all duration-300"
-              style={{
-                width: `${confidence}%`,
-                background:
-                  confidence > 75
-                    ? "linear-gradient(90deg,#22d3ee,#67e8f9)"
-                    : confidence > 50
-                      ? "linear-gradient(90deg,#22d3ee,#f59e0b)"
-                      : "linear-gradient(90deg,#f59e0b,#ef4444)",
-                boxShadow: "0 0 12px rgba(34,211,238,0.35)",
-              }}
-            />
-          </div>
-          <span className="text-xs font-mono text-foreground/90 tabular-nums">
-            {confidence}%
-          </span>
+      {/* Confidence gauge — always rendered to keep fixed height; hidden when historical */}
+      <div className={`mt-5 grid grid-cols-[auto_1fr_auto] items-center gap-3 px-1 transition-opacity duration-300 ${isPredictive ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+        <span className="text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+          AI Confidence
+        </span>
+        <div className="relative h-1 rounded-full bg-foreground/[0.05] overflow-hidden">
+          <div
+            className="absolute inset-y-0 left-0 rounded-full transition-all duration-300"
+            style={{
+              width: `${confidence}%`,
+              background:
+                confidence > 75
+                  ? "linear-gradient(90deg,#22d3ee,#67e8f9)"
+                  : confidence > 50
+                    ? "linear-gradient(90deg,#22d3ee,#f59e0b)"
+                    : "linear-gradient(90deg,#f59e0b,#ef4444)",
+              boxShadow: "0 0 12px rgba(34,211,238,0.35)",
+            }}
+          />
         </div>
-      )}
+        <span className="text-xs font-mono text-foreground/90 tabular-nums">
+          {confidence}%
+        </span>
+      </div>
     </div>
   );
 }
