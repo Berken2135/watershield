@@ -1134,7 +1134,7 @@ function WqiStationCard({ station, onClick }: { station: WqiStation; onClick: ()
         <span className={`flex items-center gap-0.5 ${trendColor}`}>
           <TrendIcon className="h-3 w-3" />
           <span className="capitalize">{station.trend}</span>
-          {station.trend_pct_change !== 0 && (
+          {station.trend_pct_change != null && station.trend_pct_change !== 0 && (
             <span className="text-muted-foreground ml-0.5">
               ({station.trend_pct_change > 0 ? "+" : ""}{station.trend_pct_change.toFixed(1)}%)
             </span>
