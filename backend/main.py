@@ -3,6 +3,7 @@ load_dotenv()  # auto-load backend/.env (OPENAI_API_KEY, etc.)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from routers import auth, search, analysis, reports, data
 
 app = FastAPI(
@@ -43,6 +44,13 @@ def list_endpoints():
             "POST /api/analysis/anomaly",
         ],
         "reports":  ["POST /api/reports/generate"],
+        "data": [
+            "GET /api/data/europe",
+            "GET /api/data/wroclaw",
+            "GET /api/data/summary",
+            "GET /api/data/forecast",
+            "GET /api/data/forecast-metrics",
+        ],
     }
 
 

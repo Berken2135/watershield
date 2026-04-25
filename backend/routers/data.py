@@ -23,10 +23,11 @@ _DS_OUTPUTS = (
 )
 
 _FILES: dict[str, Path] = {
-    "europe":   _DS_OUTPUTS / "watershield_europe.geojson",
-    "wroclaw":  _DS_OUTPUTS / "watershield_wroclaw.geojson",
-    "summary":  _DS_OUTPUTS / "watershield_summary.json",
-    "forecast": _DS_OUTPUTS / "wqi_forecast_30d.json",
+    "europe":           _DS_OUTPUTS / "watershield_europe.geojson",
+    "wroclaw":          _DS_OUTPUTS / "watershield_wroclaw.geojson",
+    "summary":          _DS_OUTPUTS / "watershield_summary.json",
+    "forecast":         _DS_OUTPUTS / "wqi_forecast_30d.json",
+    "forecast_metrics": _DS_OUTPUTS / "forecast_metrics.json",
 }
 
 
@@ -63,3 +64,9 @@ def summary():
 def forecast():
     """30-day Wrocław WQI forecast (Prophet/XGBoost)."""
     return _load("forecast")
+
+
+@router.get("/forecast-metrics")
+def forecast_metrics():
+    """Model evaluation metrics (Prophet vs XGBoost) for 7d/30d horizons."""
+    return _load("forecast_metrics")
