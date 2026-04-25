@@ -205,3 +205,172 @@ def pollution_trend(req: WaterQualityRequest):
         "summary": full["summary"],
         "trend": trend_direction,
     }
+
+
+# ============================================================
+# AI Anomaly Detection — OpenAI-powered classifier
+# ============================================================
+
+class AnomalyMetrics(BaseModel):
+    ph: float
+    dissolved_oxygen: float
+    turbidity: float
+    contaminant: Optional[str] = None
+    heavy_metals: Optional[dict] = None  # e.g. {"lead": 0.04, "cadmium": 0.005} mg/L
+
+
+class AnomalyRequest(BaseModel):
+    river: str
+    location: str
+    type: str                    # "Chemical" / "Oil Spill" / "Biological" / "Industrial"
+    severity: str                # "High" / "Medium" / "Low"
+    date: str
+    description: Optional[str] = None
+    metrics: AnomalyMetrics
+
+
+class AnomalyResponse(BaseModel):
+    verdict: str                 # "normal" | "anomaly" | "critical"
+    confidence: int              # 0-100
+    summary: str
+    risks: list[str]
+    recommendations: list[str]
+    pollutant_likely: Optional[str] = None
+
+
+# EU Water Framework Directive reference thresholds (simplified)
+EU_THRESHOLDS = {
+    "ph_min": 6.5,
+    "ph_max": 8.5,
+    "dissolved_oxygen_min": 5.0,   # mg/L
+    "turbidity_max": 25,            # NTU (typical surface water)
+}
+
+
+def _heuristic_verdict(m: AnomalyMetrics) -> tuple[str, int, list[str]]:
+    """Deterministic baseline so the endpoint works even without OpenAI."""
+    risks: list[str] = []
+    score = 0
+    if m.ph < EU_THRESHOLDS["ph_min"]:
+        risks.append(f"pH {m.ph} below EU minimum ({EU_THRESHOLDS['ph_min']}) — acidification.")
+        score += 35
+    elif m.ph > EU_THRESHOLDS["ph_max"]:
+        risks.append(f"pH {m.ph} above EU maximum ({EU_THRESHOLDS['ph_max']}) — alkaline excursion.")
+        score += 30
+    if m.dissolved_oxygen < EU_THRESHOLDS["dissolved_oxygen_min"]:
+        risks.append(f"Dissolved O₂ {m.dissolved_oxygen} mg/L below safe threshold — aquatic life at risk.")
+        score += 30
+    if m.turbidity > EU_THRESHOLDS["turbidity_max"]:
+        risks.append(f"Turbidity {m.turbidity} NTU exceeds typical surface-water limit.")
+        score += 20
+    if m.contaminant and any(
+        k in m.contaminant.lower() for k in ("lead", "cadmium", "mercury", "petroleum", "ammonia", "e. coli", "cyano")
+    ):
+        risks.append(f"Detected hazardous contaminant: {m.contaminant}.")
+        score += 25
+
+    if score >= 70:
+        verdict = "critical"
+    elif score >= 30:
+        verdict = "anomaly"
+    else:
+        verdict = "normal"
+
+    return verdict, min(99, max(50, score + 50)), risks
+
+
+def _openai_enrich(req: AnomalyRequest, baseline: tuple[str, int, list[str]]) -> Optional[dict]:
+    """Optional: ask OpenAI to enrich the verdict. Returns None if unavailable."""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return None
+    try:
+        # Lazy import — keeps endpoint usable when openai isn't installed.
+        from openai import OpenAI  # type: ignore
+    except Exception:
+        return None
+
+    verdict, confidence, risks = baseline
+    client = OpenAI(api_key=api_key)
+    system = (
+        "You are an EU water-quality compliance expert. "
+        "Given measurements from a river monitoring station, "
+        "explain the situation in 2-3 sentences and propose 3 concrete recommended actions. "
+        "Respond ONLY in JSON with keys: summary (string), recommendations (list[string]), "
+        "pollutant_likely (string)."
+    )
+    user = json.dumps({
+        "river": req.river,
+        "location": req.location,
+        "type": req.type,
+        "severity": req.severity,
+        "date": req.date,
+        "description": req.description,
+        "metrics": req.metrics.model_dump(),
+        "baseline_verdict": verdict,
+        "baseline_risks": risks,
+        "eu_thresholds": EU_THRESHOLDS,
+    })
+    try:
+        resp = client.chat.completions.create(
+            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.3,
+        )
+        return json.loads(resp.choices[0].message.content or "{}")
+    except Exception as e:
+        # Never let LLM failure break the endpoint.
+        return {"summary": None, "_error": str(e)}
+
+
+@router.post("/anomaly", response_model=AnomalyResponse)
+def detect_anomaly(req: AnomalyRequest) -> AnomalyResponse:
+    """
+    Classify a water-quality measurement as normal / anomaly / critical and
+    return a human-readable explanation following EU Water Framework Directive.
+
+    OpenAI is used opportunistically — if OPENAI_API_KEY is missing the
+    endpoint still returns a deterministic verdict from the heuristic.
+    """
+    verdict, confidence, risks = _heuristic_verdict(req.metrics)
+
+    fallback_summary = (
+        f"Measurements at {req.river} ({req.location}) on {req.date} "
+        f"indicate a {verdict} state. "
+        f"{'Multiple parameters breach EU thresholds.' if risks else 'All parameters within EU limits.'}"
+    )
+    fallback_recos = {
+        "critical": [
+            "Notify regional environmental authority immediately",
+            "Restrict water abstraction within 5 km downstream",
+            "Deploy mobile sampling unit & containment team",
+        ],
+        "anomaly": [
+            "Increase sampling frequency to hourly",
+            "Trace upstream sources within 24 h",
+            "Notify municipal water operator",
+        ],
+        "normal": [
+            "Continue routine monitoring",
+            "Re-evaluate after next satellite pass",
+            "No public action required",
+        ],
+    }[verdict]
+
+    enriched = _openai_enrich(req, (verdict, confidence, risks)) or {}
+    summary = enriched.get("summary") or fallback_summary
+    recommendations = enriched.get("recommendations") or fallback_recos
+    pollutant = enriched.get("pollutant_likely") or req.metrics.contaminant
+
+    return AnomalyResponse(
+        verdict=verdict,
+        confidence=confidence,
+        summary=summary,
+        risks=risks,
+        recommendations=recommendations,
+        pollutant_likely=pollutant,
+    )

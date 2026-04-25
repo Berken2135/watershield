@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, search, analysis
+from routers import auth, search, analysis, reports
 
 app = FastAPI(
     title="WaterShield API",
-    description="Water pollution tracking via Sentinel-2 satellite data (Copernicus/openEO)",
+    description="Water pollution tracking via Sentinel-2 satellite data (Copernicus/openEO) + AI anomaly detection.",
     version="1.0.0",
 )
 
@@ -19,6 +19,7 @@ app.add_middleware(
 app.include_router(auth.router,     prefix="/api/auth",     tags=["auth"])
 app.include_router(search.router,   prefix="/api/search",   tags=["search"])
 app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
+app.include_router(reports.router,  prefix="/api/reports",  tags=["reports"])
 
 
 @app.get("/health")
@@ -32,7 +33,12 @@ def list_endpoints():
     return {
         "auth":     ["GET /api/auth/status"],
         "search":   ["POST /api/search/scenes", "GET /api/search/collections"],
-        "analysis": ["POST /api/analysis/water-quality", "POST /api/analysis/trend"],
+        "analysis": [
+            "POST /api/analysis/water-quality",
+            "POST /api/analysis/trend",
+            "POST /api/analysis/anomaly",
+        ],
+        "reports":  ["POST /api/reports/generate"],
     }
 
 
