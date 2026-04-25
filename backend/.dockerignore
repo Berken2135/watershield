@@ -1,0 +1,11 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+routers/.env
+*.egg-info/
+dist/
+build/
+output/
