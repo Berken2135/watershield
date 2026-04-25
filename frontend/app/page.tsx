@@ -805,10 +805,18 @@ export default function Home() {
                       <div className="border-t border-border/50 pt-1 grid grid-cols-2 gap-x-3 gap-y-0.5 text-[10px]">
                         <span className="text-muted-foreground">WQI now</span>
                         <span className="font-mono tabular-nums">{Math.round(station.wqi_current)}</span>
-                        <span className="text-muted-foreground">7d</span>
-                        <span className="font-mono tabular-nums">{Math.round(station.wqi_predicted_7d)}</span>
-                        <span className="text-muted-foreground">30d</span>
-                        <span className="font-mono tabular-nums">{Math.round(station.wqi_predicted_30d)}</span>
+                        {station.wqi_predicted_7d != null && (
+                          <>
+                            <span className="text-muted-foreground">7d</span>
+                            <span className="font-mono tabular-nums">{Math.round(station.wqi_predicted_7d)}</span>
+                          </>
+                        )}
+                        {station.wqi_predicted_30d != null && (
+                          <>
+                            <span className="text-muted-foreground">30d</span>
+                            <span className="font-mono tabular-nums">{Math.round(station.wqi_predicted_30d)}</span>
+                          </>
+                        )}
                         {station.metrics.temperature_c != null && (
                           <>
                             <span className="text-muted-foreground">Temp</span>

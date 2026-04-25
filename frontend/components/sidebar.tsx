@@ -13,7 +13,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import SatelliteOrbit from "@/components/satellite-orbit";
 import ThemeToggle from "@/components/theme-toggle";
 import { useTheme } from "@/lib/theme";
 
@@ -90,15 +89,11 @@ export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
         />
       </Link>
 
-      <nav className="px-3 py-5 flex flex-col gap-0.5">
+      <nav className="flex-1 px-3 py-5 flex flex-col gap-0.5">
         {NAV.map((item) => (
           <NavLink key={item.href} item={item} active={pathname === item.href} />
         ))}
       </nav>
-
-      <div className="flex-1 min-h-0 flex flex-col justify-end">
-        <SatelliteOrbit />
-      </div>
 
       <div className="border-t border-border p-3 space-y-1.5">
         <ThemeToggle />
@@ -238,7 +233,7 @@ export function MobileTopBar({ authed, onSignIn, onSignOut }: SidebarProps) {
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <nav className="px-3 py-4 flex flex-col gap-0.5">
+            <nav className="flex-1 px-3 py-4 flex flex-col gap-0.5">
               {NAV.map((item) => (
                 <NavLink
                   key={item.href}
@@ -248,9 +243,6 @@ export function MobileTopBar({ authed, onSignIn, onSignOut }: SidebarProps) {
                 />
               ))}
             </nav>
-            <div className="flex-1 min-h-0 flex flex-col justify-end">
-              <SatelliteOrbit />
-            </div>
             <div className="border-t border-border p-3 space-y-1.5">
               <ThemeToggle />
               {authed ? (
