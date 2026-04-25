@@ -1,8 +1,8 @@
 "use client";
 
 import GestureAuth from "@/components/gesture-auth";
-import NfcAuth from "@/components/nfc-auth";
 import ChoroplethLayer from "@/components/map/choropleth-layer";
+import NfcAuth from "@/components/nfc-auth";
 import PredictiveTimeline from "@/components/predictive-timeline";
 import Sidebar, { MobileTopBar } from "@/components/sidebar";
 import StationCard from "@/components/station-card";
@@ -24,20 +24,21 @@ import {
   Droplets,
   FileDown,
   Fingerprint,
-  Gauge,
   Loader2,
   LocateFixed,
-  MapPin,
   Minus,
   Search,
   Thermometer,
   TrendingDown,
   TrendingUp,
-  Waves,
+  Waves
 } from "lucide-react";
 import type MapLibreGL from "maplibre-gl";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
 
 type NominatimResult = {
   place_id: number;
@@ -776,7 +777,7 @@ export default function Home() {
 
   // ---------- fetch wqi station data ----------
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data/europe")
+    fetch(`${API_URL}/api/data/europe`)
       .then((r) => r.json())
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((fc: any) => {
@@ -1417,7 +1418,7 @@ function WqiDetailPanel({
   const [reporting, setReporting] = useState<"idle" | "loading" | "error">("idle");
 
   // ── Temperature ────────────────────────────────────────────────────────────
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8001";
+  const API_BASE = process.env.NEXT_PUBLIC_DS_API_URL?.replace(/\/$/, "") ?? "http://127.0.0.1:8001";
 
   // Live temperature (fetched once per station)
   const [liveTemp, setLiveTemp] = useState<number | null>(null);
@@ -1551,7 +1552,7 @@ function WqiDetailPanel({
   const runAi = async () => {
     setAiLoading(true); setAiError(null); setAi(null);
     try {
-      const r = await fetch("http://127.0.0.1:8000/api/analysis/anomaly", {
+      const r = await fetch(`${API_URL}/api/analysis/anomaly`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -1583,7 +1584,7 @@ function WqiDetailPanel({
   const downloadPdf = async () => {
     setPdfLoading(true);
     try {
-      const r = await fetch("http://127.0.0.1:8000/api/reports/generate", {
+      const r = await fetch(`${API_URL}/api/reports/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

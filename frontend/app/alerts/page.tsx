@@ -1,9 +1,9 @@
 "use client";
 
 import Sidebar from "@/components/sidebar";
+import { Activity, AlertTriangle, Globe2, Minus, TrendingDown, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, TrendingDown, TrendingUp, Minus, Activity, Globe2 } from "lucide-react";
 
 type WqiStation = {
   water_body_id: string;
@@ -19,12 +19,15 @@ type WqiStation = {
   trend_pct_change?: number;
 };
 
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
+
 export default function AlertsPage() {
   const [stations, setStations] = useState<WqiStation[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data/europe")
+    fetch(`${API_URL}/api/data/europe`)
       .then((r) => r.json())
       .then((geojson) => {
         const all: WqiStation[] = (geojson.features ?? []).map(
