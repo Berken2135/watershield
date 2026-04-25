@@ -18,13 +18,9 @@ from fastapi import APIRouter, HTTPException, Query
 
 router = APIRouter()
 
-# Path resolution (checked in order):
-#   1. /app/data          — Railway / Docker (data copied into image)
-#   2. repo/../data-science/data/outputs — local development
+# repo-root/backend/routers/data.py  →  repo-root/data-science/data/outputs
 _DS_OUTPUTS = (
-    Path("/app/data")
-    if Path("/app/data").exists()
-    else Path(__file__).resolve().parents[2] / "data-science" / "data" / "outputs"
+    Path(__file__).resolve().parents[2] / "data-science" / "data" / "outputs"
 )
 
 _FILES: dict[str, Path] = {

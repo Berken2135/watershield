@@ -37,7 +37,7 @@ export type PollutionEvent = {
 // data-science pipeline and maps it to the PollutionEvent shape.
 // ---------------------------------------------------------------
 
-const API_URL = "/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 type EuropeFeature = {
   type: "Feature";

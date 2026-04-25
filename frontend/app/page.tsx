@@ -1,8 +1,8 @@
 "use client";
 
 import GestureAuth from "@/components/gesture-auth";
-import ChoroplethLayer from "@/components/map/choropleth-layer";
 import NfcAuth from "@/components/nfc-auth";
+import ChoroplethLayer from "@/components/map/choropleth-layer";
 import PredictiveTimeline from "@/components/predictive-timeline";
 import Sidebar, { MobileTopBar } from "@/components/sidebar";
 import StationCard from "@/components/station-card";
@@ -24,13 +24,15 @@ import {
   Droplets,
   FileDown,
   Fingerprint,
+  Gauge,
   Loader2,
   LocateFixed,
+  MapPin,
   Minus,
   Search,
   TrendingDown,
   TrendingUp,
-  Waves
+  Waves,
 } from "lucide-react";
 import type MapLibreGL from "maplibre-gl";
 
@@ -449,7 +451,7 @@ export default function Home() {
 
     const setup = () => {
       if (!mapInstance.getSource(SRC)) {
-        mapInstance.addSource(SRC, { type: "geojson", data: "/api/data/europe" });
+        mapInstance.addSource(SRC, { type: "geojson", data: "http://127.0.0.1:8000/api/data/europe" });
       }
       if (!mapInstance.getLayer(HALO)) {
         mapInstance.addLayer({
@@ -574,7 +576,7 @@ export default function Home() {
 
   // ---------- fetch wqi station data ----------
   useEffect(() => {
-    fetch("/api/data/europe")
+    fetch("http://127.0.0.1:8000/api/data/europe")
       .then((r) => r.json())
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((fc: any) => {
@@ -1265,7 +1267,7 @@ function WqiDetailPanel({
   const runAi = async () => {
     setAiLoading(true); setAiError(null); setAi(null);
     try {
-      const r = await fetch("/api/analysis/anomaly", {
+      const r = await fetch("http://127.0.0.1:8000/api/analysis/anomaly", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -1295,7 +1297,7 @@ function WqiDetailPanel({
   const downloadPdf = async () => {
     setPdfLoading(true);
     try {
-      const r = await fetch("/api/reports/generate", {
+      const r = await fetch("http://127.0.0.1:8000/api/reports/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

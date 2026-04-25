@@ -5,7 +5,8 @@ import { generateReportPdf } from "@/lib/api";
 import { FileDown, Loader2, MapPin, Waves } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const API_URL = "/api";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
 
 type WqiStation = {
   water_body_id: string;
