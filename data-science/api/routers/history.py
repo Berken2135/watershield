@@ -42,7 +42,8 @@ def get_history(
     if rows.empty:
         raise HTTPException(status_code=404, detail=f"No history for '{water_body_id}' year={year}")
 
-    records = rows[["date", "wqi", "risk_level", "data_source"]].to_dict(orient="records")
+    temp_cols = [c for c in ["water_temp_c", "air_temp_c"] if c in rows.columns]
+    records = rows[["date", "wqi", "risk_level", "data_source"] + temp_cols].to_dict(orient="records")
 
     return {
         "water_body_id": water_body_id,

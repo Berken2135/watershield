@@ -30,6 +30,7 @@ import {
   MapPin,
   Minus,
   Search,
+  Thermometer,
   TrendingDown,
   TrendingUp,
   Waves,
@@ -47,6 +48,7 @@ type NominatimResult = {
 
 type WqiFeature = {
   water_body_id: string;
+  city_key: string;
   name: string;
   country: string;
   country_code: string;
@@ -881,6 +883,7 @@ export default function Home() {
               {selectedWqiStation ? (
                 <WqiDetailPanel
                   station={selectedWqiStation}
+                  timelineDate={timelineDate}
                   onBack={() => { setSelectedWqiStation(null); }}
                   onClose={() => setEventsOpen(false)}
                 />
@@ -1215,14 +1218,72 @@ function WqiMetric({ label, value, accent }: { label: string; value: number; acc
 
 function WqiDetailPanel({
   station,
+  timelineDate,
   onBack,
   onClose,
 }: {
   station: WqiFeature;
+  timelineDate: Date;
   onBack: () => void;
   onClose: () => void;
 }) {
   const [reporting, setReporting] = useState<"idle" | "loading" | "error">("idle");
+
+  // ── Temperature ────────────────────────────────────────────────────────────
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8001";
+
+  // Live temperature (fetched once per station)
+  const [liveTemp, setLiveTemp] = useState<number | null>(null);
+  const [liveTempLoading, setLiveTempLoading] = useState(false);
+
+  // Historical monthly temps: { "2024-01-01": 5.2, ... }
+  const [histTemps, setHistTemps] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    setLiveTemp(null);
+    setHistTemps({});
+    const cityKey = station.city_key;
+    if (!cityKey) return;
+
+    // Fetch live temperature
+    setLiveTempLoading(true);
+    fetch(`${API_BASE}/api/river-temp?city=${encodeURIComponent(cityKey)}`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => { if (d?.water_temp_c != null) setLiveTemp(d.water_temp_c); })
+      .catch(() => {})
+      .finally(() => setLiveTempLoading(false));
+
+    // Fetch historical temperatures for time-machine view
+    fetch(`${API_BASE}/api/water-bodies/${station.water_body_id}/history`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => {
+        if (!d?.history) return;
+        const map: Record<string, number> = {};
+        for (const row of d.history) {
+          if (row.water_temp_c != null) map[row.date] = row.water_temp_c;
+        }
+        setHistTemps(map);
+      })
+      .catch(() => {});
+  }, [station.water_body_id, station.city_key]);
+
+  // Determine which temperature to show based on timeline position
+  const isCurrentMonth = (() => {
+    const now = new Date();
+    return timelineDate.getFullYear() === now.getFullYear() &&
+           timelineDate.getMonth() === now.getMonth();
+  })();
+
+  const historicalTempForMonth = (() => {
+    const y = timelineDate.getFullYear();
+    const m = String(timelineDate.getMonth() + 1).padStart(2, "0");
+    const key = `${y}-${m}-01`;
+    return histTemps[key] ?? null;
+  })();
+
+  // What to display: live when at current month, historical otherwise
+  const displayTemp = isCurrentMonth ? liveTemp : historicalTempForMonth;
+  const tempIsLive = isCurrentMonth && liveTemp != null;
 
   const handleGenerateReport = async () => {
     setReporting("loading");
@@ -1420,6 +1481,34 @@ function WqiDetailPanel({
                 </span>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* ── Water Temperature ─────────────────────────────────────────── */}
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">Water Temperature</div>
+            {tempIsLive && (
+              <span className="px-1.5 py-0.5 rounded-full text-[9px] tracking-wider uppercase bg-emerald-500/15 ring-1 ring-emerald-500/40 text-emerald-400">Live</span>
+            )}
+          </div>
+          <div className="rounded-lg bg-blue-500/[0.06] ring-1 ring-blue-400/20 p-3 flex items-center gap-3">
+            <Thermometer className="h-5 w-5 text-blue-400 shrink-0" strokeWidth={1.5} />
+            {liveTempLoading && isCurrentMonth ? (
+              <span className="text-[13px] text-muted-foreground">Fetching live data…</span>
+            ) : displayTemp != null ? (
+              <div>
+                <span className="text-2xl font-bold tabular-nums text-blue-300">{displayTemp.toFixed(1)}</span>
+                <span className="text-sm text-muted-foreground ml-1">°C</span>
+                <div className="text-[10px] text-muted-foreground mt-0.5">
+                  {tempIsLive
+                    ? "Current river temperature (ECMWF IFS)"
+                    : `${timelineDate.toLocaleDateString("en-GB", { month: "long", year: "numeric" })} — ERA5 reanalysis`}
+                </div>
+              </div>
+            ) : (
+              <span className="text-[13px] text-muted-foreground">No temperature data for this period</span>
+            )}
           </div>
         </div>
 
