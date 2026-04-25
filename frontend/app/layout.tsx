@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,15 +31,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        {/* Set theme before paint to avoid flash. Default: light. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('watershield-theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(_){}})();`,
-          }}
-        />
-      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var t=localStorage.getItem('watershield-theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(_){}})();`}
+        </Script>
         {children}
       </body>
     </html>

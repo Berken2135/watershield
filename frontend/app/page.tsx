@@ -539,7 +539,7 @@ export default function Home() {
           <section className="relative flex-1 rounded-2xl overflow-hidden border border-border min-w-0 glass">
             <Map ref={mapCallbackRef}>
               <ChoroplethLayer />
-              {POLLUTION_EVENTS.map((event) => (
+              {events.map((event) => (
                 <MapMarker
                   key={event.id}
                   longitude={event.coordinates[0]}
