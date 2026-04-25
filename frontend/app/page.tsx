@@ -1,6 +1,7 @@
 "use client";
 
 import GestureAuth from "@/components/gesture-auth";
+import ChoroplethLayer from "@/components/map/choropleth-layer";
 import PredictiveTimeline from "@/components/predictive-timeline";
 import Sidebar from "@/components/sidebar";
 import StationCard from "@/components/station-card";
@@ -8,39 +9,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
 import {
-  detectAnomaly,
-  eventToReportRequest,
-  generateReportPdf,
-  type AnomalyResult,
-} from "@/lib/api";
-import {
   POLLUTION_EVENTS as MOCK_EVENTS,
   fetchStations,
   type PollutionEvent,
 } from "@/lib/pollution-data";
-import ChoroplethLayer from "@/components/map/choropleth-layer";
 import {
   Activity,
   AlertTriangle,
   ArrowLeft,
   ChevronLeft,
   ChevronRight,
-  Download,
   Droplets,
   Fingerprint,
   Gauge,
-  Loader2,
   LocateFixed,
   MapPin,
   Minus,
   Search,
-  Sparkles,
   TrendingDown,
   TrendingUp,
-  Waves,
+  Waves
 } from "lucide-react";
 import type MapLibreGL from "maplibre-gl";
-import Link from "next/link";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type NominatimResult = {
@@ -76,10 +67,13 @@ type WqiFeature = {
   };
 };
 
+type WqiStation = WqiFeature & { lng: number; lat: number };
+
 const NOW_DATE = new Date("2026-04-25T00:00:00Z");
 const TIMELINE_START = new Date("2024-01-01T00:00:00Z");
 const TIMELINE_END = new Date("2027-12-31T00:00:00Z");
 const CLUSTER_MAX_ZOOM = 11;
+const PT = "pollution-points";
 
 function buildGeojson(events: PollutionEvent[]): GeoJSON.FeatureCollection<
   GeoJSON.Point,
@@ -149,7 +143,13 @@ export default function Home() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [selectedWqiStation, setSelectedWqiStation] = useState<WqiFeature | null>(null);
+  const [wqiStations, setWqiStations] = useState<WqiStation[]>([]);
   const [selectedPollutionId, setSelectedPollutionId] = useState<string | null>(null);
+
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authed, setAuthed] = useState(false);
+
   const [eventsOpen, setEventsOpen] = useState(true);
 
   const [timelineDate, setTimelineDate] = useState<Date>(NOW_DATE);
@@ -164,10 +164,6 @@ export default function Home() {
       : Math.max(35, Math.round(Math.exp(-0.0476 * monthsAfterNow) * 100));
 
   const [showWqi, setShowWqi] = useState(true);
-  const [selectedWqiStation, setSelectedWqiStation] = useState<WqiFeature | null>(null);
-
-  const [authOpen, setAuthOpen] = useState(false);
-  const [authed, setAuthed] = useState(false);
 
   const [events, setEvents] = useState<PollutionEvent[]>(MOCK_EVENTS);
   useEffect(() => {
@@ -177,24 +173,6 @@ export default function Home() {
       .catch(() => { /* keep mock fallback */ });
     return () => { cancelled = true; };
   }, []);
-
-  const [anomaly, setAnomaly] = useState<AnomalyResult | null>(null);
-  const [anomalyLoading, setAnomalyLoading] = useState(false);
-  const [anomalyError, setAnomalyError] = useState<string | null>(null);
-  const [reportLoading, setReportLoading] = useState(false);
-
-  const selectedEvent = useMemo(
-    () => events.find((e) => e.id === selectedPollutionId) ?? null,
-    [selectedPollutionId, events],
-  );
-
-  useEffect(() => {
-    // Intentional reset on selection change — value is independent of state.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setAnomaly(null);
-     
-    setAnomalyError(null);
-  }, [selectedPollutionId]);
 
   // ---------- map: rivers ----------
   useEffect(() => {
@@ -227,86 +205,29 @@ export default function Home() {
   useEffect(() => {
     if (!mapInstance) return;
     const SRC = "wqi-stations";
-    const LYR = "wqi-circles";
     const HALO = "wqi-halo";
 
     const setup = () => {
       if (!mapInstance.getSource(SRC)) {
-        mapInstance.addSource(SRC, { type: "geojson", data: "/data/watershield_europe.geojson" });
+        mapInstance.addSource(SRC, { type: "geojson", data: "http://127.0.0.1:8000/api/data/europe" });
       }
       if (!mapInstance.getLayer(HALO)) {
         mapInstance.addLayer({
           id: HALO, type: "circle", source: SRC,
           paint: {
-            "circle-radius": 14,
+            "circle-radius": 16,
             "circle-color": ["get", "risk_color"],
-            "circle-opacity": 0.18,
-            "circle-blur": 0.7,
-          },
-        });
-      }
-      if (!mapInstance.getLayer(LYR)) {
-        mapInstance.addLayer({
-          id: LYR, type: "circle", source: SRC,
-          paint: {
-            "circle-radius": 7,
-            "circle-color": ["get", "risk_color"],
-            "circle-stroke-width": 1.5,
-            "circle-stroke-color": "rgba(255,255,255,0.85)",
+            "circle-opacity": 0.2,
+            "circle-blur": 0.9,
           },
         });
       }
     };
 
     const onStyleData = () => mapInstance.isStyleLoaded() && setup();
-
-    const onWqiClick = (e: MapLibreGL.MapMouseEvent & { features?: MapLibreGL.MapGeoJSONFeature[] }) => {
-      const features = mapInstance.queryRenderedFeatures(e.point, { layers: [LYR] });
-      if (!features.length) return;
-      const raw = features[0].properties ?? {};
-      const metrics = typeof raw.metrics === "string" ? JSON.parse(raw.metrics) : (raw.metrics ?? {});
-      const station: WqiFeature = {
-        water_body_id: raw.water_body_id,
-        name: raw.name,
-        country: raw.country,
-        country_code: raw.country_code,
-        water_body_type: raw.water_body_type,
-        wqi_current: raw.wqi_current,
-        wqi_predicted_7d: raw.wqi_predicted_7d,
-        wqi_predicted_30d: raw.wqi_predicted_30d,
-        wqi_lower_30d: raw.wqi_lower_30d,
-        wqi_upper_30d: raw.wqi_upper_30d,
-        risk_level: raw.risk_level,
-        risk_color: raw.risk_color,
-        trend: raw.trend,
-        trend_pct_change: raw.trend_pct_change,
-        anomaly_count_30d: raw.anomaly_count_30d ?? null,
-        data_source: raw.data_source,
-        last_updated: raw.last_updated,
-        metrics,
-      };
-      setSelectedWqiStation(station);
-      setEventsOpen(true);
-      setSelectedPollutionId(null);
-      const coords = (features[0].geometry as GeoJSON.Point).coordinates as [number, number];
-      mapInstance.flyTo({ center: coords, zoom: 8, duration: 1000 });
-    };
-
-    const cursorOn = () => { mapInstance.getCanvas().style.cursor = "pointer"; };
-    const cursorOff = () => { mapInstance.getCanvas().style.cursor = ""; };
-
     mapInstance.on("styledata", onStyleData);
-    mapInstance.on("click", LYR, onWqiClick);
-    mapInstance.on("mouseenter", LYR, cursorOn);
-    mapInstance.on("mouseleave", LYR, cursorOff);
     if (mapInstance.isStyleLoaded()) setup();
-
-    return () => {
-      mapInstance.off("styledata", onStyleData);
-      mapInstance.off("click", LYR, onWqiClick);
-      mapInstance.off("mouseenter", LYR, cursorOn);
-      mapInstance.off("mouseleave", LYR, cursorOff);
-    };
+    return () => { mapInstance.off("styledata", onStyleData); };
   }, [mapInstance]);
 
   // ---------- wqi visibility toggle ----------
@@ -314,7 +235,6 @@ export default function Home() {
     if (!mapInstance) return;
     const vis = showWqi ? "visible" : "none";
     const toggle = () => {
-      if (mapInstance.getLayer("wqi-circles")) mapInstance.setLayoutProperty("wqi-circles", "visibility", vis);
       if (mapInstance.getLayer("wqi-halo")) mapInstance.setLayoutProperty("wqi-halo", "visibility", vis);
     };
     if (mapInstance.isStyleLoaded()) toggle();
@@ -322,7 +242,7 @@ export default function Home() {
     return () => { mapInstance.off("styledata", toggle); };
   }, [mapInstance, showWqi]);
 
-  // ---------- map: pollution clusters ----------
+  // ---------- fetch wqi station data ----------
   useEffect(() => {
     if (!mapInstance) return;
     const SRC = "pollution-clusters";
@@ -412,6 +332,26 @@ export default function Home() {
     };
   }, [mapInstance, events]);
 
+  // ---------- fetch wqi station data ----------
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/data/europe")
+      .then((r) => r.json())
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .then((fc: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setWqiStations((fc.features as any[]).map((f) => ({
+          ...f.properties,
+          metrics:
+            typeof f.properties.metrics === "string"
+              ? JSON.parse(f.properties.metrics)
+              : (f.properties.metrics ?? {}),
+          lng: f.geometry.coordinates[0],
+          lat: f.geometry.coordinates[1],
+        })));
+      })
+      .catch(() => { /* backend offline */ });
+  }, []);
+
   // ---------- search (Nominatim) ----------
   const fetchSuggestions = useCallback(async (value: string) => {
     if (value.trim().length < 2) { setSuggestions([]); return; }
@@ -465,38 +405,6 @@ export default function Home() {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
-
-  // ---------- AI ----------
-  const runAnomalyDetection = async () => {
-    if (!selectedEvent) return;
-    setAnomalyLoading(true);
-    setAnomalyError(null);
-    try {
-      setAnomaly(await detectAnomaly(selectedEvent));
-    } catch (err) {
-      setAnomalyError(err instanceof Error ? err.message : "Anomaly detection failed");
-    } finally {
-      setAnomalyLoading(false);
-    }
-  };
-
-  const downloadReport = async () => {
-    if (!selectedEvent) return;
-    setReportLoading(true);
-    try {
-      const blob = await generateReportPdf(eventToReportRequest(selectedEvent, anomaly?.summary));
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `WaterShield-Report-${selectedEvent.id}.pdf`;
-      document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      setAnomalyError(err instanceof Error ? err.message : "PDF generation failed");
-    } finally {
-      setReportLoading(false);
-    }
-  };
 
   return (
     <div className="flex h-screen w-full overflow-hidden">
@@ -567,58 +475,46 @@ export default function Home() {
           <section className="relative flex-1 rounded-2xl overflow-hidden border border-border min-w-0 glass">
             <Map ref={mapCallbackRef} center={[10, 50]} zoom={3.6} maxBounds={[[-25, 33], [45, 72]]}>
               <ChoroplethLayer />
-              {events.map((event) => (
+              {showWqi && wqiStations.map((station) => (
                 <MapMarker
-                  key={event.id}
-                  longitude={event.coordinates[0]}
-                  latitude={event.coordinates[1]}
+                  key={station.water_body_id}
+                  longitude={station.lng}
+                  latitude={station.lat}
                   onClick={() => {
-                    setSelectedPollutionId(event.id);
-                    setSelectedWqiStation(null);
+                    setSelectedWqiStation(station);
                     setEventsOpen(true);
-                    mapRef.current?.flyTo({ center: event.coordinates, zoom: CLUSTER_MAX_ZOOM + 1, duration: 1200 });
+                    mapRef.current?.flyTo({ center: [station.lng, station.lat], zoom: 8, duration: 1000 });
                   }}
                 >
                   <MarkerContent>
-                    <div className="relative flex items-center justify-center">
+                    <div className="relative flex items-center justify-center cursor-pointer">
                       <div
-                        className={`w-5 h-5 rounded-full border-2 border-white shadow-lg ${
-                          event.severity === "High"
-                            ? "bg-red-500"
-                            : event.severity === "Medium"
-                              ? "bg-amber-500"
-                              : "bg-emerald-500"
-                        } ${
-                          event.id === selectedPollutionId
-                            ? "ring-2 ring-white ring-offset-1 ring-offset-transparent scale-125"
-                            : ""
-                        } transition-transform cursor-pointer`}
+                        className="w-3.5 h-3.5 rounded-full border-2 border-white/70 shadow-md transition-transform hover:scale-125"
+                        style={{ backgroundColor: station.risk_color }}
                       />
-                      {event.status === "Active" && (
-                        <span
-                          className={`absolute w-5 h-5 rounded-full animate-ping opacity-60 ${
-                            event.severity === "High" ? "bg-red-500" : "bg-amber-500"
-                          }`}
-                        />
-                      )}
                     </div>
                   </MarkerContent>
-                  <MarkerTooltip className="min-w-45 bg-background/90! text-foreground! border border-border backdrop-blur-md">
+                  <MarkerTooltip className="min-w-44 bg-background/90! text-foreground! border border-border backdrop-blur-md">
                     <div className="space-y-1.5">
-                      <div className="font-semibold text-[11px] leading-tight">{event.river} · {event.location}</div>
+                      <div className="font-semibold text-[11px] leading-tight">{station.name}</div>
                       <div className="flex items-center gap-1.5">
-                        <span className={`h-1.5 w-1.5 rounded-full shrink-0 ${
-                          event.severity === "High" ? "bg-red-400" : event.severity === "Medium" ? "bg-amber-400" : "bg-emerald-400"
-                        }`} />
-                        <span className="text-[10px] text-muted-foreground">{event.severity} · {event.status}</span>
-                        <span className="ml-auto text-[10px] text-muted-foreground">{event.type}</span>
+                        <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: station.risk_color }} />
+                        <span className="text-[10px] text-muted-foreground capitalize">{station.risk_level}</span>
+                        <span className="ml-auto text-[10px] text-muted-foreground capitalize">{station.water_body_type}</span>
                       </div>
                       <div className="border-t border-border/50 pt-1 grid grid-cols-2 gap-x-3 gap-y-0.5 text-[10px]">
-                        <span className="text-muted-foreground">pH</span>
-                        <span className="font-mono tabular-nums">{event.samplingData.ph}</span>
-                        <span className="text-muted-foreground">DO</span>
-                        <span className="font-mono tabular-nums">{event.samplingData.dissolvedOxygen} mg/L</span>
-                        <span className="text-muted-foreground col-span-2 truncate">{event.samplingData.contaminant}</span>
+                        <span className="text-muted-foreground">WQI now</span>
+                        <span className="font-mono tabular-nums">{Math.round(station.wqi_current)}</span>
+                        <span className="text-muted-foreground">7d</span>
+                        <span className="font-mono tabular-nums">{Math.round(station.wqi_predicted_7d)}</span>
+                        <span className="text-muted-foreground">30d</span>
+                        <span className="font-mono tabular-nums">{Math.round(station.wqi_predicted_30d)}</span>
+                        {station.metrics.temperature_c != null && (
+                          <>
+                            <span className="text-muted-foreground">Temp</span>
+                            <span className="font-mono tabular-nums">{station.metrics.temperature_c.toFixed(1)} °C</span>
+                          </>
+                        )}
                       </div>
                     </div>
                   </MarkerTooltip>
@@ -627,9 +523,9 @@ export default function Home() {
             </Map>
 
             <div className="pointer-events-none absolute left-4 bottom-4 z-20 grid grid-cols-3 gap-2">
-              <Stat label="Active" value={events.filter((e) => e.status === "Active").length} accent="red" />
-              <Stat label="Contained" value={events.filter((e) => e.status === "Contained").length} accent="amber" />
-              <Stat label="Resolved" value={events.filter((e) => e.status === "Resolved").length} accent="emerald" />
+              <Stat label="Clean" value={wqiStations.filter((s) => s.risk_level === "clean").length} accent="emerald" />
+              <Stat label="Moderate" value={wqiStations.filter((s) => s.risk_level === "moderate").length} accent="amber" />
+              <Stat label="High Risk" value={wqiStations.filter((s) => s.risk_level === "high" || s.risk_level === "critical").length} accent="red" />
             </div>
           </section>
 
@@ -638,20 +534,8 @@ export default function Home() {
               {selectedWqiStation ? (
                 <WqiDetailPanel
                   station={selectedWqiStation}
-                  onBack={() => setSelectedWqiStation(null)}
+                  onBack={() => { setSelectedWqiStation(null); }}
                   onClose={() => setEventsOpen(false)}
-                />
-              ) : selectedEvent ? (
-                <DetailPanel
-                  event={selectedEvent}
-                  onBack={() => setSelectedPollutionId(null)}
-                  onClose={() => setEventsOpen(false)}
-                  anomaly={anomaly}
-                  anomalyLoading={anomalyLoading}
-                  anomalyError={anomalyError}
-                  onAnalyze={runAnomalyDetection}
-                  onReport={downloadReport}
-                  reportLoading={reportLoading}
                 />
               ) : (
                 <ListPanel
@@ -665,6 +549,12 @@ export default function Home() {
                       mapRef.current?.flyTo({ center: ev.coordinates, zoom: 13, duration: 1200 });
                     }
                   }}
+                  wqiStations={wqiStations}
+                  onSelectStation={(s) => {
+                    setSelectedWqiStation(s);
+                    setEventsOpen(true);
+                    mapRef.current?.flyTo({ center: [s.lng, s.lat], zoom: 8, duration: 1000 });
+                  }}
                   onClose={() => setEventsOpen(false)}
                 />
               )}
@@ -676,9 +566,9 @@ export default function Home() {
               aria-label="Show events panel"
             >
               <ChevronLeft className="h-4 w-4 text-muted-foreground" />
-              <AlertTriangle className="h-4 w-4 text-red-400" />
+              <Droplets className="h-4 w-4 text-blue-400" />
               <span className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground [writing-mode:vertical-rl] rotate-180 uppercase">
-                Events
+                Stations
               </span>
             </button>
           )}
@@ -728,12 +618,16 @@ function ListPanel({
   selectedId,
   onSelect,
   onClose,
+  wqiStations,
+  onSelectStation,
 }: {
   events: PollutionEvent[];
   anchor: [number, number] | null;
   selectedId: string | null;
   onSelect: (id: string) => void;
   onClose: () => void;
+  wqiStations: WqiStation[];
+  onSelectStation: (s: WqiStation) => void;
 }) {
   const sorted = useMemo(() => {
     if (!anchor) return events;
@@ -749,8 +643,13 @@ function ListPanel({
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
         <AlertTriangle className="h-3.5 w-3.5 text-red-500 dark:text-red-400" />
         <span className="font-medium text-[13px] tracking-tight">Active Events</span>
-        <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-500/10 ring-1 ring-red-500/30 text-red-600 dark:text-red-300">
+        <span className="ml-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-500/10 ring-1 ring-red-500/30 text-red-600 dark:text-red-300">
           {events.length}
+        </span>
+        <Droplets className="h-3.5 w-3.5 text-cyan-400" />
+        <span className="font-medium text-[13px] tracking-tight">WQI Stations</span>
+        <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 ring-1 ring-cyan-500/30 text-cyan-300">
+          {wqiStations.length}
         </span>
         <button
           onClick={onClose}
@@ -770,130 +669,77 @@ function ListPanel({
             />
           </li>
         ))}
+        {wqiStations.length === 0 ? (
+          <li className="text-[11px] text-muted-foreground text-center py-8">Loading stations…</li>
+        ) : (
+          wqiStations.map((s) => (
+            <li key={s.water_body_id}>
+              <WqiStationCard station={s} onClick={() => onSelectStation(s)} />
+            </li>
+          ))
+        )}
       </ul>
     </>
   );
 }
 
-function DetailPanel({
-  event, onBack, onClose,
-  anomaly, anomalyLoading, anomalyError,
-  onAnalyze, onReport, reportLoading,
-}: {
-  event: PollutionEvent;
-  onBack: () => void;
-  onClose: () => void;
-  anomaly: AnomalyResult | null;
-  anomalyLoading: boolean;
-  anomalyError: string | null;
-  onAnalyze: () => void;
-  onReport: () => void;
-  reportLoading: boolean;
-}) {
-  const isHigh = event.severity === "High";
+function WqiStationCard({ station, onClick }: { station: WqiStation; onClick: () => void }) {
+  const TrendIcon =
+    station.trend === "worsening"
+      ? TrendingDown
+      : station.trend === "improving"
+        ? TrendingUp
+        : Minus;
+  const trendColor =
+    station.trend === "worsening"
+      ? "text-red-300"
+      : station.trend === "improving"
+        ? "text-emerald-300"
+        : "text-muted-foreground";
   return (
-    <>
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <button onClick={onBack} className="rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors" aria-label="Back">
-          <ArrowLeft className="h-3.5 w-3.5 text-muted-foreground" />
-        </button>
-        <span className="font-medium text-[13px] tracking-tight truncate">{event.river}</span>
-        <span className={`ml-auto text-[10px] tracking-[0.16em] uppercase ${
-          isHigh ? "text-red-500 dark:text-red-300" : event.severity === "Medium" ? "text-amber-500 dark:text-amber-300" : "text-emerald-600 dark:text-emerald-300"
-        }`}>
-          {event.severity}
+    <button
+      onClick={onClick}
+      className="group w-full text-left rounded-xl border border-border bg-card/40 p-3.5 transition-all hover:bg-white/2.5 hover:border-white/10"
+    >
+      <div className="flex items-start gap-2 mb-2">
+        <div className="flex-1 min-w-0">
+          <div className="text-[13px] font-medium tracking-tight truncate">{station.name}</div>
+          <div className="text-[11px] text-muted-foreground mt-0.5 truncate">
+            {station.country} · <span className="capitalize">{station.water_body_type}</span>
+          </div>
+        </div>
+        <div className="text-right shrink-0">
+          <div className="text-base font-bold tabular-nums" style={{ color: station.risk_color }}>
+            {Math.round(station.wqi_current)}
+          </div>
+          <div className="text-[9px] text-muted-foreground uppercase tracking-wider">WQI</div>
+        </div>
+      </div>
+      <div className="flex items-center gap-2 flex-wrap text-[10px]">
+        <span
+          className="capitalize px-1.5 py-0.5 rounded-full ring-1"
+          style={{
+            backgroundColor: station.risk_color + "20",
+            color: station.risk_color,
+            borderColor: station.risk_color + "50",
+          }}
+        >
+          {station.risk_level}
         </span>
-        <button onClick={onClose} className="rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors" aria-label="Hide">
-          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
-        </button>
-      </div>
-
-      <div className="flex flex-col gap-4 p-4 overflow-y-auto flex-1">
-        <div className="flex items-center gap-2 text-[11px]">
-          <MapPin className="h-3 w-3 text-muted-foreground" />
-          <span className="text-muted-foreground truncate">{event.location}</span>
-          <span className={`ml-auto px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase ring-1 ${
-            event.status === "Active"
-              ? "bg-red-500/10 ring-red-500/30 text-red-500 dark:text-red-300"
-              : event.status === "Contained"
-                ? "bg-amber-500/10 ring-amber-500/30 text-amber-500 dark:text-amber-300"
-                : "bg-emerald-500/10 ring-emerald-500/30 text-emerald-600 dark:text-emerald-300"
-          }`}>
-            {event.status}
-          </span>
-        </div>
-
-        <p className="text-xs leading-relaxed text-foreground/75">{event.description}</p>
-
-        <div>
-          <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Water Profile</div>
-          <div className="grid grid-cols-2 gap-2">
-            <BigMetric icon={<Gauge className="h-3.5 w-3.5" strokeWidth={1.5} />} label="pH" value={event.samplingData.ph.toFixed(1)} />
-            <BigMetric icon={<Activity className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Dissolved O₂" value={`${event.samplingData.dissolvedOxygen}`} unit="mg/L" />
-            <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Turbidity" value={`${event.samplingData.turbidity}`} unit="NTU" />
-            <BigMetric icon={<AlertTriangle className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Contaminant" value={event.samplingData.contaminant} tight />
-          </div>
-        </div>
-
-        <div className="rounded-lg border border-cyan-400/20 bg-cyan-400/3 p-3">
-          <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="h-3.5 w-3.5 text-(--color-cyan)" />
-            <span className="text-[11px] tracking-[0.18em] uppercase text-cyan-600 dark:text-cyan-200">
-              Neural Anomaly Detection
+        <span className={`flex items-center gap-0.5 ${trendColor}`}>
+          <TrendIcon className="h-3 w-3" />
+          <span className="capitalize">{station.trend}</span>
+          {station.trend_pct_change !== 0 && (
+            <span className="text-muted-foreground ml-0.5">
+              ({station.trend_pct_change > 0 ? "+" : ""}{station.trend_pct_change.toFixed(1)}%)
             </span>
-          </div>
-
-          {!anomaly && !anomalyLoading && !anomalyError && (
-            <Button size="sm" onClick={onAnalyze} className="w-full h-8 bg-cyan-400/15 hover:bg-cyan-400/25 text-cyan-700 dark:text-cyan-100 border border-cyan-400/30">
-              Run AI Analysis
-            </Button>
           )}
-          {anomalyLoading && (
-            <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
-              <Loader2 className="h-3 w-3 animate-spin" />
-              Querying neural model…
-            </div>
-          )}
-          {anomalyError && <div className="text-[11px] text-red-500 dark:text-red-300">{anomalyError}</div>}
-          {anomaly && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-[10px] tracking-[0.18em] uppercase">
-                <span className={
-                  anomaly.verdict === "critical" ? "text-red-500 dark:text-red-300" :
-                  anomaly.verdict === "anomaly" ? "text-amber-500 dark:text-amber-300" : "text-emerald-600 dark:text-emerald-300"
-                }>
-                  {anomaly.verdict}
-                </span>
-                <span className="text-muted-foreground">{anomaly.confidence}% conf</span>
-              </div>
-              <p className="text-[11px] leading-relaxed text-foreground/80">{anomaly.summary}</p>
-              {anomaly.risks?.length ? (
-                <ul className="text-[11px] text-muted-foreground space-y-0.5 list-disc list-inside">
-                  {anomaly.risks.slice(0, 3).map((r, i) => <li key={i}>{r}</li>)}
-                </ul>
-              ) : null}
-            </div>
-          )}
-        </div>
-
-        <Button
-          size="sm"
-          onClick={onReport}
-          disabled={reportLoading}
-          className="w-full h-9 gap-2 bg-foreground/95 text-background hover:bg-foreground"
-        >
-          {reportLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}
-          Generate EU Report (PDF)
-        </Button>
-
-        <Link
-          href={`/pollution/${event.id}`}
-          className="text-[11px] text-muted-foreground hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors text-center"
-        >
-          Full case file →
-        </Link>
+        </span>
+        {station.data_source === "real" && (
+          <span className="ml-auto text-[9px] tracking-wider text-cyan-400">REAL</span>
+        )}
       </div>
-    </>
+    </button>
   );
 }
 
@@ -1020,7 +866,7 @@ function WqiDetailPanel({
                 <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Dissolved O₂" value={station.metrics.oxygen_mg_l.toFixed(1)} unit="mg/L" />
               )}
               {station.metrics.turbidity_ntu != null && (
-                <BigMetric icon={<AlertTriangle className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Turbidity" value={station.metrics.turbidity_ntu.toFixed(1)} unit="NTU" />
+                <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Turbidity" value={station.metrics.turbidity_ntu.toFixed(1)} unit="NTU" />
               )}
             </div>
           </div>
