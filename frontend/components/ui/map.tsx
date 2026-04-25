@@ -20,9 +20,11 @@ import { createPortal } from "react-dom";
 
 import { cn } from "@/lib/utils";
 
+const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_API_KEY ?? "";
+
 const defaultStyles = {
-  dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
-  light: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+  dark: `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${MAPTILER_KEY}`,
+  light: `https://api.maptiler.com/maps/dataviz/style.json?key=${MAPTILER_KEY}`,
 };
 
 type Theme = "light" | "dark";

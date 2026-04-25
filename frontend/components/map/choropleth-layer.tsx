@@ -35,15 +35,16 @@ const WQI_DATA: Record<string, { name: string; wqi: number }> = {
   SE: { name: "Sweden", wqi: 190.5 },
 };
 
-// Multiple fallback URLs for reliability
+// High-resolution sources. jsdelivr reliably serves the Natural Earth GitHub repo.
+// ne_50m gives detailed coastlines/borders; ne_10m is more precise but ~14 MB.
 const COUNTRIES_URLS = [
+  "https://cdn.jsdelivr.net/gh/nvkelso/natural-earth-vector@master/geojson/ne_50m_admin_0_countries.geojson",
+  "https://cdn.jsdelivr.net/gh/nvkelso/natural-earth-vector@master/geojson/ne_110m_admin_0_countries.geojson",
   "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_countries.geojson",
-  "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson",
 ];
 
 const SRC = "wqi-countries";
 const FILL_LAYER = "wqi-fill";
-const BORDER_LAYER = "wqi-border";
 const HOVER_LAYER = "wqi-hover";
 
 type Tooltip = { x: number; y: number; name: string; wqi: number };
@@ -88,7 +89,7 @@ export default function ChoroplethLayer() {
 
     (async () => {
       // Clean up stale layers if present (e.g. after a theme/style change)
-      for (const id of [HOVER_LAYER, BORDER_LAYER, FILL_LAYER]) {
+      for (const id of [HOVER_LAYER, FILL_LAYER]) {
         if (map.getLayer(id)) map.removeLayer(id);
       }
       if (map.getSource(SRC)) map.removeSource(SRC);
@@ -106,14 +107,34 @@ export default function ChoroplethLayer() {
 
       if (cancelled || features.length === 0) return;
 
-      // Insert choropleth fill below the first symbol layer (labels stay on top)
-      const firstSymbolId = map.getStyle().layers.find((l) => l.type === "symbol")?.id;
+      // Find the first basemap admin/boundary LINE layer so we insert the fill
+      // BELOW it. This means the basemap's own pixel-perfect country border lines
+      // will render on top of our fill, hiding any geometry imprecision.
+      // CartoDB dark-matter (OpenMapTiles) names these layers with 'admin' or
+      // 'boundary' in the source-layer or layer id.
+      const styleLayers = map.getStyle().layers;
+      const adminLineLayer = styleLayers.find(
+        (l) =>
+          l.type === "line" &&
+          (/(admin|boundary|border)/i.test(l.id) ||
+            (typeof (l as { "source-layer"?: string })["source-layer"] === "string" &&
+              /(admin|boundary)/i.test(
+                (l as { "source-layer": string })["source-layer"],
+              ))),
+      );
+      // Fall back to first line layer, then first symbol layer
+      const insertBefore =
+        adminLineLayer?.id ??
+        styleLayers.find((l) => l.type === "line")?.id ??
+        styleLayers.find((l) => l.type === "symbol")?.id;
 
       map.addSource(SRC, {
         type: "geojson",
         data: { type: "FeatureCollection", features } as GeoJSON.FeatureCollection,
       });
 
+      // Fill layer – inserted BELOW admin border lines so the basemap's own
+      // crisp border lines always render on top.
       map.addLayer(
         {
           id: FILL_LAYER,
@@ -137,22 +158,12 @@ export default function ChoroplethLayer() {
             ],
           },
         } as Parameters<typeof map.addLayer>[0],
-        firstSymbolId,
+        insertBefore,
       );
 
-      map.addLayer(
-        {
-          id: BORDER_LAYER,
-          type: "line",
-          source: SRC,
-          paint: {
-            "line-color": "rgba(34,211,238,0.3)",
-            "line-width": 0.75,
-          },
-        } as Parameters<typeof map.addLayer>[0],
-        firstSymbolId,
-      );
-
+      // Hover highlight – also below admin lines so the basemap draws on top.
+      // We intentionally skip a separate BORDER_LAYER: the basemap's own lines
+      // are pixel-perfect and render above our fill automatically.
       map.addLayer(
         {
           id: HOVER_LAYER,
@@ -161,10 +172,11 @@ export default function ChoroplethLayer() {
           filter: ["==", ["get", "iso_a2"], "__none__"],
           paint: {
             "line-color": "#67e8f9",
-            "line-width": 2.5,
+            "line-width": 3,
+            "line-opacity": 0.9,
           },
         } as Parameters<typeof map.addLayer>[0],
-        firstSymbolId,
+        insertBefore,
       );
 
       layersReady.current = true;
