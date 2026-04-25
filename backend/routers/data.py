@@ -34,13 +34,15 @@ _FILES: dict[str, Path] = {
 }
 
 
-# Official EU-27 member states only
+# EU-27 plus a couple of close monitored neighbours visualised on the map.
 EU_COUNTRIES: frozenset[str] = frozenset({
     "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia",
     "Denmark", "Estonia", "Finland", "France", "Germany", "Greece",
     "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg",
     "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia",
     "Slovenia", "Spain", "Sweden",
+    # Non-EU but rendered on the choropleth & marker layer.
+    "Norway", "North Macedonia",
 })
 
 

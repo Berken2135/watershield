@@ -6,11 +6,14 @@ import {
   Fingerprint,
   LayoutDashboard,
   LogOut,
+  Menu,
+  X,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import SatelliteOrbit from "@/components/satellite-orbit";
 import ThemeToggle from "@/components/theme-toggle";
 import { useTheme } from "@/lib/theme";
 
@@ -27,13 +30,8 @@ export type SidebarProps = {
   onSignOut?: () => void;
 };
 
-export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
-  const pathname = usePathname();
-  const { theme } = useTheme();
-
-  // Live alert count — counts stations with high/critical risk so the badge
-  // always matches what the /alerts page actually shows.
-  const [alertCount, setAlertCount] = useState<number | null>(null);
+function useAlertCount() {
+  const [count, setCount] = useState<number | null>(null);
   useEffect(() => {
     let cancelled = false;
     fetch("http://127.0.0.1:8000/api/data/europe")
@@ -44,23 +42,44 @@ export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
         const n = (g.features ?? []).filter((f: any) =>
           f.properties.risk_level === "high" || f.properties.risk_level === "critical"
         ).length;
-        setAlertCount(n);
+        setCount(n);
       })
       .catch(() => {});
     return () => { cancelled = true; };
   }, []);
+  return count;
+}
 
-  const NAV: NavItem[] = [
+function useLogoSrc() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  // Until mounted, render the dark logo to match the SSR HTML.
+  if (!mounted) return "/logo.png";
+  return theme === "light" ? "/logo-black.png" : "/logo.png";
+}
+
+function buildNav(alertCount: number | null): NavItem[] {
+  return [
     { href: "/", label: "Dashboard", icon: LayoutDashboard },
     { href: "/reports", label: "Reports", icon: FileText },
     { href: "/alerts", label: "Alerts", icon: Bell, badge: alertCount ?? undefined },
   ];
+}
 
-  const logoSrc = theme === "light" ? "/logo-black.png" : "/logo.png";
+export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
+  const pathname = usePathname();
+  const alertCount = useAlertCount();
+  const logoSrc = useLogoSrc();
+  const NAV = buildNav(alertCount);
 
   return (
     <aside className="hidden md:flex w-[220px] shrink-0 flex-col border-r border-border bg-background/50 backdrop-blur-md">
-      <div className="flex items-center justify-start pl-3 pr-4 h-24 border-b border-border">
+      <Link
+        href="/"
+        className="flex items-center justify-center px-4 h-24 border-b border-border hover:bg-foreground/[0.02] transition-colors"
+        aria-label="WaterShield home"
+      >
         <Image
           src={logoSrc}
           alt="WaterShield"
@@ -69,13 +88,17 @@ export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
           priority
           className="h-14 w-auto object-contain"
         />
-      </div>
+      </Link>
 
-      <nav className="flex-1 px-3 py-5 flex flex-col gap-0.5">
+      <nav className="px-3 py-5 flex flex-col gap-0.5">
         {NAV.map((item) => (
           <NavLink key={item.href} item={item} active={pathname === item.href} />
         ))}
       </nav>
+
+      <div className="flex-1 min-h-0 flex flex-col justify-end">
+        <SatelliteOrbit />
+      </div>
 
       <div className="border-t border-border p-3 space-y-1.5">
         <ThemeToggle />
@@ -106,11 +129,20 @@ export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
   );
 }
 
-function NavLink({ item, active }: { item: NavItem; active: boolean }) {
+function NavLink({
+  item,
+  active,
+  onClick,
+}: {
+  item: NavItem;
+  active: boolean;
+  onClick?: () => void;
+}) {
   const Icon = item.icon;
   return (
     <Link
       href={item.href}
+      onClick={onClick}
       className={`group relative flex items-center gap-3 rounded-md px-3 py-2 text-[13px] transition-colors ${
         active
           ? "bg-foreground/[0.05] text-foreground"
@@ -131,5 +163,122 @@ function NavLink({ item, active }: { item: NavItem; active: boolean }) {
         </span>
       ) : null}
     </Link>
+  );
+}
+
+/* ─────────────────────────── Mobile drawer ─────────────────────────── */
+
+export function MobileTopBar({ authed, onSignIn, onSignOut }: SidebarProps) {
+  const pathname = usePathname();
+  const alertCount = useAlertCount();
+  const logoSrc = useLogoSrc();
+  const NAV = buildNav(alertCount);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  return (
+    <>
+      <header className="md:hidden flex items-center justify-between gap-2 h-14 px-3 border-b border-border bg-background/80 backdrop-blur-md z-30 relative">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="grid place-items-center h-9 w-9 rounded-md hover:bg-foreground/[0.05] text-muted-foreground hover:text-foreground"
+          aria-label="Open menu"
+        >
+          <Menu className="h-4 w-4" />
+        </button>
+        <Link href="/" className="flex items-center" aria-label="WaterShield home">
+          <Image
+            src={logoSrc}
+            alt="WaterShield"
+            width={160}
+            height={64}
+            priority
+            className="h-8 w-auto object-contain"
+          />
+        </Link>
+        <Link
+          href="/alerts"
+          className="relative grid place-items-center h-9 w-9 rounded-md hover:bg-foreground/[0.05] text-muted-foreground hover:text-foreground"
+          aria-label="Alerts"
+        >
+          <Bell className="h-4 w-4" />
+          {alertCount && alertCount > 0 ? (
+            <span className="absolute -top-0.5 -right-0.5 grid place-items-center min-w-[16px] h-[16px] px-1 rounded-full bg-red-500/90 text-[9px] font-medium text-white">
+              {alertCount}
+            </span>
+          ) : null}
+        </Link>
+      </header>
+
+      {open && (
+        <div className="md:hidden fixed inset-0 z-[80]">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          />
+          <aside className="absolute left-0 top-0 bottom-0 w-72 max-w-[85vw] bg-background border-r border-border flex flex-col">
+            <div className="flex items-center justify-between px-3 h-14 border-b border-border">
+              <Link href="/" onClick={() => setOpen(false)} aria-label="WaterShield home">
+                <Image
+                  src={logoSrc}
+                  alt="WaterShield"
+                  width={180}
+                  height={72}
+                  className="h-9 w-auto object-contain"
+                />
+              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="grid place-items-center h-9 w-9 rounded-md hover:bg-foreground/[0.05] text-muted-foreground"
+                aria-label="Close menu"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <nav className="px-3 py-4 flex flex-col gap-0.5">
+              {NAV.map((item) => (
+                <NavLink
+                  key={item.href}
+                  item={item}
+                  active={pathname === item.href}
+                  onClick={() => setOpen(false)}
+                />
+              ))}
+            </nav>
+            <div className="flex-1 min-h-0 flex flex-col justify-end">
+              <SatelliteOrbit />
+            </div>
+            <div className="border-t border-border p-3 space-y-1.5">
+              <ThemeToggle />
+              {authed ? (
+                <button
+                  type="button"
+                  onClick={() => { setOpen(false); onSignOut?.(); }}
+                  className="group flex items-center gap-3 w-full rounded-md px-3 py-2 text-[12px] text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
+                >
+                  <span className="grid place-items-center h-6 w-6 rounded-md bg-emerald-500/10 ring-1 ring-emerald-500/30">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  </span>
+                  <span className="flex-1 text-left text-foreground/80">Verified</span>
+                  <LogOut className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => { setOpen(false); onSignIn?.(); }}
+                  className="flex items-center justify-center gap-2 w-full rounded-md bg-primary/10 ring-1 ring-primary/30 px-3 py-2 text-[12px] font-medium text-primary hover:bg-primary/15 transition-colors"
+                >
+                  <Fingerprint className="h-3.5 w-3.5" />
+                  Sign in
+                </button>
+              )}
+            </div>
+          </aside>
+        </div>
+      )}
+    </>
   );
 }

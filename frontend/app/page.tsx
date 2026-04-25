@@ -1,9 +1,10 @@
 "use client";
 
 import GestureAuth from "@/components/gesture-auth";
+import NfcAuth from "@/components/nfc-auth";
 import ChoroplethLayer from "@/components/map/choropleth-layer";
 import PredictiveTimeline from "@/components/predictive-timeline";
-import Sidebar from "@/components/sidebar";
+import Sidebar, { MobileTopBar } from "@/components/sidebar";
 import StationCard from "@/components/station-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -289,6 +290,16 @@ export default function Home() {
   const [authOpen, setAuthOpen] = useState(false);
   const [authed, setAuthed] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
+
+  // Track viewport so we can swap auth UX (gesture on desktop, NFC on phones).
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setIsMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   // Persist 6·7 verification across refreshes — the user explicitly asked
   // not to repeat the gesture on every reload.
@@ -678,7 +689,14 @@ export default function Home() {
 
   // Block all UI until 6·7 gesture verification succeeds.
   if (authChecked && !authed) {
-    return (
+    return isMobile ? (
+      <NfcAuth
+        open
+        dismissible={false}
+        onClose={() => { /* gated — no-op */ }}
+        onSuccess={() => setAuthed(true)}
+      />
+    ) : (
       <GestureAuth
         open
         dismissible={false}
@@ -697,6 +715,11 @@ export default function Home() {
       />
 
       <div className="flex flex-1 flex-col min-w-0">
+        <MobileTopBar
+          authed={authed}
+          onSignIn={() => setAuthOpen(true)}
+          onSignOut={() => setAuthed(false)}
+        />
         {/* Top bar — minimalist: only search */}
         <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border px-6 bg-background/40 backdrop-blur-md z-20 relative">
           <div className="flex items-center gap-3 w-full max-w-md">
@@ -753,7 +776,7 @@ export default function Home() {
           )}
         </header>
 
-        <main className="relative flex flex-1 min-h-0 gap-4 px-4 pt-4 pb-3">
+        <main className="relative flex flex-1 min-h-0 gap-2 md:gap-4 px-2 md:px-4 pt-2 md:pt-4 pb-2 md:pb-3">
           <section className="relative flex-1 rounded-2xl overflow-hidden border border-border min-w-0 glass">
             <Map ref={mapCallbackRef} center={[10, 50]} zoom={3.6} maxBounds={[[-25, 33], [45, 72]]}>
               <ChoroplethLayer monthOffset={monthsSignedFromNow} confidence={confidence} />
@@ -812,7 +835,7 @@ export default function Home() {
           </section>
 
           {eventsOpen ? (
-            <aside className="w-[320px] shrink-0 rounded-2xl border border-border glass overflow-hidden flex flex-col">
+            <aside className="absolute md:static inset-x-2 bottom-2 top-2 md:inset-auto z-30 md:z-auto w-auto md:w-[320px] md:shrink-0 rounded-2xl border border-border glass overflow-hidden flex flex-col">
               {selectedWqiStation ? (
                 <WqiDetailPanel
                   station={selectedWqiStation}
@@ -867,11 +890,19 @@ export default function Home() {
         </div>
       </div>
 
-      <GestureAuth
-        open={authOpen}
-        onClose={() => setAuthOpen(false)}
-        onSuccess={() => { setAuthed(true); setAuthOpen(false); }}
-      />
+      {isMobile ? (
+        <NfcAuth
+          open={authOpen}
+          onClose={() => setAuthOpen(false)}
+          onSuccess={() => { setAuthed(true); setAuthOpen(false); }}
+        />
+      ) : (
+        <GestureAuth
+          open={authOpen}
+          onClose={() => setAuthOpen(false)}
+          onSuccess={() => { setAuthed(true); setAuthOpen(false); }}
+        />
+      )}
     </div>
   );
 }

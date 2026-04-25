@@ -59,6 +59,8 @@ _EU_COUNTRIES: frozenset[str] = frozenset({
     "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg",
     "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia",
     "Slovenia", "Spain", "Sweden",
+    # Mirrors data.py — non-EU but exposed in the dashboard.
+    "Norway", "North Macedonia",
 })
 
 
