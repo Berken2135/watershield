@@ -70,6 +70,7 @@ export type GestureAuthProps = {
   onClose: () => void;
   onSuccess: () => void;
   framesRequired?: number;
+  dismissible?: boolean;
 };
 
 type Phase = "idle" | "loading" | "scanning" | "verified" | "error";
@@ -83,6 +84,7 @@ export default function GestureAuth({
   onClose,
   onSuccess,
   framesRequired = 8,
+  dismissible = true,
 }: GestureAuthProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -299,14 +301,16 @@ export default function GestureAuth({
       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
       {/* Close */}
-      <button
-        type="button"
-        onClick={() => { cleanup(); onClose(); }}
-        className="absolute right-6 top-6 z-10 rounded-full p-2.5 text-white/80 hover:bg-white/10 hover:text-white transition-colors backdrop-blur-md"
-        aria-label="Close"
-      >
-        <X className="h-5 w-5" />
-      </button>
+      {dismissible && (
+        <button
+          type="button"
+          onClick={() => { cleanup(); onClose(); }}
+          className="absolute right-6 top-6 z-10 rounded-full p-2.5 text-white/80 hover:bg-white/10 hover:text-white transition-colors backdrop-blur-md"
+          aria-label="Close"
+        >
+          <X className="h-5 w-5" />
+        </button>
+      )}
 
       {/* Loading state overlay */}
       {phase === "loading" && (

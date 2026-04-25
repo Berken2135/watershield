@@ -61,6 +61,9 @@ class ReportRequest(BaseModel):
     description: str
     metrics: ReportMetrics
     ai_summary: Optional[str] = None
+    snapshot_date: Optional[str] = None
+    confidence: Optional[float] = None
+    is_predictive: Optional[bool] = None
 
 
 # ------------------------------------------------------------------
@@ -236,12 +239,25 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
         "Low": "#10b981",
     }.get(req.severity, "#64748b")
 
+    snapshot_date = req.snapshot_date or req.date
+    is_predictive = bool(req.is_predictive)
+    confidence = req.confidence if req.confidence is not None else (100.0 if not is_predictive else 0.0)
+    snapshot_kind = "FORECAST" if is_predictive else "HISTORICAL"
+    snapshot_color = "#a855f7" if is_predictive else "#0ea5e9"
+    snapshot_cell = Paragraph(
+        f'<font color="{snapshot_color}"><b>{snapshot_date}</b></font>'
+        f' <font color="#64748b" size="8">· {snapshot_kind} · conf {confidence:.0f}%</font>',
+        styles["Normal"],
+    )
+
     meta = Table(
         [
-            ["Event ID", req.event_id, "Date", req.date],
+            ["Event ID", req.event_id, "Snapshot", snapshot_cell],
             ["Pollution Type", req.type, "Severity",
                 Paragraph(f'<font color="{severity_color}"><b>{req.severity.upper()}</b></font>', styles["Normal"])],
             ["River", req.river, "Location", req.location],
+            ["Incident Date", req.date, "Mode",
+                Paragraph(f'<font color="{snapshot_color}"><b>{snapshot_kind}</b></font>', styles["Normal"])],
         ],
         colWidths=[28 * mm, 55 * mm, 28 * mm, 55 * mm],
     )

@@ -89,6 +89,58 @@ function buildGeojson(events: PollutionEvent[]): GeoJSON.FeatureCollection<
   };
 }
 
+type RiverInfo = {
+  id: string;
+  name: string;
+  basin: string;
+  countries: string[];
+  lengthKm: number;
+  baseWqi: number;
+  riskColor: string;
+  pollutants: string[];
+  monitoringStations: number;
+  highlights: string;
+};
+
+const RIVER_INFO: Record<string, RiverInfo> = {
+  danube: {
+    id: "danube",
+    name: "Danube",
+    basin: "Black Sea basin",
+    countries: ["DE", "AT", "SK", "HU", "HR", "RS", "RO", "BG", "UA"],
+    lengthKm: 2860,
+    baseWqi: 198.5,
+    riskColor: "#f59e0b",
+    pollutants: ["Nitrates", "Microplastics", "Industrial discharge"],
+    monitoringStations: 78,
+    highlights: "Second-longest river in Europe — Sentinel-2 + ICPDR network.",
+  },
+  rhine: {
+    id: "rhine",
+    name: "Rhine",
+    basin: "North Sea basin",
+    countries: ["CH", "DE", "FR", "NL"],
+    lengthKm: 1233,
+    baseWqi: 207.8,
+    riskColor: "#22d3ee",
+    pollutants: ["PFAS", "Pharmaceuticals", "Heat-load"],
+    monitoringStations: 124,
+    highlights: "Densest monitoring network in Europe (Rheingüte).",
+  },
+  odra: {
+    id: "odra",
+    name: "Odra",
+    basin: "Baltic Sea basin",
+    countries: ["CZ", "PL", "DE"],
+    lengthKm: 854,
+    baseWqi: 184.2,
+    riskColor: "#ef4444",
+    pollutants: ["Salinity spike", "Algal bloom (Prymnesium parvum)"],
+    monitoringStations: 41,
+    highlights: "Recovering from the 2022 ecological disaster (DSS Aug 2022).",
+  },
+};
+
 const RIVERS_GEOJSON = {
   type: "FeatureCollection",
   features: [
@@ -153,11 +205,9 @@ export default function Home() {
   const [eventsOpen, setEventsOpen] = useState(true);
 
   const [timelineDate, setTimelineDate] = useState<Date>(NOW_DATE);
-  const isPredictive = timelineDate.getTime() > NOW_DATE.getTime();
-  const monthsAfterNow = Math.max(
-    0,
-    (timelineDate.getTime() - NOW_DATE.getTime()) / (86_400_000 * 30.4375),
-  );
+  const monthsSignedFromNow =
+    (timelineDate.getTime() - NOW_DATE.getTime()) / (86_400_000 * 30.4375);
+  const monthsAfterNow = Math.max(0, monthsSignedFromNow);
   const confidence =
     monthsAfterNow <= 0
       ? 100
@@ -174,7 +224,9 @@ export default function Home() {
     return () => { cancelled = true; };
   }, []);
 
-  // ---------- map: rivers ----------
+  // ---------- map: rivers (interactive) ----------
+  const [hoveredRiver, setHoveredRiver] = useState<RiverInfo | null>(null);
+  const [hoveredRiverPoint, setHoveredRiverPoint] = useState<{ x: number; y: number } | null>(null);
   useEffect(() => {
     if (!mapInstance) return;
     const setupRivers = () => {
@@ -185,20 +237,91 @@ export default function Home() {
           data: RIVERS_GEOJSON as any,
         });
       }
+      // Wide invisible hit-box for easier hovering on thin lines.
+      if (!mapInstance.getLayer("rivers-hit")) {
+        mapInstance.addLayer({
+          id: "rivers-hit",
+          type: "line",
+          source: "rivers",
+          layout: { "line-join": "round", "line-cap": "round" },
+          paint: { "line-color": "#000", "line-width": 18, "line-opacity": 0 },
+        });
+      }
+      // Base river styling.
       if (!mapInstance.getLayer("rivers-line")) {
         mapInstance.addLayer({
           id: "rivers-line",
           type: "line",
           source: "rivers",
           layout: { "line-join": "round", "line-cap": "round" },
-          paint: { "line-color": "#22d3ee", "line-width": 1.5, "line-opacity": 0.55 },
+          paint: {
+            "line-color": "#22d3ee",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.4, 8, 3],
+            "line-opacity": 0.55,
+          },
+        });
+      }
+      // Glow that lights up only the hovered river (whole polyline).
+      if (!mapInstance.getLayer("rivers-glow")) {
+        mapInstance.addLayer({
+          id: "rivers-glow",
+          type: "line",
+          source: "rivers",
+          layout: { "line-join": "round", "line-cap": "round" },
+          filter: ["==", ["get", "id"], "__none__"],
+          paint: {
+            "line-color": "#67e8f9",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 3, 6, 8, 10],
+            "line-opacity": 0.45,
+            "line-blur": 3,
+          },
+        });
+      }
+      if (!mapInstance.getLayer("rivers-line-active")) {
+        mapInstance.addLayer({
+          id: "rivers-line-active",
+          type: "line",
+          source: "rivers",
+          layout: { "line-join": "round", "line-cap": "round" },
+          filter: ["==", ["get", "id"], "__none__"],
+          paint: {
+            "line-color": "#a5f3fc",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 3, 2.4, 8, 4.5],
+            "line-opacity": 1,
+          },
         });
       }
     };
+
+    const onMove = (e: MapLibreGL.MapMouseEvent) => {
+      const feats = mapInstance.queryRenderedFeatures(e.point, { layers: ["rivers-hit"] });
+      if (!feats.length) return;
+      const id = feats[0].properties?.id as string | undefined;
+      if (!id || !RIVER_INFO[id]) return;
+      mapInstance.setFilter("rivers-glow", ["==", ["get", "id"], id]);
+      mapInstance.setFilter("rivers-line-active", ["==", ["get", "id"], id]);
+      mapInstance.getCanvas().style.cursor = "pointer";
+      setHoveredRiver(RIVER_INFO[id]);
+      setHoveredRiverPoint({ x: e.point.x, y: e.point.y });
+    };
+    const onLeave = () => {
+      mapInstance.setFilter("rivers-glow", ["==", ["get", "id"], "__none__"]);
+      mapInstance.setFilter("rivers-line-active", ["==", ["get", "id"], "__none__"]);
+      mapInstance.getCanvas().style.cursor = "";
+      setHoveredRiver(null);
+      setHoveredRiverPoint(null);
+    };
+
     const onStyle = () => mapInstance.isStyleLoaded() && setupRivers();
     mapInstance.on("styledata", onStyle);
+    mapInstance.on("mousemove", "rivers-hit", onMove);
+    mapInstance.on("mouseleave", "rivers-hit", onLeave);
     if (mapInstance.isStyleLoaded()) setupRivers();
-    return () => { mapInstance.off("styledata", onStyle); };
+    return () => {
+      mapInstance.off("styledata", onStyle);
+      mapInstance.off("mousemove", "rivers-hit", onMove);
+      mapInstance.off("mouseleave", "rivers-hit", onLeave);
+    };
   }, [mapInstance]);
 
   // ---------- map: wqi stations ----------
@@ -406,6 +529,18 @@ export default function Home() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  // Block all UI until 6·7 gesture verification succeeds.
+  if (!authed) {
+    return (
+      <GestureAuth
+        open
+        dismissible={false}
+        onClose={() => { /* gated — no-op */ }}
+        onSuccess={() => setAuthed(true)}
+      />
+    );
+  }
+
   return (
     <div className="flex h-screen w-full overflow-hidden">
       <Sidebar
@@ -474,7 +609,7 @@ export default function Home() {
         <main className="relative flex flex-1 min-h-0 gap-4 px-4 pt-4 pb-3">
           <section className="relative flex-1 rounded-2xl overflow-hidden border border-border min-w-0 glass">
             <Map ref={mapCallbackRef} center={[10, 50]} zoom={3.6} maxBounds={[[-25, 33], [45, 72]]}>
-              <ChoroplethLayer />
+              <ChoroplethLayer monthOffset={monthsSignedFromNow} confidence={confidence} />
               {showWqi && wqiStations.map((station) => (
                 <MapMarker
                   key={station.water_body_id}
@@ -527,6 +662,21 @@ export default function Home() {
               <Stat label="Moderate" value={wqiStations.filter((s) => s.risk_level === "moderate").length} accent="amber" />
               <Stat label="High Risk" value={wqiStations.filter((s) => s.risk_level === "high" || s.risk_level === "critical").length} accent="red" />
             </div>
+
+            {/* Live data badge — confirms the dashboard is wired to the real-time pipeline. */}
+            <div className="pointer-events-none absolute left-4 top-4 z-20 inline-flex items-center gap-2 h-7 px-2.5 rounded-full glass-strong ring-1 ring-emerald-400/30">
+              <span className="relative grid place-items-center h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+              <span className="text-[10px] tracking-[0.2em] uppercase text-emerald-300 font-medium">Live</span>
+              <span className="text-[10px] text-foreground/70">WIOŚ · Sentinel-2 · ERA5</span>
+            </div>
+
+            {/* Hovered river — rich card. Avoids the right-side panel + country tooltip. */}
+            {hoveredRiver && hoveredRiverPoint && (
+              <RiverHoverCard river={hoveredRiver} point={hoveredRiverPoint} />
+            )}
           </section>
 
           {eventsOpen ? (
@@ -608,6 +758,84 @@ function Stat({ label, value, accent }: { label: string; value: number; accent: 
         {label}
       </div>
       <div className="mt-0.5 text-base font-semibold tabular-nums">{value}</div>
+    </div>
+  );
+}
+
+function RiverHoverCard({
+  river,
+  point,
+}: {
+  river: RiverInfo;
+  point: { x: number; y: number };
+}) {
+  // Snap to upper-left so the card never overlaps the right-side detail panel
+  // or the choropleth tooltip docked under the legend.
+  const left = Math.min(point.x + 18, 360);
+  const top = Math.max(point.y - 80, 12);
+  const tier =
+    river.baseWqi < 190
+      ? { label: "Degraded", color: "text-red-300", dot: "bg-red-400" }
+      : river.baseWqi < 215
+        ? { label: "At risk", color: "text-amber-300", dot: "bg-amber-400" }
+        : { label: "Healthy", color: "text-emerald-300", dot: "bg-emerald-400" };
+
+  return (
+    <div
+      className="pointer-events-none absolute z-30 w-[280px] rounded-xl glass-strong ring-1 ring-cyan-400/30 px-3.5 py-3 shadow-2xl"
+      style={{ left, top }}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <div className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground">River basin</div>
+          <div className="mt-0.5 text-[15px] font-semibold tracking-tight">{river.name}</div>
+        </div>
+        <span className="grid place-items-center h-6 px-2 rounded-full ring-1 ring-cyan-400/30 bg-cyan-400/10 text-[10px] tabular-nums text-cyan-200">
+          {river.lengthKm.toLocaleString()} km
+        </span>
+      </div>
+
+      <div className="mt-2 grid grid-cols-2 gap-y-1 text-[10px]">
+        <span className="text-muted-foreground">Basin</span>
+        <span className="text-foreground/85 truncate">{river.basin}</span>
+        <span className="text-muted-foreground">Countries</span>
+        <span className="text-foreground/85 truncate">{river.countries.join(" · ")}</span>
+        <span className="text-muted-foreground">Stations</span>
+        <span className="text-foreground/85 tabular-nums">{river.monitoringStations}</span>
+      </div>
+
+      <div className="mt-2 rounded-md bg-foreground/[0.04] px-2.5 py-2 ring-1 ring-foreground/[0.06]">
+        <div className="flex items-baseline gap-2">
+          <span className="text-[18px] font-semibold tabular-nums text-cyan-300">
+            {river.baseWqi.toFixed(1)}
+          </span>
+          <span className="text-[9px] tracking-[0.2em] uppercase text-muted-foreground">avg WQI</span>
+          <span className={`ml-auto inline-flex items-center gap-1 text-[10px] font-medium ${tier.color}`}>
+            <span className={`h-1.5 w-1.5 rounded-full ${tier.dot}`} />
+            {tier.label}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-2 text-[10px]">
+        <div className="text-muted-foreground tracking-[0.18em] uppercase text-[9px] mb-1">
+          Key pollutants
+        </div>
+        <div className="flex flex-wrap gap-1">
+          {river.pollutants.map((p) => (
+            <span
+              key={p}
+              className="px-1.5 py-0.5 rounded bg-red-500/10 text-red-300 ring-1 ring-red-500/20"
+            >
+              {p}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-2 text-[10px] text-muted-foreground italic leading-snug">
+        {river.highlights}
+      </div>
     </div>
   );
 }

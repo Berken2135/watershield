@@ -47,10 +47,52 @@ const SRC = "wqi-countries";
 const FILL_LAYER = "wqi-fill";
 const HOVER_LAYER = "wqi-hover";
 
-type Tooltip = { x: number; y: number; name: string; wqi: number };
+type Tooltip = { name: string; wqi: number; iso: string };
 
 const WQI_MIN = 171.6; // Netherlands
 const WQI_MAX = 254.4; // Portugal
+
+// Layers we should *not* hijack the cursor for — if any of these are under
+// the pointer, suppress the country tooltip so it does not collide with the
+// station / river card.
+const SUPPRESS_LAYERS = [
+  "wqi-halo",
+  "rivers-line",
+  "rivers-hit",
+  "pollution-cluster-circles",
+];
+
+function wqiTier(wqi: number): { label: string; tone: string } {
+  if (wqi < 190) return { label: "Low", tone: "text-cyan-200" };
+  if (wqi < 215) return { label: "Moderate", tone: "text-cyan-300" };
+  if (wqi < 240) return { label: "Good", tone: "text-cyan-400" };
+  return { label: "High", tone: "text-cyan-500" };
+}
+
+// Deterministic noise in [-1, 1] (FNV-1a) so timeline shifts are stable.
+function seedNoise(seed: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return ((h >>> 0) % 10000) / 5000 - 1;
+}
+
+function shiftWqi(
+  base: number,
+  iso: string,
+  monthOffset: number,
+  confidence: number,
+): number {
+  if (Math.abs(monthOffset) < 0.05) return base;
+  const bucket = Math.round(monthOffset * 2) / 2;
+  const noise = seedNoise(`${iso}:${bucket}`);
+  const seasonal = Math.sin((monthOffset * Math.PI) / 6) * 4;
+  const trend = monthOffset * 0.55;
+  const noiseAmp = monthOffset > 0 ? (1 - confidence / 100) * 18 : 4;
+  return base + seasonal + trend + noise * noiseAmp;
+}
 
 /** Extract ISO-2 code from a feature regardless of property naming convention */
 function getIso2(props: Record<string, unknown> | null): string | null {
@@ -78,12 +120,49 @@ async function fetchCountriesGeoJSON(): Promise<GeoJSON.FeatureCollection | null
 
 const CHOROPLETH_MAX_ZOOM = 6;
 
-export default function ChoroplethLayer() {
+export type ChoroplethLayerProps = {
+  /** Signed months relative to “now” — negative = past, positive = future. */
+  monthOffset?: number;
+  /** 0–100 confidence; lower confidence widens the noise envelope (future only). */
+  confidence?: number;
+};
+
+export default function ChoroplethLayer({
+  monthOffset = 0,
+  confidence = 100,
+}: ChoroplethLayerProps = {}) {
   const { map, isLoaded } = useMap();
   const [tooltip, setTooltip] = useState<Tooltip | null>(null);
   const [legendVisible, setLegendVisible] = useState(true);
   // Track whether our layers exist so we can re-add after style change
   const layersReady = useRef(false);
+  // Cache pristine country features so we can re-shift WQI on every timeline tick
+  // without re-fetching the GeoJSON (~3 MB).
+  const baseFeaturesRef = useRef<GeoJSON.Feature[] | null>(null);
+  // Live refs so the mousemove handler always reads the latest props.
+  const offsetRef = useRef(monthOffset);
+  const confidenceRef = useRef(confidence);
+  offsetRef.current = monthOffset;
+  confidenceRef.current = confidence;
+
+  // Recompute fill data whenever the timeline scrubber moves.
+  useEffect(() => {
+    if (!map) return;
+    const base = baseFeaturesRef.current;
+    if (!base) return;
+    const shifted = base.map((f) => {
+      const props = f.properties as { iso_a2: string; name: string; wqi: number };
+      return {
+        ...f,
+        properties: {
+          ...props,
+          wqi: shiftWqi(props.wqi, props.iso_a2, monthOffset, confidence),
+        },
+      };
+    });
+    const src = map.getSource(SRC) as maplibregl.GeoJSONSource | undefined;
+    src?.setData({ type: "FeatureCollection", features: shifted } as GeoJSON.FeatureCollection);
+  }, [map, monthOffset, confidence]);
 
   useEffect(() => {
     if (!map || !isLoaded) return;
@@ -110,6 +189,20 @@ export default function ChoroplethLayer() {
 
       if (cancelled || features.length === 0) return;
 
+      // Cache pristine features for the time-shift effect above.
+      baseFeaturesRef.current = features as GeoJSON.Feature[];
+
+      const initialFeatures = features.map((f) => {
+        const p = f.properties as { iso_a2: string; name: string; wqi: number };
+        return {
+          ...f,
+          properties: {
+            ...p,
+            wqi: shiftWqi(p.wqi, p.iso_a2, offsetRef.current, confidenceRef.current),
+          },
+        };
+      });
+
       // Find the first basemap admin/boundary LINE layer so we insert the fill
       // BELOW it. This means the basemap's own pixel-perfect country border lines
       // will render on top of our fill, hiding any geometry imprecision.
@@ -133,7 +226,7 @@ export default function ChoroplethLayer() {
 
       map.addSource(SRC, {
         type: "geojson",
-        data: { type: "FeatureCollection", features } as GeoJSON.FeatureCollection,
+        data: { type: "FeatureCollection", features: initialFeatures } as GeoJSON.FeatureCollection,
       });
 
       // Fill layer – inserted BELOW admin border lines so the basemap's own
@@ -190,12 +283,25 @@ export default function ChoroplethLayer() {
     const onMouseMove = (e: { point: { x: number; y: number } }) => {
       if (!layersReady.current) return;
       const pt = e.point as maplibregl.Point;
+
+      // Suppress when hovering a station marker / river so tooltips don't stack.
+      const suppressLayers = SUPPRESS_LAYERS.filter((id) => map.getLayer(id));
+      if (suppressLayers.length) {
+        const blockers = map.queryRenderedFeatures(pt, { layers: suppressLayers });
+        if (blockers.length) {
+          setTooltip(null);
+          map.setFilter(HOVER_LAYER, ["==", ["get", "iso_a2"], "__none__"]);
+          return;
+        }
+      }
+
       const features = map.queryRenderedFeatures(pt, { layers: [FILL_LAYER] });
       if (features.length) {
         const iso = features[0].properties?.iso_a2 as string;
         if (iso && iso in WQI_DATA) {
-          const { name, wqi } = WQI_DATA[iso];
-          setTooltip({ x: pt.x, y: pt.y, name, wqi });
+          const { name, wqi: baseWqi } = WQI_DATA[iso];
+          const wqi = shiftWqi(baseWqi, iso, offsetRef.current, confidenceRef.current);
+          setTooltip({ name, wqi, iso });
           map.setFilter(HOVER_LAYER, ["==", ["get", "iso_a2"], iso]);
           return;
         }
@@ -256,18 +362,37 @@ export default function ChoroplethLayer() {
         </div>
       </div>
 
-      {/* Hover tooltip */}
-      {tooltip && (
-        <div
-          className="pointer-events-none absolute z-30 rounded-md glass-strong px-3 py-2 ring-1 ring-cyan-400/30"
-          style={{ left: tooltip.x + 14, top: tooltip.y - 56 }}
-        >
-          <div className="text-xs font-medium text-foreground">{tooltip.name}</div>
-          <div className="text-[11px] font-mono text-cyan-300">
-            WQI {tooltip.wqi.toFixed(1)}
-          </div>
-        </div>
-      )}
+      {/* Country WQI — docked under the legend so it never overlaps station cards. */}
+      <div
+        className={`pointer-events-none absolute right-4 top-[120px] z-20 rounded-lg glass-strong px-3 py-2 ring-1 ring-cyan-400/20 select-none transition-opacity duration-150 ${
+          tooltip ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ minWidth: 140 }}
+      >
+        {tooltip && (
+          <>
+            <div className="flex items-center justify-between gap-2">
+              <div className="text-[11px] font-medium text-foreground truncate">
+                {tooltip.name}
+              </div>
+              <div className="text-[9px] tracking-[0.2em] uppercase text-muted-foreground">
+                {tooltip.iso}
+              </div>
+            </div>
+            <div className="mt-0.5 flex items-baseline gap-1.5">
+              <span className="text-[15px] font-semibold tabular-nums text-cyan-300">
+                {tooltip.wqi.toFixed(1)}
+              </span>
+              <span className="text-[9px] tracking-[0.18em] uppercase text-muted-foreground">
+                WQI
+              </span>
+              <span className={`ml-auto text-[10px] font-medium ${wqiTier(tooltip.wqi).tone}`}>
+                {wqiTier(tooltip.wqi).label}
+              </span>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }

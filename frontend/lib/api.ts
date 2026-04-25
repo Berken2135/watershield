@@ -34,6 +34,9 @@ export type ReportRequest = {
     contaminant: string;
   };
   ai_summary?: string;
+  snapshot_date?: string;
+  confidence?: number;
+  is_predictive?: boolean;
 };
 
 async function postJSON<T>(path: string, body: unknown): Promise<T> {
@@ -79,7 +82,11 @@ export async function generateReportPdf(req: ReportRequest): Promise<Blob> {
   return res.blob();
 }
 
-export function eventToReportRequest(event: PollutionEvent, aiSummary?: string): ReportRequest {
+export function eventToReportRequest(
+  event: PollutionEvent,
+  aiSummary?: string,
+  opts?: { snapshotDate?: string; confidence?: number; isPredictive?: boolean },
+): ReportRequest {
   return {
     event_id: event.id,
     river: event.river,
@@ -95,5 +102,8 @@ export function eventToReportRequest(event: PollutionEvent, aiSummary?: string):
       contaminant: event.samplingData.contaminant,
     },
     ai_summary: aiSummary,
+    snapshot_date: opts?.snapshotDate,
+    confidence: opts?.confidence,
+    is_predictive: opts?.isPredictive,
   };
 }

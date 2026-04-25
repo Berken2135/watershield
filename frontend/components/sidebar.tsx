@@ -6,8 +6,8 @@ import {
   Fingerprint,
   LayoutDashboard,
   LogOut,
-  Waves,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "@/components/theme-toggle";
@@ -35,11 +35,15 @@ export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
   const pathname = usePathname();
   return (
     <aside className="hidden md:flex w-[200px] shrink-0 flex-col border-r border-border bg-background/50 backdrop-blur-md">
-      <div className="flex items-center gap-2.5 px-5 h-16 border-b border-border">
-        <div className="grid place-items-center h-7 w-7 rounded-md bg-primary/10 ring-1 ring-primary/30">
-          <Waves className="h-3.5 w-3.5 text-primary" />
-        </div>
-        <div className="text-[13px] font-semibold tracking-tight">WaterShield</div>
+      <div className="flex items-center justify-center px-4 h-16 border-b border-border">
+        <Image
+          src="/logo.png"
+          alt="WaterShield"
+          width={148}
+          height={70}
+          priority
+          className="h-9 w-auto object-contain"
+        />
       </div>
 
       <nav className="flex-1 px-3 py-5 flex flex-col gap-0.5">
