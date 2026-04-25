@@ -1,0 +1,1060 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "generated_at": "2026-04-25T09:45:38Z",
+    "source": "WaterShield data-science pipeline",
+    "version": "1.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.0385,
+          51.1079
+        ]
+      },
+      "properties": {
+        "water_body_id": "wroclaw_odra_001",
+        "name": "Odra River - Wrocław",
+        "country": "Poland",
+        "country_code": "PL",
+        "water_body_type": "river",
+        "wqi_current": 190.0,
+        "wqi_predicted_7d": 167.5,
+        "wqi_predicted_30d": 116.0,
+        "wqi_lower_30d": 35.9,
+        "wqi_upper_30d": 199.8,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "worsening",
+        "trend_pct_change": -38.9,
+        "anomaly_count_30d": 67,
+        "data_source": "real",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 13.7,
+          "ph": 9.11,
+          "oxygen_mg_l": 9.11,
+          "turbidity_ntu": 6.22
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9041,
+          52.3676
+        ]
+      },
+      "properties": {
+        "water_body_id": "amsterdam_amstel_001",
+        "name": "Amstel - Amsterdam",
+        "country": "Netherlands",
+        "country_code": "NL",
+        "water_body_type": "river",
+        "wqi_current": 171.6,
+        "wqi_predicted_7d": 171.9,
+        "wqi_predicted_30d": 173.0,
+        "wqi_lower_30d": 138.7,
+        "wqi_upper_30d": 207.3,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.8,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 6.5,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7275,
+          37.9838
+        ]
+      },
+      "properties": {
+        "water_body_id": "athens_saronikos_gulf_001",
+        "name": "Saronikos Gulf - Athens",
+        "country": "Greece",
+        "country_code": "GR",
+        "water_body_type": "sea",
+        "wqi_current": 190.7,
+        "wqi_predicted_7d": 190.8,
+        "wqi_predicted_30d": 191.2,
+        "wqi_lower_30d": 153.1,
+        "wqi_upper_30d": 229.3,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 11.3,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.405,
+          52.52
+        ]
+      },
+      "properties": {
+        "water_body_id": "berlin_spree_001",
+        "name": "Spree - Berlin",
+        "country": "Germany",
+        "country_code": "DE",
+        "water_body_type": "river",
+        "wqi_current": 210.4,
+        "wqi_predicted_7d": 210.3,
+        "wqi_predicted_30d": 209.9,
+        "wqi_lower_30d": 167.8,
+        "wqi_upper_30d": 252.0,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.2,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 3.7,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.1077,
+          48.1486
+        ]
+      },
+      "properties": {
+        "water_body_id": "bratislava_danube_001",
+        "name": "Danube - Bratislava",
+        "country": "Slovakia",
+        "country_code": "SK",
+        "water_body_type": "river",
+        "wqi_current": 214.9,
+        "wqi_predicted_7d": 214.8,
+        "wqi_predicted_30d": 214.2,
+        "wqi_lower_30d": 171.2,
+        "wqi_upper_30d": 257.2,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.3,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3517,
+          50.8503
+        ]
+      },
+      "properties": {
+        "water_body_id": "brussels_senne_001",
+        "name": "Senne - Brussels",
+        "country": "Belgium",
+        "country_code": "BE",
+        "water_body_type": "river",
+        "wqi_current": 195.0,
+        "wqi_predicted_7d": 195.1,
+        "wqi_predicted_30d": 195.2,
+        "wqi_lower_30d": 156.2,
+        "wqi_upper_30d": 234.2,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.1,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 5.5,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.1025,
+          44.4268
+        ]
+      },
+      "properties": {
+        "water_body_id": "bucharest_dâmbovița_001",
+        "name": "Dâmbovița - Bucharest",
+        "country": "Romania",
+        "country_code": "RO",
+        "water_body_type": "river",
+        "wqi_current": 183.3,
+        "wqi_predicted_7d": 183.5,
+        "wqi_predicted_30d": 184.1,
+        "wqi_lower_30d": 147.4,
+        "wqi_upper_30d": 220.8,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.4,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 3.6,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0402,
+          47.4979
+        ]
+      },
+      "properties": {
+        "water_body_id": "budapest_danube_001",
+        "name": "Danube - Budapest",
+        "country": "Hungary",
+        "country_code": "HU",
+        "water_body_type": "river",
+        "wqi_current": 212.4,
+        "wqi_predicted_7d": 212.3,
+        "wqi_predicted_30d": 211.8,
+        "wqi_lower_30d": 169.3,
+        "wqi_upper_30d": 254.3,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.1,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5683,
+          55.6761
+        ]
+      },
+      "properties": {
+        "water_body_id": "copenhagen_øresund_001",
+        "name": "Øresund - Copenhagen",
+        "country": "Denmark",
+        "country_code": "DK",
+        "water_body_type": "strait",
+        "wqi_current": 210.5,
+        "wqi_predicted_7d": 210.4,
+        "wqi_predicted_30d": 210.0,
+        "wqi_lower_30d": 167.9,
+        "wqi_upper_30d": 252.1,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.2,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 5.3,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.2603,
+          53.3498
+        ]
+      },
+      "properties": {
+        "water_body_id": "dublin_liffey_001",
+        "name": "Liffey - Dublin",
+        "country": "Ireland",
+        "country_code": "IE",
+        "water_body_type": "river",
+        "wqi_current": 203.2,
+        "wqi_predicted_7d": 203.2,
+        "wqi_predicted_30d": 203.0,
+        "wqi_lower_30d": 162.4,
+        "wqi_upper_30d": 243.6,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.1,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 8.2,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.9384,
+          60.1699
+        ]
+      },
+      "properties": {
+        "water_body_id": "helsinki_gulf_of_finland_001",
+        "name": "Gulf of Finland - Helsinki",
+        "country": "Finland",
+        "country_code": "FI",
+        "water_body_type": "sea",
+        "wqi_current": 194.5,
+        "wqi_predicted_7d": 194.6,
+        "wqi_predicted_30d": 194.8,
+        "wqi_lower_30d": 155.9,
+        "wqi_upper_30d": 233.7,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.2,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 0.6,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.945,
+          50.0647
+        ]
+      },
+      "properties": {
+        "water_body_id": "krakow_wisla_001",
+        "name": "Wisła - Kraków",
+        "country": "Poland",
+        "country_code": "PL",
+        "water_body_type": "river",
+        "wqi_current": 211.3,
+        "wqi_predicted_7d": 211.2,
+        "wqi_predicted_30d": 210.7,
+        "wqi_lower_30d": 168.4,
+        "wqi_upper_30d": 253.0,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.0,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.1393,
+          38.7223
+        ]
+      },
+      "properties": {
+        "water_body_id": "lisbon_tagus_001",
+        "name": "Tagus - Lisbon",
+        "country": "Portugal",
+        "country_code": "PT",
+        "water_body_type": "river",
+        "wqi_current": 254.4,
+        "wqi_predicted_7d": 253.9,
+        "wqi_predicted_30d": 251.7,
+        "wqi_lower_30d": 200.8,
+        "wqi_upper_30d": 302.6,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -1.1,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 12.2,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.5058,
+          46.0569
+        ]
+      },
+      "properties": {
+        "water_body_id": "ljubljana_ljubljanica_001",
+        "name": "Ljubljanica - Ljubljana",
+        "country": "Slovenia",
+        "country_code": "SI",
+        "water_body_type": "river",
+        "wqi_current": 189.5,
+        "wqi_predicted_7d": 189.6,
+        "wqi_predicted_30d": 190.0,
+        "wqi_lower_30d": 152.1,
+        "wqi_upper_30d": 227.9,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 0.4,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1319,
+          49.6117
+        ]
+      },
+      "properties": {
+        "water_body_id": "luxembourg_alzette_001",
+        "name": "Alzette - Luxembourg",
+        "country": "Luxembourg",
+        "country_code": "LU",
+        "water_body_type": "river",
+        "wqi_current": 181.3,
+        "wqi_predicted_7d": 181.5,
+        "wqi_predicted_30d": 182.2,
+        "wqi_lower_30d": 145.9,
+        "wqi_upper_30d": 218.5,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.5,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.7,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7038,
+          40.4168
+        ]
+      },
+      "properties": {
+        "water_body_id": "madrid_manzanares_001",
+        "name": "Manzanares - Madrid",
+        "country": "Spain",
+        "country_code": "ES",
+        "water_body_type": "river",
+        "wqi_current": 252.9,
+        "wqi_predicted_7d": 252.4,
+        "wqi_predicted_30d": 250.3,
+        "wqi_lower_30d": 199.7,
+        "wqi_upper_30d": 300.9,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -1.0,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 6.2,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.3823,
+          35.1856
+        ]
+      },
+      "properties": {
+        "water_body_id": "nicosia_pedieos_001",
+        "name": "Pedieos - Nicosia",
+        "country": "Cyprus",
+        "country_code": "CY",
+        "water_body_type": "river",
+        "wqi_current": 248.9,
+        "wqi_predicted_7d": 248.4,
+        "wqi_predicted_30d": 246.5,
+        "wqi_lower_30d": 196.7,
+        "wqi_upper_30d": 296.3,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -1.0,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 12.3,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.7522,
+          59.9139
+        ]
+      },
+      "properties": {
+        "water_body_id": "oslo_oslofjord_001",
+        "name": "Oslofjord - Oslo",
+        "country": "Norway",
+        "country_code": "NO",
+        "water_body_type": "fjord",
+        "wqi_current": 207.1,
+        "wqi_predicted_7d": 207.0,
+        "wqi_predicted_30d": 206.7,
+        "wqi_lower_30d": 165.3,
+        "wqi_upper_30d": 248.1,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.2,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": -0.0,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3522,
+          48.8566
+        ]
+      },
+      "properties": {
+        "water_body_id": "paris_seine_001",
+        "name": "Seine - Paris",
+        "country": "France",
+        "country_code": "FR",
+        "water_body_type": "river",
+        "wqi_current": 203.0,
+        "wqi_predicted_7d": 203.0,
+        "wqi_predicted_30d": 202.8,
+        "wqi_lower_30d": 162.2,
+        "wqi_upper_30d": 243.4,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.1,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 6.0,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4378,
+          50.0755
+        ]
+      },
+      "properties": {
+        "water_body_id": "prague_vltava_001",
+        "name": "Vltava - Prague",
+        "country": "Czechia",
+        "country_code": "CZ",
+        "water_body_type": "river",
+        "wqi_current": 205.6,
+        "wqi_predicted_7d": 205.5,
+        "wqi_predicted_30d": 205.3,
+        "wqi_lower_30d": 164.2,
+        "wqi_upper_30d": 246.4,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.1,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 1.9,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.1052,
+          56.9496
+        ]
+      },
+      "properties": {
+        "water_body_id": "riga_daugava_001",
+        "name": "Daugava - Riga",
+        "country": "Latvia",
+        "country_code": "LV",
+        "water_body_type": "river",
+        "wqi_current": 199.3,
+        "wqi_predicted_7d": 199.3,
+        "wqi_predicted_30d": 199.3,
+        "wqi_lower_30d": 159.4,
+        "wqi_upper_30d": 239.2,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.0,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.2,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4964,
+          41.9028
+        ]
+      },
+      "properties": {
+        "water_body_id": "rome_tiber_001",
+        "name": "Tiber - Rome",
+        "country": "Italy",
+        "country_code": "IT",
+        "water_body_type": "river",
+        "wqi_current": 191.0,
+        "wqi_predicted_7d": 191.1,
+        "wqi_predicted_30d": 191.4,
+        "wqi_lower_30d": 153.2,
+        "wqi_upper_30d": 229.6,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.2,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 8.1,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3219,
+          42.6977
+        ]
+      },
+      "properties": {
+        "water_body_id": "sofia_vladaya_001",
+        "name": "Vladaya - Sofia",
+        "country": "Bulgaria",
+        "country_code": "BG",
+        "water_body_type": "river",
+        "wqi_current": 176.6,
+        "wqi_predicted_7d": 176.8,
+        "wqi_predicted_30d": 177.8,
+        "wqi_lower_30d": 142.5,
+        "wqi_upper_30d": 213.1,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.7,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.3,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.0686,
+          59.3293
+        ]
+      },
+      "properties": {
+        "water_body_id": "stockholm_mälaren_001",
+        "name": "Mälaren - Stockholm",
+        "country": "Sweden",
+        "country_code": "SE",
+        "water_body_type": "lake",
+        "wqi_current": 190.5,
+        "wqi_predicted_7d": 190.6,
+        "wqi_predicted_30d": 191.0,
+        "wqi_lower_30d": 152.9,
+        "wqi_upper_30d": 229.1,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 1.2,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.7536,
+          59.437
+        ]
+      },
+      "properties": {
+        "water_body_id": "tallinn_gulf_of_finland_001",
+        "name": "Gulf of Finland - Tallinn",
+        "country": "Estonia",
+        "country_code": "EE",
+        "water_body_type": "sea",
+        "wqi_current": 176.4,
+        "wqi_predicted_7d": 176.6,
+        "wqi_predicted_30d": 177.6,
+        "wqi_lower_30d": 142.3,
+        "wqi_upper_30d": 212.9,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.7,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 1.2,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.5147,
+          35.8997
+        ]
+      },
+      "properties": {
+        "water_body_id": "valletta_grand_harbour_001",
+        "name": "Grand Harbour - Valletta",
+        "country": "Malta",
+        "country_code": "MT",
+        "water_body_type": "sea",
+        "wqi_current": 240.9,
+        "wqi_predicted_7d": 240.5,
+        "wqi_predicted_30d": 238.9,
+        "wqi_lower_30d": 190.7,
+        "wqi_upper_30d": 287.1,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.8,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 15.3,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3738,
+          48.2082
+        ]
+      },
+      "properties": {
+        "water_body_id": "vienna_danube_001",
+        "name": "Danube - Vienna",
+        "country": "Austria",
+        "country_code": "AT",
+        "water_body_type": "river",
+        "wqi_current": 212.4,
+        "wqi_predicted_7d": 212.3,
+        "wqi_predicted_30d": 211.8,
+        "wqi_lower_30d": 169.3,
+        "wqi_upper_30d": 254.3,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.5,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.2797,
+          54.6872
+        ]
+      },
+      "properties": {
+        "water_body_id": "vilnius_neris_001",
+        "name": "Neris - Vilnius",
+        "country": "Lithuania",
+        "country_code": "LT",
+        "water_body_type": "river",
+        "wqi_current": 196.7,
+        "wqi_predicted_7d": 196.7,
+        "wqi_predicted_30d": 196.9,
+        "wqi_lower_30d": 157.6,
+        "wqi_upper_30d": 236.2,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "stable",
+        "trend_pct_change": 0.1,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 1.1,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0122,
+          52.2297
+        ]
+      },
+      "properties": {
+        "water_body_id": "warsaw_wisla_001",
+        "name": "Wisła - Warsaw",
+        "country": "Poland",
+        "country_code": "PL",
+        "water_body_type": "river",
+        "wqi_current": 212.6,
+        "wqi_predicted_7d": 212.5,
+        "wqi_predicted_30d": 212.0,
+        "wqi_lower_30d": 169.5,
+        "wqi_upper_30d": 254.5,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": -0.3,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.8,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.9819,
+          45.815
+        ]
+      },
+      "properties": {
+        "water_body_id": "zagreb_sava_001",
+        "name": "Sava - Zagreb",
+        "country": "Croatia",
+        "country_code": "HR",
+        "water_body_type": "river",
+        "wqi_current": 200.4,
+        "wqi_predicted_7d": 200.4,
+        "wqi_predicted_30d": 200.4,
+        "wqi_lower_30d": 160.3,
+        "wqi_upper_30d": 240.5,
+        "risk_level": "clean",
+        "risk_color": "#10B981",
+        "trend": "stable",
+        "trend_pct_change": 0.0,
+        "anomaly_count_30d": null,
+        "data_source": "synthetic",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 2.5,
+          "ph": null,
+          "oxygen_mg_l": null,
+          "turbidity_ntu": null
+        }
+      }
+    }
+  ]
+}
