@@ -34,15 +34,15 @@ export type SidebarProps = {
 export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
   const pathname = usePathname();
   return (
-    <aside className="hidden md:flex w-[200px] shrink-0 flex-col border-r border-border bg-background/50 backdrop-blur-md">
-      <div className="flex items-center justify-center px-4 h-16 border-b border-border">
+    <aside className="hidden md:flex w-[220px] shrink-0 flex-col border-r border-border bg-background/50 backdrop-blur-md">
+      <div className="flex items-center justify-center px-4 h-24 border-b border-border">
         <Image
           src="/logo.png"
           alt="WaterShield"
-          width={148}
-          height={70}
+          width={220}
+          height={110}
           priority
-          className="h-9 w-auto object-contain"
+          className="h-16 w-auto object-contain"
         />
       </div>
 

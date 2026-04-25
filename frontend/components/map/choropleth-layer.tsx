@@ -25,7 +25,6 @@ const WQI_DATA: Record<string, { name: string; wqi: number }> = {
   LU: { name: "Luxembourg", wqi: 181.3 },
   MT: { name: "Malta", wqi: 240.9 },
   NL: { name: "Netherlands", wqi: 171.6 },
-  NO: { name: "Norway", wqi: 207.1 },
   PL: { name: "Poland", wqi: 204.6 },
   PT: { name: "Portugal", wqi: 254.4 },
   RO: { name: "Romania", wqi: 183.3 },

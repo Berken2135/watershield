@@ -1,6 +1,7 @@
 "use client";
 
 import Sidebar from "@/components/sidebar";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type WqiStation = {
@@ -25,7 +26,11 @@ export default function AlertsPage() {
         const all: WqiStation[] = (geojson.features ?? []).map(
           (f: { properties: WqiStation }) => f.properties,
         );
-        setStations(all.filter((s) => s.risk_level === "high" || s.risk_level === "critical"));
+        setStations(
+          all
+            .filter((s) => s.risk_level === "high" || s.risk_level === "critical")
+            .sort((a, b) => b.wqi_current - a.wqi_current),
+        );
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -36,15 +41,7 @@ export default function AlertsPage() {
       <Sidebar />
       <main className="flex-1 overflow-y-auto px-8 py-10">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-8">
-            <div className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground">
-              Real-time · WQI risk alerts
-            </div>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight">Alerts</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Stations with high or critical Water Quality Index risk levels.
-            </p>
-          </div>
+          <h1 className="mb-8 text-2xl font-semibold tracking-tight">Alerts</h1>
 
           {loading && <p className="text-sm text-muted-foreground">Loading…</p>}
           {!loading && stations.length === 0 && (
@@ -58,7 +55,11 @@ export default function AlertsPage() {
 kurwa
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {stations.map((s) => (
-              <div key={s.water_body_id} className="rounded-xl border border-border bg-card/40 p-4">
+              <Link
+                key={s.water_body_id}
+                href={`/?station=${encodeURIComponent(s.water_body_id)}`}
+                className="block rounded-xl border border-border bg-card/40 p-4 transition-colors hover:bg-white/[0.03] hover:border-white/10"
+              >
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <div className="font-medium text-sm">{s.name}</div>
@@ -83,7 +84,7 @@ kurwa
                 >
                   {s.risk_level}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

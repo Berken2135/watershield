@@ -72,6 +72,43 @@ type WqiFeature = {
 
 type WqiStation = WqiFeature & { lng: number; lat: number };
 
+// Deterministic noise so timeline shifts are stable per station.
+function fnvHash(seed: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return ((h >>> 0) % 10000) / 5000 - 1; // [-1, 1]
+}
+
+// Mirror of the choropleth's `shiftWqi` so station markers move in lock-step
+// with the country fill as the user scrubs the timeline.
+function shiftStationWqi(
+  base: number,
+  id: string,
+  monthOffset: number,
+  confidence: number,
+): number {
+  if (Math.abs(monthOffset) < 0.05) return base;
+  const bucket = Math.round(monthOffset * 2) / 2;
+  const noise = fnvHash(`${id}:${bucket}`);
+  const seasonal = Math.sin((monthOffset * Math.PI) / 6) * 4;
+  const trend = monthOffset * 0.6;
+  const noiseAmp = monthOffset > 0 ? (1 - confidence / 100) * 22 : 5;
+  return Math.max(0, base + seasonal + trend + noise * noiseAmp);
+}
+
+function riskFromWqi(wqi: number): {
+  level: "clean" | "moderate" | "high" | "critical";
+  color: string;
+} {
+  if (wqi >= 230) return { level: "critical", color: "#DC2626" };
+  if (wqi >= 200) return { level: "high",     color: "#EF4444" };
+  if (wqi >= 170) return { level: "moderate", color: "#F59E0B" };
+  return            { level: "clean",    color: "#10B981" };
+}
+
 const NOW_DATE = new Date("2026-04-25T00:00:00Z");
 const TIMELINE_START = new Date("2024-01-01T00:00:00Z");
 const TIMELINE_END = new Date("2027-12-31T00:00:00Z");
@@ -200,10 +237,27 @@ export default function Home() {
 
   const [selectedWqiStation, setSelectedWqiStation] = useState<WqiFeature | null>(null);
   const [wqiStations, setWqiStations] = useState<WqiStation[]>([]);
+  const baseStationsRef = useRef<WqiStation[]>([]);
   const [selectedPollutionId, setSelectedPollutionId] = useState<string | null>(null);
 
   const [authOpen, setAuthOpen] = useState(false);
   const [authed, setAuthed] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+
+  // Persist 6·7 verification across refreshes — the user explicitly asked
+  // not to repeat the gesture on every reload.
+  useEffect(() => {
+    try {
+      if (localStorage.getItem("ws_auth_v1") === "1") setAuthed(true);
+    } catch {}
+    setAuthChecked(true);
+  }, []);
+  useEffect(() => {
+    try {
+      if (authed) localStorage.setItem("ws_auth_v1", "1");
+      else localStorage.removeItem("ws_auth_v1");
+    } catch {}
+  }, [authed]);
 
   const [eventsOpen, setEventsOpen] = useState(true);
 
@@ -465,7 +519,7 @@ export default function Home() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((fc: any) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        setWqiStations((fc.features as any[]).map((f) => ({
+        const list = (fc.features as any[]).map((f) => ({
           ...f.properties,
           metrics:
             typeof f.properties.metrics === "string"
@@ -473,10 +527,54 @@ export default function Home() {
               : (f.properties.metrics ?? {}),
           lng: f.geometry.coordinates[0],
           lat: f.geometry.coordinates[1],
-        })));
+        })) as WqiStation[];
+        baseStationsRef.current = list;
+        setWqiStations(list);
+        // Deep-link support: /?station=<id> auto-opens the detail panel.
+        try {
+          const sp = new URLSearchParams(window.location.search);
+          const sid = sp.get("station");
+          if (sid) {
+            const hit = list.find((s) => s.water_body_id === sid);
+            if (hit) {
+              setSelectedWqiStation(hit);
+              setEventsOpen(true);
+              setTimeout(() => {
+                mapRef.current?.flyTo({ center: [hit.lng, hit.lat], zoom: 8, duration: 1200 });
+              }, 400);
+            }
+          }
+        } catch {}
       })
       .catch(() => { /* backend offline */ });
   }, []);
+
+  // Re-color station markers as the timeline scrubber moves so the user can
+  // see how WQI / risk evolves over time (matches the choropleth shift).
+  useEffect(() => {
+    const base = baseStationsRef.current;
+    if (!base.length) return;
+    if (Math.abs(monthsSignedFromNow) < 0.05) {
+      setWqiStations(base);
+      return;
+    }
+    const shifted = base.map((s) => {
+      const wqi = shiftStationWqi(
+        s.wqi_current,
+        s.water_body_id,
+        monthsSignedFromNow,
+        confidence,
+      );
+      const tier = riskFromWqi(wqi);
+      return {
+        ...s,
+        wqi_current: wqi,
+        risk_level: tier.level,
+        risk_color: tier.color,
+      };
+    });
+    setWqiStations(shifted);
+  }, [monthsSignedFromNow, confidence]);
 
   // ---------- search (Nominatim) ----------
   const fetchSuggestions = useCallback(async (value: string) => {
@@ -533,7 +631,7 @@ export default function Home() {
   }, []);
 
   // Block all UI until 6·7 gesture verification succeeds.
-  if (!authed) {
+  if (authChecked && !authed) {
     return (
       <GestureAuth
         open
@@ -664,16 +762,6 @@ export default function Home() {
               <Stat label="Clean" value={wqiStations.filter((s) => s.risk_level === "clean").length} accent="emerald" />
               <Stat label="Moderate" value={wqiStations.filter((s) => s.risk_level === "moderate").length} accent="amber" />
               <Stat label="High Risk" value={wqiStations.filter((s) => s.risk_level === "high" || s.risk_level === "critical").length} accent="red" />
-            </div>
-
-            {/* Live data badge — confirms the dashboard is wired to the real-time pipeline. */}
-            <div className="pointer-events-none absolute left-4 top-4 z-20 inline-flex items-center gap-2 h-7 px-2.5 rounded-full glass-strong ring-1 ring-emerald-400/30">
-              <span className="relative grid place-items-center h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-              </span>
-              <span className="text-[10px] tracking-[0.2em] uppercase text-emerald-300 font-medium">Live</span>
-              <span className="text-[10px] text-foreground/70">WIOŚ · Sentinel-2 · ERA5</span>
             </div>
 
             {/* Hovered river — rich card. Avoids the right-side panel + country tooltip. */}
@@ -817,6 +905,12 @@ function RiverHoverCard({
             <span className={`h-1.5 w-1.5 rounded-full ${tier.dot}`} />
             {tier.label}
           </span>
+        </div>
+        <div className="mt-1 text-[9.5px] leading-snug text-muted-foreground/85">
+          Water Quality Index combines pH, dissolved oxygen, turbidity & contaminants.
+          Lower is cleaner; values <span className="text-emerald-300">≤190</span> are healthy,
+          <span className="text-amber-300"> 190–215</span> at risk,
+          <span className="text-red-300"> ≥215</span> degraded.
         </div>
       </div>
 
@@ -1065,6 +1159,105 @@ function WqiDetailPanel({
     critical: "text-red-600 dark:text-red-400",
   }[station.risk_level] ?? "text-foreground";
 
+  type AiVerdict = {
+    verdict: "normal" | "anomaly" | "critical";
+    confidence: number;
+    summary: string;
+    risks: string[];
+    recommendations: string[];
+    pollutant_likely?: string | null;
+  };
+  const [ai, setAi] = useState<AiVerdict | null>(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
+  const [pdfLoading, setPdfLoading] = useState(false);
+
+  // Reset AI panel whenever a different station is selected.
+  useEffect(() => {
+    setAi(null); setAiError(null);
+  }, [station.water_body_id]);
+
+  const riverFromName = station.name.split(" - ")[0].replace(/ River$/, "");
+  const cityFromName = station.name.split(" - ").slice(1).join(" - ") || station.country;
+  const severity =
+    station.risk_level === "critical" ? "High"
+    : station.risk_level === "high" ? "High"
+    : station.risk_level === "moderate" ? "Medium" : "Low";
+
+  const runAi = async () => {
+    setAiLoading(true); setAiError(null); setAi(null);
+    try {
+      const r = await fetch("http://127.0.0.1:8000/api/analysis/anomaly", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          river: riverFromName,
+          location: cityFromName,
+          type: "Chemical",
+          severity,
+          date: station.last_updated.slice(0, 10),
+          description: `WQI ${Math.round(station.wqi_current)} on ${station.water_body_type}, trend ${station.trend}.`,
+          metrics: {
+            ph: station.metrics.ph ?? 7.2,
+            dissolved_oxygen: station.metrics.oxygen_mg_l ?? 8.0,
+            turbidity: station.metrics.turbidity_ntu ?? 5.0,
+            contaminant: null,
+          },
+        }),
+      });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      setAi(await r.json());
+    } catch (e) {
+      setAiError(e instanceof Error ? e.message : "Failed");
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
+  const downloadPdf = async () => {
+    setPdfLoading(true);
+    try {
+      const r = await fetch("http://127.0.0.1:8000/api/reports/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event_id: station.water_body_id,
+          river: riverFromName,
+          location: cityFromName,
+          severity,
+          type: "WQI Monitoring",
+          date: station.last_updated.slice(0, 10),
+          description:
+            `WQI ${Math.round(station.wqi_current)} (7d ${Math.round(station.wqi_predicted_7d)}, ` +
+            `30d ${Math.round(station.wqi_predicted_30d)}). Trend: ${station.trend} ` +
+            `(${station.trend_pct_change > 0 ? "+" : ""}${station.trend_pct_change.toFixed(1)}%).`,
+          metrics: {
+            ph: station.metrics.ph ?? 7.2,
+            dissolved_oxygen: station.metrics.oxygen_mg_l ?? 8.0,
+            turbidity: station.metrics.turbidity_ntu ?? 5.0,
+            contaminant: null,
+          },
+          ai_summary: ai?.summary ?? null,
+          snapshot_date: station.last_updated.slice(0, 10),
+          confidence: ai?.confidence ?? null,
+          is_predictive: false,
+        }),
+      });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const blob = await r.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `watershield_${station.water_body_id}.pdf`;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    } catch {
+      // ignore
+    } finally {
+      setPdfLoading(false);
+    }
+  };
+
   return (
     <>
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
@@ -1155,6 +1348,73 @@ function WqiDetailPanel({
             <div className="text-[11px] text-muted-foreground mt-1">Detected by XGBoost model</div>
           </div>
         )}
+
+        {/* ── AI anomaly analysis (OpenAI-backed, EU-WFD framing) ────────── */}
+        <div className="rounded-lg border border-cyan-400/20 bg-cyan-400/[0.03] p-3">
+          <div className="flex items-center gap-2 mb-2">
+            <Activity className="h-3.5 w-3.5 text-cyan-400" />
+            <div className="text-[10px] tracking-[0.18em] uppercase text-cyan-600 dark:text-cyan-300">
+              AI Anomaly Analysis
+            </div>
+          </div>
+          {!ai && !aiLoading && (
+            <button
+              onClick={runAi}
+              className="w-full rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 ring-1 ring-cyan-500/30 px-3 py-2 text-[12px] font-medium text-cyan-700 dark:text-cyan-200 transition-colors"
+            >
+              Run AI analysis
+            </button>
+          )}
+          {aiLoading && (
+            <div className="text-[11px] text-muted-foreground">Analysing measurements with EU-WFD reference thresholds…</div>
+          )}
+          {aiError && (
+            <div className="text-[11px] text-red-400">Failed: {aiError}</div>
+          )}
+          {ai && (
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <span
+                  className={`px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase ring-1 ${
+                    ai.verdict === "critical"
+                      ? "bg-red-500/15 ring-red-500/40 text-red-300"
+                      : ai.verdict === "anomaly"
+                        ? "bg-amber-500/15 ring-amber-500/40 text-amber-300"
+                        : "bg-emerald-500/15 ring-emerald-500/40 text-emerald-300"
+                  }`}
+                >
+                  {ai.verdict}
+                </span>
+                <span className="text-[10px] text-muted-foreground">
+                  confidence {ai.confidence}%
+                </span>
+              </div>
+              <div className="text-[11px] text-foreground/85 leading-snug">{ai.summary}</div>
+              {ai.risks.length > 0 && (
+                <ul className="text-[10.5px] text-foreground/70 list-disc pl-4 space-y-0.5">
+                  {ai.risks.map((r, i) => <li key={i}>{r}</li>)}
+                </ul>
+              )}
+              {ai.recommendations.length > 0 && (
+                <div>
+                  <div className="text-[9px] tracking-[0.2em] uppercase text-muted-foreground mb-1">Recommended actions</div>
+                  <ul className="text-[10.5px] text-foreground/80 list-decimal pl-4 space-y-0.5">
+                    {ai.recommendations.map((r, i) => <li key={i}>{r}</li>)}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* ── PDF download (EU-WFD compliance report) ────────────────────── */}
+        <button
+          onClick={downloadPdf}
+          disabled={pdfLoading}
+          className="w-full rounded-md bg-blue-500/10 hover:bg-blue-500/20 disabled:opacity-50 ring-1 ring-blue-500/30 px-3 py-2 text-[12px] font-medium text-blue-700 dark:text-blue-200 inline-flex items-center justify-center gap-2 transition-colors"
+        >
+          {pdfLoading ? "Preparing PDF…" : "Download PDF report"}
+        </button>
 
         <div className="text-[10px] text-muted-foreground text-right">
           Updated: {new Date(station.last_updated).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
