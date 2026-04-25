@@ -200,3 +200,97 @@ def history_country(
         "months":       len(records),
         "history":      [{"date": r["date"], "wqi": r["wqi"], "risk_level": r["risk_level"], "cities_count": r["cities_count"], "data_source": r["data_source"]} for r in records],
     }
+
+
+# ── Snapshot comparisons (now vs N months ago) ────────────────────────────────
+
+def _snapshot(records: list[dict], offsets: list[int]) -> dict:
+    """
+    Given a sorted list of monthly records and a list of month offsets,
+    return a dict with 'current' and one key per offset.
+
+    E.g. offsets=[1, 3, 6, 12] produces:
+      current, 1_month_ago, 3_months_ago, 6_months_ago, 12_months_ago
+    """
+    records = sorted(records, key=lambda r: r["date"])
+    if not records:
+        return {}
+
+    def _entry(r: dict, reference_wqi: float | None = None) -> dict:
+        out = {"date": r["date"], "wqi": r["wqi"], "risk_level": r["risk_level"]}
+        if reference_wqi is not None:
+            diff = round(r["wqi"] - reference_wqi, 1)
+            out["change"]     = diff
+            out["change_pct"] = round(diff / reference_wqi * 100, 1) if reference_wqi else 0.0
+        return out
+
+    latest = records[-1]
+    result: dict = {"current": _entry(latest)}
+
+    for offset in offsets:
+        if offset >= len(records):
+            continue
+        past = records[-(offset + 1)]
+        key  = f"{offset}_month{'s' if offset > 1 else ''}_ago"
+        result[key] = _entry(past, reference_wqi=latest["wqi"])
+
+    return result
+
+
+@router.get("/history/compare/water-body/{water_body_id}")
+def compare_water_body(water_body_id: str):
+    """
+    Current WQI vs 1, 3, 6, and 12 months ago for a specific water body.
+
+    Returns each snapshot with the absolute change and % change relative
+    to the current value — ready to display directly on the frontend.
+
+    Example response:
+      {
+        "water_body_id": "wroclaw_odra_001",
+        "city": "Wrocław",
+        "current":       { "date": "2026-04-01", "wqi": 190.0, "risk_level": "moderate" },
+        "1_month_ago":   { "date": "2026-03-01", "wqi": 175.2, "risk_level": "moderate", "change": 14.8, "change_pct": 7.8 },
+        "3_months_ago":  { ... },
+        "6_months_ago":  { ... },
+        "12_months_ago": { ... }
+      }
+    """
+    geojson = _load("europe")
+    city_name: str | None = None
+    for feature in geojson["features"]:
+        if feature["properties"].get("water_body_id") == water_body_id:
+            city_name = feature["properties"]["name"].split(" - ")[-1].strip()
+            break
+
+    if city_name is None:
+        raise HTTPException(status_code=404, detail=f"Water body '{water_body_id}' not found")
+
+    records: list[dict] = [
+        r for r in _load("history_cities") if r["city"] == city_name
+    ]
+
+    return {"water_body_id": water_body_id, "city": city_name,
+            **_snapshot(records, [1, 3, 6, 12])}
+
+
+@router.get("/history/compare/countries/{country_code}")
+def compare_country(country_code: str):
+    """
+    Current WQI vs 1, 3, 6, and 12 months ago for a country.
+
+    Same shape as the water-body compare endpoint, keyed by country_code.
+    """
+    records: list[dict] = [
+        r for r in _load("history_countries")
+        if r["country_code"] == country_code.upper()
+    ]
+
+    if not records:
+        raise HTTPException(status_code=404, detail=f"Country code '{country_code}' not found")
+
+    return {
+        "country":      records[0]["country"],
+        "country_code": country_code.upper(),
+        **_snapshot(records, [1, 3, 6, 12]),
+    }

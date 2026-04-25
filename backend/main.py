@@ -54,6 +54,8 @@ def list_endpoints():
             "GET /api/data/history/water-body/{water_body_id}?year=2024",
             "GET /api/data/history/countries?year=2024",
             "GET /api/data/history/countries/{country_code}?year=2024",
+            "GET /api/data/history/compare/water-body/{water_body_id}",
+            "GET /api/data/history/compare/countries/{country_code}",
         ],
     }
 
