@@ -4,6 +4,10 @@ data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
+# Allow European open-data outputs (no PII, no partner data)
+!data/processed/europe/
+data/processed/europe/*.parquet
+
 # Outputs are large — keep only tracked GeoJSON committed if desired
 data/outputs/*.pkl
 data/outputs/*.parquet
