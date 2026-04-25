@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "generated_at": "2026-04-25T09:45:38Z",
+    "source": "WaterShield data-science pipeline",
+    "version": "1.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.0385,
+          51.1079
+        ]
+      },
+      "properties": {
+        "water_body_id": "wroclaw_odra_001",
+        "name": "Odra River - Wrocław",
+        "country": "Poland",
+        "country_code": "PL",
+        "water_body_type": "river",
+        "wqi_current": 190.0,
+        "wqi_predicted_7d": 167.5,
+        "wqi_predicted_30d": 116.0,
+        "wqi_lower_30d": 35.9,
+        "wqi_upper_30d": 199.8,
+        "risk_level": "moderate",
+        "risk_color": "#F59E0B",
+        "trend": "worsening",
+        "trend_pct_change": -38.9,
+        "anomaly_count_30d": 67,
+        "data_source": "real",
+        "last_updated": "2026-04-25T09:45:38Z",
+        "metrics": {
+          "temperature_c": 13.7,
+          "ph": 9.11,
+          "oxygen_mg_l": 9.11,
+          "turbidity_ntu": 6.22
+        }
+      }
+    }
+  ]
+}

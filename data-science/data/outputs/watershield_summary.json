@@ -1,0 +1,39 @@
+{
+  "total_cities": 30,
+  "risk_counts": {
+    "clean": 16,
+    "moderate": 14,
+    "high": 0,
+    "critical": 0
+  },
+  "avg_wqi_by_country": {
+    "Austria": 212.4,
+    "Belgium": 195.0,
+    "Bulgaria": 176.6,
+    "Croatia": 200.4,
+    "Cyprus": 248.9,
+    "Czechia": 205.6,
+    "Denmark": 210.5,
+    "Estonia": 176.4,
+    "Finland": 194.5,
+    "France": 203.0,
+    "Germany": 210.4,
+    "Greece": 190.7,
+    "Hungary": 212.4,
+    "Ireland": 203.2,
+    "Italy": 191.0,
+    "Latvia": 199.3,
+    "Lithuania": 196.7,
+    "Luxembourg": 181.3,
+    "Malta": 240.9,
+    "Netherlands": 171.6,
+    "Norway": 207.1,
+    "Poland": 204.6,
+    "Portugal": 254.4,
+    "Romania": 183.3,
+    "Slovakia": 214.9,
+    "Slovenia": 189.5,
+    "Spain": 252.9,
+    "Sweden": 190.5
+  }
+}
