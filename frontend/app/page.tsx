@@ -106,10 +106,12 @@ function riskFromWqi(wqi: number): {
   level: "clean" | "moderate" | "high" | "critical";
   color: string;
 } {
-  if (wqi >= 230) return { level: "critical", color: "#DC2626" };
-  if (wqi >= 200) return { level: "high",     color: "#EF4444" };
-  if (wqi >= 170) return { level: "moderate", color: "#F59E0B" };
-  return            { level: "clean",    color: "#10B981" };
+  // Higher WQI = cleaner. Thresholds mirror the data-science pipeline
+  // (generate_historical.py: clean>=200, moderate>=150, high>=100, else critical).
+  if (wqi >= 200) return { level: "clean",    color: "#10B981" };
+  if (wqi >= 150) return { level: "moderate", color: "#F59E0B" };
+  if (wqi >= 100) return { level: "high",     color: "#EF4444" };
+  return            { level: "critical", color: "#DC2626" };
 }
 
 const NOW_DATE = new Date("2026-04-25T00:00:00Z");
@@ -336,6 +338,11 @@ export default function Home() {
 
   const [showWqi, setShowWqi] = useState(true);
 
+  // "What if?" — Simulate Factory Shutdown. When active we boost every
+  // station's WQI by SHUTDOWN_BOOST so the user can see the cleaner future.
+  const [simulateShutdown, setSimulateShutdown] = useState(false);
+  const SHUTDOWN_BOOST = 35;
+
   const [events, setEvents] = useState<PollutionEvent[]>(MOCK_EVENTS);
   useEffect(() => {
     let cancelled = false;
@@ -479,6 +486,162 @@ export default function Home() {
       mapInstance.off("mouseleave", "rivers-hit", onLeave);
     };
   }, [mapInstance]);
+
+  // ---------- map: pollution heatmap (animates with timeline) ----------
+  // Each polluted station emits a "plume" of points walked downstream along
+  // the nearest river polyline. The plume head advances with the timeline so
+  // the user sees pollution drift down-river over the next months.
+  const heatmapData = useMemo<GeoJSON.FeatureCollection<GeoJSON.Point>>(() => {
+    const features: GeoJSON.Feature<GeoJSON.Point>[] = [];
+    const rivers = RIVERS_GEOJSON.features;
+
+    // Cumulative segment lengths per river (in degrees ~ ok for plume length).
+    const riverGeom = rivers.map((r) => {
+      const coords = r.geometry.coordinates as [number, number][];
+      const segLens: number[] = [];
+      let total = 0;
+      for (let i = 1; i < coords.length; i++) {
+        const dx = coords[i][0] - coords[i - 1][0];
+        const dy = coords[i][1] - coords[i - 1][1];
+        const d = Math.hypot(dx, dy);
+        segLens.push(d);
+        total += d;
+      }
+      return { coords, segLens, total };
+    });
+
+    // Walk along a river polyline by a fractional distance t in [0,1].
+    const interp = (g: typeof riverGeom[number], t: number): [number, number] => {
+      const target = Math.max(0, Math.min(1, t)) * g.total;
+      let acc = 0;
+      for (let i = 0; i < g.segLens.length; i++) {
+        if (acc + g.segLens[i] >= target) {
+          const local = (target - acc) / (g.segLens[i] || 1);
+          const a = g.coords[i];
+          const b = g.coords[i + 1];
+          return [a[0] + (b[0] - a[0]) * local, a[1] + (b[1] - a[1]) * local];
+        }
+        acc += g.segLens[i];
+      }
+      return g.coords[g.coords.length - 1];
+    };
+
+    // Find nearest point on a river to a station (for plume origin).
+    const projectToRiver = (lng: number, lat: number) => {
+      let best = { riverIdx: 0, t: 0, distSq: Infinity };
+      riverGeom.forEach((g, ri) => {
+        let acc = 0;
+        for (let i = 0; i < g.segLens.length; i++) {
+          const a = g.coords[i];
+          const b = g.coords[i + 1];
+          const ax = a[0], ay = a[1], bx = b[0], by = b[1];
+          const dx = bx - ax, dy = by - ay;
+          const len2 = dx * dx + dy * dy || 1;
+          let t = ((lng - ax) * dx + (lat - ay) * dy) / len2;
+          t = Math.max(0, Math.min(1, t));
+          const px = ax + t * dx, py = ay + t * dy;
+          const d2 = (px - lng) ** 2 + (py - lat) ** 2;
+          if (d2 < best.distSq) {
+            best = { riverIdx: ri, t: (acc + t * g.segLens[i]) / g.total, distSq: d2 };
+          }
+          acc += g.segLens[i];
+        }
+      });
+      return best;
+    };
+
+    // Time-driven advection (months in future → fraction of river travelled).
+    const advect = Math.max(0, monthsSignedFromNow) * 0.04; // ~5% per month
+
+    for (const s of wqiStations) {
+      const wqi = s.wqi_current;
+      // Only pollute below "clean" threshold; weight grows as WQI worsens.
+      if (wqi >= 200) continue;
+      const intensity = Math.max(0.15, Math.min(1, (200 - wqi) / 100));
+
+      // Origin point — the station itself.
+      features.push({
+        type: "Feature",
+        properties: { weight: intensity * 1.2 },
+        geometry: { type: "Point", coordinates: [s.lng, s.lat] },
+      });
+
+      // Project to nearest river and emit a plume of K points downstream.
+      const proj = projectToRiver(s.lng, s.lat);
+      // Skip if station is far from any river (>0.8°), keeps stray markers clean.
+      if (proj.distSq > 0.8 * 0.8) continue;
+      const g = riverGeom[proj.riverIdx];
+      const K = 5;
+      const reach = 0.18 + advect; // base spread + drift over time
+      for (let i = 1; i <= K; i++) {
+        const t = proj.t + (reach * i) / K;
+        if (t > 1) break;
+        const [lng, lat] = interp(g, t);
+        // Decay along the plume so the head is brighter.
+        const w = intensity * (1 - i / (K + 1)) * 0.9;
+        features.push({
+          type: "Feature",
+          properties: { weight: w },
+          geometry: { type: "Point", coordinates: [lng, lat] },
+        });
+      }
+    }
+
+    return { type: "FeatureCollection", features };
+  }, [wqiStations, monthsSignedFromNow]);
+
+  useEffect(() => {
+    if (!mapInstance) return;
+    const SRC = "pollution-heatmap";
+    const LAYER = "pollution-heatmap-layer";
+
+    const setup = () => {
+      if (!mapInstance.getSource(SRC)) {
+        mapInstance.addSource(SRC, {
+          type: "geojson",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          data: heatmapData as any,
+        });
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (mapInstance.getSource(SRC) as MapLibreGL.GeoJSONSource).setData(heatmapData as any);
+      }
+
+      if (!mapInstance.getLayer(LAYER)) {
+        mapInstance.addLayer(
+          {
+            id: LAYER,
+            type: "heatmap",
+            source: SRC,
+            maxzoom: 9,
+            paint: {
+              "heatmap-weight": ["coalesce", ["get", "weight"], 0.5],
+              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 9, 2.6],
+              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 3, 18, 6, 38, 9, 60],
+              "heatmap-opacity": ["interpolate", ["linear"], ["zoom"], 7, 0.85, 9, 0.2],
+              "heatmap-color": [
+                "interpolate",
+                ["linear"],
+                ["heatmap-density"],
+                0, "rgba(34,211,238,0)",
+                0.15, "rgba(34,211,238,0.45)",
+                0.4, "rgba(250,204,21,0.65)",
+                0.7, "rgba(249,115,22,0.85)",
+                1, "rgba(239,68,68,0.95)",
+              ],
+            },
+          },
+          // Insert above rivers but below station markers/halos.
+          mapInstance.getLayer("rivers-line") ? "rivers-line" : undefined,
+        );
+      }
+    };
+
+    const onStyle = () => mapInstance.isStyleLoaded() && setup();
+    mapInstance.on("styledata", onStyle);
+    if (mapInstance.isStyleLoaded()) setup();
+    return () => { mapInstance.off("styledata", onStyle); };
+  }, [mapInstance, heatmapData]);
 
   // ---------- map: wqi stations ----------
   useEffect(() => {
@@ -653,27 +816,31 @@ export default function Home() {
   useEffect(() => {
     const base = baseStationsRef.current;
     if (!base.length) return;
-    if (Math.abs(monthsSignedFromNow) < 0.05) {
+    const apply = (wqi: number) => simulateShutdown ? Math.min(280, wqi + SHUTDOWN_BOOST) : wqi;
+    if (Math.abs(monthsSignedFromNow) < 0.05 && !simulateShutdown) {
       setWqiStations(base);
       return;
     }
     const shifted = base.map((s) => {
-      const wqi = shiftStationWqi(
+      const shiftedWqi = shiftStationWqi(
         s.wqi_current,
         s.water_body_id,
         monthsSignedFromNow,
         confidence,
       );
+      const wqi = apply(shiftedWqi);
       const tier = riskFromWqi(wqi);
       return {
         ...s,
         wqi_current: wqi,
+        wqi_predicted_7d: apply(s.wqi_predicted_7d),
+        wqi_predicted_30d: apply(s.wqi_predicted_30d),
         risk_level: tier.level,
         risk_color: tier.color,
       };
     });
     setWqiStations(shifted);
-  }, [monthsSignedFromNow, confidence]);
+  }, [monthsSignedFromNow, confidence, simulateShutdown]);
 
   // ---------- search (Nominatim) ----------
   const fetchSuggestions = useCallback(async (value: string) => {
@@ -816,6 +983,26 @@ export default function Home() {
               Sign in
             </Button>
           )}
+
+          <button
+            type="button"
+            onClick={() => setSimulateShutdown((v) => !v)}
+            className={`hidden md:inline-flex items-center gap-2 h-9 px-3 rounded-md text-[11px] font-medium tracking-wide ring-1 transition-colors ${
+              authed ? "ml-auto" : ""
+            } ${
+              simulateShutdown
+                ? "bg-emerald-500/15 ring-emerald-400/40 text-emerald-300 hover:bg-emerald-500/20"
+                : "bg-foreground/[0.03] ring-foreground/10 text-muted-foreground hover:text-foreground hover:bg-foreground/[0.06]"
+            }`}
+            title="Project a 'what if?' scenario where the main upstream emitters are shut down."
+          >
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${
+                simulateShutdown ? "bg-emerald-400 shadow-[0_0_6px_#34d399]" : "bg-muted-foreground/40"
+              }`}
+            />
+            {simulateShutdown ? "Factory shutdown · ON" : "Simulate Factory Shutdown"}
+          </button>
         </header>
 
         <main className="relative flex flex-1 min-h-0 gap-2 md:gap-4 px-2 md:px-4 pt-2 md:pt-4 pb-2 md:pb-3">
@@ -879,7 +1066,7 @@ export default function Home() {
           </section>
 
           {eventsOpen ? (
-            <aside className="fixed md:static left-2 right-2 bottom-2 top-auto md:inset-auto z-30 md:z-auto w-auto md:w-[320px] md:shrink-0 max-h-[55vh] md:max-h-none rounded-2xl border border-border glass overflow-hidden flex flex-col">
+            <aside className="hidden md:flex fixed md:static left-2 right-2 bottom-2 top-auto md:inset-auto z-30 md:z-auto w-auto md:w-[320px] md:shrink-0 max-h-[55vh] md:max-h-none rounded-2xl border border-border glass overflow-hidden flex-col">
               {selectedWqiStation ? (
                 <WqiDetailPanel
                   station={selectedWqiStation}
@@ -912,7 +1099,7 @@ export default function Home() {
           ) : (
             <button
               onClick={() => setEventsOpen(true)}
-              className="fixed md:static md:flex bottom-4 right-4 md:bottom-auto md:right-auto z-30 grid md:grid grid-flow-col md:grid-flow-row place-items-center gap-2 h-12 md:h-auto px-4 md:px-0 md:w-9 rounded-full md:rounded-2xl border border-border glass shrink-0 hover:bg-foreground/[0.04] transition-colors shadow-lg md:shadow-none"
+              className="hidden md:grid fixed md:static md:flex bottom-4 right-4 md:bottom-auto md:right-auto z-30 grid-flow-col md:grid-flow-row place-items-center gap-2 h-12 md:h-auto px-4 md:px-0 md:w-9 rounded-full md:rounded-2xl border border-border glass shrink-0 hover:bg-foreground/[0.04] transition-colors shadow-lg md:shadow-none"
               aria-label="Show events panel"
             >
               <Droplets className="h-4 w-4 text-blue-400" />
@@ -1342,6 +1529,7 @@ function WqiDetailPanel({
     risks: string[];
     recommendations: string[];
     pollutant_likely?: string | null;
+    source_estimate?: string | null;
   };
   const [ai, setAi] = useState<AiVerdict | null>(null);
   const [aiLoading, setAiLoading] = useState(false);
@@ -1356,7 +1544,7 @@ function WqiDetailPanel({
   const riverFromName = station.name.split(" - ")[0].replace(/ River$/, "");
   const cityFromName = station.name.split(" - ").slice(1).join(" - ") || station.country;
   const severity =
-    station.risk_level === "critical" ? "High"
+    station.risk_level === "critical" ? "Critical"
     : station.risk_level === "high" ? "High"
     : station.risk_level === "moderate" ? "Medium" : "Low";
 
@@ -1379,6 +1567,8 @@ function WqiDetailPanel({
             turbidity: station.metrics.turbidity_ntu ?? 5.0,
             contaminant: null,
           },
+          wqi: station.wqi_current,
+          risk_level: station.risk_level,
         }),
       });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -1579,6 +1769,19 @@ function WqiDetailPanel({
                 </span>
               </div>
               <div className="text-[11px] text-foreground/85 leading-snug">{ai.summary}</div>
+              {ai.source_estimate && (
+                <div className="flex items-start gap-2 rounded-md bg-amber-500/[0.06] ring-1 ring-amber-500/25 px-2.5 py-2">
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v14" />
+                    <polyline points="6 12 12 18 18 12" />
+                    <circle cx="12" cy="20" r="1.6" />
+                  </svg>
+                  <div className="flex-1">
+                    <div className="text-[9px] tracking-[0.2em] uppercase text-amber-500/90 mb-0.5">Estimated source</div>
+                    <div className="text-[11px] text-foreground/85 leading-snug">{ai.source_estimate}</div>
+                  </div>
+                </div>
+              )}
               {ai.risks.length > 0 && (
                 <ul className="text-[10.5px] text-foreground/70 list-disc pl-4 space-y-0.5">
                   {ai.risks.map((r, i) => <li key={i}>{r}</li>)}
