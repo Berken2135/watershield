@@ -12,6 +12,7 @@ data/processed/europe/*.parquet
 data/outputs/*.pkl
 data/outputs/*.parquet
 !data/outputs/historical_monthly.parquet
+!data/outputs/historical_monthly_countries.parquet
 
 # Python
 __pycache__/
