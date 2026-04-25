@@ -14,7 +14,7 @@ import pandas as pd
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import anomalies, forecast, history, water_bodies
+from routers import anomalies, countries, forecast, history, water_bodies
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "outputs"
 
@@ -27,6 +27,7 @@ async def lifespan(app: FastAPI):
     app.state.forecast_30d = json.loads((DATA_DIR / "wqi_forecast_30d.json").read_text())
     app.state.anomalies_df = pd.read_parquet(DATA_DIR / "anomalies.parquet")
     app.state.history_df   = pd.read_parquet(DATA_DIR / "historical_monthly.parquet")
+    app.state.countries_df = pd.read_parquet(DATA_DIR / "historical_monthly_countries.parquet")
     yield
 
 
@@ -51,6 +52,7 @@ app.add_middleware(
 app.include_router(water_bodies.router, prefix="/api")
 app.include_router(forecast.router,     prefix="/api")
 app.include_router(history.router,      prefix="/api")
+app.include_router(countries.router,    prefix="/api")
 app.include_router(anomalies.router,    prefix="/api")
 
 
