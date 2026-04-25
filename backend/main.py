@@ -1,6 +1,9 @@
+from dotenv import load_dotenv
+load_dotenv()  # auto-load backend/.env (OPENAI_API_KEY, etc.)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, search, analysis, reports
+from routers import auth, search, analysis, reports, data
 
 app = FastAPI(
     title="WaterShield API",
@@ -20,6 +23,7 @@ app.include_router(auth.router,     prefix="/api/auth",     tags=["auth"])
 app.include_router(search.router,   prefix="/api/search",   tags=["search"])
 app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
 app.include_router(reports.router,  prefix="/api/reports",  tags=["reports"])
+app.include_router(data.router,     prefix="/api/data",     tags=["data"])
 
 
 @app.get("/health")
