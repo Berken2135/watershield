@@ -50,6 +50,10 @@ def list_endpoints():
             "GET /api/data/summary",
             "GET /api/data/forecast",
             "GET /api/data/forecast-metrics",
+            "GET /api/data/history/cities?city=Wrocław&year=2024",
+            "GET /api/data/history/water-body/{water_body_id}?year=2024",
+            "GET /api/data/history/countries?year=2024",
+            "GET /api/data/history/countries/{country_code}?year=2024",
         ],
     }
 
