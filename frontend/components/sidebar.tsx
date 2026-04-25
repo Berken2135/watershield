@@ -10,7 +10,9 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/theme-toggle";
+import { useTheme } from "@/lib/theme";
 
 type NavItem = {
   href: string;
@@ -18,12 +20,6 @@ type NavItem = {
   icon: typeof LayoutDashboard;
   badge?: number;
 };
-
-const NAV: NavItem[] = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/reports", label: "Reports", icon: FileText },
-  { href: "/alerts", label: "Alerts", icon: Bell, badge: 3 },
-];
 
 export type SidebarProps = {
   authed?: boolean;
@@ -33,16 +29,45 @@ export type SidebarProps = {
 
 export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
   const pathname = usePathname();
+  const { theme } = useTheme();
+
+  // Live alert count — counts stations with high/critical risk so the badge
+  // always matches what the /alerts page actually shows.
+  const [alertCount, setAlertCount] = useState<number | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetch("http://127.0.0.1:8000/api/data/europe")
+      .then((r) => r.json())
+      .then((g) => {
+        if (cancelled) return;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const n = (g.features ?? []).filter((f: any) =>
+          f.properties.risk_level === "high" || f.properties.risk_level === "critical"
+        ).length;
+        setAlertCount(n);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
+  const NAV: NavItem[] = [
+    { href: "/", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/reports", label: "Reports", icon: FileText },
+    { href: "/alerts", label: "Alerts", icon: Bell, badge: alertCount ?? undefined },
+  ];
+
+  const logoSrc = theme === "light" ? "/logo-black.png" : "/logo.png";
+
   return (
     <aside className="hidden md:flex w-[220px] shrink-0 flex-col border-r border-border bg-background/50 backdrop-blur-md">
-      <div className="flex items-center justify-center px-4 h-24 border-b border-border">
+      <div className="flex items-center justify-start pl-3 pr-4 h-24 border-b border-border">
         <Image
-          src="/logo.png"
+          src={logoSrc}
           alt="WaterShield"
           width={220}
           height={110}
           priority
-          className="h-16 w-auto object-contain"
+          className="h-14 w-auto object-contain"
         />
       </div>
 

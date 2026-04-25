@@ -117,11 +117,7 @@ export default function ReportsPage() {
       <Sidebar />
       <main className="flex-1 overflow-y-auto px-8 py-10">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-8">
-        
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight">Reports</h1>
-       
-          </div>
+          <h1 className="mb-8 text-2xl font-semibold tracking-tight">Reports</h1>
 
           {loading && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -148,23 +144,11 @@ export default function ReportsPage() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-[13px] font-medium truncate">{station.name}</span>
-                      <span
-                        className={`text-[10px] px-1.5 py-0.5 rounded-full ring-1 ${RISK_BADGE[station.risk_level]}`}
-                      >
-                        {RISK_LABEL[station.risk_level]}
-                      </span>
-                      {station.data_source === "real" && (
-                        <span className="text-[9px] tracking-wider text-cyan-500 uppercase">
-                          Real
-                        </span>
-                      )}
+                      {station.name}
                     </div>
                     <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-muted-foreground">
                       <MapPin className="h-3 w-3" />
                       <span>{station.country}</span>
-                      <span>·</span>
-                      <span className="capitalize">{station.water_body_type}</span>
                       <span>·</span>
                       <span>WQI {Math.round(station.wqi_current)}</span>
                     </div>

@@ -179,6 +179,30 @@ const RIVER_INFO: Record<string, RiverInfo> = {
     monitoringStations: 41,
     highlights: "Recovering from the 2022 ecological disaster (DSS Aug 2022).",
   },
+  glomma: {
+    id: "glomma",
+    name: "Glomma",
+    basin: "Skagerrak basin",
+    countries: ["NO"],
+    lengthKm: 621,
+    baseWqi: 217.2,
+    riskColor: "#22d3ee",
+    pollutants: ["Forestry runoff", "Acidification (legacy)"],
+    monitoringStations: 18,
+    highlights: "Norway's longest river — pristine headwaters in Hedmark.",
+  },
+  vardar: {
+    id: "vardar",
+    name: "Vardar",
+    basin: "Aegean Sea basin",
+    countries: ["MK", "GR"],
+    lengthKm: 388,
+    baseWqi: 198.0,
+    riskColor: "#22d3ee",
+    pollutants: ["Heavy metals (Cu/Pb)", "Untreated municipal effluent"],
+    monitoringStations: 12,
+    highlights: "Main artery of North Macedonia — IWRM hotspot since 2021.",
+  },
 };
 
 const RIVERS_GEOJSON = {
@@ -214,6 +238,28 @@ const RIVERS_GEOJSON = {
         coordinates: [
           [18.65, 49.95], [17.9, 50.4], [17.45, 50.95], [17.04, 51.11],
           [16.7, 51.27], [16.42, 51.7], [15.5, 52.1], [14.6, 52.55], [14.27, 53.43],
+        ],
+      },
+    },
+    {
+      type: "Feature",
+      properties: { id: "glomma", name: "Glomma" },
+      geometry: {
+        type: "LineString",
+        coordinates: [
+          [11.40, 62.00], [11.20, 61.30], [11.10, 60.65], [11.10, 60.10],
+          [11.13, 59.74], [11.11, 59.28], [10.92, 59.13],
+        ],
+      },
+    },
+    {
+      type: "Feature",
+      properties: { id: "vardar", name: "Vardar" },
+      geometry: {
+        type: "LineString",
+        coordinates: [
+          [20.74, 41.96], [21.20, 42.00], [21.43, 41.99], [21.71, 41.74],
+          [21.91, 41.45], [22.10, 41.20], [22.42, 40.83], [22.74, 40.62],
         ],
       },
     },
@@ -733,11 +779,6 @@ export default function Home() {
                   <MarkerTooltip className="min-w-44 bg-background/90! text-foreground! border border-border backdrop-blur-md">
                     <div className="space-y-1.5">
                       <div className="font-semibold text-[11px] leading-tight">{station.name}</div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: station.risk_color }} />
-                        <span className="text-[10px] text-muted-foreground capitalize">{station.risk_level}</span>
-                        <span className="ml-auto text-[10px] text-muted-foreground capitalize">{station.water_body_type}</span>
-                      </div>
                       <div className="border-t border-border/50 pt-1 grid grid-cols-2 gap-x-3 gap-y-0.5 text-[10px]">
                         <span className="text-muted-foreground">WQI now</span>
                         <span className="font-mono tabular-nums">{Math.round(station.wqi_current)}</span>
@@ -1272,18 +1313,6 @@ function WqiDetailPanel({
       </div>
 
       <div className="flex flex-col gap-4 p-4 overflow-y-auto flex-1">
-        <div className="flex items-center gap-2 flex-wrap text-[11px]">
-          <MapPin className="h-3 w-3 text-muted-foreground" />
-          <span className="text-muted-foreground">{station.country}</span>
-          <span className="text-muted-foreground">·</span>
-          <span className="text-muted-foreground capitalize">{station.water_body_type}</span>
-          {station.data_source === "real" && (
-            <span className="ml-auto px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase ring-1 bg-cyan-500/10 ring-cyan-500/30 text-cyan-600 dark:text-cyan-300">
-              Real data
-            </span>
-          )}
-        </div>
-
         <div>
           <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Water Quality Index</div>
           <div className="grid grid-cols-3 gap-2">

@@ -32,6 +32,10 @@ const WQI_DATA: Record<string, { name: string; wqi: number }> = {
   SI: { name: "Slovenia", wqi: 189.5 },
   ES: { name: "Spain", wqi: 252.9 },
   SE: { name: "Sweden", wqi: 190.5 },
+  // Non-EU but visualised in blue per user request — values from
+  // historical_monthly_countries.json (Apr 2026 average).
+  NO: { name: "Norway",          wqi: 217.2 },
+  MK: { name: "North Macedonia", wqi: 198.0 },
 };
 
 // High-resolution sources. jsdelivr reliably serves the Natural Earth GitHub repo.

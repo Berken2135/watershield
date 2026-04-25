@@ -50,9 +50,6 @@ export default function AlertsPage() {
             </p>
           )}
 
-
-
-kurwa
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {stations.map((s) => (
               <Link
@@ -64,7 +61,7 @@ kurwa
                   <div>
                     <div className="font-medium text-sm">{s.name}</div>
                     <div className="text-xs text-muted-foreground mt-0.5">
-                      {s.country} · <span className="capitalize">{s.water_body_type}</span>
+                      {s.country}
                     </div>
                   </div>
                   <div className="text-right shrink-0">
