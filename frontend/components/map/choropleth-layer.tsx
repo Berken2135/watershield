@@ -223,7 +223,7 @@ export default function ChoroplethLayer() {
       {/* WQI colour legend – top-right corner of the map */}
       <div className="pointer-events-none absolute right-4 top-4 z-20 rounded-lg glass-strong px-3 py-2.5 ring-1 ring-cyan-400/20 select-none">
         <div className="text-[9px] tracking-[0.22em] uppercase text-muted-foreground mb-2">
-          Avg WQI · Europe
+          Water Quality Index · Europe
         </div>
         <div
           className="h-2 w-28 rounded-full"
