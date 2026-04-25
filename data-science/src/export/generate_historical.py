@@ -33,8 +33,10 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from src.config import DATA_OUTPUTS
+from src.config import DATA_OUTPUTS, DATA_PROCESSED
 from src.european_data.rivers import RIVERS
+
+_TEMP_PARQUET = DATA_PROCESSED / "europe" / "river_temperature.parquet"
 
 DATA_OUTPUTS.mkdir(parents=True, exist_ok=True)
 
@@ -285,6 +287,16 @@ def main() -> None:
     print(f"  Rows   : {len(RIVERS) * len(MONTHS)}")
 
     df = generate()
+
+    # Join river water temperature if available
+    if _TEMP_PARQUET.exists():
+        temp_df = pd.read_parquet(_TEMP_PARQUET)[["city", "date", "air_temp_c", "water_temp_c"]]
+        df = df.merge(temp_df, on=["city", "date"], how="left")
+        print(f"  Temperature joined: {df['water_temp_c'].notna().sum()} / {len(df)} rows have temp data")
+    else:
+        df["air_temp_c"]   = None
+        df["water_temp_c"] = None
+        print("  Temperature: river_temperature.parquet not found — run river_temperature.py first")
 
     df.to_parquet(OUT_PARQUET, index=False)
     records = df.to_dict(orient="records")

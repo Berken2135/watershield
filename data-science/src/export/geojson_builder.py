@@ -66,6 +66,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_OUTPUTS, DATA_PROCESSED
 from src.european_data.rivers import RIVERS
 
+_TEMP_PARQUET = DATA_PROCESSED / "europe" / "river_temperature.parquet"
+
 # ── Paths ─────────────────────────────────────────────────────────────────────
 
 OUT_EUROPE   = DATA_OUTPUTS / "watershield_europe.geojson"
@@ -188,7 +190,7 @@ def _load_wroclaw(now_iso: str) -> dict:
 # ── All non-Wrocław rivers (from historical_monthly.parquet) ──────────────────
 
 def _load_all_rivers(now_iso: str) -> list[dict]:
-    """Build features for all 104 non-Wrocław rivers using historical WQI data."""
+    """Build features for all 101 non-Wrocław rivers using historical WQI data."""
     print("  Loading historical WQI data for all rivers …")
     hist = pd.read_parquet(DATA_OUTPUTS / "historical_monthly.parquet")
 
@@ -199,6 +201,19 @@ def _load_all_rivers(now_iso: str) -> list[dict]:
         .last()
         .to_dict()
     )
+
+    # Latest water temperature per river (if parquet exists)
+    if _TEMP_PARQUET.exists():
+        print("  Loading river temperature data …")
+        temp_latest = (
+            pd.read_parquet(_TEMP_PARQUET)
+            .sort_values("date")
+            .groupby("city")["water_temp_c"]
+            .last()
+            .to_dict()
+        )
+    else:
+        temp_latest = {}
 
     features = []
     for river in RIVERS:
@@ -211,6 +226,9 @@ def _load_all_rivers(now_iso: str) -> list[dict]:
         margin  = round(abs(wqi) * 0.20, 1)
 
         trend, trend_pct = _trend(wqi, wqi_30d)
+
+        raw_temp = temp_latest.get(river["city"])
+        temperature_c = round(float(raw_temp), 1) if raw_temp is not None else None
 
         features.append({
             "type": "Feature",
@@ -238,7 +256,7 @@ def _load_all_rivers(now_iso: str) -> list[dict]:
                 "data_source":       "synthetic",
                 "last_updated":      now_iso,
                 "metrics": {
-                    "temperature_c": None,
+                    "temperature_c": temperature_c,
                     "ph":            None,
                     "oxygen_mg_l":   None,
                     "turbidity_ntu": None,

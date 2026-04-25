@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated_at": "2026-04-25T12:05:43Z",
+    "generated_at": "2026-04-25T17:37:49Z",
     "source": "WaterShield data-science pipeline",
     "version": "1.0"
   },
@@ -33,7 +33,7 @@
         "trend_pct_change": -38.9,
         "anomaly_count_30d": 67,
         "data_source": "real",
-        "last_updated": "2026-04-25T12:05:43Z",
+        "last_updated": "2026-04-25T17:37:49Z",
         "metrics": {
           "temperature_c": 13.7,
           "ph": 9.11,
