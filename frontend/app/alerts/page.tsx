@@ -1,13 +1,35 @@
 "use client";
 
 import Sidebar from "@/components/sidebar";
-import StationCard from "@/components/station-card";
-import { POLLUTION_EVENTS } from "@/lib/pollution-data";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+type WqiStation = {
+  water_body_id: string;
+  name: string;
+  country: string;
+  risk_level: string;
+  risk_color: string;
+  wqi_current: number;
+  water_body_type: string;
+  trend: string;
+};
 
 export default function AlertsPage() {
-  const router = useRouter();
-  const active = POLLUTION_EVENTS.filter((e) => e.status === "Active");
+  const [stations, setStations] = useState<WqiStation[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/data/europe")
+      .then((r) => r.json())
+      .then((geojson) => {
+        const all: WqiStation[] = (geojson.features ?? []).map(
+          (f: { properties: WqiStation }) => f.properties,
+        );
+        setStations(all.filter((s) => s.risk_level === "high" || s.risk_level === "critical"));
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <div className="flex h-screen w-full overflow-hidden">
@@ -15,18 +37,50 @@ export default function AlertsPage() {
       <main className="flex-1 overflow-y-auto px-8 py-10">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Alerts
-            </h1>
+            <div className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground">
+              Real-time · WQI risk alerts
+            </div>
+            <h1 className="mt-1 text-2xl font-semibold tracking-tight">Alerts</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Stations with high or critical Water Quality Index risk levels.
+            </p>
           </div>
 
+          {loading && <p className="text-sm text-muted-foreground">Loading…</p>}
+          {!loading && stations.length === 0 && (
+            <p className="text-sm text-muted-foreground">
+              No stations with elevated risk levels detected.
+            </p>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {active.map((event) => (
-              <StationCard
-                key={event.id}
-                event={event}
-                onClick={() => router.push(`/pollution/${event.id}`)}
-              />
+            {stations.map((s) => (
+              <div key={s.water_body_id} className="rounded-xl border border-border bg-card/40 p-4">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="font-medium text-sm">{s.name}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">
+                      {s.country} · <span className="capitalize">{s.water_body_type}</span>
+                    </div>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <div className="text-lg font-bold tabular-nums" style={{ color: s.risk_color }}>
+                      {Math.round(s.wqi_current)}
+                    </div>
+                    <div className="text-[9px] text-muted-foreground uppercase tracking-wider">WQI</div>
+                  </div>
+                </div>
+                <span
+                  className="mt-2 inline-block capitalize px-2 py-0.5 rounded-full text-[11px] ring-1"
+                  style={{
+                    backgroundColor: s.risk_color + "20",
+                    color: s.risk_color,
+                    borderColor: s.risk_color + "50",
+                  }}
+                >
+                  {s.risk_level}
+                </span>
+              </div>
             ))}
           </div>
         </div>

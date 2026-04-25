@@ -1,7 +1,16 @@
 "use client";
 
 import { Activity, AlertTriangle, Gauge, MapPin, Waves } from "lucide-react";
-import type { PollutionEvent } from "@/lib/pollution-data";
+
+type PollutionEvent = {
+  id: string;
+  river: string;
+  location: string;
+  severity: "High" | "Medium" | "Low";
+  status: "Active" | "Contained" | "Resolved";
+  date: string;
+  samplingData: { ph: number; dissolvedOxygen: number; turbidity: number; contaminant: string };
+};
 
 const SEVERITY_COLOR: Record<PollutionEvent["severity"], string> = {
   High: "text-red-500 dark:text-red-300",
@@ -35,8 +44,8 @@ export default function StationCard({ event, selected, onClick }: StationCardPro
       onClick={onClick}
       className={`group relative w-full text-left rounded-xl border border-border bg-card/40 p-3.5 transition-all ${
         selected
-          ? "ring-1 ring-cyan-400/40 bg-cyan-400/[0.04]"
-          : "hover:bg-foreground/[0.04] hover:border-border"
+          ? "ring-1 ring-cyan-400/40 bg-cyan-400/4"
+          : "hover:bg-white/2.5 hover:border-white/10"
       } ${isHigh ? "danger-glow" : ""}`}
     >
       {/* Top row */}
@@ -52,9 +61,10 @@ export default function StationCard({ event, selected, onClick }: StationCardPro
           </div>
         </div>
         <span
-          className={`text-[10px] tracking-[0.18em] uppercase ${SEVERITY_COLOR[event.severity]}`}
+          className={`flex items-center gap-1 text-[10px] tracking-[0.18em] uppercase ${SEVERITY_COLOR[event.severity]}`}
         >
           {event.severity}
+          {isHigh && <AlertTriangle className="h-3 w-3 animate-pulse" strokeWidth={1.8} />}
         </span>
       </div>
 
@@ -84,14 +94,6 @@ export default function StationCard({ event, selected, onClick }: StationCardPro
         <span className="text-muted-foreground/70">{event.date}</span>
       </div>
 
-      {isHigh && (
-        <div className="absolute top-2 right-2">
-          <AlertTriangle
-            className="h-3 w-3 text-red-400 animate-pulse"
-            strokeWidth={1.8}
-          />
-        </div>
-      )}
     </button>
   );
 }
@@ -108,7 +110,7 @@ function Metric({
   unit?: string;
 }) {
   return (
-    <div className="rounded-md bg-foreground/[0.02] ring-1 ring-foreground/[0.06] p-2">
+    <div className="rounded-md bg-white/2 ring-1 ring-white/4 p-2">
       <div className="flex items-center gap-1 text-muted-foreground/80 text-[9px] tracking-[0.14em] uppercase">
         {icon}
         {label}
