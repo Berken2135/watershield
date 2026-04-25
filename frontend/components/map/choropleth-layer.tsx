@@ -76,9 +76,12 @@ async function fetchCountriesGeoJSON(): Promise<GeoJSON.FeatureCollection | null
   return null;
 }
 
+const CHOROPLETH_MAX_ZOOM = 6;
+
 export default function ChoroplethLayer() {
   const { map, isLoaded } = useMap();
   const [tooltip, setTooltip] = useState<Tooltip | null>(null);
+  const [legendVisible, setLegendVisible] = useState(true);
   // Track whether our layers exist so we can re-add after style change
   const layersReady = useRef(false);
 
@@ -140,6 +143,7 @@ export default function ChoroplethLayer() {
           id: FILL_LAYER,
           type: "fill",
           source: SRC,
+          maxzoom: 6,
           paint: {
             "fill-color": [
               "interpolate", ["linear"], ["get", "wqi"],
@@ -169,6 +173,7 @@ export default function ChoroplethLayer() {
           id: HOVER_LAYER,
           type: "line",
           source: SRC,
+          maxzoom: 6,
           filter: ["==", ["get", "iso_a2"], "__none__"],
           paint: {
             "line-color": "#67e8f9",
@@ -206,22 +211,31 @@ export default function ChoroplethLayer() {
       }
     };
 
+    const onZoom = () => {
+      setLegendVisible(map.getZoom() < CHOROPLETH_MAX_ZOOM);
+    };
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     map.on("mousemove", onMouseMove as any);
     map.getCanvas().addEventListener("mouseleave", onCanvasLeave);
+    map.on("zoom", onZoom);
 
     return () => {
       cancelled = true;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       map.off("mousemove", onMouseMove as any);
       map.getCanvas().removeEventListener("mouseleave", onCanvasLeave);
+      map.off("zoom", onZoom);
     };
   }, [map, isLoaded]);
 
   return (
     <>
       {/* WQI colour legend – top-right corner of the map */}
-      <div className="pointer-events-none absolute right-4 top-4 z-20 rounded-lg glass-strong px-3 py-2.5 ring-1 ring-cyan-400/20 select-none">
+      <div
+        className="pointer-events-none absolute right-4 top-4 z-20 rounded-lg glass-strong px-3 py-2.5 ring-1 ring-cyan-400/20 select-none transition-opacity duration-500"
+        style={{ opacity: legendVisible ? 1 : 0 }}
+      >
         <div className="text-[9px] tracking-[0.22em] uppercase text-muted-foreground mb-2">
           Water Quality Index · Europe
         </div>
