@@ -118,13 +118,9 @@ export default function ReportsPage() {
       <main className="flex-1 overflow-y-auto px-8 py-10">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
-            <div className="text-[11px] tracking-[0.22em] uppercase text-muted-foreground">
-              Compliance · EU Water Framework Directive
-            </div>
+        
             <h1 className="mt-1 text-2xl font-semibold tracking-tight">Reports</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Generate EU WFD compliance PDF reports for any monitored water body.
-            </p>
+       
           </div>
 
           {loading && (
