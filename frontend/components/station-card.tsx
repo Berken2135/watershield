@@ -4,9 +4,9 @@ import { Activity, AlertTriangle, Gauge, MapPin, Waves } from "lucide-react";
 import type { PollutionEvent } from "@/lib/pollution-data";
 
 const SEVERITY_COLOR: Record<PollutionEvent["severity"], string> = {
-  High: "text-red-300",
-  Medium: "text-amber-300",
-  Low: "text-emerald-300",
+  High: "text-red-500 dark:text-red-300",
+  Medium: "text-amber-500 dark:text-amber-300",
+  Low: "text-emerald-600 dark:text-emerald-300",
 };
 
 const SEVERITY_DOT: Record<PollutionEvent["severity"], string> = {
@@ -16,8 +16,8 @@ const SEVERITY_DOT: Record<PollutionEvent["severity"], string> = {
 };
 
 const STATUS_TEXT: Record<PollutionEvent["status"], string> = {
-  Active: "text-red-300",
-  Contained: "text-amber-300",
+  Active: "text-red-500 dark:text-red-300",
+  Contained: "text-amber-500 dark:text-amber-300",
   Resolved: "text-muted-foreground",
 };
 
@@ -36,7 +36,7 @@ export default function StationCard({ event, selected, onClick }: StationCardPro
       className={`group relative w-full text-left rounded-xl border border-border bg-card/40 p-3.5 transition-all ${
         selected
           ? "ring-1 ring-cyan-400/40 bg-cyan-400/[0.04]"
-          : "hover:bg-white/[0.025] hover:border-white/10"
+          : "hover:bg-foreground/[0.04] hover:border-border"
       } ${isHigh ? "danger-glow" : ""}`}
     >
       {/* Top row */}
@@ -108,7 +108,7 @@ function Metric({
   unit?: string;
 }) {
   return (
-    <div className="rounded-md bg-white/[0.02] ring-1 ring-white/[0.04] p-2">
+    <div className="rounded-md bg-foreground/[0.02] ring-1 ring-foreground/[0.06] p-2">
       <div className="flex items-center gap-1 text-muted-foreground/80 text-[9px] tracking-[0.14em] uppercase">
         {icon}
         {label}

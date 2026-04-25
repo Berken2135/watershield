@@ -193,7 +193,7 @@ export default function PredictiveTimeline({
             className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
             style={{ left: `${t.pct}%` }}
           >
-            <span className="h-2 w-px bg-white/15" />
+            <span className="h-2 w-px bg-foreground/10" />
             {t.label.length === 4 && (
               <span className="absolute top-full mt-1 text-[10px] tracking-wider text-muted-foreground/70">
                 {t.label}
@@ -211,7 +211,7 @@ export default function PredictiveTimeline({
           <div className="absolute -top-2 left-1/2 -translate-x-1/2">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981] block" />
           </div>
-          <span className="absolute top-full mt-3 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.18em] uppercase text-emerald-300/80">
+          <span className="absolute top-full mt-3 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.18em] uppercase text-emerald-600/80 dark:text-emerald-300/80">
             now
           </span>
         </div>
@@ -228,10 +228,10 @@ export default function PredictiveTimeline({
           style={{ left: `${valuePct}%` }}
         >
           <span
-            className={`block h-3.5 w-3.5 rounded-full ring-1 ring-white/10 transition-transform group-hover:scale-110 ${
+            className={`block h-3.5 w-3.5 rounded-full ring-1 ring-border transition-transform group-hover:scale-110 ${
               isPredictive
                 ? "bg-cyan-400 shadow-[0_0_18px_rgba(34,211,238,0.7)]"
-                : "bg-foreground shadow-[0_0_12px_rgba(255,255,255,0.35)]"
+                : "bg-foreground shadow-[0_0_12px_rgba(0,0,0,0.2)] dark:shadow-[0_0_12px_rgba(255,255,255,0.35)]"
             }`}
           />
           {dragging && (
@@ -248,7 +248,7 @@ export default function PredictiveTimeline({
           <span className="text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
             AI Confidence
           </span>
-          <div className="relative h-1 rounded-full bg-white/5 overflow-hidden">
+          <div className="relative h-1 rounded-full bg-foreground/[0.05] overflow-hidden">
             <div
               className="absolute inset-y-0 left-0 rounded-full transition-all duration-300"
               style={{

@@ -672,7 +672,7 @@ export default function Home() {
           ) : (
             <button
               onClick={() => setEventsOpen(true)}
-              className="flex flex-col items-center justify-center gap-2 w-9 rounded-2xl border border-border glass shrink-0 hover:bg-white/4 transition-colors"
+              className="flex flex-col items-center justify-center gap-2 w-9 rounded-2xl border border-border glass shrink-0 hover:bg-foreground/[0.04] transition-colors"
               aria-label="Show events panel"
             >
               <ChevronLeft className="h-4 w-4 text-muted-foreground" />
@@ -794,16 +794,16 @@ function DetailPanel({
   return (
     <>
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <button onClick={onBack} className="rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Back">
+        <button onClick={onBack} className="rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors" aria-label="Back">
           <ArrowLeft className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
         <span className="font-medium text-[13px] tracking-tight truncate">{event.river}</span>
         <span className={`ml-auto text-[10px] tracking-[0.16em] uppercase ${
-          isHigh ? "text-red-300" : event.severity === "Medium" ? "text-amber-300" : "text-emerald-300"
+          isHigh ? "text-red-500 dark:text-red-300" : event.severity === "Medium" ? "text-amber-500 dark:text-amber-300" : "text-emerald-600 dark:text-emerald-300"
         }`}>
           {event.severity}
         </span>
-        <button onClick={onClose} className="rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Hide">
+        <button onClick={onClose} className="rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors" aria-label="Hide">
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
@@ -814,10 +814,10 @@ function DetailPanel({
           <span className="text-muted-foreground truncate">{event.location}</span>
           <span className={`ml-auto px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase ring-1 ${
             event.status === "Active"
-              ? "bg-red-500/10 ring-red-500/30 text-red-300"
+              ? "bg-red-500/10 ring-red-500/30 text-red-500 dark:text-red-300"
               : event.status === "Contained"
-                ? "bg-amber-500/10 ring-amber-500/30 text-amber-300"
-                : "bg-emerald-500/10 ring-emerald-500/30 text-emerald-300"
+                ? "bg-amber-500/10 ring-amber-500/30 text-amber-500 dark:text-amber-300"
+                : "bg-emerald-500/10 ring-emerald-500/30 text-emerald-600 dark:text-emerald-300"
           }`}>
             {event.status}
           </span>
@@ -838,13 +838,13 @@ function DetailPanel({
         <div className="rounded-lg border border-cyan-400/20 bg-cyan-400/3 p-3">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="h-3.5 w-3.5 text-(--color-cyan)" />
-            <span className="text-[11px] tracking-[0.18em] uppercase text-cyan-200">
+            <span className="text-[11px] tracking-[0.18em] uppercase text-cyan-600 dark:text-cyan-200">
               Neural Anomaly Detection
             </span>
           </div>
 
           {!anomaly && !anomalyLoading && !anomalyError && (
-            <Button size="sm" onClick={onAnalyze} className="w-full h-8 bg-cyan-400/15 hover:bg-cyan-400/25 text-cyan-100 border border-cyan-400/30">
+            <Button size="sm" onClick={onAnalyze} className="w-full h-8 bg-cyan-400/15 hover:bg-cyan-400/25 text-cyan-700 dark:text-cyan-100 border border-cyan-400/30">
               Run AI Analysis
             </Button>
           )}
@@ -854,13 +854,13 @@ function DetailPanel({
               Querying neural model…
             </div>
           )}
-          {anomalyError && <div className="text-[11px] text-red-300">{anomalyError}</div>}
+          {anomalyError && <div className="text-[11px] text-red-500 dark:text-red-300">{anomalyError}</div>}
           {anomaly && (
             <div className="space-y-2">
               <div className="flex items-center justify-between text-[10px] tracking-[0.18em] uppercase">
                 <span className={
-                  anomaly.verdict === "critical" ? "text-red-300" :
-                  anomaly.verdict === "anomaly" ? "text-amber-300" : "text-emerald-300"
+                  anomaly.verdict === "critical" ? "text-red-500 dark:text-red-300" :
+                  anomaly.verdict === "anomaly" ? "text-amber-500 dark:text-amber-300" : "text-emerald-600 dark:text-emerald-300"
                 }>
                   {anomaly.verdict}
                 </span>
@@ -888,7 +888,7 @@ function DetailPanel({
 
         <Link
           href={`/pollution/${event.id}`}
-          className="text-[11px] text-muted-foreground hover:text-cyan-200 transition-colors text-center"
+          className="text-[11px] text-muted-foreground hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors text-center"
         >
           Full case file →
         </Link>
@@ -901,7 +901,7 @@ function BigMetric({ icon, label, value, unit, tight }: {
   icon: React.ReactNode; label: string; value: string; unit?: string; tight?: boolean;
 }) {
   return (
-    <div className="rounded-lg bg-white/2 ring-1 ring-white/4 p-2.5">
+    <div className="rounded-lg bg-foreground/[0.02] ring-1 ring-foreground/[0.06] p-2.5">
       <div className="flex items-center gap-1.5 text-muted-foreground">
         {icon}
         <span className="text-[10px] tracking-[0.14em] uppercase">{label}</span>
@@ -920,9 +920,9 @@ function fmtMonth(d: Date): string {
 
 function WqiMetric({ label, value, accent }: { label: string; value: number; accent?: boolean }) {
   return (
-    <div className={`rounded-lg p-2.5 text-center ${accent ? "bg-blue-500/10 ring-1 ring-blue-400/30" : "bg-white/2 ring-1 ring-white/4"}`}>
+    <div className={`rounded-lg p-2.5 text-center ${accent ? "bg-blue-500/10 ring-1 ring-blue-400/30" : "bg-foreground/[0.02] ring-1 ring-foreground/[0.06]"}`}>
       <div className="text-[9px] tracking-[0.14em] uppercase text-muted-foreground">{label}</div>
-      <div className={`mt-0.5 text-base font-bold tabular-nums ${accent ? "text-blue-200" : "text-foreground/90"}`}>{value}</div>
+      <div className={`mt-0.5 text-base font-bold tabular-nums ${accent ? "text-blue-600 dark:text-blue-200" : "text-foreground/90"}`}>{value}</div>
     </div>
   );
 }
@@ -937,21 +937,21 @@ function WqiDetailPanel({
   onClose: () => void;
 }) {
   const riskColor = {
-    clean: "text-emerald-300",
-    moderate: "text-amber-300",
-    high: "text-red-300",
-    critical: "text-red-400",
+    clean: "text-emerald-600 dark:text-emerald-300",
+    moderate: "text-amber-500 dark:text-amber-300",
+    high: "text-red-500 dark:text-red-300",
+    critical: "text-red-600 dark:text-red-400",
   }[station.risk_level] ?? "text-foreground";
 
   return (
     <>
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <button onClick={onBack} className="rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Back">
+        <button onClick={onBack} className="rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors" aria-label="Back">
           <ArrowLeft className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
         <Droplets className="h-3.5 w-3.5 text-blue-400" />
         <span className="font-medium text-[13px] tracking-tight truncate">{station.name}</span>
-        <button onClick={onClose} className="ml-auto rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Hide">
+        <button onClick={onClose} className="ml-auto rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors" aria-label="Hide">
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
@@ -963,7 +963,7 @@ function WqiDetailPanel({
           <span className="text-muted-foreground">·</span>
           <span className="text-muted-foreground capitalize">{station.water_body_type}</span>
           {station.data_source === "real" && (
-            <span className="ml-auto px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase ring-1 bg-cyan-500/10 ring-cyan-500/30 text-cyan-300">
+            <span className="ml-auto px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase ring-1 bg-cyan-500/10 ring-cyan-500/30 text-cyan-600 dark:text-cyan-300">
               Real data
             </span>
           )}
@@ -981,7 +981,7 @@ function WqiDetailPanel({
           </div>
         </div>
 
-        <div className="flex items-center justify-between rounded-lg bg-white/2 ring-1 ring-white/4 p-3">
+        <div className="flex items-center justify-between rounded-lg bg-foreground/[0.02] ring-1 ring-foreground/[0.06] p-3">
           <div>
             <div className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground">Risk Level</div>
             <div className={`mt-0.5 text-sm font-semibold capitalize ${riskColor}`}>{station.risk_level}</div>
@@ -989,8 +989,8 @@ function WqiDetailPanel({
           <div className="text-right">
             <div className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground">Trend</div>
             <div className={`mt-0.5 text-sm font-semibold flex items-center gap-1 justify-end ${
-              station.trend === "worsening" ? "text-red-300" :
-              station.trend === "improving" ? "text-emerald-300" : "text-muted-foreground"
+              station.trend === "worsening" ? "text-red-500 dark:text-red-300" :
+              station.trend === "improving" ? "text-emerald-600 dark:text-emerald-300" : "text-muted-foreground"
             }`}>
               {station.trend === "worsening" ? <TrendingDown className="h-3.5 w-3.5" /> :
                station.trend === "improving" ? <TrendingUp className="h-3.5 w-3.5" /> :
@@ -1028,8 +1028,8 @@ function WqiDetailPanel({
 
         {station.anomaly_count_30d != null && (
           <div className="rounded-lg border border-amber-400/20 bg-amber-400/3 p-3">
-            <div className="text-[10px] tracking-[0.18em] uppercase text-amber-200 mb-1">Anomaly Count (30d)</div>
-            <div className="text-2xl font-bold tabular-nums text-amber-300">{station.anomaly_count_30d}</div>
+            <div className="text-[10px] tracking-[0.18em] uppercase text-amber-600 dark:text-amber-200 mb-1">Anomaly Count (30d)</div>
+            <div className="text-2xl font-bold tabular-nums text-amber-500 dark:text-amber-300">{station.anomaly_count_30d}</div>
             <div className="text-[11px] text-muted-foreground mt-1">Detected by XGBoost model</div>
           </div>
         )}
