@@ -32,6 +32,7 @@ import {
 } from "@/lib/api";
 import { POLLUTION_EVENTS, type PollutionEvent } from "@/lib/pollution-data";
 import { Map } from "@/components/ui/map";
+import ChoroplethLayer from "@/components/map/choropleth-layer";
 
 type NominatimResult = {
   place_id: number;
@@ -428,7 +429,9 @@ export default function Home() {
 
         <main className="relative flex flex-1 min-h-0 gap-4 px-4 pt-4 pb-3">
           <section className="relative flex-1 rounded-2xl overflow-hidden border border-border min-w-0 glass">
-            <Map ref={mapCallbackRef} />
+            <Map ref={mapCallbackRef}>
+              <ChoroplethLayer />
+            </Map>
 
             {isPredictive && (
               <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 rounded-full glass-strong px-4 py-2 ring-1 ring-cyan-400/40">
