@@ -10,7 +10,7 @@ COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/ .
-COPY data-science/data/outputs/ /data-science/data/outputs/
+COPY data-science/data/outputs/ ./data/outputs/
 
 EXPOSE 8000
 
