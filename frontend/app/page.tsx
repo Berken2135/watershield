@@ -163,7 +163,7 @@ const RIVER_INFO: Record<string, RiverInfo> = {
     countries: ["CH", "DE", "FR", "NL"],
     lengthKm: 1233,
     baseWqi: 207.8,
-    riskColor: "#22d3ee",
+    riskColor: "#10b981",
     pollutants: ["PFAS", "Pharmaceuticals", "Heat-load"],
     monitoringStations: 124,
     highlights: "Densest monitoring network in Europe (Rheingüte).",
@@ -187,7 +187,7 @@ const RIVER_INFO: Record<string, RiverInfo> = {
     countries: ["NO"],
     lengthKm: 621,
     baseWqi: 217.2,
-    riskColor: "#22d3ee",
+    riskColor: "#10b981",
     pollutants: ["Forestry runoff", "Acidification (legacy)"],
     monitoringStations: 18,
     highlights: "Norway's longest river — pristine headwaters in Hedmark.",
@@ -199,7 +199,7 @@ const RIVER_INFO: Record<string, RiverInfo> = {
     countries: ["MK", "GR"],
     lengthKm: 388,
     baseWqi: 198.0,
-    riskColor: "#22d3ee",
+    riskColor: "#f59e0b",
     pollutants: ["Heavy metals (Cu/Pb)", "Untreated municipal effluent"],
     monitoringStations: 12,
     highlights: "Main artery of North Macedonia — IWRM hotspot since 2021.",
@@ -211,7 +211,7 @@ const RIVERS_GEOJSON = {
   features: [
     {
       type: "Feature",
-      properties: { id: "danube", name: "Danube" },
+      properties: { id: "danube", name: "Danube", riskColor: "#f59e0b" },
       geometry: {
         type: "LineString",
         coordinates: [
@@ -222,7 +222,7 @@ const RIVERS_GEOJSON = {
     },
     {
       type: "Feature",
-      properties: { id: "rhine", name: "Rhine" },
+      properties: { id: "rhine", name: "Rhine", riskColor: "#10b981" },
       geometry: {
         type: "LineString",
         coordinates: [
@@ -233,7 +233,7 @@ const RIVERS_GEOJSON = {
     },
     {
       type: "Feature",
-      properties: { id: "odra", name: "Odra" },
+      properties: { id: "odra", name: "Odra", riskColor: "#ef4444" },
       geometry: {
         type: "LineString",
         coordinates: [
@@ -244,7 +244,7 @@ const RIVERS_GEOJSON = {
     },
     {
       type: "Feature",
-      properties: { id: "glomma", name: "Glomma" },
+      properties: { id: "glomma", name: "Glomma", riskColor: "#10b981" },
       geometry: {
         type: "LineString",
         coordinates: [
@@ -255,7 +255,7 @@ const RIVERS_GEOJSON = {
     },
     {
       type: "Feature",
-      properties: { id: "vardar", name: "Vardar" },
+      properties: { id: "vardar", name: "Vardar", riskColor: "#f59e0b" },
       geometry: {
         type: "LineString",
         coordinates: [
@@ -317,6 +317,11 @@ export default function Home() {
   }, [authed]);
 
   const [eventsOpen, setEventsOpen] = useState(true);
+  // Auto-collapse the side panel on phones so the map breathes.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(max-width: 767px)").matches) setEventsOpen(false);
+  }, []);
 
   const [timelineDate, setTimelineDate] = useState<Date>(NOW_DATE);
   const monthsSignedFromNow =
@@ -361,7 +366,7 @@ export default function Home() {
           paint: { "line-color": "#000", "line-width": 18, "line-opacity": 0 },
         });
       }
-      // Base river styling.
+      // Base river styling — colour driven by per-feature riskColor.
       if (!mapInstance.getLayer("rivers-line")) {
         mapInstance.addLayer({
           id: "rivers-line",
@@ -369,9 +374,9 @@ export default function Home() {
           source: "rivers",
           layout: { "line-join": "round", "line-cap": "round" },
           paint: {
-            "line-color": "#22d3ee",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.4, 8, 3],
-            "line-opacity": 0.55,
+            "line-color": ["coalesce", ["get", "riskColor"], "#10b981"],
+            "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.6, 8, 3.4],
+            "line-opacity": 0.75,
           },
         });
       }
@@ -817,12 +822,6 @@ export default function Home() {
                             <span className="font-mono tabular-nums">{Math.round(station.wqi_predicted_30d)}</span>
                           </>
                         )}
-                        {station.metrics.temperature_c != null && (
-                          <>
-                            <span className="text-muted-foreground">Temp</span>
-                            <span className="font-mono tabular-nums">{station.metrics.temperature_c.toFixed(1)} °C</span>
-                          </>
-                        )}
                       </div>
                     </div>
                   </MarkerTooltip>
@@ -843,7 +842,7 @@ export default function Home() {
           </section>
 
           {eventsOpen ? (
-            <aside className="absolute md:static inset-x-2 bottom-2 top-2 md:inset-auto z-30 md:z-auto w-auto md:w-[320px] md:shrink-0 rounded-2xl border border-border glass overflow-hidden flex flex-col">
+            <aside className="fixed md:static left-2 right-2 bottom-2 top-auto md:inset-auto z-30 md:z-auto w-auto md:w-[320px] md:shrink-0 max-h-[55vh] md:max-h-none rounded-2xl border border-border glass overflow-hidden flex flex-col">
               {selectedWqiStation ? (
                 <WqiDetailPanel
                   station={selectedWqiStation}
@@ -875,19 +874,20 @@ export default function Home() {
           ) : (
             <button
               onClick={() => setEventsOpen(true)}
-              className="flex flex-col items-center justify-center gap-2 w-9 rounded-2xl border border-border glass shrink-0 hover:bg-foreground/[0.04] transition-colors"
+              className="fixed md:static md:flex bottom-4 right-4 md:bottom-auto md:right-auto z-30 grid md:grid grid-flow-col md:grid-flow-row place-items-center gap-2 h-12 md:h-auto px-4 md:px-0 md:w-9 rounded-full md:rounded-2xl border border-border glass shrink-0 hover:bg-foreground/[0.04] transition-colors shadow-lg md:shadow-none"
               aria-label="Show events panel"
             >
-              <ChevronLeft className="h-4 w-4 text-muted-foreground" />
               <Droplets className="h-4 w-4 text-blue-400" />
-              <span className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground [writing-mode:vertical-rl] rotate-180 uppercase">
+              <span className="md:hidden text-[11px] font-medium tracking-[0.18em] uppercase text-foreground">Stations</span>
+              <ChevronLeft className="hidden md:block h-4 w-4 text-muted-foreground" />
+              <span className="hidden md:inline-block text-[10px] font-medium tracking-[0.2em] text-muted-foreground [writing-mode:vertical-rl] rotate-180 uppercase">
                 Stations
               </span>
             </button>
           )}
         </main>
 
-        <div className="px-4 pb-4">
+        <div className="hidden md:block px-4 pb-4">
           <PredictiveTimeline
             start={TIMELINE_START}
             end={TIMELINE_END}
@@ -1388,14 +1388,11 @@ function WqiDetailPanel({
           </div>
         </div>
 
-        {(station.metrics.temperature_c != null || station.metrics.ph != null ||
+        {(station.metrics.ph != null ||
           station.metrics.oxygen_mg_l != null || station.metrics.turbidity_ntu != null) && (
           <div>
             <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Sensor Readings</div>
             <div className="grid grid-cols-2 gap-2">
-              {station.metrics.temperature_c != null && (
-                <BigMetric icon={<Gauge className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Temp" value={station.metrics.temperature_c.toFixed(1)} unit="°C" />
-              )}
               {station.metrics.ph != null && (
                 <BigMetric icon={<Activity className="h-3.5 w-3.5" strokeWidth={1.5} />} label="pH" value={station.metrics.ph.toFixed(2)} />
               )}

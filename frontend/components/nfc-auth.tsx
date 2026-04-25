@@ -125,15 +125,9 @@ export default function NfcAuth({ open, onClose, onSuccess, dismissible = true }
       )}
 
       <div className="relative w-full max-w-sm flex flex-col items-center text-center text-white">
-        <div className="text-[10px] tracking-[0.3em] uppercase text-cyan-300/80">
-          WaterShield · Secure Access
-        </div>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight">
-          Tap your NFC card
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Tap card
         </h1>
-        <p className="mt-2 text-sm text-white/60 max-w-xs">
-          Hold your authorised access card to the back of your phone.
-        </p>
 
         {/* Animation target */}
         <div className="relative mt-10 mb-8 grid place-items-center h-56 w-56">
@@ -181,14 +175,9 @@ export default function NfcAuth({ open, onClose, onSuccess, dismissible = true }
             disabled={phase === "verified"}
             className="w-full rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-white/90 py-3 text-sm ring-1 ring-white/15 transition-colors"
           >
-            Simulate NFC card
+            Simulate
           </button>
         </div>
-
-        <p className="mt-4 text-[10px] text-white/40 max-w-xs">
-          Web NFC works in Chrome on Android. iPhones and desktops fall back to the
-          simulate flow above.
-        </p>
       </div>
 
       <style jsx>{`
