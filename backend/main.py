@@ -34,3 +34,8 @@ def list_endpoints():
         "search":   ["POST /api/search/scenes", "GET /api/search/collections"],
         "analysis": ["POST /api/analysis/water-quality", "POST /api/analysis/trend"],
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
