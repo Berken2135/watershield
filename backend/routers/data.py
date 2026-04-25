@@ -18,10 +18,8 @@ from fastapi import APIRouter, HTTPException, Query
 
 router = APIRouter()
 
-# repo-root/backend/routers/data.py  →  /app/data/outputs (Docker) or repo-root/data-science/data/outputs (local dev)
-_DS_OUTPUTS_DOCKER = Path(__file__).resolve().parents[1] / "data" / "outputs"
-_DS_OUTPUTS_DEV = Path(__file__).resolve().parents[2] / "data-science" / "data" / "outputs"
-_DS_OUTPUTS = _DS_OUTPUTS_DOCKER if _DS_OUTPUTS_DOCKER.exists() else _DS_OUTPUTS_DEV
+# backend/routers/data.py → backend/data/outputs/ (both Docker /app/data/outputs and local dev)
+_DS_OUTPUTS = Path(__file__).resolve().parents[1] / "data" / "outputs"
 
 _FILES: dict[str, Path] = {
     "europe":             _DS_OUTPUTS / "watershield_europe.geojson",
