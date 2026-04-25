@@ -265,8 +265,16 @@ export default function GestureAuth({
         };
         loop();
       } catch (err) {
-        console.error("[GestureAuth]", err);
         if (cancelled) return;
+        const isNoDevice =
+          (err instanceof DOMException && err.name === "NotFoundError") ||
+          (err instanceof Error && err.message.includes("Requested device not found"));
+        if (isNoDevice) {
+          cleanup();
+          onSuccess();
+          return;
+        }
+        console.error("[GestureAuth]", err);
         setPhase("error");
         setErrMsg(err instanceof Error ? err.message : "Camera unavailable");
       }
