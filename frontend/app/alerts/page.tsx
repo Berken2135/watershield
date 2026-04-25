@@ -53,6 +53,9 @@ export default function AlertsPage() {
             </p>
           )}
 
+
+
+kurwa
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {stations.map((s) => (
               <div key={s.water_body_id} className="rounded-xl border border-border bg-card/40 p-4">

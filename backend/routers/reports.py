@@ -16,6 +16,8 @@ from __future__ import annotations
 import io
 import json
 import os
+import platform
+import unicodedata
 from datetime import datetime
 from typing import Optional
 
@@ -27,6 +29,8 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     SimpleDocTemplate,
     Paragraph,
@@ -41,8 +45,69 @@ router = APIRouter()
 
 
 # ------------------------------------------------------------------
-# Models
+# Unicode font registration
 # ------------------------------------------------------------------
+
+_FONT_REGULAR = "Helvetica"
+_FONT_BOLD = "Helvetica-Bold"
+_FONT_REGISTERED = False
+
+
+def _ensure_font() -> None:
+    """Try to register a Unicode-capable TTF font; fall back to Helvetica."""
+    global _FONT_REGULAR, _FONT_BOLD, _FONT_REGISTERED
+    if _FONT_REGISTERED:
+        return
+    _FONT_REGISTERED = True
+
+    candidates: list[tuple[str, str | None]] = []
+    system = platform.system()
+    if system == "Linux":
+        candidates = [
+            ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+            ("/usr/share/fonts/dejavu/DejaVuSans.ttf",
+             "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf"),
+        ]
+    elif system == "Darwin":
+        candidates = [
+            ("/System/Library/Fonts/Supplemental/Arial.ttf",
+             "/System/Library/Fonts/Supplemental/Arial Bold.ttf"),
+            ("/Library/Fonts/Arial.ttf", None),
+        ]
+    elif system == "Windows":
+        candidates = [
+            ("C:/Windows/Fonts/arial.ttf", "C:/Windows/Fonts/arialbd.ttf"),
+        ]
+
+    for regular, bold in candidates:
+        if os.path.exists(regular):
+            try:
+                pdfmetrics.registerFont(TTFont("WSFont", regular))
+                _FONT_REGULAR = "WSFont"
+                if bold and os.path.exists(bold):
+                    pdfmetrics.registerFont(TTFont("WSFont-Bold", bold))
+                    _FONT_BOLD = "WSFont-Bold"
+                return
+            except Exception:
+                continue
+
+
+def _safe(text: str) -> str:
+    """Transliterate non-ASCII characters so Helvetica can render them."""
+    if _FONT_REGULAR != "Helvetica":
+        return text  # Unicode font is registered — no need to sanitize
+    # NFKD decomposes e.g. 'ł' → but ł has no decomposition, so handle manually
+    _REPLACEMENTS = str.maketrans(
+        "ąćęłńóśźżĄĆĘŁŃÓŚŹŻàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
+        "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ",
+        "acelnoszzACELNOSZZaaaaaaaceeeeiiiidnoooooouuuuythy"
+        "AAAAAAAACEEEEIIIIDNOOOOOOUUUUYb",
+    )
+    return unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii") \
+        if False else text.translate(_REPLACEMENTS)
+
+
 
 class ReportMetrics(BaseModel):
     ph: float
@@ -67,7 +132,7 @@ class ReportRequest(BaseModel):
 
 
 # ------------------------------------------------------------------
-# EU thresholds (simplified WFD reference values)
+# Models
 # ------------------------------------------------------------------
 
 EU_THRESHOLDS = {
@@ -85,7 +150,7 @@ def _classify(metric: str, value: float) -> tuple[str, colors.Color]:
 
 
 # ------------------------------------------------------------------
-# AI summary (uses the same OpenAI key as analysis.py — optional)
+# EU thresholds (simplified WFD reference values)
 # ------------------------------------------------------------------
 
 def _ai_summary(req: ReportRequest) -> str:
@@ -149,7 +214,9 @@ def _fallback_summary(req: ReportRequest) -> str:
 # PDF generation
 # ------------------------------------------------------------------
 
+
 def _build_pdf(req: ReportRequest, summary: str) -> bytes:
+    _ensure_font()
     buf = io.BytesIO()
     doc = SimpleDocTemplate(
         buf,
@@ -166,6 +233,7 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
     styles.add(ParagraphStyle(
         name="EUHeading",
         parent=styles["Heading1"],
+        fontName=_FONT_BOLD,
         fontSize=20,
         leading=24,
         textColor=colors.HexColor("#0f172a"),
@@ -174,6 +242,7 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
     styles.add(ParagraphStyle(
         name="EUSubtle",
         parent=styles["Normal"],
+        fontName=_FONT_REGULAR,
         fontSize=8,
         leading=11,
         textColor=colors.HexColor("#64748b"),
@@ -182,6 +251,7 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
     styles.add(ParagraphStyle(
         name="EUSection",
         parent=styles["Heading2"],
+        fontName=_FONT_BOLD,
         fontSize=11,
         leading=14,
         textColor=colors.HexColor("#0f172a"),
@@ -191,6 +261,7 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
     styles.add(ParagraphStyle(
         name="EUBody",
         parent=styles["Normal"],
+        fontName=_FONT_REGULAR,
         fontSize=10,
         leading=14,
         textColor=colors.HexColor("#1e293b"),
@@ -227,7 +298,7 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
     # ---------- Title ----------
     story.append(Paragraph("Water Pollution Compliance Report", styles["EUHeading"]))
     story.append(Paragraph(
-        f"{req.river} — {req.location}",
+        f"{_safe(req.river)} — {_safe(req.location)}",
         styles["EUSubtle"],
     ))
     story.append(Spacer(1, 6))
@@ -262,7 +333,7 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
         colWidths=[28 * mm, 55 * mm, 28 * mm, 55 * mm],
     )
     meta.setStyle(TableStyle([
-        ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
+        ("FONTNAME", (0, 0), (-1, -1), _FONT_REGULAR),
         ("FONTSIZE", (0, 0), (-1, -1), 9),
         ("TEXTCOLOR", (0, 0), (0, -1), colors.HexColor("#64748b")),
         ("TEXTCOLOR", (2, 0), (2, -1), colors.HexColor("#64748b")),
@@ -276,11 +347,11 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
 
     # ---------- Executive summary ----------
     story.append(Paragraph("1 · Executive Summary", styles["EUSection"]))
-    story.append(Paragraph(summary, styles["EUBody"]))
+    story.append(Paragraph(_safe(summary), styles["EUBody"]))
 
     # ---------- Description ----------
     story.append(Paragraph("2 · Event Description", styles["EUSection"]))
-    story.append(Paragraph(req.description, styles["EUBody"]))
+    story.append(Paragraph(_safe(req.description), styles["EUBody"]))
 
     # ---------- Measurements ----------
     story.append(Paragraph("3 · Measurement Compliance Table", styles["EUSection"]))
@@ -311,7 +382,7 @@ def _build_pdf(req: ReportRequest, summary: str) -> bytes:
 
     measurement_table = Table(rows, colWidths=[45 * mm, 40 * mm, 40 * mm, 41 * mm])
     measurement_table.setStyle(TableStyle([
-        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("FONTNAME", (0, 0), (-1, 0), _FONT_BOLD),
         ("FONTSIZE", (0, 0), (-1, -1), 9),
         ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#0f172a")),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),

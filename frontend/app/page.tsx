@@ -8,6 +8,7 @@ import StationCard from "@/components/station-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
+import { generateReportPdf } from "@/lib/api";
 import {
   POLLUTION_EVENTS as MOCK_EVENTS,
   fetchStations,
@@ -20,15 +21,17 @@ import {
   ChevronLeft,
   ChevronRight,
   Droplets,
+  FileDown,
   Fingerprint,
   Gauge,
+  Loader2,
   LocateFixed,
   MapPin,
   Minus,
   Search,
   TrendingDown,
   TrendingUp,
-  Waves
+  Waves,
 } from "lucide-react";
 import type MapLibreGL from "maplibre-gl";
 
@@ -1010,6 +1013,51 @@ function WqiDetailPanel({
   onBack: () => void;
   onClose: () => void;
 }) {
+  const [reporting, setReporting] = useState<"idle" | "loading" | "error">("idle");
+
+  const handleGenerateReport = async () => {
+    setReporting("loading");
+    try {
+      const riskToSeverity: Record<WqiFeature["risk_level"], "High" | "Medium" | "Low"> = {
+        critical: "High",
+        high: "High",
+        moderate: "Medium",
+        clean: "Low",
+      };
+      const blob = await generateReportPdf({
+        event_id: station.water_body_id,
+        river: station.name,
+        location: `${station.name}, ${station.country}`,
+        severity: riskToSeverity[station.risk_level],
+        type: station.water_body_type,
+        date: station.last_updated.slice(0, 10),
+        description:
+          `${station.name} — WQI ${station.wqi_current}. ` +
+          `30-day forecast: ${station.wqi_predicted_30d} (${station.trend}, ` +
+          `${station.trend_pct_change > 0 ? "+" : ""}${station.trend_pct_change}%). ` +
+          (station.anomaly_count_30d != null
+            ? `${station.anomaly_count_30d} anomalies detected in the last 30 days.`
+            : "Synthetic estimate from ERA5 climate proxies."),
+        metrics: {
+          ph: station.metrics.ph ?? 7.0,
+          dissolved_oxygen: station.metrics.oxygen_mg_l ?? 6.5,
+          turbidity: station.metrics.turbidity_ntu ?? 5.0,
+          contaminant: station.risk_level === "critical" ? "Multiple — see report" : "Within EU thresholds",
+        },
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `watershield_report_${station.water_body_id}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setReporting("idle");
+    } catch {
+      setReporting("error");
+      setTimeout(() => setReporting("idle"), 3000);
+    }
+  };
+
   const riskColor = {
     clean: "text-emerald-600 dark:text-emerald-300",
     moderate: "text-amber-500 dark:text-amber-300",
@@ -1111,6 +1159,19 @@ function WqiDetailPanel({
         <div className="text-[10px] text-muted-foreground text-right">
           Updated: {new Date(station.last_updated).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
         </div>
+
+        <button
+          onClick={handleGenerateReport}
+          disabled={reporting === "loading"}
+          className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-2.5 text-[12px] font-medium transition-colors bg-blue-500/10 hover:bg-blue-500/20 ring-1 ring-blue-400/30 text-blue-600 dark:text-blue-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {reporting === "loading" ? (
+            <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Generating PDF…</>
+          ) : reporting === "error" ? (
+            <span className="text-red-400">Failed — try again</span>
+          ) : (
+            <><FileDown className="h-3.5 w-3.5" /> Generate EU WFD Report</>          )}
+        </button>
       </div>
     </>
   );
