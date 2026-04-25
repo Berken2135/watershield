@@ -1,12 +1,13 @@
 /**
  * Thin client wrapper around the WaterShield FastAPI backend.
- * The API URL is taken from NEXT_PUBLIC_API_URL or defaults to localhost:8000.
+ * Requests go to /api/* which Next.js proxies to the backend (see next.config.ts).
+ * NEXT_PUBLIC_API_URL is kept for direct calls that bypass the proxy (e.g. MapLibre source).
  */
 
 import type { PollutionEvent } from "./pollution-data";
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
+// Relative base — works on both localhost and Vercel via Next.js rewrite proxy
+const API_BASE = "/api";
 
 export type AnomalyVerdict = "normal" | "anomaly" | "critical";
 
@@ -40,7 +41,7 @@ export type ReportRequest = {
 };
 
 async function postJSON<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
+  const res = await fetch(`${API_BASE}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
