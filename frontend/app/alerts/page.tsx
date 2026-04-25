@@ -133,7 +133,7 @@ export default function AlertsPage() {
               />
               <Kpi
                 icon={<Globe2 className="h-4 w-4" />}
-                label="Worst region"
+                label="Highest Pollution"
                 value={stats.countryRows[0]?.country ?? "—"}
                 hint={`${stats.countryRows[0]?.risk ?? 0} alerts`}
                 accent="#f59e0b"
