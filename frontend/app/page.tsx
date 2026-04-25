@@ -508,8 +508,8 @@ export default function Home() {
 
       <div className="flex flex-1 flex-col min-w-0">
         {/* Top bar — minimalist: only search */}
-        <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border px-6 bg-background/40 backdrop-blur-md">
-          <div className="ml-auto flex items-center gap-3 w-full max-w-md">
+        <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border px-6 bg-background/40 backdrop-blur-md z-20 relative">
+          <div className="flex items-center gap-3 w-full max-w-md">
             <div className="relative flex-1" ref={containerRef}>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground z-10" />
               <Input
@@ -555,7 +555,7 @@ export default function Home() {
               variant="outline"
               size="sm"
               onClick={() => setAuthOpen(true)}
-              className="hidden md:inline-flex h-9 gap-2 bg-primary/10 hover:bg-primary/15 border-primary/30 text-primary"
+              className="hidden md:inline-flex ml-auto h-9 gap-2 bg-primary/10 hover:bg-primary/15 border-primary/30 text-primary"
             >
               <Fingerprint className="h-3.5 w-3.5" />
               Sign in
