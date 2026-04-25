@@ -64,7 +64,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from src.config import DATA_OUTPUTS, DATA_PROCESSED
-from src.european_data.cities import CITIES
+from src.european_data.cities_all import CITIES_ALL
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 
@@ -162,7 +162,7 @@ def _load_wroclaw(now_iso: str) -> dict:
 
     trend, trend_pct = _trend(wqi_current, wqi_30d)
 
-    city_meta = next(c for c in CITIES if c["city"] == "Wrocław")
+    city_meta = next(c for c in CITIES_ALL if c["city"] == "Wrocław")
 
     return {
         "type": "Feature",
@@ -174,7 +174,7 @@ def _load_wroclaw(now_iso: str) -> dict:
             "water_body_id":      _water_body_id("wroclaw", city_meta["water_body"]),
             "name":               f"{city_meta['water_body']} River - Wrocław",
             "country":            city_meta["country"],
-            "country_code":       COUNTRY_CODES[city_meta["country"]],
+            "country_code":       city_meta.get("country_code", "PL"),
             "water_body_type":    city_meta["water_body_type"],
             "wqi_current":        wqi_current,
             "wqi_predicted_7d":   wqi_7d,
@@ -198,63 +198,32 @@ def _load_wroclaw(now_iso: str) -> dict:
     }
 
 
-# ── Synthetic WQI for European cities ─────────────────────────────────────────
+# ── All non-Wrocław cities (from historical_monthly.parquet) ──────────────────
 
-def _synthetic_wqi(temperature: float, precipitation: float, soil_moisture: float) -> float:
-    """Derive a synthetic WQI from ERA5 climate variables.
-
-    See module docstring for full formula documentation.
-    """
-    # Temperature component
-    temp_penalty = min(60.0, abs(temperature - 12.0) * 3.0)
-    temp_score   = 50.0 - temp_penalty                         # -10 to +50
-
-    # Precipitation component
-    excess_precip  = max(0.0, precipitation - 10.0)
-    precip_score   = 30.0 - min(80.0, excess_precip * 0.6)    # -50 to +30
-
-    # Soil moisture component
-    excess_soil    = max(0.0, soil_moisture - 0.1)
-    soil_score     = 20.0 - min(70.0, excess_soil * 180.0)    # -50 to +20
-
-    wqi = 200.0 + temp_score + precip_score + soil_score
-    return round(max(50.0, min(350.0, wqi)), 1)
-
-
-def _load_european_features(now_iso: str) -> list[dict]:
-    print("  Loading European ERA5 data …")
-    europe = pd.read_parquet(EUROPE_DIR / "europe_combined.parquet")
-
-    # Use ERA5 monthly rows only (have soil_moisture; forecast rows are null)
-    era5 = europe[europe["soil_moisture"].notna()].copy()
+def _load_all_cities(now_iso: str) -> list[dict]:
+    """Build features for all 101 non-Wrocław cities using historical WQI data."""
+    print("  Loading historical WQI data for all cities …")
+    hist = pd.read_parquet(DATA_OUTPUTS / "historical_monthly.parquet")
 
     # Latest available month per city
-    era5 = era5.sort_values("date")
-    latest = era5.groupby("city").last().reset_index()
+    latest = hist.sort_values("date").groupby("city").last().reset_index()
 
-    # City metadata as dict keyed by city name
-    city_meta = {c["city"]: c for c in CITIES}
+    city_meta = {c["city"]: c for c in CITIES_ALL}
 
     features = []
     for _, row in latest.iterrows():
         city = row["city"]
         if city == "Wrocław":
-            continue   # Wrocław uses real data
+            continue
 
         meta = city_meta.get(city)
         if meta is None:
             continue
 
-        temp   = float(row["temperature"])
-        precip = float(row["precipitation"])
-        soil   = float(row["soil_moisture"])
-        wqi    = _synthetic_wqi(temp, precip, soil)
-
-        # Synthetic forecast: assume modest 5% mean reversion toward 200 over 30d
-        wqi_30d  = round(wqi + (200.0 - wqi) * 0.05, 1)
-        wqi_7d   = round(wqi + (200.0 - wqi) * 0.01, 1)
-        # Uncertainty: ±20% of value (crude estimate for synthetic data)
-        margin   = round(wqi * 0.20, 1)
+        wqi     = float(row["wqi"])
+        wqi_30d = round(wqi + (200.0 - wqi) * 0.05, 1)
+        wqi_7d  = round(wqi + (200.0 - wqi) * 0.01, 1)
+        margin  = round(abs(wqi) * 0.20, 1)
 
         trend, trend_pct = _trend(wqi, wqi_30d)
 
@@ -268,13 +237,14 @@ def _load_european_features(now_iso: str) -> list[dict]:
                 "water_body_id":     _water_body_id(city, meta["water_body"]),
                 "name":              f"{meta['water_body']} - {city}",
                 "country":           meta["country"],
-                "country_code":      COUNTRY_CODES.get(meta["country"], "??"),
+                "country_code":      meta.get("country_code", "??"),
                 "water_body_type":   meta["water_body_type"],
-                "wqi_current":       wqi,
+                "region":            meta.get("region", ""),
+                "wqi_current":       round(wqi, 1),
                 "wqi_predicted_7d":  wqi_7d,
                 "wqi_predicted_30d": wqi_30d,
-                "wqi_lower_30d":     round(max(50.0, wqi_30d - margin), 1),
-                "wqi_upper_30d":     round(min(350.0, wqi_30d + margin), 1),
+                "wqi_lower_30d":     round(max(60.0, wqi_30d - margin), 1),
+                "wqi_upper_30d":     round(min(340.0, wqi_30d + margin), 1),
                 "risk_level":        _risk_label(wqi),
                 "risk_color":        _risk_color(wqi),
                 "trend":             trend,
@@ -283,7 +253,7 @@ def _load_european_features(now_iso: str) -> list[dict]:
                 "data_source":       "synthetic",
                 "last_updated":      now_iso,
                 "metrics": {
-                    "temperature_c": round(temp, 1),
+                    "temperature_c": None,
                     "ph":            None,
                     "oxygen_mg_l":   None,
                     "turbidity_ntu": None,
@@ -360,7 +330,7 @@ def main() -> None:
     print(f"WaterShield GeoJSON builder  [{now_iso}]")
 
     wroclaw_feature  = _load_wroclaw(now_iso)
-    european_features = _load_european_features(now_iso)
+    european_features = _load_all_cities(now_iso)
 
     all_features = [wroclaw_feature] + european_features
 
