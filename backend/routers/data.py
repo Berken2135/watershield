@@ -33,6 +33,16 @@ _FILES: dict[str, Path] = {
 }
 
 
+# Official EU-27 member states only
+EU_COUNTRIES: frozenset[str] = frozenset({
+    "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia",
+    "Denmark", "Estonia", "Finland", "France", "Germany", "Greece",
+    "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg",
+    "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia",
+    "Slovenia", "Spain", "Sweden",
+})
+
+
 def _load(name: str) -> Any:
     path = _FILES.get(name)
     if path is None or not path.exists():
@@ -44,12 +54,28 @@ def _load(name: str) -> Any:
         return json.load(f)
 
 
+def _eu_only_geojson(fc: dict) -> dict:
+    """Return a copy of a GeoJSON FeatureCollection with only EU-27 features."""
+    return {
+        **fc,
+        "features": [
+            f for f in fc["features"]
+            if f["properties"].get("country") in EU_COUNTRIES
+        ],
+    }
+
+
+def _eu_only_records(records: list[dict]) -> list[dict]:
+    """Filter a list of dicts to EU-27 countries only."""
+    return [r for r in records if r.get("country") in EU_COUNTRIES]
+
+
 # ── Static outputs ────────────────────────────────────────────────────────────
 
 @router.get("/europe")
 def europe_geojson():
-    """Full FeatureCollection — 30 European cities + Wrocław."""
-    return _load("europe")
+    """Full FeatureCollection — EU-27 cities only."""
+    return _eu_only_geojson(_load("europe"))
 
 
 @router.get("/wroclaw")
@@ -60,8 +86,20 @@ def wroclaw_geojson():
 
 @router.get("/summary")
 def summary():
-    """Aggregate stats (risk counts, avg WQI by country)."""
-    return _load("summary")
+    """Aggregate stats (risk counts, avg WQI by country) — EU-27 only."""
+    raw: dict = _load("summary")
+    eu_avg = {k: v for k, v in raw.get("avg_wqi_by_country", {}).items() if k in EU_COUNTRIES}
+    features = _eu_only_geojson(_load("europe"))["features"]
+    risk_counts: dict[str, int] = {"clean": 0, "moderate": 0, "high": 0, "critical": 0}
+    for f in features:
+        level = f["properties"].get("risk_level", "")
+        if level in risk_counts:
+            risk_counts[level] += 1
+    return {
+        "total_cities":       len(features),
+        "risk_counts":        risk_counts,
+        "avg_wqi_by_country": eu_avg,
+    }
 
 
 @router.get("/forecast")
@@ -89,7 +127,7 @@ def history_cities(
     Each record: city, country, lat, lon, date, wqi, risk_level, data_source.
     Filter with ?city=Wrocław and/or ?year=2024.
     """
-    records: list[dict] = _load("history_cities")
+    records: list[dict] = _eu_only_records(_load("history_cities"))
 
     if city:
         records = [r for r in records if r["city"].lower() == city.lower()]
@@ -115,8 +153,8 @@ def history_water_body(
     Looks up the city name from the Europe GeoJSON, then returns its
     monthly history. Use ?year= to narrow to a single year.
     """
-    # Resolve city name from water_body_id via the europe GeoJSON
-    geojson = _load("europe")
+    # Resolve city name from water_body_id via EU-filtered GeoJSON
+    geojson = _eu_only_geojson(_load("europe"))
     city_name: str | None = None
     for feature in geojson["features"]:
         if feature["properties"].get("water_body_id") == water_body_id:
@@ -127,7 +165,7 @@ def history_water_body(
     if city_name is None:
         raise HTTPException(status_code=404, detail=f"Water body '{water_body_id}' not found")
 
-    records: list[dict] = _load("history_cities")
+    records: list[dict] = _eu_only_records(_load("history_cities"))
     records = [r for r in records if r["city"] == city_name]
 
     if year:
@@ -156,7 +194,7 @@ def history_countries(
     All other countries have one city so country = city value.
     Each record: country, country_code, date, wqi, risk_level, cities_count, data_source.
     """
-    records: list[dict] = _load("history_countries")
+    records: list[dict] = _eu_only_records(_load("history_countries"))
 
     if year:
         records = [r for r in records if r["date"].startswith(str(year))]
@@ -183,7 +221,7 @@ def history_country(
 
     Use ?year= to narrow to a single year.
     """
-    records: list[dict] = _load("history_countries")
+    records: list[dict] = _eu_only_records(_load("history_countries"))
     records = [r for r in records if r["country_code"] == country_code.upper()]
 
     if not records:
@@ -256,7 +294,7 @@ def compare_water_body(water_body_id: str):
         "12_months_ago": { ... }
       }
     """
-    geojson = _load("europe")
+    geojson = _eu_only_geojson(_load("europe"))
     city_name: str | None = None
     for feature in geojson["features"]:
         if feature["properties"].get("water_body_id") == water_body_id:
@@ -267,7 +305,7 @@ def compare_water_body(water_body_id: str):
         raise HTTPException(status_code=404, detail=f"Water body '{water_body_id}' not found")
 
     records: list[dict] = [
-        r for r in _load("history_cities") if r["city"] == city_name
+        r for r in _eu_only_records(_load("history_cities")) if r["city"] == city_name
     ]
 
     return {"water_body_id": water_body_id, "city": city_name,
@@ -282,7 +320,7 @@ def compare_country(country_code: str):
     Same shape as the water-body compare endpoint, keyed by country_code.
     """
     records: list[dict] = [
-        r for r in _load("history_countries")
+        r for r in _eu_only_records(_load("history_countries"))
         if r["country_code"] == country_code.upper()
     ]
 
