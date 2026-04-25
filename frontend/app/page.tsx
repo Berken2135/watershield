@@ -1,29 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import GestureAuth from "@/components/gesture-auth";
 import PredictiveTimeline from "@/components/predictive-timeline";
 import Sidebar from "@/components/sidebar";
 import StationCard from "@/components/station-card";
-import {
-  Activity,
-  AlertTriangle,
-  ArrowLeft,
-  ChevronLeft,
-  ChevronRight,
-  Download,
-  Fingerprint,
-  Gauge,
-  Loader2,
-  MapPin,
-  Search,
-  Sparkles,
-  Waves,
-} from "lucide-react";
-import type MapLibreGL from "maplibre-gl";
-import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
 import {
   detectAnomaly,
   eventToReportRequest,
@@ -31,14 +14,61 @@ import {
   type AnomalyResult,
 } from "@/lib/api";
 import { POLLUTION_EVENTS, type PollutionEvent } from "@/lib/pollution-data";
-import { Map } from "@/components/ui/map";
 import ChoroplethLayer from "@/components/map/choropleth-layer";
+import {
+  Activity,
+  AlertTriangle,
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  Droplets,
+  Fingerprint,
+  Gauge,
+  Loader2,
+  MapPin,
+  Minus,
+  Search,
+  Sparkles,
+  TrendingDown,
+  TrendingUp,
+  Waves,
+} from "lucide-react";
+import type MapLibreGL from "maplibre-gl";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type NominatimResult = {
   place_id: number;
   display_name: string;
   lat: string;
   lon: string;
+};
+
+type WqiFeature = {
+  water_body_id: string;
+  name: string;
+  country: string;
+  country_code: string;
+  water_body_type: string;
+  wqi_current: number;
+  wqi_predicted_7d: number;
+  wqi_predicted_30d: number;
+  wqi_lower_30d: number;
+  wqi_upper_30d: number;
+  risk_level: "clean" | "moderate" | "high" | "critical";
+  risk_color: string;
+  trend: "stable" | "worsening" | "improving";
+  trend_pct_change: number;
+  anomaly_count_30d: number | null;
+  data_source: "real" | "synthetic";
+  last_updated: string;
+  metrics: {
+    temperature_c: number | null;
+    ph: number | null;
+    oxygen_mg_l: number | null;
+    turbidity_ntu: number | null;
+  };
 };
 
 const NOW_DATE = new Date("2026-04-25T00:00:00Z");
@@ -125,6 +155,9 @@ export default function Home() {
       ? 100
       : Math.max(35, Math.round(Math.exp(-0.0476 * monthsAfterNow) * 100));
 
+  const [showWqi, setShowWqi] = useState(true);
+  const [selectedWqiStation, setSelectedWqiStation] = useState<WqiFeature | null>(null);
+
   const [authOpen, setAuthOpen] = useState(false);
   const [authed, setAuthed] = useState(false);
 
@@ -142,7 +175,7 @@ export default function Home() {
     // Intentional reset on selection change — value is independent of state.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setAnomaly(null);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+     
     setAnomalyError(null);
   }, [selectedPollutionId]);
 
@@ -173,14 +206,111 @@ export default function Home() {
     return () => { mapInstance.off("styledata", onStyle); };
   }, [mapInstance]);
 
-  // ---------- map: pollution clusters & points ----------
+  // ---------- map: wqi stations ----------
+  useEffect(() => {
+    if (!mapInstance) return;
+    const SRC = "wqi-stations";
+    const LYR = "wqi-circles";
+    const HALO = "wqi-halo";
+
+    const setup = () => {
+      if (!mapInstance.getSource(SRC)) {
+        mapInstance.addSource(SRC, { type: "geojson", data: "/data/watershield_europe.geojson" });
+      }
+      if (!mapInstance.getLayer(HALO)) {
+        mapInstance.addLayer({
+          id: HALO, type: "circle", source: SRC,
+          paint: {
+            "circle-radius": 14,
+            "circle-color": ["get", "risk_color"],
+            "circle-opacity": 0.18,
+            "circle-blur": 0.7,
+          },
+        });
+      }
+      if (!mapInstance.getLayer(LYR)) {
+        mapInstance.addLayer({
+          id: LYR, type: "circle", source: SRC,
+          paint: {
+            "circle-radius": 7,
+            "circle-color": ["get", "risk_color"],
+            "circle-stroke-width": 1.5,
+            "circle-stroke-color": "rgba(255,255,255,0.85)",
+          },
+        });
+      }
+    };
+
+    const onStyleData = () => mapInstance.isStyleLoaded() && setup();
+
+    const onWqiClick = (e: MapLibreGL.MapMouseEvent & { features?: MapLibreGL.MapGeoJSONFeature[] }) => {
+      const features = mapInstance.queryRenderedFeatures(e.point, { layers: [LYR] });
+      if (!features.length) return;
+      const raw = features[0].properties ?? {};
+      const metrics = typeof raw.metrics === "string" ? JSON.parse(raw.metrics) : (raw.metrics ?? {});
+      const station: WqiFeature = {
+        water_body_id: raw.water_body_id,
+        name: raw.name,
+        country: raw.country,
+        country_code: raw.country_code,
+        water_body_type: raw.water_body_type,
+        wqi_current: raw.wqi_current,
+        wqi_predicted_7d: raw.wqi_predicted_7d,
+        wqi_predicted_30d: raw.wqi_predicted_30d,
+        wqi_lower_30d: raw.wqi_lower_30d,
+        wqi_upper_30d: raw.wqi_upper_30d,
+        risk_level: raw.risk_level,
+        risk_color: raw.risk_color,
+        trend: raw.trend,
+        trend_pct_change: raw.trend_pct_change,
+        anomaly_count_30d: raw.anomaly_count_30d ?? null,
+        data_source: raw.data_source,
+        last_updated: raw.last_updated,
+        metrics,
+      };
+      setSelectedWqiStation(station);
+      setEventsOpen(true);
+      setSelectedPollutionId(null);
+      const coords = (features[0].geometry as GeoJSON.Point).coordinates as [number, number];
+      mapInstance.flyTo({ center: coords, zoom: 8, duration: 1000 });
+    };
+
+    const cursorOn = () => { mapInstance.getCanvas().style.cursor = "pointer"; };
+    const cursorOff = () => { mapInstance.getCanvas().style.cursor = ""; };
+
+    mapInstance.on("styledata", onStyleData);
+    mapInstance.on("click", LYR, onWqiClick);
+    mapInstance.on("mouseenter", LYR, cursorOn);
+    mapInstance.on("mouseleave", LYR, cursorOff);
+    if (mapInstance.isStyleLoaded()) setup();
+
+    return () => {
+      mapInstance.off("styledata", onStyleData);
+      mapInstance.off("click", LYR, onWqiClick);
+      mapInstance.off("mouseenter", LYR, cursorOn);
+      mapInstance.off("mouseleave", LYR, cursorOff);
+    };
+  }, [mapInstance]);
+
+  // ---------- wqi visibility toggle ----------
+  useEffect(() => {
+    if (!mapInstance) return;
+    const vis = showWqi ? "visible" : "none";
+    const toggle = () => {
+      if (mapInstance.getLayer("wqi-circles")) mapInstance.setLayoutProperty("wqi-circles", "visibility", vis);
+      if (mapInstance.getLayer("wqi-halo")) mapInstance.setLayoutProperty("wqi-halo", "visibility", vis);
+    };
+    if (mapInstance.isStyleLoaded()) toggle();
+    mapInstance.on("styledata", toggle);
+    return () => { mapInstance.off("styledata", toggle); };
+  }, [mapInstance, showWqi]);
+
+  // ---------- map: pollution clusters ----------
   useEffect(() => {
     if (!mapInstance) return;
     const SRC = "pollution-clusters";
     const CL = "pollution-cluster-circles";
     const CC = "pollution-cluster-count";
-    const PT = "pollution-points";
-    const HALO = "pollution-points-halo";
 
     const setup = () => {
       if (!mapInstance.getSource(SRC)) {
@@ -214,30 +344,6 @@ export default function Home() {
           paint: { "text-color": "#e2e8f0" },
         });
       }
-      if (!mapInstance.getLayer(HALO)) {
-        mapInstance.addLayer({
-          id: HALO, type: "circle", source: SRC, minzoom: CLUSTER_MAX_ZOOM,
-          filter: ["!", ["has", "point_count"]],
-          paint: {
-            "circle-radius": 18,
-            "circle-color": ["match", ["get", "severity"], "High", "#ef4444", "Medium", "#f59e0b", "#10b981"],
-            "circle-opacity": 0.18,
-            "circle-blur": 0.6,
-          },
-        });
-      }
-      if (!mapInstance.getLayer(PT)) {
-        mapInstance.addLayer({
-          id: PT, type: "circle", source: SRC, minzoom: CLUSTER_MAX_ZOOM,
-          filter: ["!", ["has", "point_count"]],
-          paint: {
-            "circle-radius": 5,
-            "circle-color": ["match", ["get", "severity"], "High", "#ef4444", "Medium", "#f59e0b", "#10b981"],
-            "circle-stroke-width": 1.5,
-            "circle-stroke-color": "rgba(255,255,255,0.85)",
-          },
-        });
-      }
     };
 
     const onStyle = () => mapInstance.isStyleLoaded() && setup();
@@ -256,39 +362,20 @@ export default function Home() {
       } catch { /* ignore */ }
     };
 
-    const onPointClick = (
-      e: MapLibreGL.MapMouseEvent & { features?: MapLibreGL.MapGeoJSONFeature[] },
-    ) => {
-      const features = mapInstance.queryRenderedFeatures(e.point, { layers: [PT] });
-      if (!features.length) return;
-      const id = features[0].properties?.id;
-      if (!id) return;
-      const ev = POLLUTION_EVENTS.find((p) => p.id === id);
-      if (!ev) return;
-      setSelectedPollutionId(id);
-      mapInstance.flyTo({ center: ev.coordinates, zoom: CLUSTER_MAX_ZOOM + 1, duration: 1200 });
-    };
-
     const cursorOn = () => { mapInstance.getCanvas().style.cursor = "pointer"; };
     const cursorOff = () => { mapInstance.getCanvas().style.cursor = ""; };
 
     mapInstance.on("styledata", onStyle);
     mapInstance.on("click", CL, onClusterClick);
-    mapInstance.on("click", PT, onPointClick);
     mapInstance.on("mouseenter", CL, cursorOn);
     mapInstance.on("mouseleave", CL, cursorOff);
-    mapInstance.on("mouseenter", PT, cursorOn);
-    mapInstance.on("mouseleave", PT, cursorOff);
     if (mapInstance.isStyleLoaded()) setup();
 
     return () => {
       mapInstance.off("styledata", onStyle);
       mapInstance.off("click", CL, onClusterClick);
-      mapInstance.off("click", PT, onPointClick);
       mapInstance.off("mouseenter", CL, cursorOn);
       mapInstance.off("mouseleave", CL, cursorOff);
-      mapInstance.off("mouseenter", PT, cursorOn);
-      mapInstance.off("mouseleave", PT, cursorOff);
     };
   }, [mapInstance]);
 
@@ -386,7 +473,7 @@ export default function Home() {
             <div className="relative flex-1" ref={containerRef}>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground z-10" />
               <Input
-                className="pl-9 h-9 bg-white/[0.02] border-white/[0.06] focus-visible:ring-cyan-400/30 focus-visible:border-cyan-400/40 placeholder:text-muted-foreground/60 text-sm"
+                className="pl-9 h-9 bg-white/2 border-white/6 focus-visible:ring-cyan-400/30 focus-visible:border-cyan-400/40 placeholder:text-muted-foreground/60 text-sm"
                 placeholder="Search city, region or coordinates"
                 type="text"
                 value={query}
@@ -399,11 +486,11 @@ export default function Home() {
                 autoComplete="off"
               />
               {showSuggestions && suggestions.length > 0 && (
-                <ul className="absolute left-0 right-0 top-full mt-2 z-50 rounded-lg glass-strong overflow-hidden divide-y divide-white/[0.04]">
+                <ul className="absolute left-0 right-0 top-full mt-2 z-50 rounded-lg glass-strong overflow-hidden divide-y divide-white/4">
                   {suggestions.map((s) => (
                     <li
                       key={s.place_id}
-                      className="px-4 py-2.5 cursor-pointer text-sm hover:bg-white/[0.04] truncate text-foreground/85"
+                      className="px-4 py-2.5 cursor-pointer text-sm hover:bg-white/4 truncate text-foreground/85"
                       onMouseDown={() => handleSelect(s)}
                     >
                       {s.display_name}
@@ -431,11 +518,68 @@ export default function Home() {
           <section className="relative flex-1 rounded-2xl overflow-hidden border border-border min-w-0 glass">
             <Map ref={mapCallbackRef}>
               <ChoroplethLayer />
+              {POLLUTION_EVENTS.map((event) => (
+                <MapMarker
+                  key={event.id}
+                  longitude={event.coordinates[0]}
+                  latitude={event.coordinates[1]}
+                  onClick={() => {
+                    setSelectedPollutionId(event.id);
+                    setSelectedWqiStation(null);
+                    setEventsOpen(true);
+                    mapRef.current?.flyTo({ center: event.coordinates, zoom: CLUSTER_MAX_ZOOM + 1, duration: 1200 });
+                  }}
+                >
+                  <MarkerContent>
+                    <div className="relative flex items-center justify-center">
+                      <div
+                        className={`w-5 h-5 rounded-full border-2 border-white shadow-lg ${
+                          event.severity === "High"
+                            ? "bg-red-500"
+                            : event.severity === "Medium"
+                              ? "bg-amber-500"
+                              : "bg-emerald-500"
+                        } ${
+                          event.id === selectedPollutionId
+                            ? "ring-2 ring-white ring-offset-1 ring-offset-transparent scale-125"
+                            : ""
+                        } transition-transform cursor-pointer`}
+                      />
+                      {event.status === "Active" && (
+                        <span
+                          className={`absolute w-5 h-5 rounded-full animate-ping opacity-60 ${
+                            event.severity === "High" ? "bg-red-500" : "bg-amber-500"
+                          }`}
+                        />
+                      )}
+                    </div>
+                  </MarkerContent>
+                  <MarkerTooltip className="min-w-45 bg-background/90! text-foreground! border border-border backdrop-blur-md">
+                    <div className="space-y-1.5">
+                      <div className="font-semibold text-[11px] leading-tight">{event.river} · {event.location}</div>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`h-1.5 w-1.5 rounded-full shrink-0 ${
+                          event.severity === "High" ? "bg-red-400" : event.severity === "Medium" ? "bg-amber-400" : "bg-emerald-400"
+                        }`} />
+                        <span className="text-[10px] text-muted-foreground">{event.severity} · {event.status}</span>
+                        <span className="ml-auto text-[10px] text-muted-foreground">{event.type}</span>
+                      </div>
+                      <div className="border-t border-border/50 pt-1 grid grid-cols-2 gap-x-3 gap-y-0.5 text-[10px]">
+                        <span className="text-muted-foreground">pH</span>
+                        <span className="font-mono tabular-nums">{event.samplingData.ph}</span>
+                        <span className="text-muted-foreground">DO</span>
+                        <span className="font-mono tabular-nums">{event.samplingData.dissolvedOxygen} mg/L</span>
+                        <span className="text-muted-foreground col-span-2 truncate">{event.samplingData.contaminant}</span>
+                      </div>
+                    </div>
+                  </MarkerTooltip>
+                </MapMarker>
+              ))}
             </Map>
 
             {isPredictive && (
               <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 rounded-full glass-strong px-4 py-2 ring-1 ring-cyan-400/40">
-                <Sparkles className="h-3.5 w-3.5 text-[var(--color-cyan)]" />
+                <Sparkles className="h-3.5 w-3.5 text-(--color-cyan)" />
                 <span className="text-[11px] tracking-[0.2em] uppercase text-cyan-200">
                   AI Forecast
                 </span>
@@ -446,6 +590,18 @@ export default function Home() {
               </div>
             )}
 
+            <button
+              onClick={() => setShowWqi((v) => !v)}
+              className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium transition-colors ${
+                showWqi
+                  ? "bg-blue-500/20 ring-1 ring-blue-400/50 text-blue-200 hover:bg-blue-500/30"
+                  : "bg-white/4 ring-1 ring-white/8 text-muted-foreground hover:bg-white/8"
+              }`}
+            >
+              <Droplets className="h-3 w-3" />
+              WQI Stations
+            </button>
+
             <div className="pointer-events-none absolute left-4 bottom-4 z-20 grid grid-cols-3 gap-2">
               <Stat label="Active" value={POLLUTION_EVENTS.filter((e) => e.status === "Active").length} accent="red" />
               <Stat label="Contained" value={POLLUTION_EVENTS.filter((e) => e.status === "Contained").length} accent="amber" />
@@ -455,7 +611,13 @@ export default function Home() {
 
           {eventsOpen ? (
             <aside className="w-[320px] shrink-0 rounded-2xl border border-border glass overflow-hidden flex flex-col">
-              {selectedEvent ? (
+              {selectedWqiStation ? (
+                <WqiDetailPanel
+                  station={selectedWqiStation}
+                  onBack={() => setSelectedWqiStation(null)}
+                  onClose={() => setEventsOpen(false)}
+                />
+              ) : selectedEvent ? (
                 <DetailPanel
                   event={selectedEvent}
                   onBack={() => setSelectedPollutionId(null)}
@@ -484,7 +646,7 @@ export default function Home() {
           ) : (
             <button
               onClick={() => setEventsOpen(true)}
-              className="flex flex-col items-center justify-center gap-2 w-9 rounded-2xl border border-border glass shrink-0 hover:bg-white/[0.04] transition-colors"
+              className="flex flex-col items-center justify-center gap-2 w-9 rounded-2xl border border-border glass shrink-0 hover:bg-white/4 transition-colors"
               aria-label="Show events panel"
             >
               <ChevronLeft className="h-4 w-4 text-muted-foreground" />
@@ -524,7 +686,7 @@ function Stat({ label, value, accent }: { label: string; value: number; accent: 
         ? "bg-amber-400 shadow-[0_0_8px_#f59e0b]"
         : "bg-emerald-400 shadow-[0_0_8px_#10b981]";
   return (
-    <div className="rounded-md glass-strong px-3 py-2 min-w-[88px]">
+    <div className="rounded-md glass-strong px-3 py-2 min-w-22">
       <div className="flex items-center gap-1.5 text-[9px] tracking-[0.18em] uppercase text-muted-foreground">
         <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
         {label}
@@ -553,7 +715,7 @@ function ListPanel({
         </span>
         <button
           onClick={onClose}
-          className="rounded-sm p-1 hover:bg-white/[0.04] transition-colors"
+          className="rounded-sm p-1 hover:bg-white/4 transition-colors"
           aria-label="Hide panel"
         >
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
@@ -593,7 +755,7 @@ function DetailPanel({
   return (
     <>
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <button onClick={onBack} className="rounded-sm p-1 hover:bg-white/[0.04] transition-colors" aria-label="Back">
+        <button onClick={onBack} className="rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Back">
           <ArrowLeft className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
         <span className="font-medium text-[13px] tracking-tight truncate">{event.river}</span>
@@ -602,7 +764,7 @@ function DetailPanel({
         }`}>
           {event.severity}
         </span>
-        <button onClick={onClose} className="rounded-sm p-1 hover:bg-white/[0.04] transition-colors" aria-label="Hide">
+        <button onClick={onClose} className="rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Hide">
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
@@ -634,9 +796,9 @@ function DetailPanel({
           </div>
         </div>
 
-        <div className="rounded-lg border border-cyan-400/20 bg-cyan-400/[0.03] p-3">
+        <div className="rounded-lg border border-cyan-400/20 bg-cyan-400/3 p-3">
           <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--color-cyan)]" />
+            <Sparkles className="h-3.5 w-3.5 text-(--color-cyan)" />
             <span className="text-[11px] tracking-[0.18em] uppercase text-cyan-200">
               Neural Anomaly Detection
             </span>
@@ -700,7 +862,7 @@ function BigMetric({ icon, label, value, unit, tight }: {
   icon: React.ReactNode; label: string; value: string; unit?: string; tight?: boolean;
 }) {
   return (
-    <div className="rounded-lg bg-white/[0.02] ring-1 ring-white/[0.04] p-2.5">
+    <div className="rounded-lg bg-white/2 ring-1 ring-white/4 p-2.5">
       <div className="flex items-center gap-1.5 text-muted-foreground">
         {icon}
         <span className="text-[10px] tracking-[0.14em] uppercase">{label}</span>
@@ -715,4 +877,128 @@ function BigMetric({ icon, label, value, unit, tight }: {
 
 function fmtMonth(d: Date): string {
   return d.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+}
+
+function WqiMetric({ label, value, accent }: { label: string; value: number; accent?: boolean }) {
+  return (
+    <div className={`rounded-lg p-2.5 text-center ${accent ? "bg-blue-500/10 ring-1 ring-blue-400/30" : "bg-white/2 ring-1 ring-white/4"}`}>
+      <div className="text-[9px] tracking-[0.14em] uppercase text-muted-foreground">{label}</div>
+      <div className={`mt-0.5 text-base font-bold tabular-nums ${accent ? "text-blue-200" : "text-foreground/90"}`}>{value}</div>
+    </div>
+  );
+}
+
+function WqiDetailPanel({
+  station,
+  onBack,
+  onClose,
+}: {
+  station: WqiFeature;
+  onBack: () => void;
+  onClose: () => void;
+}) {
+  const riskColor = {
+    clean: "text-emerald-300",
+    moderate: "text-amber-300",
+    high: "text-red-300",
+    critical: "text-red-400",
+  }[station.risk_level] ?? "text-foreground";
+
+  return (
+    <>
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
+        <button onClick={onBack} className="rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Back">
+          <ArrowLeft className="h-3.5 w-3.5 text-muted-foreground" />
+        </button>
+        <Droplets className="h-3.5 w-3.5 text-blue-400" />
+        <span className="font-medium text-[13px] tracking-tight truncate">{station.name}</span>
+        <button onClick={onClose} className="ml-auto rounded-sm p-1 hover:bg-white/4 transition-colors" aria-label="Hide">
+          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
+        </button>
+      </div>
+
+      <div className="flex flex-col gap-4 p-4 overflow-y-auto flex-1">
+        <div className="flex items-center gap-2 flex-wrap text-[11px]">
+          <MapPin className="h-3 w-3 text-muted-foreground" />
+          <span className="text-muted-foreground">{station.country}</span>
+          <span className="text-muted-foreground">·</span>
+          <span className="text-muted-foreground capitalize">{station.water_body_type}</span>
+          {station.data_source === "real" && (
+            <span className="ml-auto px-2 py-0.5 rounded-full text-[10px] tracking-wider uppercase ring-1 bg-cyan-500/10 ring-cyan-500/30 text-cyan-300">
+              Real data
+            </span>
+          )}
+        </div>
+
+        <div>
+          <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Water Quality Index</div>
+          <div className="grid grid-cols-3 gap-2">
+            <WqiMetric label="Current" value={Math.round(station.wqi_current)} accent />
+            <WqiMetric label="7d forecast" value={Math.round(station.wqi_predicted_7d)} />
+            <WqiMetric label="30d forecast" value={Math.round(station.wqi_predicted_30d)} />
+          </div>
+          <div className="mt-2 text-[10px] text-muted-foreground">
+            30d range: {Math.round(station.wqi_lower_30d)} – {Math.round(station.wqi_upper_30d)}
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between rounded-lg bg-white/2 ring-1 ring-white/4 p-3">
+          <div>
+            <div className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground">Risk Level</div>
+            <div className={`mt-0.5 text-sm font-semibold capitalize ${riskColor}`}>{station.risk_level}</div>
+          </div>
+          <div className="text-right">
+            <div className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground">Trend</div>
+            <div className={`mt-0.5 text-sm font-semibold flex items-center gap-1 justify-end ${
+              station.trend === "worsening" ? "text-red-300" :
+              station.trend === "improving" ? "text-emerald-300" : "text-muted-foreground"
+            }`}>
+              {station.trend === "worsening" ? <TrendingDown className="h-3.5 w-3.5" /> :
+               station.trend === "improving" ? <TrendingUp className="h-3.5 w-3.5" /> :
+               <Minus className="h-3.5 w-3.5" />}
+              <span className="capitalize">{station.trend}</span>
+              {station.trend_pct_change !== 0 && (
+                <span className="text-[10px] font-normal text-muted-foreground ml-0.5">
+                  ({station.trend_pct_change > 0 ? "+" : ""}{station.trend_pct_change.toFixed(1)}%)
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {(station.metrics.temperature_c != null || station.metrics.ph != null ||
+          station.metrics.oxygen_mg_l != null || station.metrics.turbidity_ntu != null) && (
+          <div>
+            <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Sensor Readings</div>
+            <div className="grid grid-cols-2 gap-2">
+              {station.metrics.temperature_c != null && (
+                <BigMetric icon={<Gauge className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Temp" value={station.metrics.temperature_c.toFixed(1)} unit="°C" />
+              )}
+              {station.metrics.ph != null && (
+                <BigMetric icon={<Activity className="h-3.5 w-3.5" strokeWidth={1.5} />} label="pH" value={station.metrics.ph.toFixed(2)} />
+              )}
+              {station.metrics.oxygen_mg_l != null && (
+                <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Dissolved O₂" value={station.metrics.oxygen_mg_l.toFixed(1)} unit="mg/L" />
+              )}
+              {station.metrics.turbidity_ntu != null && (
+                <BigMetric icon={<AlertTriangle className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Turbidity" value={station.metrics.turbidity_ntu.toFixed(1)} unit="NTU" />
+              )}
+            </div>
+          </div>
+        )}
+
+        {station.anomaly_count_30d != null && (
+          <div className="rounded-lg border border-amber-400/20 bg-amber-400/3 p-3">
+            <div className="text-[10px] tracking-[0.18em] uppercase text-amber-200 mb-1">Anomaly Count (30d)</div>
+            <div className="text-2xl font-bold tabular-nums text-amber-300">{station.anomaly_count_30d}</div>
+            <div className="text-[11px] text-muted-foreground mt-1">Detected by XGBoost model</div>
+          </div>
+        )}
+
+        <div className="text-[10px] text-muted-foreground text-right">
+          Updated: {new Date(station.last_updated).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+        </div>
+      </div>
+    </>
+  );
 }

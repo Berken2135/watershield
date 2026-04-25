@@ -21,10 +21,13 @@ class WaterQualityRequest(BaseModel):
 
 
 def _bbox_from_geometry(geometry: dict) -> dict:
-    """Extract spatial_extent dict from a GeoJSON polygon for openEO."""
-    coords = geometry["coordinates"][0]
-    lons = [c[0] for c in coords]
-    lats = [c[1] for c in coords]
+    """Extract spatial_extent dict from a GeoJSON Polygon or MultiPolygon for openEO."""
+    if geometry["type"] == "MultiPolygon":
+        all_coords = [c for poly in geometry["coordinates"] for ring in poly for c in ring]
+    else:
+        all_coords = geometry["coordinates"][0]
+    lons = [c[0] for c in all_coords]
+    lats = [c[1] for c in all_coords]
     return {
         "west": min(lons),
         "south": min(lats),
@@ -95,7 +98,9 @@ def _parse_openeo_timeseries(raw: dict, band_order: list[str]) -> list[dict]:
                 values = values[0]
             band_vals = {band_order[i]: float(values[i]) for i in range(len(band_order))}
             rows.append({"date": timestamp[:10], "bands": band_vals})
-        except Exception:
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).warning("Skipping timestamp %s: %s", timestamp, e)
             continue
     rows.sort(key=lambda r: r["date"])
     return rows

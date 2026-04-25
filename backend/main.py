@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, search, analysis, reports
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from routers import auth, search, analysis, reports, data
 
 app = FastAPI(
     title="WaterShield API",
@@ -20,6 +24,7 @@ app.include_router(auth.router,     prefix="/api/auth",     tags=["auth"])
 app.include_router(search.router,   prefix="/api/search",   tags=["search"])
 app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
 app.include_router(reports.router,  prefix="/api/reports",  tags=["reports"])
+app.include_router(data.router,     prefix="/api/data",     tags=["data"])
 
 
 @app.get("/health")
@@ -39,6 +44,13 @@ def list_endpoints():
             "POST /api/analysis/anomaly",
         ],
         "reports":  ["POST /api/reports/generate"],
+        "data": [
+            "GET /api/data/europe",
+            "GET /api/data/wroclaw",
+            "GET /api/data/summary",
+            "GET /api/data/forecast",
+            "GET /api/data/forecast-metrics",
+        ],
     }
 
 
