@@ -2,6 +2,7 @@ import { Activity, AlertTriangle, ArrowLeft, CalendarDays, Gauge, MapPin, Shield
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { POLLUTION_EVENTS, SEVERITY_BADGE, STATUS_BADGE } from "../../../lib/pollution-data";
+import AlertActions from "../../../components/alert-actions";
 
 export function generateStaticParams() {
   return POLLUTION_EVENTS.map((e) => ({ id: e.id }));
@@ -186,6 +187,8 @@ export default async function PollutionDetailPage({ params }: Props) {
               : "Low environmental impact. Situation under observation."}
           </p>
         </section>
+
+        <AlertActions event={event} />
 
         <p className="text-xs text-muted-foreground text-center pb-4">
           Data is mocked for demonstration purposes.

@@ -30,9 +30,11 @@ import {
   Fingerprint,
   Gauge,
   Loader2,
+  LocateFixed,
   MapPin,
   Minus,
   Search,
+  Sparkles,
   TrendingDown,
   TrendingUp,
   Waves,
@@ -143,6 +145,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<NominatimResult[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchAnchor, setSearchAnchor] = useState<[number, number] | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -430,12 +433,28 @@ export default function Home() {
     debounceRef.current = setTimeout(() => fetchSuggestions(value), 300);
   };
   const handleSelect = (r: NominatimResult) => {
+    const lat = parseFloat(r.lat);
+    const lon = parseFloat(r.lon);
     setQuery(r.display_name);
     setShowSuggestions(false);
     setSuggestions([]);
-    mapRef.current?.flyTo({ center: [parseFloat(r.lon), parseFloat(r.lat)], zoom: 10, duration: 1500 });
+    setSearchAnchor([lon, lat]);
+    mapRef.current?.flyTo({ center: [lon, lat], zoom: 10, duration: 1500 });
   };
   const handleSearch = () => { if (suggestions.length > 0) handleSelect(suggestions[0]); };
+
+  const handleGeolocate = () => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const c: [number, number] = [pos.coords.longitude, pos.coords.latitude];
+        setSearchAnchor(c);
+        mapRef.current?.flyTo({ center: c, zoom: 10, duration: 1500 });
+      },
+      () => {},
+      { enableHighAccuracy: true, timeout: 8000 },
+    );
+  };
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -494,7 +513,7 @@ export default function Home() {
             <div className="relative flex-1" ref={containerRef}>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground z-10" />
               <Input
-                className="pl-9 h-9 bg-foreground/[0.02] border-foreground/[0.06] focus-visible:ring-primary/30 focus-visible:border-primary/40 placeholder:text-muted-foreground/60 text-sm"
+                className="pl-9 pr-10 h-9 bg-foreground/[0.02] border-foreground/[0.06] focus-visible:ring-primary/30 focus-visible:border-primary/40 placeholder:text-muted-foreground/60 text-sm"
                 placeholder="Search location"
                 type="text"
                 value={query}
@@ -506,6 +525,15 @@ export default function Home() {
                 onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
                 autoComplete="off"
               />
+              <button
+                type="button"
+                onClick={handleGeolocate}
+                className="absolute right-2 top-1/2 -translate-y-1/2 grid place-items-center h-7 w-7 rounded-md text-muted-foreground hover:text-primary hover:bg-foreground/[0.05] transition-colors"
+                aria-label="Find my location"
+                title="Find my location"
+              >
+                <LocateFixed className="h-3.5 w-3.5" />
+              </button>
               {showSuggestions && suggestions.length > 0 && (
                 <ul className="absolute left-0 right-0 top-full mt-2 z-50 rounded-lg overflow-hidden border border-border bg-background shadow-2xl divide-y divide-border/60">
                   {suggestions.map((s) => (
@@ -537,7 +565,7 @@ export default function Home() {
 
         <main className="relative flex flex-1 min-h-0 gap-4 px-4 pt-4 pb-3">
           <section className="relative flex-1 rounded-2xl overflow-hidden border border-border min-w-0 glass">
-            <Map ref={mapCallbackRef}>
+            <Map ref={mapCallbackRef} center={[10, 50]} zoom={3.6} maxBounds={[[-25, 33], [45, 72]]}>
               <ChoroplethLayer />
               {events.map((event) => (
                 <MapMarker
@@ -628,6 +656,7 @@ export default function Home() {
               ) : (
                 <ListPanel
                   events={events}
+                  anchor={searchAnchor}
                   selectedId={selectedPollutionId}
                   onSelect={(id) => {
                     setSelectedPollutionId(id);
@@ -695,15 +724,26 @@ function Stat({ label, value, accent }: { label: string; value: number; accent: 
 
 function ListPanel({
   events,
+  anchor,
   selectedId,
   onSelect,
   onClose,
 }: {
   events: PollutionEvent[];
+  anchor: [number, number] | null;
   selectedId: string | null;
   onSelect: (id: string) => void;
   onClose: () => void;
 }) {
+  const sorted = useMemo(() => {
+    if (!anchor) return events;
+    const [ax, ay] = anchor;
+    return [...events].sort((a, b) => {
+      const da = (a.coordinates[0] - ax) ** 2 + (a.coordinates[1] - ay) ** 2;
+      const db = (b.coordinates[0] - ax) ** 2 + (b.coordinates[1] - ay) ** 2;
+      return da - db;
+    });
+  }, [events, anchor]);
   return (
     <>
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
@@ -721,7 +761,7 @@ function ListPanel({
         </button>
       </div>
       <ul className="flex flex-col gap-2 p-3 overflow-y-auto flex-1">
-        {events.map((event) => (
+        {sorted.map((event) => (
           <li key={event.id}>
             <StationCard
               event={event}

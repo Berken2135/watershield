@@ -3,8 +3,10 @@
 import Sidebar from "@/components/sidebar";
 import StationCard from "@/components/station-card";
 import { POLLUTION_EVENTS } from "@/lib/pollution-data";
+import { useRouter } from "next/navigation";
 
 export default function AlertsPage() {
+  const router = useRouter();
   const active = POLLUTION_EVENTS.filter((e) => e.status === "Active");
 
   return (
@@ -20,7 +22,11 @@ export default function AlertsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {active.map((event) => (
-              <StationCard key={event.id} event={event} />
+              <StationCard
+                key={event.id}
+                event={event}
+                onClick={() => router.push(`/pollution/${event.id}`)}
+              />
             ))}
           </div>
         </div>
