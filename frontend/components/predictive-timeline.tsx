@@ -21,7 +21,7 @@
  * `onChange`. `nowDate` lets you mock "the present" (defaults to today).
  */
 
-import { getSightingPhotoUrl, type Sighting } from "@/lib/api";
+import { type Sighting } from "@/lib/api";
 import { RIVER_BADGES } from "@/components/river-badge";
 import { Sparkles } from "lucide-react";
 import {
@@ -249,15 +249,7 @@ export default function PredictiveTimeline({
               </div>
               {/* Tooltip */}
               {hoveredChip?.id === s.id && (
-                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 w-36 rounded-xl glass-strong ring-1 ring-cyan-400/20 p-2 shadow-2xl">
-                  <div className="w-full aspect-video rounded-md overflow-hidden bg-foreground/10 mb-1.5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={getSightingPhotoUrl(s.photoFilename)}
-                      alt={s.displayName}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 w-28 rounded-xl glass-strong ring-1 ring-cyan-400/20 px-2 py-1.5 shadow-2xl">
                   <div className="text-[10px] font-semibold text-foreground truncate">{s.displayName}</div>
                   <div className="text-[9px] text-muted-foreground">
                     {river?.emoji} {river?.name ?? s.riverId}
