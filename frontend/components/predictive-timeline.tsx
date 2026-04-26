@@ -81,10 +81,6 @@ export default function PredictiveTimeline({
   const confidence = predictionConfidence(monthsAfterNow);
 
   // True when the scrubber sits within ±1 day of "now" — used to decide
-  // whether the "Now" button is highlighted/disabled.
-  const isAtNow =
-    Math.abs(value.getTime() - nowDate.getTime()) < MS_PER_DAY;
-
   const jumpToNow = useCallback(() => {
     onChange(new Date(nowDate.getTime()));
   }, [nowDate, onChange]);
@@ -151,32 +147,11 @@ export default function PredictiveTimeline({
       role="group"
       aria-label="Predictive timeline"
     >
-      {/* Header strip — date + "Now" jump-back */}
+      {/* Header strip — selected date only. Jump-to-today is the green dot above the NOW marker. */}
       <div className="flex items-center justify-between mb-4 px-1">
         <span className="text-xs text-foreground/80 font-mono">
           {fmtDate(value)}
         </span>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={jumpToNow}
-            disabled={isAtNow}
-            aria-label="Jump to today"
-            title="Jump to today"
-            className={`text-[10px] tracking-[0.18em] uppercase font-mono px-2 py-0.5 rounded-md border transition-all ${
-              isAtNow
-                ? "border-emerald-400/30 text-emerald-500/60 dark:text-emerald-300/60 cursor-default"
-                : "border-emerald-400/50 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-400/10 hover:border-emerald-400/80 hover:shadow-[0_0_10px_rgba(16,185,129,0.35)] cursor-pointer"
-            }`}
-          >
-            ● Now
-          </button>
-          {isPredictive && (
-            <span className="text-[10px] tracking-[0.18em] uppercase text-primary/70 font-mono">
-              +{confidence}%
-            </span>
-          )}
-        </div>
       </div>
 
       {/* Track */}
