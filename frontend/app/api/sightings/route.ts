@@ -5,6 +5,8 @@
  * Prod (BLOB_READ_WRITE_TOKEN set): reads from Vercel Blob.
  */
 
+export const dynamic = "force-dynamic";
+
 import { NextRequest, NextResponse } from "next/server";
 
 const BACKEND_URL =
@@ -49,7 +51,7 @@ export async function GET(request: NextRequest) {
     await Promise.all(
       blobs.map(async (blob) => {
         try {
-          const res = await fetch(blob.url, { next: { revalidate: 30 } });
+          const res = await fetch(blob.url, { cache: "no-store" });
           if (!res.ok) return null;
           return (await res.json()) as Sighting;
         } catch {

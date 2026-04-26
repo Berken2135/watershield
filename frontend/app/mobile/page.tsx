@@ -33,7 +33,15 @@ export default function MobilePage() {
 
   const applyData = (meData: MobileMeResponse, sightingsData: Sighting[]) => {
     setMe(meData);
-    setUserSightings(sightingsData.filter((s) => s.userId === meData.user.id));
+    // Match by userId when available; fall back to username in case the
+    // backend URL was unreachable during upload and userId was stored as null.
+    setUserSightings(
+      sightingsData.filter(
+        (s) =>
+          s.userId === meData.user.id ||
+          (s.username != null && s.username === meData.user.username),
+      ),
+    );
   };
 
   useEffect(() => {
