@@ -37,7 +37,13 @@ Water pollution monitoring platform powered by Sentinel-2 satellite data (Copern
 ## 👥 Team
 
 - **Berken Taylan Gedik** — Data Science / Satellite Engineer
-- (diğer ekip üyelerinin adlarını ekleyeceksin)
+- **Tomasz Terpiłowski - Team Lead & Business Development
+- ** Paweł Lizner - Satellite Technology Lead
+- ** Bartosz Jasak - Chief Data Scientist
+- **Ivan Alipov - UI and UX Creative
+- ** Boran Gedik - Backend & API Lead
+
+
 
 ---
 
