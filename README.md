@@ -1,7 +1,58 @@
 # WaterShield — Quick Start Guide
 
 Water pollution monitoring platform powered by Sentinel-2 satellite data (Copernicus / openEO).
+# 🌊 WaterShield
 
+> Real-time water pollution detection & forecasting for 102 European rivers using satellite data and machine learning.
+
+**Built at CASSINI Hackathon 2026 — Wrocław, Poland** 🇵🇱
+
+🔗 **Live Demo:** [watershield.vercel.app](https://watershield.vercel.app)
+
+---
+
+## 🎯 What it does
+
+- 🛰️ **Real-time pollution detection** from Sentinel-2 satellite imagery via Copernicus openEO
+- 📈 **WQI forecasting** 7–30 days ahead using XGBoost (RMSE: 11.9)
+- 🚨 **Anomaly detection** on live sensor data using IsolationForest
+- 🗺️ **102 European rivers** across 32 countries on an interactive map
+- 📍 **Real sensor integration** with Wrocław's Odra river (Waterly buoy + MPWiK)
+- 📱 **Citizen science** via QR codes for ground-truth pollution sightings
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+|-------|--------------|
+| **Frontend** | Next.js 16, MapLibre GL, shadcn/ui, TypeScript |
+| **Backend** | FastAPI, Python 3.12, openEO, Copernicus Data Space |
+| **Data Science** | pandas, scikit-learn, XGBoost, Prophet, IsolationForest |
+| **Data Sources** | Sentinel-2 L2A, Copernicus ERA5, ECMWF, EUMETSAT H-SAF, MPWiK, Waterly |
+| **Deployment** | Vercel (frontend), Render (backend) |
+
+---
+
+## 👥 Team
+
+- **Berken Taylan Gedik** — Data Science / Satellite Engineer
+- (diğer ekip üyelerinin adlarını ekleyeceksin)
+
+---
+
+## 📊 Key Stats
+
+- **102** European rivers monitored
+- **32** countries covered
+- **278,894** real sensor measurements (MPWiK Oława river)
+- **16,620** Waterly buoy readings (Wrocław Odra)
+- **28 months** of historical data (Jan 2024 – Apr 2026)
+- **6 satellite bands** processed for water quality indices
+
+---
+
+## 🚀 Quick Start
 ---
 
 ## Prerequisites
