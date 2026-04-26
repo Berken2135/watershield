@@ -31,7 +31,9 @@ export async function GET(request: NextRequest) {
   }
 
   // ── Production: list from Vercel Blob ────────────────────────────────────
-  const { blobs } = await list({ prefix: "sightings/photos/" });
+  // Each sighting is stored as a JSON sidecar at sightings/meta/{id}.json
+  // alongside its photo at sightings/photos/{id}.{ext}.
+  const { blobs } = await list({ prefix: "sightings/meta/" });
 
   type Sighting = {
     id: string;
@@ -43,29 +45,25 @@ export async function GET(request: NextRequest) {
     username: string | null;
   };
 
-  let sightings: Sighting[] = blobs.map((blob) => {
-    const meta = (blob as { metadata?: Record<string, string> }).metadata ?? {};
-    const id = blob.pathname
-      .replace("sightings/photos/", "")
-      .replace(/\.[^.]+$/, "");
-    return {
-      id,
-      riverId: meta.riverId ?? "unknown",
-      displayName: meta.displayName ?? "Anonymous",
-      // Store the full Vercel Blob URL as photoFilename so getSightingPhotoUrl
-      // can detect and return it directly (no prefix needed).
-      photoFilename: blob.url,
-      timestamp: meta.timestamp ?? blob.uploadedAt.toISOString(),
-      userId: meta.userId || null,
-      username: meta.username || null,
-    };
-  });
+  const sightings: Sighting[] = (
+    await Promise.all(
+      blobs.map(async (blob) => {
+        try {
+          const res = await fetch(blob.url, { next: { revalidate: 30 } });
+          if (!res.ok) return null;
+          return (await res.json()) as Sighting;
+        } catch {
+          return null;
+        }
+      }),
+    )
+  ).filter((s): s is Sighting => s !== null);
 
-  if (riverId) {
-    sightings = sightings.filter((s) => s.riverId === riverId);
-  }
+  const filtered = riverId
+    ? sightings.filter((s) => s.riverId === riverId)
+    : sightings;
 
-  sightings.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+  filtered.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
 
-  return NextResponse.json(sightings);
+  return NextResponse.json(filtered);
 }

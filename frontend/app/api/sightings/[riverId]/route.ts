@@ -127,28 +127,33 @@ export async function POST(
 
   const id = crypto.randomUUID();
   const ext = photo.type === "image/jpeg" ? "jpg" : photo.type.split("/")[1];
-  const pathname = `sightings/photos/${id}.${ext}`;
   const timestamp = new Date().toISOString();
   const safeDisplayName = displayName.slice(0, 80);
 
-  // Vercel Blob metadata: string key→value pairs, max ~1 KB total
-  const blob = await put(pathname, photo, {
+  // Upload the photo to Vercel Blob
+  const photoBlob = await put(`sightings/photos/${id}.${ext}`, photo, {
     access: "public",
     addRandomSuffix: false,
+    contentType: photo.type,
   });
 
-  return NextResponse.json(
-    {
-      id,
-      riverId,
-      displayName: safeDisplayName,
-      // Store the CDN URL as photoFilename so getSightingPhotoUrl() can detect
-      // it as a full URL and return it directly (no /static/sightings/ prefix).
-      photoFilename: blob.url,
-      timestamp,
-      userId,
-      username,
-    },
-    { status: 201 },
-  );
+  // Store sighting metadata as a JSON sidecar blob so GET /api/sightings can
+  // reconstruct the full record from list() + fetch() without needing a database.
+  const sightingRecord = {
+    id,
+    riverId,
+    displayName: safeDisplayName,
+    photoFilename: photoBlob.url,
+    timestamp,
+    userId,
+    username,
+  };
+
+  await put(`sightings/meta/${id}.json`, JSON.stringify(sightingRecord), {
+    access: "public",
+    addRandomSuffix: false,
+    contentType: "application/json",
+  });
+
+  return NextResponse.json(sightingRecord, { status: 201 });
 }
