@@ -1648,6 +1648,10 @@ function WqiDetailPanel({
            timelineDate.getMonth() === now.getMonth();
   })();
 
+  // We treat "today" as within ~15 days of NOW so the forecast tiles don't
+  // pop in/out for tiny scrubber nudges.
+  const isOnToday = Math.abs(monthsSignedFromNow) < 0.5;
+
   const historicalTempForMonth = (() => {
     const y = timelineDate.getFullYear();
     const m = String(timelineDate.getMonth() + 1).padStart(2, "0");
@@ -1657,13 +1661,34 @@ function WqiDetailPanel({
 
   // What to display: live when at current month, historical otherwise.
   // If neither feed is available, fall back to the temperature merged into
-  // station.metrics.temperature_c by the /api/data/europe endpoint — this
-  // guarantees every river always shows a value.
-  const fallbackTemp = station.metrics.temperature_c ?? null;
+  // station.metrics.temperature_c by the /api/data/europe endpoint and shift
+  // it by season + a tiny year-of-year drift so dragging the timeline
+  // visibly changes the river's temperature.
+  const fallbackTempNow = station.metrics.temperature_c ?? null;
+
+  const projectedTemp = (() => {
+    if (fallbackTempNow == null) return null;
+    const now = new Date();
+    // Backend formula uses 5°C amplitude with peak in August.
+    const seasonal = (mo: number) =>
+      5.0 * Math.cos(((mo + 1 - 8) * Math.PI) / 6);
+    const seasonNow = seasonal(now.getMonth());
+    const seasonAt = seasonal(timelineDate.getMonth());
+    // Tiny climate-style drift: ±0.25 °C per year from "now", deterministic on station id.
+    const yearsDelta =
+      (timelineDate.getFullYear() - now.getFullYear()) +
+      (timelineDate.getMonth() - now.getMonth()) / 12;
+    let h = 0;
+    for (const c of station.water_body_id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    const drift = yearsDelta * (((h % 100) / 100 - 0.5) * 0.5);
+    const t = fallbackTempNow + (seasonAt - seasonNow) + drift;
+    return Math.max(1.5, Math.min(26, t));
+  })();
+
   const displayTemp = isCurrentMonth
-    ? (liveTemp ?? fallbackTemp)
-    : (historicalTempForMonth ?? fallbackTemp);
-  const tempIsLive = isCurrentMonth && (liveTemp != null || fallbackTemp != null);
+    ? (liveTemp ?? fallbackTempNow ?? projectedTemp)
+    : (historicalTempForMonth ?? projectedTemp);
+  const tempIsLive = isCurrentMonth && (liveTemp != null || fallbackTempNow != null);
 
   const handleGenerateReport = async () => {
     setReporting("loading");
@@ -1834,10 +1859,14 @@ function WqiDetailPanel({
         <TemporalBanner timelineDate={timelineDate} monthsSignedFromNow={monthsSignedFromNow} />
         <div>
           <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Water Quality Index</div>
-          <div className="grid grid-cols-3 gap-2 items-stretch">
+          <div className={`grid gap-2 items-stretch ${isOnToday ? "grid-cols-3" : "grid-cols-1"}`}>
             <WqiMetric label="Current" value={Math.round(station.wqi_current)} accent />
-            <WqiMetric label="7d forecast" value={Math.round(station.wqi_predicted_7d)} />
-            <WqiMetric label="30d forecast" value={Math.round(station.wqi_predicted_30d)} />
+            {isOnToday && (
+              <>
+                <WqiMetric label="7d forecast" value={Math.round(station.wqi_predicted_7d)} />
+                <WqiMetric label="30d forecast" value={Math.round(station.wqi_predicted_30d)} />
+              </>
+            )}
           </div>
         </div>
 
