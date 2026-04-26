@@ -135,13 +135,6 @@ export async function POST(
   const blob = await put(pathname, photo, {
     access: "public",
     addRandomSuffix: false,
-    metadata: {
-      riverId,
-      displayName: safeDisplayName,
-      timestamp,
-      userId: userId ?? "",
-      username: username ?? "",
-    },
   });
 
   return NextResponse.json(
