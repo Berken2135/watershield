@@ -52,13 +52,28 @@ export default function MobilePage() {
       setLoading(false);
       return;
     }
-    Promise.all([getMobileMe(t), getSightings()])
-      .then(([meData, sightingsData]) => applyData(meData, sightingsData))
-      .catch(() => {
+
+    // Run both requests independently so a backend outage never logs the user out.
+    // getMobileMe hitting the Python backend can fail on mobile networks — in that
+    // case we fall back to the locally-stored user object and still show the profile.
+    const localUser = getMobileUser();
+
+    Promise.allSettled([getMobileMe(t), getSightings()]).then(([meResult, sightingsResult]) => {
+      const sightingsData = sightingsResult.status === "fulfilled" ? sightingsResult.value : [];
+
+      if (meResult.status === "fulfilled") {
+        applyData(meResult.value, sightingsData);
+      } else if (localUser) {
+        // Backend unreachable but we have a cached user — build a minimal MobileMeResponse
+        // so the profile renders. Counts come from blob sightings anyway.
+        const fallbackMe: MobileMeResponse = { user: localUser, badges: [], sightingCount: 0 };
+        applyData(fallbackMe, sightingsData);
+      } else {
+        // No local data at all — token is invalid, clear and show login.
         clearMobileSession();
         setToken(null);
-      })
-      .finally(() => setLoading(false));
+      }
+    }).finally(() => setLoading(false));
   }, []);
 
   const handleLogout = () => {
