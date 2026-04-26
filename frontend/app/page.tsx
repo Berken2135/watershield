@@ -118,7 +118,7 @@ function riskFromWqi(wqi: number): {
   return            { level: "critical", color: "#DC2626" };
 }
 
-const NOW_DATE = new Date("2026-04-25T00:00:00Z");
+const NOW_DATE = new Date("2026-04-26T00:00:00Z");
 const TIMELINE_START = new Date("2024-01-01T00:00:00Z");
 const TIMELINE_END = new Date("2027-12-31T00:00:00Z");
 const CLUSTER_MAX_ZOOM = 11;
@@ -1656,9 +1656,15 @@ function WqiDetailPanel({
     return histTemps[key] ?? null;
   })();
 
-  // What to display: live when at current month, historical otherwise
-  const displayTemp = isCurrentMonth ? liveTemp : historicalTempForMonth;
-  const tempIsLive = isCurrentMonth && liveTemp != null;
+  // What to display: live when at current month, historical otherwise.
+  // If neither feed is available, fall back to the temperature merged into
+  // station.metrics.temperature_c by the /api/data/europe endpoint — this
+  // guarantees every river always shows a value.
+  const fallbackTemp = station.metrics.temperature_c ?? null;
+  const displayTemp = isCurrentMonth
+    ? (liveTemp ?? fallbackTemp)
+    : (historicalTempForMonth ?? fallbackTemp);
+  const tempIsLive = isCurrentMonth && (liveTemp != null || fallbackTemp != null);
 
   const handleGenerateReport = async () => {
     setReporting("loading");

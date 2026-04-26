@@ -60,7 +60,7 @@ export type PredictiveTimelineProps = {
 
 const DEFAULT_START = new Date("2024-01-01T00:00:00Z");
 const DEFAULT_END = new Date("2027-12-31T00:00:00Z");
-const DEFAULT_NOW = new Date("2026-04-25T00:00:00Z");
+const DEFAULT_NOW = new Date("2026-04-26T00:00:00Z");
 
 export default function PredictiveTimeline({
   start = DEFAULT_START,
@@ -85,6 +85,15 @@ export default function PredictiveTimeline({
     (value.getTime() - nowDate.getTime()) / (MS_PER_DAY * 30.4375),
   );
   const confidence = predictionConfidence(monthsAfterNow);
+
+  // True when the scrubber sits within ±1 day of "now" — used to decide
+  // whether the "Now" button is highlighted/disabled.
+  const isAtNow =
+    Math.abs(value.getTime() - nowDate.getTime()) < MS_PER_DAY;
+
+  const jumpToNow = useCallback(() => {
+    onChange(new Date(nowDate.getTime()));
+  }, [nowDate, onChange]);
 
   // ---------- ticks ----------
   const ticks = useMemo(() => {
@@ -148,16 +157,32 @@ export default function PredictiveTimeline({
       role="group"
       aria-label="Predictive timeline"
     >
-      {/* Header strip — date only */}
+      {/* Header strip — date + "Now" jump-back */}
       <div className="flex items-center justify-between mb-4 px-1">
         <span className="text-xs text-foreground/80 font-mono">
           {fmtDate(value)}
         </span>
-        {isPredictive && (
-          <span className="text-[10px] tracking-[0.18em] uppercase text-primary/70 font-mono">
-            +{confidence}%
-          </span>
-        )}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={jumpToNow}
+            disabled={isAtNow}
+            aria-label="Jump to today"
+            title="Jump to today"
+            className={`text-[10px] tracking-[0.18em] uppercase font-mono px-2 py-0.5 rounded-md border transition-all ${
+              isAtNow
+                ? "border-emerald-400/30 text-emerald-500/60 dark:text-emerald-300/60 cursor-default"
+                : "border-emerald-400/50 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-400/10 hover:border-emerald-400/80 hover:shadow-[0_0_10px_rgba(16,185,129,0.35)] cursor-pointer"
+            }`}
+          >
+            ● Now
+          </button>
+          {isPredictive && (
+            <span className="text-[10px] tracking-[0.18em] uppercase text-primary/70 font-mono">
+              +{confidence}%
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Track */}
@@ -210,14 +235,24 @@ export default function PredictiveTimeline({
 
         {/* "NOW" anchor */}
         <div
-          className="pointer-events-none absolute top-0 bottom-0 -translate-x-1/2"
+          className="absolute top-0 bottom-0 -translate-x-1/2"
           style={{ left: `${nowPct}%` }}
         >
-          <div className="h-full w-px bg-gradient-to-b from-transparent via-emerald-400/60 to-transparent" />
-          <div className="absolute -top-2 left-1/2 -translate-x-1/2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981] block" />
-          </div>
-          <span className="absolute top-full mt-3 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.18em] uppercase text-emerald-600/80 dark:text-emerald-300/80">
+          <div className="pointer-events-none h-full w-px bg-gradient-to-b from-transparent via-emerald-400/60 to-transparent" />
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              jumpToNow();
+            }}
+            onPointerDown={(e) => e.stopPropagation()}
+            aria-label="Jump to today"
+            title="Jump to today"
+            className="absolute -top-3 left-1/2 -translate-x-1/2 p-1 rounded-full hover:bg-emerald-400/10 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50"
+          >
+            <span className="block h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981] hover:scale-125 transition-transform" />
+          </button>
+          <span className="pointer-events-none absolute top-full mt-3 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.18em] uppercase text-emerald-600/80 dark:text-emerald-300/80">
             now
           </span>
         </div>

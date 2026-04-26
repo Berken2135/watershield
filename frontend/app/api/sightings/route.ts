@@ -5,7 +5,6 @@
  * Prod (BLOB_READ_WRITE_TOKEN set): reads from Vercel Blob.
  */
 
-import { list } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
 
 const BACKEND_URL =
@@ -33,6 +32,7 @@ export async function GET(request: NextRequest) {
   // ── Production: list from Vercel Blob ────────────────────────────────────
   // Each sighting is stored as a JSON sidecar at sightings/meta/{id}.json
   // alongside its photo at sightings/photos/{id}.{ext}.
+  const { list } = await import("@vercel/blob");
   const { blobs } = await list({ prefix: "sightings/meta/" });
 
   type Sighting = {
