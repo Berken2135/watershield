@@ -1,9 +1,9 @@
 "use client";
 
 import Sidebar from "@/components/sidebar";
+import { Activity, AlertTriangle, Globe2, Minus, TrendingDown, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, TrendingDown, TrendingUp, Minus, Activity, Globe2 } from "lucide-react";
 
 type WqiStation = {
   water_body_id: string;
@@ -19,19 +19,15 @@ type WqiStation = {
   trend_pct_change?: number;
 };
 
-const RISK_COLORS: Record<WqiStation["risk_level"], string> = {
-  clean: "#10b981",
-  moderate: "#f59e0b",
-  high: "#f97316",
-  critical: "#ef4444",
-};
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
 
 export default function AlertsPage() {
   const [stations, setStations] = useState<WqiStation[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data/europe")
+    fetch(`${API_URL}/api/data/europe`)
       .then((r) => r.json())
       .then((geojson) => {
         const all: WqiStation[] = (geojson.features ?? []).map(
@@ -93,74 +89,56 @@ export default function AlertsPage() {
           {loading && <p className="text-sm text-muted-foreground">Loading…</p>}
 
           {!loading && stats && (
-            <>
-              {/* KPI strip */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                <Kpi
-                  icon={<AlertTriangle className="h-4 w-4" />}
-                  label="Active alerts"
-                  value={alerts.length}
-                  hint={`of ${total} stations`}
-                  accent="#ef4444"
-                />
-                <Kpi
-                  icon={<Activity className="h-4 w-4" />}
-                  label="Avg WQI"
-                  value={Math.round(stats.avgNow)}
-                  hint={`30d → ${Math.round(stats.avg30)}`}
-                  accent="#22d3ee"
-                />
-                <Kpi
-                  icon={
-                    stats.trendPct > 0.2 ? (
-                      <TrendingUp className="h-4 w-4" />
-                    ) : stats.trendPct < -0.2 ? (
-                      <TrendingDown className="h-4 w-4" />
-                    ) : (
-                      <Minus className="h-4 w-4" />
-                    )
-                  }
-                  label="30d trend"
-                  value={`${stats.trendPct > 0 ? "+" : ""}${stats.trendPct.toFixed(1)}%`}
-                  hint={
-                    stats.trendPct > 0.2
-                      ? "improving"
-                      : stats.trendPct < -0.2
-                        ? "worsening"
-                        : "stable"
-                  }
-                  accent={
-                    stats.trendPct > 0.2
-                      ? "#10b981"
-                      : stats.trendPct < -0.2
-                        ? "#ef4444"
-                        : "#94a3b8"
-                  }
-                />
-                <Kpi
-                  icon={<Globe2 className="h-4 w-4" />}
-                  label="Worst region"
-                  value={stats.countryRows[0]?.country ?? "—"}
-                  hint={`${stats.countryRows[0]?.risk ?? 0} alerts`}
-                  accent="#f59e0b"
-                />
-              </div>
-
-              {/* Charts */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-6">
-                <Card title="Risk distribution" subtitle="All monitored stations">
-                  <RiskDonut counts={stats.counts} total={total} />
-                </Card>
-
-                <Card title="Top regions by alerts" subtitle="High & critical risk count">
-                  <CountryBars rows={stats.countryRows} />
-                </Card>
-
-                <Card title="30-day WQI forecast" subtitle="Network average · model output">
-                  <ForecastSpark stations={stations} />
-                </Card>
-              </div>
-            </>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              <Kpi
+                icon={<AlertTriangle className="h-4 w-4" />}
+                label="Active alerts"
+                value={alerts.length}
+                hint={`of ${total} stations`}
+                accent="#ef4444"
+              />
+              <Kpi
+                icon={<Activity className="h-4 w-4" />}
+                label="Avg WQI"
+                value={Math.round(stats.avgNow)}
+                hint={`30d → ${Math.round(stats.avg30)}`}
+                accent="#22d3ee"
+              />
+              <Kpi
+                icon={
+                  stats.trendPct > 0.2 ? (
+                    <TrendingUp className="h-4 w-4" />
+                  ) : stats.trendPct < -0.2 ? (
+                    <TrendingDown className="h-4 w-4" />
+                  ) : (
+                    <Minus className="h-4 w-4" />
+                  )
+                }
+                label="30d trend"
+                value={`${stats.trendPct > 0 ? "+" : ""}${stats.trendPct.toFixed(1)}%`}
+                hint={
+                  stats.trendPct > 0.2
+                    ? "improving"
+                    : stats.trendPct < -0.2
+                      ? "worsening"
+                      : "stable"
+                }
+                accent={
+                  stats.trendPct > 0.2
+                    ? "#10b981"
+                    : stats.trendPct < -0.2
+                      ? "#ef4444"
+                      : "#94a3b8"
+                }
+              />
+              <Kpi
+                icon={<Globe2 className="h-4 w-4" />}
+                label="Highest Pollution"
+                value={stats.countryRows[0]?.country ?? "—"}
+                hint={`${stats.countryRows[0]?.risk ?? 0} alerts`}
+                accent="#f59e0b"
+              />
+            </div>
           )}
 
           {/* Alert list */}
@@ -262,181 +240,4 @@ function Kpi({
   );
 }
 
-function Card({
-  title,
-  subtitle,
-  children,
-}: {
-  title: string;
-  subtitle?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-xl border border-border bg-card/40 p-4">
-      <div className="text-sm font-medium tracking-tight">{title}</div>
-      {subtitle && (
-        <div className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground mt-0.5">
-          {subtitle}
-        </div>
-      )}
-      <div className="mt-3">{children}</div>
-    </div>
-  );
-}
 
-function RiskDonut({
-  counts,
-  total,
-}: {
-  counts: Record<WqiStation["risk_level"], number>;
-  total: number;
-}) {
-  const order: WqiStation["risk_level"][] = ["clean", "moderate", "high", "critical"];
-  const r = 52;
-  const c = 2 * Math.PI * r;
-  let offset = 0;
-  return (
-    <div className="flex items-center gap-4">
-      <svg width="140" height="140" viewBox="0 0 140 140" className="shrink-0">
-        <circle cx="70" cy="70" r={r} fill="none" stroke="currentColor" className="text-border" strokeWidth="14" />
-        {order.map((k) => {
-          const v = counts[k] ?? 0;
-          if (!v) return null;
-          const len = (v / total) * c;
-          const dash = `${len} ${c - len}`;
-          const el = (
-            <circle
-              key={k}
-              cx="70"
-              cy="70"
-              r={r}
-              fill="none"
-              stroke={RISK_COLORS[k]}
-              strokeWidth="14"
-              strokeDasharray={dash}
-              strokeDashoffset={-offset}
-              transform="rotate(-90 70 70)"
-              strokeLinecap="butt"
-            />
-          );
-          offset += len;
-          return el;
-        })}
-        <text x="70" y="68" textAnchor="middle" className="fill-foreground" fontSize="22" fontWeight="600">
-          {total}
-        </text>
-        <text x="70" y="88" textAnchor="middle" className="fill-muted-foreground" fontSize="9" letterSpacing="2">
-          STATIONS
-        </text>
-      </svg>
-      <div className="flex-1 flex flex-col gap-1.5 text-[12px]">
-        {order.map((k) => (
-          <div key={k} className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: RISK_COLORS[k] }} />
-            <span className="capitalize text-muted-foreground flex-1">{k}</span>
-            <span className="font-mono tabular-nums">{counts[k] ?? 0}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CountryBars({
-  rows,
-}: {
-  rows: { country: string; avg: number; n: number; risk: number }[];
-}) {
-  const max = Math.max(1, ...rows.map((r) => r.risk));
-  return (
-    <div className="flex flex-col gap-2">
-      {rows.map((r) => (
-        <div key={r.country} className="text-[12px]">
-          <div className="flex items-center justify-between mb-1">
-            <span className="truncate">{r.country}</span>
-            <span className="text-muted-foreground tabular-nums">
-              {r.risk}/{r.n}
-            </span>
-          </div>
-          <div className="h-2 rounded-full bg-foreground/[0.06] overflow-hidden">
-            <div
-              className="h-full rounded-full"
-              style={{
-                width: `${(r.risk / max) * 100}%`,
-                backgroundColor: r.risk > 0 ? "#f97316" : "#10b981",
-              }}
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function ForecastSpark({ stations }: { stations: WqiStation[] }) {
-  // Build a 30-step line: linear blend from current → predicted_30d, network average.
-  const points = useMemo(() => {
-    if (!stations.length) return [];
-    const steps = 30;
-    const arr: number[] = [];
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      let sum = 0;
-      let n = 0;
-      for (const s of stations) {
-        const a = s.wqi_current;
-        const b = s.wqi_predicted_30d ?? a;
-        sum += a + (b - a) * t;
-        n += 1;
-      }
-      arr.push(sum / n);
-    }
-    return arr;
-  }, [stations]);
-
-  if (!points.length) return <div className="h-32" />;
-  const min = Math.min(...points);
-  const max = Math.max(...points);
-  const w = 280;
-  const h = 110;
-  const pad = 6;
-  const xs = (i: number) => pad + (i / (points.length - 1)) * (w - pad * 2);
-  const ys = (v: number) => {
-    const span = max - min || 1;
-    return h - pad - ((v - min) / span) * (h - pad * 2);
-  };
-  const path = points
-    .map((v, i) => `${i === 0 ? "M" : "L"}${xs(i).toFixed(1)},${ys(v).toFixed(1)}`)
-    .join(" ");
-  const areaPath = `${path} L${xs(points.length - 1).toFixed(1)},${(h - pad).toFixed(1)} L${xs(0).toFixed(1)},${(h - pad).toFixed(1)} Z`;
-  const last = points[points.length - 1];
-  const first = points[0];
-  const delta = ((last - first) / first) * 100;
-
-  return (
-    <div>
-      <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-28">
-        <defs>
-          <linearGradient id="fx" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path d={areaPath} fill="url(#fx)" />
-        <path d={path} fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinejoin="round" />
-        <circle cx={xs(points.length - 1)} cy={ys(last)} r="3" fill="#22d3ee" />
-      </svg>
-      <div className="flex items-center justify-between text-[11px] mt-1">
-        <span className="text-muted-foreground">now {first.toFixed(1)}</span>
-        <span
-          className="font-medium tabular-nums"
-          style={{ color: delta > 0 ? "#10b981" : delta < 0 ? "#ef4444" : "#94a3b8" }}
-        >
-          {delta > 0 ? "+" : ""}
-          {delta.toFixed(1)}%
-        </span>
-        <span className="text-muted-foreground">+30d {last.toFixed(1)}</span>
-      </div>
-    </div>
-  );
-}

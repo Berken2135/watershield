@@ -1,5 +1,7 @@
 "use client";
 
+import ThemeToggle from "@/components/theme-toggle";
+import { useTheme } from "@/lib/theme";
 import {
   Bell,
   FileText,
@@ -13,8 +15,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import ThemeToggle from "@/components/theme-toggle";
-import { useTheme } from "@/lib/theme";
 
 type NavItem = {
   href: string;
@@ -29,11 +29,14 @@ export type SidebarProps = {
   onSignOut?: () => void;
 };
 
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
+
 function useAlertCount() {
   const [count, setCount] = useState<number | null>(null);
   useEffect(() => {
     let cancelled = false;
-    fetch("http://127.0.0.1:8000/api/data/europe")
+    fetch(`${API_URL}/api/data/europe`)
       .then((r) => r.json())
       .then((g) => {
         if (cancelled) return;

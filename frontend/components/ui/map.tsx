@@ -22,9 +22,16 @@ import { cn } from "@/lib/utils";
 
 const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_API_KEY ?? "";
 
+const CARTO_DARK  = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
+const CARTO_LIGHT = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+
 const defaultStyles = {
-  dark: `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${MAPTILER_KEY}`,
-  light: `https://api.maptiler.com/maps/dataviz/style.json?key=${MAPTILER_KEY}`,
+  dark:  MAPTILER_KEY
+    ? `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${MAPTILER_KEY}`
+    : CARTO_DARK,
+  light: MAPTILER_KEY
+    ? `https://api.maptiler.com/maps/dataviz/style.json?key=${MAPTILER_KEY}`
+    : CARTO_LIGHT,
 };
 
 type Theme = "light" | "dark";

@@ -17,6 +17,7 @@ export type AnomalyResult = {
   risks: string[];
   recommendations: string[];
   pollutant_likely?: string;
+  source_estimate?: string;
 };
 
 export type ReportRequest = {

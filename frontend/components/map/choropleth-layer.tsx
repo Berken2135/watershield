@@ -340,16 +340,16 @@ export default function ChoroplethLayer({
 
   return (
     <>
-      {/* WQI colour legend – top-right corner of the map */}
+      {/* WQI colour legend – top-right corner of the map (desktop only) */}
       <div
-        className="pointer-events-none absolute right-4 top-4 z-20 rounded-lg glass-strong px-3 py-2.5 ring-1 ring-cyan-400/20 select-none transition-opacity duration-500"
+        className="hidden md:block pointer-events-none absolute right-4 top-4 z-20 rounded-lg glass-strong px-3 py-2.5 ring-1 ring-cyan-400/20 select-none transition-opacity duration-500"
         style={{ opacity: legendVisible ? 1 : 0 }}
       >
         <div className="text-[9px] tracking-[0.22em] uppercase text-muted-foreground mb-2">
           Water Quality Index · Europe
         </div>
         <div
-          className="h-2 w-28 rounded-full"
+          className="h-2 w-full rounded-full"
           style={{
             background:
               "linear-gradient(to right,#cffafe,#a5f3fc,#67e8f9,#22d3ee,#06b6d4,#0891b2,#155e75)",
@@ -367,7 +367,7 @@ export default function ChoroplethLayer({
 
       {/* Country WQI — docked under the legend so it never overlaps station cards. */}
       <div
-        className={`pointer-events-none absolute right-4 top-[120px] z-20 rounded-lg glass-strong px-3 py-2 ring-1 ring-cyan-400/20 select-none transition-opacity duration-150 ${
+        className={`hidden md:block pointer-events-none absolute right-4 top-[120px] z-20 rounded-lg glass-strong px-3 py-2 ring-1 ring-cyan-400/20 select-none transition-opacity duration-150 ${
           tooltip ? "opacity-100" : "opacity-0"
         }`}
         style={{ minWidth: 140 }}

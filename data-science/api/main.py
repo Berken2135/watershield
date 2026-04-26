@@ -14,9 +14,14 @@ import pandas as pd
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import anomalies, countries, forecast, history, water_bodies
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from src.european_data.rivers import RIVERS
 
-DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "outputs"
+from routers import anomalies, countries, forecast, history, temperature, water_bodies
+
+DATA_DIR  = Path(__file__).resolve().parents[1] / "data" / "outputs"
+PROC_DIR  = Path(__file__).resolve().parents[1] / "data" / "processed" / "europe"
 
 
 @asynccontextmanager
@@ -28,6 +33,10 @@ async def lifespan(app: FastAPI):
     app.state.anomalies_df = pd.read_parquet(DATA_DIR / "anomalies.parquet")
     app.state.history_df   = pd.read_parquet(DATA_DIR / "historical_monthly.parquet")
     app.state.countries_df = pd.read_parquet(DATA_DIR / "historical_monthly_countries.parquet")
+    app.state.rivers       = RIVERS   # list[dict] for temperature router
+
+    temp_path = PROC_DIR / "river_temperature.parquet"
+    app.state.temp_df = pd.read_parquet(temp_path) if temp_path.exists() else pd.DataFrame()
     yield
 
 
@@ -54,6 +63,7 @@ app.include_router(forecast.router,     prefix="/api")
 app.include_router(history.router,      prefix="/api")
 app.include_router(countries.router,    prefix="/api")
 app.include_router(anomalies.router,    prefix="/api")
+app.include_router(temperature.router,  prefix="/api")
 
 
 @app.get("/health", tags=["health"])
