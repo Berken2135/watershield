@@ -1,10 +1,18 @@
 from dotenv import load_dotenv
 load_dotenv()  # auto-load backend/.env (OPENAI_API_KEY, etc.)
 
+import os
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
-from routers import auth, search, analysis, reports, data
+from routers import auth, search, analysis, reports, data, sightings, mobile_auth
+
+# Ensure the photos directory exists before mounting static files.
+_photos_dir = Path("sightings_data") / "photos"
+_photos_dir.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(
     title="WaterShield API",
@@ -12,19 +20,29 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# CORS_ORIGINS env var: comma-separated list of allowed origins.
+# Defaults to localhost for local dev; set it to your Vercel deployment URL in production.
+_raw_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000")
+_allow_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=_allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.include_router(auth.router,     prefix="/api/auth",     tags=["auth"])
-app.include_router(search.router,   prefix="/api/search",   tags=["search"])
-app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
-app.include_router(reports.router,  prefix="/api/reports",  tags=["reports"])
-app.include_router(data.router,     prefix="/api/data",     tags=["data"])
+# Serve uploaded sighting photos at /static/sightings/<filename>
+app.mount("/static/sightings", StaticFiles(directory=str(_photos_dir)), name="sightings-photos")
+
+app.include_router(auth.router,      prefix="/api/auth",      tags=["auth"])
+app.include_router(search.router,    prefix="/api/search",    tags=["search"])
+app.include_router(analysis.router,  prefix="/api/analysis",  tags=["analysis"])
+app.include_router(reports.router,   prefix="/api/reports",   tags=["reports"])
+app.include_router(data.router,      prefix="/api/data",      tags=["data"])
+app.include_router(sightings.router,     prefix="/api/sightings",     tags=["sightings"])
+app.include_router(mobile_auth.router,   prefix="/api/mobile",        tags=["mobile"])
 
 
 @app.get("/health")
@@ -56,6 +74,12 @@ def list_endpoints():
             "GET /api/data/history/countries/{country_code}?year=2024",
             "GET /api/data/history/compare/water-body/{water_body_id}",
             "GET /api/data/history/compare/countries/{country_code}",
+        ],
+        "sightings": [
+            "POST /api/sightings/{river_id}  (multipart: photo + display_name)",
+            "GET  /api/sightings             (optional ?river_id= filter)",
+            "GET  /api/sightings/{river_id}",
+            "GET  /static/sightings/{filename}  (photo file)",
         ],
     }
 

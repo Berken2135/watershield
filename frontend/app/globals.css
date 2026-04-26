@@ -339,3 +339,200 @@
     background-position: center;
   }
 }
+
+/* ============================================================
+   River Collector — Mobile Game Design System
+   Light, joyful, watery, outdoorsy. Light theme only.
+   CSS design tokens + keyframes + utility classes.
+   ============================================================ */
+
+:root {
+  --rc-blue: #3b9ede;
+  --rc-blue-light: #c7e8f9;
+  --rc-blue-pale: #f0f9ff;
+  --rc-green: #6bcf7f;
+  --rc-yellow: #f5c842;
+  --rc-navy: #1a3a5c;
+  --rc-muted: #5a8ab0;
+  --rc-card-border: #bde0f5;
+  --rc-card-shadow: 0 2px 20px rgba(59,158,222,0.10), 0 1px 3px rgba(0,0,0,0.05);
+  --font-nunito: var(--font-nunito-variable, 'Nunito', system-ui, sans-serif);
+}
+
+/* --- Keyframes --- */
+@keyframes rc-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes rc-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes rc-wave-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes rc-shimmer-slide {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(250%);  }
+}
+@keyframes rc-pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  100% { transform: scale(2.2); opacity: 0;   }
+}
+@keyframes rc-blob-drift {
+  0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+  33%      { border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%; }
+  66%      { border-radius: 70% 30% 50% 50% / 30% 50% 50% 70%; }
+}
+@keyframes rc-wave-move {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes rc-spin { to { transform: rotate(360deg); } }
+
+/* --- Animation helpers (staggered slide-ups) --- */
+.rc-float   { animation: rc-float 3.5s ease-in-out infinite; }
+.rc-float-2 { animation: rc-float 3.5s ease-in-out 0.7s  infinite; }
+.rc-float-3 { animation: rc-float 3.5s ease-in-out 1.4s  infinite; }
+
+.rc-slide-up-1 { animation: rc-slide-up 0.44s ease-out 0.05s both; }
+.rc-slide-up-2 { animation: rc-slide-up 0.44s ease-out 0.12s both; }
+.rc-slide-up-3 { animation: rc-slide-up 0.44s ease-out 0.19s both; }
+.rc-slide-up-4 { animation: rc-slide-up 0.44s ease-out 0.26s both; }
+.rc-slide-up-5 { animation: rc-slide-up 0.44s ease-out 0.33s both; }
+.rc-slide-up-6 { animation: rc-slide-up 0.44s ease-out 0.40s both; }
+.rc-slide-up-7 { animation: rc-slide-up 0.44s ease-out 0.48s both; }
+
+/* --- Base app wrapper --- */
+.rc-app {
+  font-family: var(--font-nunito);
+  background: var(--rc-blue-pale);
+  min-height: 100svh;
+  color: var(--rc-navy);
+  /* Extend content behind iPhone notch/home-indicator when used as PWA */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* --- Watery background layer --- */
+.rc-wave-bg {
+  background:
+    radial-gradient(ellipse 110% 55% at 50% -5%,  rgba(59,158,222,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 55%  30% at 5%  78%,  rgba(107,207,127,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 50%  28% at 95% 85%,  rgba(245,200,66,0.06)  0%, transparent 55%),
+    #f0f9ff;
+  position: relative;
+}
+
+/* --- Card surface --- */
+.rc-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1.5px solid var(--rc-card-border);
+  box-shadow: var(--rc-card-shadow);
+}
+
+/* --- Bubbly pill button --- */
+.rc-btn {
+  font-family: var(--font-nunito);
+  font-weight: 900;
+  border-radius: 50px;
+  background: var(--rc-blue);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 4px 20px rgba(59,158,222,0.38), 0 1px 4px rgba(0,0,0,0.07);
+  transition: transform 0.12s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+.rc-btn:active {
+  transform: scale(0.93) !important;
+  box-shadow: 0 2px 8px rgba(59,158,222,0.22) !important;
+}
+.rc-btn:hover:not(:active):not(:disabled) {
+  transform: scale(1.025);
+  box-shadow: 0 6px 26px rgba(59,158,222,0.46), 0 1px 4px rgba(0,0,0,0.07);
+}
+.rc-btn:disabled { opacity: 0.45; pointer-events: none; }
+
+/* --- Input --- */
+.rc-input {
+  font-family: var(--font-nunito);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 14px;
+  border: 2px solid var(--rc-blue-light);
+  background: #fff;
+  color: var(--rc-navy);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 12px 16px;
+}
+.rc-input::placeholder { color: #9abdd8; }
+.rc-input:focus {
+  border-color: var(--rc-blue);
+  box-shadow: 0 0 0 3px rgba(59,158,222,0.15);
+}
+
+/* --- Section label --- */
+.rc-section-label {
+  font-family: var(--font-nunito);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rc-muted);
+  display: block;
+}
+
+/* --- Rarity pills --- */
+.rc-rarity {
+  font-family: var(--font-nunito);
+  font-weight: 900;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  padding: 2px 9px 3px;
+  display: inline-block;
+  line-height: 1.5;
+}
+.rc-rarity-legendary { background: linear-gradient(90deg, #f5c842, #ffb830); color: #7a4600; }
+.rc-rarity-rare      { background: var(--rc-blue);  color: #fff; }
+.rc-rarity-common    { background: var(--rc-green);  color: #fff; }
+
+/* --- Wave-fill progress bar --- */
+.rc-progress-track {
+  height: 12px;
+  border-radius: 50px;
+  background: rgba(59,158,222,0.12);
+  overflow: hidden;
+  position: relative;
+}
+.rc-progress-fill {
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(90deg, var(--rc-blue), var(--rc-green));
+  transform-origin: left center;
+  animation: rc-wave-fill 1.2s cubic-bezier(0.34,1.1,0.64,1) 0.5s both;
+  position: relative;
+  overflow: hidden;
+}
+.rc-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  animation: rc-shimmer-slide 2.4s ease-in-out 1.9s infinite;
+}

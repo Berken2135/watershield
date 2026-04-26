@@ -5,11 +5,12 @@ import NfcAuth from "@/components/nfc-auth";
 import ChoroplethLayer from "@/components/map/choropleth-layer";
 import PredictiveTimeline from "@/components/predictive-timeline";
 import Sidebar, { MobileTopBar } from "@/components/sidebar";
+import SightingsFeed from "@/components/sightings-feed";
 import StationCard from "@/components/station-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
-import { generateReportPdf } from "@/lib/api";
+import { generateReportPdf, getSightings, type Sighting } from "@/lib/api";
 import {
   POLLUTION_EVENTS as MOCK_EVENTS,
   fetchStations,
@@ -19,6 +20,7 @@ import {
   Activity,
   AlertTriangle,
   ArrowLeft,
+  Camera,
   ChevronLeft,
   ChevronRight,
   Droplets,
@@ -341,6 +343,21 @@ export default function Home() {
       .then((real) => { if (!cancelled && real.length) setEvents(real); })
       .catch(() => { /* keep mock fallback */ });
     return () => { cancelled = true; };
+  }, []);
+
+  // ---------- sightings ----------
+  const [sightings, setSightings] = useState<Sighting[]>([]);
+  const [sightingsLoading, setSightingsLoading] = useState(true);
+  useEffect(() => {
+    let cancelled = false;
+    const load = () => {
+      getSightings()
+        .then((data) => { if (!cancelled) { setSightings(data); setSightingsLoading(false); } })
+        .catch(() => { if (!cancelled) setSightingsLoading(false); });
+    };
+    load();
+    const interval = setInterval(load, 30_000);
+    return () => { cancelled = true; clearInterval(interval); };
   }, []);
 
   // ---------- map: rivers (interactive) ----------
@@ -867,6 +884,8 @@ export default function Home() {
                     setEventsOpen(true);
                     mapRef.current?.flyTo({ center: [s.lng, s.lat], zoom: 8, duration: 1000 });
                   }}
+                  sightings={sightings}
+                  sightingsLoading={sightingsLoading}
                   onClose={() => setEventsOpen(false)}
                 />
               )}
@@ -894,6 +913,7 @@ export default function Home() {
             nowDate={NOW_DATE}
             value={timelineDate}
             onChange={setTimelineDate}
+            sightings={sightings}
           />
         </div>
       </div>
@@ -1025,6 +1045,8 @@ function ListPanel({
   onClose,
   wqiStations,
   onSelectStation,
+  sightings,
+  sightingsLoading,
 }: {
   events: PollutionEvent[];
   anchor: [number, number] | null;
@@ -1033,7 +1055,12 @@ function ListPanel({
   onClose: () => void;
   wqiStations: WqiStation[];
   onSelectStation: (s: WqiStation) => void;
+  sightings: Sighting[];
+  sightingsLoading: boolean;
 }) {
+  type Tab = "events" | "stations" | "sightings";
+  const [activeTab, setActiveTab] = useState<Tab>("events");
+
   const sorted = useMemo(() => {
     if (!anchor) return events;
     const [ax, ay] = anchor;
@@ -1043,47 +1070,89 @@ function ListPanel({
       return da - db;
     });
   }, [events, anchor]);
+
   return (
     <>
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <AlertTriangle className="h-3.5 w-3.5 text-red-500 dark:text-red-400" />
-        <span className="font-medium text-[13px] tracking-tight">Active Events</span>
-        <span className="ml-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-500/10 ring-1 ring-red-500/30 text-red-600 dark:text-red-300">
-          {events.length}
-        </span>
-        <Droplets className="h-3.5 w-3.5 text-cyan-400" />
-        <span className="font-medium text-[13px] tracking-tight">WQI Stations</span>
-        <span className="ml-auto text-[10px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/10 ring-1 ring-cyan-500/30 text-cyan-300">
-          {wqiStations.length}
-        </span>
+      {/* Tab bar */}
+      <div className="flex items-center gap-1 px-3 py-2.5 border-b border-border shrink-0">
+        <button
+          onClick={() => setActiveTab("events")}
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium transition-colors ${
+            activeTab === "events"
+              ? "bg-red-500/10 text-red-300 ring-1 ring-red-500/20"
+              : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+          }`}
+        >
+          <AlertTriangle className="h-3 w-3" />
+          Events
+          <span className="tabular-nums opacity-70">{events.length}</span>
+        </button>
+        <button
+          onClick={() => setActiveTab("stations")}
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium transition-colors ${
+            activeTab === "stations"
+              ? "bg-cyan-500/10 text-cyan-300 ring-1 ring-cyan-500/20"
+              : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+          }`}
+        >
+          <Droplets className="h-3 w-3" />
+          Stations
+          <span className="tabular-nums opacity-70">{wqiStations.length}</span>
+        </button>
+        <button
+          onClick={() => setActiveTab("sightings")}
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium transition-colors ${
+            activeTab === "sightings"
+              ? "bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/20"
+              : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+          }`}
+        >
+          <Camera className="h-3 w-3" />
+          Sightings
+          {sightings.length > 0 && (
+            <span className="tabular-nums opacity-70">{sightings.length}</span>
+          )}
+        </button>
         <button
           onClick={onClose}
-          className="rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors"
+          className="ml-auto rounded-sm p-1 hover:bg-foreground/[0.04] transition-colors"
           aria-label="Hide panel"
         >
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
-      <ul className="flex flex-col gap-2 p-3 overflow-y-auto flex-1">
-        {sorted.map((event) => (
-          <li key={event.id}>
-            <StationCard
-              event={event}
-              selected={event.id === selectedId}
-              onClick={() => onSelect(event.id)}
-            />
-          </li>
-        ))}
-        {wqiStations.length === 0 ? (
-          <li className="text-[11px] text-muted-foreground text-center py-8">Loading stations…</li>
-        ) : (
-          wqiStations.map((s) => (
-            <li key={s.water_body_id}>
-              <WqiStationCard station={s} onClick={() => onSelectStation(s)} />
+
+      {activeTab === "events" && (
+        <ul className="flex flex-col gap-2 p-3 overflow-y-auto flex-1">
+          {sorted.map((event) => (
+            <li key={event.id}>
+              <StationCard
+                event={event}
+                selected={event.id === selectedId}
+                onClick={() => onSelect(event.id)}
+              />
             </li>
-          ))
-        )}
-      </ul>
+          ))}
+        </ul>
+      )}
+
+      {activeTab === "stations" && (
+        <ul className="flex flex-col gap-2 p-3 overflow-y-auto flex-1">
+          {wqiStations.length === 0 ? (
+            <li className="text-[11px] text-muted-foreground text-center py-8">Loading stations…</li>
+          ) : (
+            wqiStations.map((s) => (
+              <li key={s.water_body_id}>
+                <WqiStationCard station={s} onClick={() => onSelectStation(s)} />
+              </li>
+            ))
+          )}
+        </ul>
+      )}
+
+      {activeTab === "sightings" && (
+        <SightingsFeed sightings={sightings} loading={sightingsLoading} />
+      )}
     </>
   );
 }

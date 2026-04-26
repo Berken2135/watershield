@@ -107,3 +107,193 @@ export function eventToReportRequest(
     is_predictive: opts?.isPredictive,
   };
 }
+
+// ---------------------------------------------------------------------------
+// Sightings API
+// ---------------------------------------------------------------------------
+
+export type Sighting = {
+  id: string;
+  riverId: string;
+  displayName: string;
+  photoFilename: string;
+  timestamp: string; // ISO-8601
+  userId?: string | null;
+  username?: string | null;
+};
+
+export async function getSightings(riverId?: string): Promise<Sighting[]> {
+  const qs = riverId ? `?river_id=${encodeURIComponent(riverId)}` : "";
+  // Use the Next.js API route (relative URL) which works in both dev (proxies
+  // to the Python backend) and production on Vercel (uses Vercel Blob).
+  const base = typeof window === "undefined"
+    ? `${process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"}`
+    : "";
+  const res = await fetch(`${base}/api/sightings${qs}`, { cache: "no-store" });
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
+}
+
+export async function uploadSighting(
+  riverId: string,
+  photo: File,
+  displayName: string,
+  token?: string | null,
+): Promise<Sighting> {
+  const form = new FormData();
+  form.append("photo", photo);
+  form.append("display_name", displayName);
+  const headers: Record<string, string> = {};
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+  // Use the Next.js API route (relative URL) — dev proxies to Python,
+  // production uses Vercel Blob.
+  const base = typeof window === "undefined"
+    ? `${process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"}`
+    : "";
+  const res = await fetch(
+    `${base}/api/sightings/${encodeURIComponent(riverId)}`,
+    { method: "POST", body: form, headers },
+  );
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`API ${res.status}: ${text || res.statusText}`);
+  }
+  return res.json();
+}
+
+/**
+ * Returns the full URL to a sighting photo.
+ * In dev (Python backend) photoFilename is a bare filename.
+ * In production (Vercel Blob) photoFilename is already the full CDN URL.
+ */
+export function getSightingPhotoUrl(photoFilename: string): string {
+  if (photoFilename.startsWith("http://") || photoFilename.startsWith("https://")) {
+    return photoFilename;
+  }
+  return `${API_URL}/static/sightings/${photoFilename}`;
+}
+
+// ---------------------------------------------------------------------------
+// Mobile auth
+// ---------------------------------------------------------------------------
+
+export type MobileUser = {
+  id: string;
+  username: string;
+  email: string;
+  createdAt: string;
+  friendIds: string[];
+};
+
+export type MobileProfile = {
+  username: string;
+  badges: string[];
+  sightingCount: number;
+};
+
+export type MobileMeResponse = {
+  user: MobileUser;
+  badges: string[];
+  sightingCount: number;
+};
+
+// -- localStorage helpers (safe for SSR) ------------------------------------
+
+export function getMobileToken(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("ws_mobile_token");
+}
+
+export function getMobileUser(): MobileUser | null {
+  if (typeof window === "undefined") return null;
+  const raw = localStorage.getItem("ws_mobile_user");
+  if (!raw) return null;
+  try { return JSON.parse(raw) as MobileUser; }
+  catch { return null; }
+}
+
+export function setMobileSession(token: string, user: MobileUser): void {
+  localStorage.setItem("ws_mobile_token", token);
+  localStorage.setItem("ws_mobile_user", JSON.stringify(user));
+}
+
+export function clearMobileSession(): void {
+  localStorage.removeItem("ws_mobile_token");
+  localStorage.removeItem("ws_mobile_user");
+}
+
+// -- Request helpers --------------------------------------------------------
+
+async function mobilePost<T>(path: string, body: unknown, token?: string): Promise<T> {
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+  const res = await fetch(`${API_URL}${path}`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => null);
+    const detail =
+      typeof data?.detail === "string"
+        ? data.detail
+        : Array.isArray(data?.detail)
+          ? (data.detail as { msg: string }[]).map((e) => e.msg).join("; ")
+          : `HTTP ${res.status}`;
+    throw new Error(detail);
+  }
+  return res.json();
+}
+
+// -- Auth endpoints ---------------------------------------------------------
+
+export async function registerMobile(
+  username: string,
+  email: string,
+  password: string,
+): Promise<{ token: string; user: MobileUser }> {
+  return mobilePost("/api/mobile/register", { username, email, password });
+}
+
+export async function loginMobile(
+  username: string,
+  password: string,
+): Promise<{ token: string; user: MobileUser }> {
+  return mobilePost("/api/mobile/login", { username, password });
+}
+
+export async function getMobileMe(token: string): Promise<MobileMeResponse> {
+  const res = await fetch(`${API_URL}/api/mobile/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
+}
+
+export async function getMobileProfile(username: string): Promise<MobileProfile> {
+  const res = await fetch(
+    `${API_URL}/api/mobile/profile/${encodeURIComponent(username)}`,
+  );
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
+}
+
+export async function addFriend(username: string, token: string): Promise<void> {
+  await mobilePost(`/api/mobile/friends/${encodeURIComponent(username)}`, {}, token);
+}
+
+export async function removeFriend(username: string, token: string): Promise<void> {
+  const res = await fetch(
+    `${API_URL}/api/mobile/friends/${encodeURIComponent(username)}`,
+    { method: "DELETE", headers: { Authorization: `Bearer ${token}` } },
+  );
+  if (!res.ok) throw new Error(`API ${res.status}`);
+}
+
+export async function getFriends(token: string): Promise<MobileProfile[]> {
+  const res = await fetch(`${API_URL}/api/mobile/friends`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) throw new Error(`API ${res.status}`);
+  return res.json();
+}

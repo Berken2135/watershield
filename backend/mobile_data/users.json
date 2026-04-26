@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ed4542b0-a7ec-4cd4-8bfd-4eaa553e3a74",
+    "username": "testuser",
+    "email": "test@example.com",
+    "passwordHash": "$2b$10$oXpvmx/nVgZV9o/UrPHsEuQXDQZB3Sthf/nCpvwl4H5QLaOHKlTka",
+    "createdAt": "2026-04-25T17:43:35.638501+00:00",
+    "friendIds": []
+  },
+  {
+    "id": "30182b86-12fc-4d46-bf79-3a1e452950a2",
+    "username": "paweli",
+    "email": "pawel.lizer@fasf.com",
+    "passwordHash": "$2b$10$WdosFwaTFVRUnSHEw13oYeYDqe4G/j2K9Iqnf7OHXWH2N6AOh6GKO",
+    "createdAt": "2026-04-25T17:43:35.724466+00:00",
+    "friendIds": []
+  },
+  {
+    "id": "7cfc128c-d1e9-4bae-a319-fbd5786ed750",
+    "username": "testuser2",
+    "email": "test2@example.com",
+    "passwordHash": "$2b$10$nKJkPaqHR1Fg4JJmN/HGaOfove6W2zfZlyhayJPL/kyHfSLCvz3Ci",
+    "createdAt": "2026-04-25T17:43:36.024925+00:00",
+    "friendIds": []
+  },
+  {
+    "id": "70226e0f-21c9-480a-adf1-b1ed5f8c4e89",
+    "username": "tester77",
+    "email": "t77@test.com",
+    "passwordHash": "$2b$10$1a9tvFtkP4lmj3pfS4fY9uT/jPFdd7zCZEEyWa/2IfxeVnVoUDXX.",
+    "createdAt": "2026-04-25T17:44:42.808097+00:00",
+    "friendIds": []
+  },
+  {
+    "id": "1a331ed4-3ecd-47cf-8426-312f21c783bb",
+    "username": "paaweli",
+    "email": "pawel.loscdsa@gmail.com",
+    "passwordHash": "$2b$10$kzeyqRFhv29eixolQitgSOSB9c9Y7caoZsW8Fig9esvS7JTLUtevS",
+    "createdAt": "2026-04-26T07:06:56.326027+00:00",
+    "friendIds": []
+  },
+  {
+    "id": "6076d76b-9b30-4eeb-b372-50babb0a9860",
+    "username": "pawelidasd",
+    "email": "pawel@asdad.com",
+    "passwordHash": "$2b$10$w48RXeY9cFiE4S4EPMIC9ei8Kjzju/nWi4HPWhnU93/dsZdbSNq7e",
+    "createdAt": "2026-04-26T07:08:25.647433+00:00",
+    "friendIds": []
+  }
+]
