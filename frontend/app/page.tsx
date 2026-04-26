@@ -1726,10 +1726,12 @@ function WqiDetailPanel({
   // we keep the snapshot WQI.
   const projectedWqi = (() => {
     if (committedMonths <= 0.05) return station.wqi_current;
-    const monthlyDelta = station.trend_pct_change / 100; // already small
-    const damped = Math.tanh(committedMonths / 12) * 12; // saturate at ~12 mo
-    const t = station.wqi_current * (1 + monthlyDelta * damped);
-    return Math.max(0, Math.min(200, t));
+    // trend_pct_change is the recent 30-day % delta — use its sign as the
+    // direction of change but cap total future shift at ±30% so WQI never
+    // collapses to zero regardless of how extreme the current trend is.
+    const totalChangeFraction = Math.max(-0.30, Math.min(0.30, station.trend_pct_change / 100));
+    const scale = 1 + totalChangeFraction * Math.tanh(committedMonths / 6);
+    return Math.max(1, Math.min(200, Math.round(station.wqi_current * scale)));
   })();
 
   const handleGenerateReport = async () => {
