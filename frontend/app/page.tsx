@@ -1469,8 +1469,8 @@ function WqiStationCard({ station, onClick }: { station: WqiStation; onClick: ()
   );
 }
 
-function BigMetric({ icon, label, value, unit, tight }: {
-  icon: React.ReactNode; label: string; value: string; unit?: string; tight?: boolean;
+function BigMetric({ icon, label, value, unit, tight, predicting }: {
+  icon: React.ReactNode; label: string; value: string; unit?: string; tight?: boolean; predicting?: boolean;
 }) {
   return (
     <div className="rounded-lg bg-foreground/[0.02] ring-1 ring-foreground/[0.06] p-2.5">
@@ -1478,10 +1478,18 @@ function BigMetric({ icon, label, value, unit, tight }: {
         {icon}
         <span className="text-[10px] tracking-[0.14em] uppercase">{label}</span>
       </div>
-      <div className={`mt-1 font-semibold text-foreground tabular-nums ${tight ? "text-xs leading-tight" : "text-base"}`}>
-        {value}
-        {unit ? <span className="ml-1 text-[10px] font-normal text-muted-foreground">{unit}</span> : null}
-      </div>
+      {predicting ? (
+        <div className="mt-2 flex items-center gap-1 h-[18px]">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "0ms" }} />
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "150ms" }} />
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "300ms" }} />
+        </div>
+      ) : (
+        <div className={`mt-1 font-semibold text-foreground tabular-nums ${tight ? "text-xs leading-tight" : "text-base"}`}>
+          {value}
+          {unit ? <span className="ml-1 text-[10px] font-normal text-muted-foreground">{unit}</span> : null}
+        </div>
+      )}
     </div>
   );
 }
@@ -1490,7 +1498,7 @@ function fmtMonth(d: Date): string {
   return d.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
 }
 
-function WqiMetric({ label, value, accent }: { label: string; value: number; accent?: boolean }) {
+function WqiMetric({ label, value, accent, predicting }: { label: string; value: number; accent?: boolean; predicting?: boolean }) {
   return (
     <div
       className={`rounded-lg p-2.5 flex flex-col justify-between min-h-[68px] text-center ${
@@ -1502,13 +1510,21 @@ function WqiMetric({ label, value, accent }: { label: string; value: number; acc
       <div className="text-[9px] tracking-[0.14em] uppercase text-muted-foreground leading-tight">
         {label}
       </div>
-      <div
-        className={`text-base font-bold tabular-nums ${
-          accent ? "text-blue-600 dark:text-blue-200" : "text-foreground/90"
-        }`}
-      >
-        {value}
-      </div>
+      {predicting ? (
+        <div className="flex items-center justify-center gap-1 h-[22px]">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "0ms" }} />
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "150ms" }} />
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "300ms" }} />
+        </div>
+      ) : (
+        <div
+          className={`text-base font-bold tabular-nums ${
+            accent ? "text-blue-600 dark:text-blue-200" : "text-foreground/90"
+          }`}
+        >
+          {value}
+        </div>
+      )}
     </div>
   );
 }
@@ -1655,20 +1671,22 @@ function WqiDetailPanel({
   // ── Predictive "thinking" delay ────────────────────────────────────────────
   // When the user scrubs into the future we don't want WQI / temperature to
   // snap instantly — that breaks the illusion that the model is doing actual
-  // work. Hold the previously-committed values and run a ~1.8 s shimmer, then
-  // reveal the new prediction. Past / present commit immediately.
+  // work. We hide the values entirely (skeleton dots) and only reveal them
+  // ~1.6 s after the scrubber STOPS moving. Past / present commit instantly.
   const [committedDate, setCommittedDate] = useState<Date>(timelineDate);
   const [committedMonths, setCommittedMonths] = useState<number>(monthsSignedFromNow);
   const [isPredicting, setIsPredicting] = useState(false);
 
   useEffect(() => {
     if (monthsSignedFromNow > 0.5) {
+      // Future: enter "predicting" immediately on every change so values hide,
+      // and reset the reveal timer. Only when the scrubber stops do we commit.
       setIsPredicting(true);
       const t = setTimeout(() => {
         setCommittedDate(timelineDate);
         setCommittedMonths(monthsSignedFromNow);
         setIsPredicting(false);
-      }, 1800);
+      }, 1600);
       return () => clearTimeout(t);
     }
     // Past or present: commit instantly.
@@ -1911,12 +1929,12 @@ function WqiDetailPanel({
               </span>
             )}
           </div>
-          <div className={`relative grid gap-2 items-stretch ${isOnToday ? "grid-cols-3" : "grid-cols-1"} transition-opacity ${isPredicting ? "opacity-60" : "opacity-100"}`}>
-            <WqiMetric label="Current" value={Math.round(projectedWqi)} accent />
+          <div className={`relative grid gap-2 items-stretch ${isOnToday ? "grid-cols-3" : "grid-cols-1"}`}>
+            <WqiMetric label="Current" value={Math.round(projectedWqi)} accent predicting={isPredicting} />
             {isOnToday && (
               <>
-                <WqiMetric label="7d forecast" value={Math.round(station.wqi_predicted_7d)} />
-                <WqiMetric label="30d forecast" value={Math.round(station.wqi_predicted_30d)} />
+                <WqiMetric label="7d forecast" value={Math.round(station.wqi_predicted_7d)} predicting={isPredicting} />
+                <WqiMetric label="30d forecast" value={Math.round(station.wqi_predicted_30d)} predicting={isPredicting} />
               </>
             )}
             {isPredicting && (
@@ -1936,24 +1954,40 @@ function WqiDetailPanel({
         <div className="flex items-center justify-between rounded-lg bg-foreground/[0.02] ring-1 ring-foreground/[0.06] p-3">
           <div>
             <div className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground">Risk Level</div>
-            <div className={`mt-0.5 text-sm font-semibold capitalize ${riskColor}`}>{station.risk_level}</div>
+            {isPredicting ? (
+              <div className="mt-1 flex items-center gap-1 h-[18px]">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "150ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "300ms" }} />
+              </div>
+            ) : (
+              <div className={`mt-0.5 text-sm font-semibold capitalize ${riskColor}`}>{station.risk_level}</div>
+            )}
           </div>
           <div className="text-right">
             <div className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground">Trend</div>
-            <div className={`mt-0.5 text-sm font-semibold flex items-center gap-1 justify-end ${
-              station.trend === "worsening" ? "text-red-500 dark:text-red-300" :
-              station.trend === "improving" ? "text-emerald-600 dark:text-emerald-300" : "text-muted-foreground"
-            }`}>
-              {station.trend === "worsening" ? <TrendingDown className="h-3.5 w-3.5" /> :
-               station.trend === "improving" ? <TrendingUp className="h-3.5 w-3.5" /> :
-               <Minus className="h-3.5 w-3.5" />}
-              <span className="capitalize">{station.trend}</span>
-              {station.trend_pct_change !== 0 && (
-                <span className="text-[10px] font-normal text-muted-foreground ml-0.5">
-                  ({station.trend_pct_change > 0 ? "+" : ""}{station.trend_pct_change.toFixed(1)}%)
-                </span>
-              )}
-            </div>
+            {isPredicting ? (
+              <div className="mt-1 flex items-center gap-1 justify-end h-[18px]">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "150ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "300ms" }} />
+              </div>
+            ) : (
+              <div className={`mt-0.5 text-sm font-semibold flex items-center gap-1 justify-end ${
+                station.trend === "worsening" ? "text-red-500 dark:text-red-300" :
+                station.trend === "improving" ? "text-emerald-600 dark:text-emerald-300" : "text-muted-foreground"
+              }`}>
+                {station.trend === "worsening" ? <TrendingDown className="h-3.5 w-3.5" /> :
+                 station.trend === "improving" ? <TrendingUp className="h-3.5 w-3.5" /> :
+                 <Minus className="h-3.5 w-3.5" />}
+                <span className="capitalize">{station.trend}</span>
+                {station.trend_pct_change !== 0 && (
+                  <span className="text-[10px] font-normal text-muted-foreground ml-0.5">
+                    ({station.trend_pct_change > 0 ? "+" : ""}{station.trend_pct_change.toFixed(1)}%)
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -1971,9 +2005,16 @@ function WqiDetailPanel({
               </span>
             )}
           </div>
-          <div className={`relative overflow-hidden rounded-lg bg-blue-500/[0.06] ring-1 ring-blue-400/20 p-3 flex items-center gap-3 transition-opacity ${isPredicting ? "opacity-60" : "opacity-100"}`}>
+          <div className={`relative overflow-hidden rounded-lg bg-blue-500/[0.06] ring-1 ring-blue-400/20 p-3 flex items-center gap-3`}>
             <Thermometer className={`h-5 w-5 text-blue-400 shrink-0 ${isPredicting ? "animate-pulse" : ""}`} strokeWidth={1.5} />
-            {liveTempLoading && isCurrentMonth ? (
+            {isPredicting ? (
+              <div className="flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-cyan-300/80 animate-pulse" />
+                <span className="h-2 w-2 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "150ms" }} />
+                <span className="h-2 w-2 rounded-full bg-cyan-300/80 animate-pulse" style={{ animationDelay: "300ms" }} />
+                <span className="ml-2 text-[11px] tracking-wider uppercase text-cyan-300/90">Predicting</span>
+              </div>
+            ) : liveTempLoading && isCurrentMonth ? (
               <span className="text-[13px] text-muted-foreground">Fetching live data…</span>
             ) : displayTemp != null ? (
               <div>
@@ -2010,13 +2051,13 @@ function WqiDetailPanel({
             <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Sensor Readings</div>
             <div className="grid grid-cols-2 gap-2">
               {station.metrics.ph != null && (
-                <BigMetric icon={<Activity className="h-3.5 w-3.5" strokeWidth={1.5} />} label="pH" value={station.metrics.ph.toFixed(2)} />
+                <BigMetric icon={<Activity className="h-3.5 w-3.5" strokeWidth={1.5} />} label="pH" value={station.metrics.ph.toFixed(2)} predicting={isPredicting} />
               )}
               {station.metrics.oxygen_mg_l != null && (
-                <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Dissolved O₂" value={station.metrics.oxygen_mg_l.toFixed(1)} unit="mg/L" />
+                <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Dissolved O₂" value={station.metrics.oxygen_mg_l.toFixed(1)} unit="mg/L" predicting={isPredicting} />
               )}
               {station.metrics.turbidity_ntu != null && (
-                <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Turbidity" value={station.metrics.turbidity_ntu.toFixed(1)} unit="NTU" />
+                <BigMetric icon={<Waves className="h-3.5 w-3.5" strokeWidth={1.5} />} label="Turbidity" value={station.metrics.turbidity_ntu.toFixed(1)} unit="NTU" predicting={isPredicting} />
               )}
             </div>
           </div>
