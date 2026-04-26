@@ -21,8 +21,6 @@
  * `onChange`. `nowDate` lets you mock "the present" (defaults to today).
  */
 
-import { type Sighting } from "@/lib/api";
-import { RIVER_BADGES } from "@/components/river-badge";
 import { Sparkles } from "lucide-react";
 import {
   useCallback,
@@ -53,8 +51,6 @@ export type PredictiveTimelineProps = {
   value: Date;
   /** Fired on scrub. */
   onChange: (d: Date) => void;
-  /** Community sightings to pin as chips above the track. */
-  sightings?: Sighting[];
   className?: string;
 };
 
@@ -68,12 +64,10 @@ export default function PredictiveTimeline({
   nowDate = DEFAULT_NOW,
   value,
   onChange,
-  sightings = [],
   className = "",
 }: PredictiveTimelineProps) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [dragging, setDragging] = useState(false);
-  const [hoveredChip, setHoveredChip] = useState<Sighting | null>(null);
 
   const totalMs = end.getTime() - start.getTime();
   const nowPct = ((nowDate.getTime() - start.getTime()) / totalMs) * 100;
@@ -221,44 +215,6 @@ export default function PredictiveTimeline({
             now
           </span>
         </div>
-
-        {/* Sighting chips — tiny avatar dots pinned above the track */}
-        {sightings.slice(0, 20).map((s) => {
-          const ts = new Date(s.timestamp).getTime();
-          if (ts < start.getTime() || ts > end.getTime()) return null;
-          const pct = ((ts - start.getTime()) / totalMs) * 100;
-          const river = RIVER_BADGES[s.riverId];
-          const initials = s.displayName
-            .split(" ")
-            .map((w: string) => w[0]?.toUpperCase() ?? "")
-            .slice(0, 2)
-            .join("");
-          return (
-            <div
-              key={s.id}
-              className="absolute -translate-x-1/2 group cursor-pointer"
-              style={{ left: `${pct}%`, top: "2px" }}
-              onMouseEnter={() => setHoveredChip(s)}
-              onMouseLeave={() => setHoveredChip(null)}
-            >
-              <div
-                className="h-4 w-4 rounded-full flex items-center justify-center text-[8px] font-bold text-white ring-1 ring-white/20 hover:scale-150 transition-transform"
-                style={{ backgroundColor: river?.color ?? "#22d3ee" }}
-              >
-                {initials || "?"}
-              </div>
-              {/* Tooltip */}
-              {hoveredChip?.id === s.id && (
-                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 w-28 rounded-xl glass-strong ring-1 ring-cyan-400/20 px-2 py-1.5 shadow-2xl">
-                  <div className="text-[10px] font-semibold text-foreground truncate">{s.displayName}</div>
-                  <div className="text-[9px] text-muted-foreground">
-                    {river?.emoji} {river?.name ?? s.riverId}
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
 
         {/* Scrubber thumb */}
         <button

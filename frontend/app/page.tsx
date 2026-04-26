@@ -1166,7 +1166,6 @@ export default function Home() {
             nowDate={NOW_DATE}
             value={timelineDate}
             onChange={setTimelineDate}
-            sightings={sightings}
           />
         </div>
       </div>

@@ -28,8 +28,13 @@ const RARITY_LABEL = { legendary: "Legendary", rare: "Rare", common: "Common" } 
 export default function MobilePage() {
   const [token, setToken] = useState<string | null>(null);
   const [me, setMe] = useState<MobileMeResponse | null>(null);
-  const [recentSightings, setRecentSightings] = useState<Sighting[]>([]);
+  const [userSightings, setUserSightings] = useState<Sighting[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const applyData = (meData: MobileMeResponse, sightingsData: Sighting[]) => {
+    setMe(meData);
+    setUserSightings(sightingsData.filter((s) => s.userId === meData.user.id));
+  };
 
   useEffect(() => {
     const t = getMobileToken();
@@ -39,14 +44,7 @@ export default function MobilePage() {
       return;
     }
     Promise.all([getMobileMe(t), getSightings()])
-      .then(([meData, sightingsData]) => {
-        setMe(meData);
-        setRecentSightings(
-          sightingsData
-            .filter((s) => s.userId === meData.user.id)
-            .slice(0, 3),
-        );
-      })
+      .then(([meData, sightingsData]) => applyData(meData, sightingsData))
       .catch(() => {
         clearMobileSession();
         setToken(null);
@@ -58,7 +56,7 @@ export default function MobilePage() {
     clearMobileSession();
     setToken(null);
     setMe(null);
-    setRecentSightings([]);
+    setUserSightings([]);
   };
 
   const handleAuthSuccess = async (user: MobileUser, newToken: string) => {
@@ -69,10 +67,7 @@ export default function MobilePage() {
         getMobileMe(newToken),
         getSightings(),
       ]);
-      setMe(meData);
-      setRecentSightings(
-        sightingsData.filter((s) => s.userId === meData.user.id).slice(0, 3),
-      );
+      applyData(meData, sightingsData);
     } finally {
       setLoading(false);
     }
@@ -98,7 +93,13 @@ export default function MobilePage() {
     );
   }
 
-  const { user, badges, sightingCount } = me;
+  const { user } = me;
+  // Derive counts from blob sightings so uploads are reflected immediately
+  // without needing the Python backend to track them.
+  const collectedRivers = [...new Set(userSightings.map((s) => s.riverId))] as string[];
+  const badges = collectedRivers.length > 0 ? collectedRivers : me.badges;
+  const sightingCount = userSightings.length > 0 ? userSightings.length : me.sightingCount;
+  const recentSightings = userSightings.slice(0, 3);
   const avatarColor = badges.length > 0 ? (RIVER_BADGES[badges[0]]?.color ?? "#3b9ede") : "#3b9ede";
 
   return (
