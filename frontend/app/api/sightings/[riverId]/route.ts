@@ -107,7 +107,7 @@ export async function POST(
   }
 
   // Resolve the user from the JWT by asking the Python backend (auth source
-  // of truth). Failure is non-fatal — we just store a null userId.
+  // of truth). Failure is non-fatal — we fall back to the submitted displayName.
   let userId: string | null = null;
   let username: string | null = null;
   if (authHeader) {
@@ -121,7 +121,7 @@ export async function POST(
         username = me.user?.username ?? null;
       }
     } catch {
-      // non-fatal — proceed anonymously
+      // non-fatal — fall back below
     }
   }
 
@@ -129,6 +129,10 @@ export async function POST(
   const ext = photo.type === "image/jpeg" ? "jpg" : photo.type.split("/")[1];
   const timestamp = new Date().toISOString();
   const safeDisplayName = displayName.slice(0, 80);
+
+  // If backend was unreachable, the display_name submitted by the client IS
+  // the username (the scan page always sends user.username as display_name).
+  if (!username) username = safeDisplayName;
 
   // Upload the photo to Vercel Blob
   const photoBlob = await put(`sightings/photos/${id}.${ext}`, photo, {

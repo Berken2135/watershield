@@ -39,7 +39,8 @@ export default function MobilePage() {
       sightingsData.filter(
         (s) =>
           s.userId === meData.user.id ||
-          (s.username != null && s.username === meData.user.username),
+          (s.username != null && s.username === meData.user.username) ||
+          s.displayName === meData.user.username,
       ),
     );
   };
