@@ -8,6 +8,7 @@ export type RiverBadgeInfo = {
   id: string;
   name: string;
   emoji: string;      // kept for text labels in feeds / timeline
+  country: string;    // country / region label
   baseWqi: number;    // kept for historical compat
   color: string;      // primary hex
   colorLight: string; // lighter tint for gradient top
@@ -15,11 +16,11 @@ export type RiverBadgeInfo = {
 };
 
 export const RIVER_BADGES: Record<string, RiverBadgeInfo> = {
-  odra:   { id: "odra",   name: "Odra",   emoji: "🌊", baseWqi: 184.2, color: "#ef4444", colorLight: "#fca5a5", rarity: "legendary" },
-  danube: { id: "danube", name: "Danube", emoji: "🏞️", baseWqi: 198.5, color: "#f59e0b", colorLight: "#fde68a", rarity: "rare" },
-  rhine:  { id: "rhine",  name: "Rhine",  emoji: "🐟", baseWqi: 207.8, color: "#10b981", colorLight: "#6ee7b7", rarity: "rare" },
-  glomma: { id: "glomma", name: "Glomma", emoji: "🌲", baseWqi: 217.2, color: "#22d3ee", colorLight: "#a5f3fc", rarity: "common" },
-  vardar: { id: "vardar", name: "Vardar", emoji: "⛰️", baseWqi: 198.0, color: "#a78bfa", colorLight: "#ddd6fe", rarity: "rare" },
+  odra:   { id: "odra",   name: "Odra",   emoji: "🌊", country: "Poland / Germany",     baseWqi: 184.2, color: "#ef4444", colorLight: "#fca5a5", rarity: "legendary" },
+  danube: { id: "danube", name: "Danube", emoji: "🏞️", country: "10 countries, SE Europe", baseWqi: 198.5, color: "#f59e0b", colorLight: "#fde68a", rarity: "rare" },
+  rhine:  { id: "rhine",  name: "Rhine",  emoji: "🐟", country: "Switzerland / Germany",  baseWqi: 207.8, color: "#10b981", colorLight: "#6ee7b7", rarity: "rare" },
+  glomma: { id: "glomma", name: "Glomma", emoji: "🌲", country: "Norway",               baseWqi: 217.2, color: "#22d3ee", colorLight: "#a5f3fc", rarity: "common" },
+  vardar: { id: "vardar", name: "Vardar", emoji: "⛰️", country: "N. Macedonia / Greece", baseWqi: 198.0, color: "#a78bfa", colorLight: "#ddd6fe", rarity: "rare" },
 };
 
 // ── River SVG Icons ──────────────────────────────────────────────────────────

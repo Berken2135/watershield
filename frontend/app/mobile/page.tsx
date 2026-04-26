@@ -191,6 +191,9 @@ export default function MobilePage() {
                 <p style={{ fontFamily: "var(--font-nunito)", fontWeight: 900, fontSize: 15, color: collected ? "#1a3a5c" : "#8ab5d4", margin: 0, textAlign: "center" }}>
                   {info.name}
                 </p>
+                <p style={{ fontFamily: "var(--font-nunito)", fontSize: 10, fontWeight: 600, color: "#9abdd8", margin: 0, textAlign: "center", lineHeight: 1.3 }}>
+                  {info.country}
+                </p>
                 <span className={`rc-rarity rc-rarity-${rarity}`} style={{ opacity: collected ? 1 : 0.5 }}>
                   {RARITY_LABEL[rarity]}
                 </span>
