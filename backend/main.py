@@ -23,11 +23,12 @@ app = FastAPI(
 # Defaults to localhost for local dev; set it to your Vercel deployment URL in production.
 _raw_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000")
 _allow_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+_wildcard = "*" in _allow_origins
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_allow_origins,
-    allow_credentials=True,
+    allow_origins=["*"] if _wildcard else _allow_origins,
+    allow_credentials=False if _wildcard else True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
