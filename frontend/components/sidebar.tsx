@@ -9,6 +9,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  ShieldCheck,
   X,
 } from "lucide-react";
 import Image from "next/image";
@@ -69,6 +70,57 @@ function buildNav(alertCount: number | null): NavItem[] {
   ];
 }
 
+// Animated satellites drifting in the empty sidebar space below the nav.
+// Pure CSS — each satellite sits inside a spinning wrapper whose origin is
+// offset, so it traces a circular orbit. Decorative, pointer-events disabled.
+function SatellitePlayground() {
+  return (
+    <div className="pointer-events-none absolute inset-x-0 top-40 bottom-0 overflow-hidden">
+      {/* Soft cyan halo behind the satellites. */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-44 w-44 rounded-full bg-cyan-400/[0.07] blur-2xl" />
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-24 w-24 rounded-full bg-cyan-300/[0.05] blur-xl" />
+
+      {/* Outer orbit (slower, larger). */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ws-orbit-a">
+        <Image
+          src="/satelite.png"
+          alt=""
+          width={48}
+          height={48}
+          className="drop-shadow-[0_0_10px_rgba(34,211,238,0.45)]"
+        />
+      </div>
+
+      {/* Inner orbit (faster, smaller, opposite direction). */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ws-orbit-b">
+        <Image
+          src="/satelite-2.png"
+          alt=""
+          width={36}
+          height={36}
+          className="drop-shadow-[0_0_8px_rgba(125,211,252,0.4)]"
+        />
+      </div>
+
+      <style jsx>{`
+        .ws-orbit-a {
+          /* Offset origin downward so rotation traces a circle of r=70px. */
+          transform-origin: 50% calc(50% - 70px);
+          animation: ws-orbit 24s linear infinite;
+        }
+        .ws-orbit-b {
+          transform-origin: 50% calc(50% + 50px);
+          animation: ws-orbit 16s linear infinite reverse;
+        }
+        @keyframes ws-orbit {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to   { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
   const pathname = usePathname();
   const alertCount = useAlertCount();
@@ -92,10 +144,11 @@ export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
         />
       </Link>
 
-      <nav className="flex-1 px-3 py-5 flex flex-col gap-0.5">
+      <nav className="relative flex-1 px-3 py-5 flex flex-col gap-0.5 overflow-hidden">
         {NAV.map((item) => (
           <NavLink key={item.href} item={item} active={pathname === item.href} />
         ))}
+        <SatellitePlayground />
       </nav>
 
       <div className="border-t border-border p-3 space-y-1.5">
@@ -107,7 +160,7 @@ export default function Sidebar({ authed, onSignIn, onSignOut }: SidebarProps) {
             className="group flex items-center gap-3 w-full rounded-md px-3 py-2 text-[12px] text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
           >
             <span className="grid place-items-center h-6 w-6 rounded-md bg-emerald-500/10 ring-1 ring-emerald-500/30">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" strokeWidth={2.4} />
             </span>
             <span className="flex-1 text-left text-foreground/80">Verified</span>
             <LogOut className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />

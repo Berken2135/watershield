@@ -24,6 +24,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Droplets,
+  Factory,
   FileDown,
   Fingerprint,
   Loader2,
@@ -339,6 +340,16 @@ export default function Home() {
       ? 100
       : Math.max(35, Math.round(Math.exp(-0.0476 * monthsAfterNow) * 100));
 
+  // Re-derive the selected station from the live, timeline-shifted list so the
+  // detail panel updates in real time as the user drags the slider — no clicks
+  // needed. Falls back to the original snapshot when the station leaves view.
+  const liveSelectedStation = useMemo(() => {
+    if (!selectedWqiStation) return null;
+    return wqiStations.find(
+      (s) => s.water_body_id === selectedWqiStation.water_body_id,
+    ) ?? null;
+  }, [selectedWqiStation, wqiStations]);
+
   const [showWqi, setShowWqi] = useState(true);
 
   // "What if?" — Simulate Factory Shutdown. When active we boost every
@@ -506,15 +517,19 @@ export default function Home() {
   }, [mapInstance]);
 
   // ---------- map: pollution heatmap (animates with timeline) ----------
-  // Each polluted station emits a "plume" of points walked downstream along
-  // the nearest river polyline. The plume head advances with the timeline so
-  // the user sees pollution drift down-river over the next months.
+  // Each polluted station emits a 5-7 point downstream "plume". Each next
+  // point is offset ~250 m down the nearest river polyline; weight & per-
+  // feature radius decay exponentially so the head is bright/wide and the
+  // tail fades smoothly along the water.
   const heatmapData = useMemo<GeoJSON.FeatureCollection<GeoJSON.Point>>(() => {
     const features: GeoJSON.Feature<GeoJSON.Point>[] = [];
-    const rivers = RIVERS_GEOJSON.features;
 
-    // Cumulative segment lengths per river (in degrees ~ ok for plume length).
-    const riverGeom = rivers.map((r) => {
+    // Decision-Support: when factory shutdown is simulated, weights shrink
+    // so the heatmap visibly fades in real time — "what-if" stress-test.
+    const shutdownScale = simulateShutdown ? 0.3 : 1;
+
+    // Pre-compute river polyline metrics (segment lengths in degrees).
+    const rivers = RIVERS_GEOJSON.features.map((r) => {
       const coords = r.geometry.coordinates as [number, number][];
       const segLens: number[] = [];
       let total = 0;
@@ -528,9 +543,13 @@ export default function Home() {
       return { coords, segLens, total };
     });
 
-    // Walk along a river polyline by a fractional distance t in [0,1].
-    const interp = (g: typeof riverGeom[number], t: number): [number, number] => {
-      const target = Math.max(0, Math.min(1, t)) * g.total;
+    // Walk along a river polyline by absolute distance (in degrees).
+    const walk = (
+      g: typeof rivers[number],
+      startT: number,
+      offset: number,
+    ): [number, number] => {
+      const target = Math.max(0, Math.min(g.total, startT * g.total + offset));
       let acc = 0;
       for (let i = 0; i < g.segLens.length; i++) {
         if (acc + g.segLens[i] >= target) {
@@ -544,20 +563,19 @@ export default function Home() {
       return g.coords[g.coords.length - 1];
     };
 
-    // Find nearest point on a river to a station (for plume origin).
+    // Project a station onto the closest river segment.
     const projectToRiver = (lng: number, lat: number) => {
-      let best = { riverIdx: 0, t: 0, distSq: Infinity };
-      riverGeom.forEach((g, ri) => {
+      let best = { riverIdx: -1, t: 0, distSq: Infinity };
+      rivers.forEach((g, ri) => {
         let acc = 0;
         for (let i = 0; i < g.segLens.length; i++) {
           const a = g.coords[i];
           const b = g.coords[i + 1];
-          const ax = a[0], ay = a[1], bx = b[0], by = b[1];
-          const dx = bx - ax, dy = by - ay;
+          const dx = b[0] - a[0], dy = b[1] - a[1];
           const len2 = dx * dx + dy * dy || 1;
-          let t = ((lng - ax) * dx + (lat - ay) * dy) / len2;
+          let t = ((lng - a[0]) * dx + (lat - a[1]) * dy) / len2;
           t = Math.max(0, Math.min(1, t));
-          const px = ax + t * dx, py = ay + t * dy;
+          const px = a[0] + t * dx, py = a[1] + t * dy;
           const d2 = (px - lng) ** 2 + (py - lat) ** 2;
           if (d2 < best.distSq) {
             best = { riverIdx: ri, t: (acc + t * g.segLens[i]) / g.total, distSq: d2 };
@@ -568,45 +586,49 @@ export default function Home() {
       return best;
     };
 
-    // Time-driven advection (months in future → fraction of river travelled).
-    const advect = Math.max(0, monthsSignedFromNow) * 0.04; // ~5% per month
+    // ~250 m in degrees latitude (1° ≈ 111 km).
+    const STEP_DEG = 0.25 / 111;
+    const PLUME_POINTS = 6; // head + 5 trailing samples (5-7 range)
 
     for (const s of wqiStations) {
-      const wqi = s.wqi_current;
-      // Only pollute below "clean" threshold; weight grows as WQI worsens.
-      if (wqi >= 200) continue;
-      const intensity = Math.max(0.15, Math.min(1, (200 - wqi) / 100));
+      if (s.wqi_current >= 200) continue;
 
-      // Origin point — the station itself.
+      // Source intensity grows as WQI worsens. shutdownScale fades it.
+      const sourceWeight = Math.max(0.2, Math.min(1.4, (200 - s.wqi_current) / 80)) * shutdownScale;
+
+      // Project onto the nearest river. If the station is far from any river
+      // (>0.6° ≈ ~65 km) we just emit a single radial blob at the station.
+      const proj = projectToRiver(s.lng, s.lat);
+      const onRiver = proj.riverIdx >= 0 && proj.distSq <= 0.6 * 0.6;
+      const river = onRiver ? rivers[proj.riverIdx] : null;
+
+      // Head — the source itself. Bright + biggest radius.
       features.push({
         type: "Feature",
-        properties: { weight: intensity * 1.2 },
+        properties: { weight: sourceWeight, radius: 1.0 },
         geometry: { type: "Point", coordinates: [s.lng, s.lat] },
       });
 
-      // Project to nearest river and emit a plume of K points downstream.
-      const proj = projectToRiver(s.lng, s.lat);
-      // Skip if station is far from any river (>0.8°), keeps stray markers clean.
-      if (proj.distSq > 0.8 * 0.8) continue;
-      const g = riverGeom[proj.riverIdx];
-      const K = 5;
-      const reach = 0.18 + advect; // base spread + drift over time
-      for (let i = 1; i <= K; i++) {
-        const t = proj.t + (reach * i) / K;
-        if (t > 1) break;
-        const [lng, lat] = interp(g, t);
-        // Decay along the plume so the head is brighter.
-        const w = intensity * (1 - i / (K + 1)) * 0.9;
+      if (!river) continue;
+
+      // Trailing plume points — exponential decay along the river.
+      for (let i = 1; i < PLUME_POINTS; i++) {
+        const decay = Math.exp(-i * 0.5); // 1.0 → 0.61 → 0.37 → 0.22 → 0.14 → 0.08
+        const [lng, lat] = walk(river, proj.t, i * STEP_DEG);
         features.push({
           type: "Feature",
-          properties: { weight: w },
+          properties: {
+            weight: sourceWeight * decay,
+            // radius scalar (also decays so the streak narrows downstream)
+            radius: Math.max(0.35, decay),
+          },
           geometry: { type: "Point", coordinates: [lng, lat] },
         });
       }
     }
 
     return { type: "FeatureCollection", features };
-  }, [wqiStations, monthsSignedFromNow]);
+  }, [wqiStations, simulateShutdown]);
 
   useEffect(() => {
     if (!mapInstance) return;
@@ -631,12 +653,12 @@ export default function Home() {
             id: LAYER,
             type: "heatmap",
             source: SRC,
-            maxzoom: 9,
+            maxzoom: 18,
             paint: {
               "heatmap-weight": ["coalesce", ["get", "weight"], 0.5],
-              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 9, 2.6],
-              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 3, 18, 6, 38, 9, 60],
-              "heatmap-opacity": ["interpolate", ["linear"], ["zoom"], 7, 0.85, 9, 0.2],
+              "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 10, 3.5, 15, 5],
+              "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 3, 18, 6, 40, 10, 80, 15, 150],
+              "heatmap-opacity": 0.75,
               "heatmap-color": [
                 "interpolate",
                 ["linear"],
@@ -1015,10 +1037,14 @@ export default function Home() {
             title="Project a 'what if?' scenario where the main upstream emitters are shut down."
           >
             <span
-              className={`h-1.5 w-1.5 rounded-full ${
-                simulateShutdown ? "bg-emerald-400 shadow-[0_0_6px_#34d399]" : "bg-muted-foreground/40"
+              className={`grid place-items-center h-5 w-5 rounded-md transition-all ${
+                simulateShutdown
+                  ? "bg-emerald-500/20 ring-1 ring-emerald-400/40 text-emerald-300"
+                  : "bg-foreground/[0.06] ring-1 ring-foreground/10 text-muted-foreground"
               }`}
-            />
+            >
+              <Factory className="h-3 w-3" strokeWidth={2.2} />
+            </span>
             {simulateShutdown ? "Factory shutdown · ON" : "Simulate Factory Shutdown"}
           </button>
         </header>
@@ -1087,8 +1113,9 @@ export default function Home() {
             <aside className="hidden md:flex fixed md:static left-2 right-2 bottom-2 top-auto md:inset-auto z-30 md:z-auto w-auto md:w-[320px] md:shrink-0 max-h-[55vh] md:max-h-none rounded-2xl border border-border glass overflow-hidden flex-col">
               {selectedWqiStation ? (
                 <WqiDetailPanel
-                  station={selectedWqiStation}
+                  station={liveSelectedStation ?? selectedWqiStation}
                   timelineDate={timelineDate}
+                  monthsSignedFromNow={monthsSignedFromNow}
                   onBack={() => { setSelectedWqiStation(null); }}
                   onClose={() => setEventsOpen(false)}
                 />
@@ -1466,9 +1493,98 @@ function fmtMonth(d: Date): string {
 
 function WqiMetric({ label, value, accent }: { label: string; value: number; accent?: boolean }) {
   return (
-    <div className={`rounded-lg p-2.5 text-center ${accent ? "bg-blue-500/10 ring-1 ring-blue-400/30" : "bg-foreground/[0.02] ring-1 ring-foreground/[0.06]"}`}>
-      <div className="text-[9px] tracking-[0.14em] uppercase text-muted-foreground">{label}</div>
-      <div className={`mt-0.5 text-base font-bold tabular-nums ${accent ? "text-blue-600 dark:text-blue-200" : "text-foreground/90"}`}>{value}</div>
+    <div
+      className={`rounded-lg p-2.5 flex flex-col justify-between min-h-[68px] text-center ${
+        accent
+          ? "bg-blue-500/10 ring-1 ring-blue-400/30"
+          : "bg-foreground/[0.02] ring-1 ring-foreground/[0.06]"
+      }`}
+    >
+      <div className="text-[9px] tracking-[0.14em] uppercase text-muted-foreground leading-tight">
+        {label}
+      </div>
+      <div
+        className={`text-base font-bold tabular-nums ${
+          accent ? "text-blue-600 dark:text-blue-200" : "text-foreground/90"
+        }`}
+      >
+        {value}
+      </div>
+    </div>
+  );
+}
+
+// ─── Temporal banner ──────────────────────────────────────────────────
+// Live indicator above the WQI block. Tells the user whether the panel is
+// showing the present, a historical reanalysis ("Time machine"), or an
+// AI-projected future ("Prediction"). Re-renders smoothly as the slider moves.
+function TemporalBanner({
+  timelineDate,
+  monthsSignedFromNow,
+}: {
+  timelineDate: Date;
+  monthsSignedFromNow: number;
+}) {
+  const mode: "now" | "past" | "future" =
+    Math.abs(monthsSignedFromNow) < 0.5
+      ? "now"
+      : monthsSignedFromNow < 0
+        ? "past"
+        : "future";
+
+  const dateLabel = timelineDate.toLocaleDateString("en-GB", {
+    month: "long",
+    year: "numeric",
+  });
+
+  // Distance from today, formatted as "8 mo ago" / "in 14 mo".
+  const absMonths = Math.round(Math.abs(monthsSignedFromNow));
+  const distance =
+    mode === "now"
+      ? "Live data"
+      : mode === "past"
+        ? `${absMonths} mo ago`
+        : `in ${absMonths} mo`;
+
+  // Per-mode style + iconography.
+  const cfg =
+    mode === "now"
+      ? {
+          label: "Live · current snapshot",
+          ring: "ring-emerald-400/40",
+          bg: "bg-emerald-500/[0.08]",
+          dot: "bg-emerald-400 shadow-[0_0_8px_#34d399]",
+          text: "text-emerald-200",
+        }
+      : mode === "past"
+        ? {
+            label: "Time machine · historical record",
+            ring: "ring-amber-400/40",
+            bg: "bg-amber-500/[0.08]",
+            dot: "bg-amber-400 shadow-[0_0_8px_#fbbf24]",
+            text: "text-amber-200",
+          }
+        : {
+            label: "AI prediction · projected scenario",
+            ring: "ring-cyan-400/40",
+            bg: "bg-cyan-500/[0.08]",
+            dot: "bg-cyan-400 shadow-[0_0_8px_#22d3ee]",
+            text: "text-cyan-200",
+          };
+
+  return (
+    <div
+      className={`flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ${cfg.ring} ${cfg.bg} transition-colors`}
+    >
+      <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot} animate-pulse`} />
+      <div className="flex-1 min-w-0">
+        <div className={`text-[10px] tracking-[0.18em] uppercase ${cfg.text}`}>
+          {cfg.label}
+        </div>
+        <div className="text-[11px] text-foreground/80 tabular-nums">
+          {dateLabel} <span className="text-muted-foreground">· {distance}</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -1476,11 +1592,13 @@ function WqiMetric({ label, value, accent }: { label: string; value: number; acc
 function WqiDetailPanel({
   station,
   timelineDate,
+  monthsSignedFromNow,
   onBack,
   onClose,
 }: {
   station: WqiFeature;
   timelineDate: Date;
+  monthsSignedFromNow: number;
   onBack: () => void;
   onClose: () => void;
 }) {
@@ -1708,15 +1826,13 @@ function WqiDetailPanel({
       </div>
 
       <div className="flex flex-col gap-4 p-4 overflow-y-auto flex-1">
+        <TemporalBanner timelineDate={timelineDate} monthsSignedFromNow={monthsSignedFromNow} />
         <div>
           <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Water Quality Index</div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-2 items-stretch">
             <WqiMetric label="Current" value={Math.round(station.wqi_current)} accent />
             <WqiMetric label="7d forecast" value={Math.round(station.wqi_predicted_7d)} />
             <WqiMetric label="30d forecast" value={Math.round(station.wqi_predicted_30d)} />
-          </div>
-          <div className="mt-2 text-[10px] text-muted-foreground">
-            30d range: {Math.round(station.wqi_lower_30d)} – {Math.round(station.wqi_upper_30d)}
           </div>
         </div>
 

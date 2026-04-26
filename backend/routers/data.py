@@ -29,6 +29,7 @@ _FILES: dict[str, Path] = {
     "forecast_metrics":   _DS_OUTPUTS / "forecast_metrics.json",
     "history_cities":     _DS_OUTPUTS / "historical_monthly.json",
     "history_countries":  _DS_OUTPUTS / "historical_monthly_countries.json",
+    "temperatures":       _DS_OUTPUTS / "river_temperature_live.json",
 }
 
 
@@ -83,8 +84,39 @@ def _city_match(record_city: str, query: str) -> bool:
 
 @router.get("/europe")
 def europe_geojson():
-    """Full FeatureCollection — EU-27 cities only."""
-    return _eu_only_geojson(_load("europe"))
+    """Full FeatureCollection — EU-27 cities only.
+    Live water/air temperatures are merged into each feature's `properties`
+    when a matching record exists in `river_temperature_live.json`.
+    """
+    fc = _eu_only_geojson(_load("europe"))
+    try:
+        temps = _load("temperatures")
+    except HTTPException:
+        temps = {}
+
+    # Build lookup keyed by station name (matches how data-science writes it,
+    # e.g. "Odra (Wrocław)") and also by lower-case for resilience.
+    by_name: dict[str, dict] = {}
+    for k, v in temps.items():
+        by_name[k.lower()] = v
+
+    for feature in fc.get("features", []):
+        props = feature.get("properties") or {}
+        name = (props.get("name") or "").strip().lower()
+        rec = by_name.get(name)
+        if rec:
+            props["water_temp_c"] = rec.get("water_temp_c")
+            props["air_temp_c"] = rec.get("air_temp_c")
+            props["temp_as_of"] = rec.get("as_of")
+            props["temp_source"] = rec.get("data_source")
+            feature["properties"] = props
+    return fc
+
+
+@router.get("/temperatures")
+def temperatures():
+    """Live river / air temperatures keyed by station name."""
+    return _load("temperatures")
 
 
 @router.get("/wroclaw")

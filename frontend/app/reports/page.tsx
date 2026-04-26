@@ -2,8 +2,8 @@
 
 import Sidebar from "@/components/sidebar";
 import { generateReportPdf } from "@/lib/api";
-import { FileDown, Loader2, MapPin, Waves } from "lucide-react";
-import { useEffect, useState } from "react";
+import { FileDown, Loader2, MapPin, Search, Waves } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
@@ -48,6 +48,17 @@ export default function ReportsPage() {
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+
+  const filteredStations = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return stations;
+    return stations.filter((s) =>
+      [s.name, s.country, s.water_body_type, RISK_LABEL[s.risk_level]]
+        .filter(Boolean)
+        .some((field) => field!.toString().toLowerCase().includes(q)),
+    );
+  }, [stations, query]);
 
   useEffect(() => {
     fetch(`${API_URL}/api/data/europe`, { cache: "no-store" })
@@ -117,7 +128,27 @@ export default function ReportsPage() {
       <Sidebar />
       <main className="flex-1 overflow-y-auto px-8 py-10">
         <div className="max-w-5xl mx-auto">
-          <h1 className="mb-8 text-2xl font-semibold tracking-tight">Reports</h1>
+          <h1 className="mb-4 text-2xl font-semibold tracking-tight">Reports</h1>
+
+          <div className="relative mb-6 max-w-md">
+            <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search by river, country, or risk level"
+              className="w-full rounded-lg border border-border bg-foreground/[0.02] pl-9 pr-3 py-2 text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-colors"
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded px-2 py-0.5 text-[10px] tracking-wide uppercase text-muted-foreground hover:text-foreground hover:bg-foreground/[0.06] transition-colors"
+              >
+                Clear
+              </button>
+            )}
+          </div>
 
           {loading && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -133,7 +164,12 @@ export default function ReportsPage() {
 
           {!loading && !error && (
             <div className="grid gap-3">
-              {stations.map((station) => (
+              {filteredStations.length === 0 && (
+                <div className="rounded-lg border border-dashed border-border bg-foreground/[0.02] px-4 py-6 text-center text-sm text-muted-foreground">
+                  No stations match “{query}”.
+                </div>
+              )}
+              {filteredStations.map((station) => (
                 <div
                   key={station.water_body_id}
                   className="flex items-center gap-4 rounded-xl border border-border bg-card/40 px-4 py-3 hover:bg-card/70 transition-colors"
