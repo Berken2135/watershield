@@ -240,7 +240,7 @@ export default function ScanPage({
   }, []);
 
   const handleUpload = async () => {
-    if (!photo || !displayName.trim()) return;
+    if (!photo) return;
     setUploading(true);
     setUploadError(null);
     try {
@@ -371,7 +371,7 @@ export default function ScanPage({
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20, padding: "0 20px 40px" }}>
           <div style={{ textAlign: "center" }}>
             <h1 style={{ fontFamily: "var(--font-nunito)", fontWeight: 900, fontSize: 24, color: "#1a3a5c", margin: "0 0 6px" }}>Share your sighting</h1>
-            <p style={{ fontFamily: "var(--font-nunito)", fontSize: 14, color: "#5a8ab0", margin: 0, fontWeight: 600 }}>Add your name to the community map</p>
+            <p style={{ fontFamily: "var(--font-nunito)", fontSize: 14, color: "#5a8ab0", margin: 0, fontWeight: 600 }}>Add your sighting to the community map</p>
           </div>
 
           {photoPreview && (
@@ -391,26 +391,13 @@ export default function ScanPage({
             </div>
           )}
 
-          <div style={{ width: "100%", maxWidth: 320 }}>
-            <label htmlFor="display-name" style={{ fontFamily: "var(--font-nunito)", fontSize: 11, fontWeight: 800, color: "#5a8ab0", letterSpacing: "0.12em", textTransform: "uppercase", display: "block", marginBottom: 6 }}>Your name</label>
-            <input
-              id="display-name"
-              className="rc-input"
-              type="text"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="e.g. Anna K."
-              maxLength={80}
-            />
-          </div>
-
           {uploadError && (
             <div style={{ width: "100%", maxWidth: 320, background: "#fef2f2", border: "1.5px solid #fecaca", borderRadius: 14, padding: "10px 14px" }}>
               <p style={{ fontFamily: "var(--font-nunito)", fontSize: 13, fontWeight: 700, color: "#dc2626", margin: 0, textAlign: "center" }}>{uploadError}</p>
             </div>
           )}
 
-          <Btn onClick={handleUpload} color={river.color} disabled={!displayName.trim() || uploading}>
+          <Btn onClick={handleUpload} color={river.color} disabled={uploading}>
             {uploading ? "Uploading…" : "Share Sighting 🌊"}
           </Btn>
 
