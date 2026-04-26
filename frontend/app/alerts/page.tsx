@@ -285,12 +285,21 @@ function AlertDetailModal({
     let cancelled = false;
     setAiLoading(true);
     setAiError(null);
+    const severity =
+      station.risk_level === "critical" || station.risk_level === "high"
+        ? "High"
+        : station.risk_level === "moderate"
+          ? "Medium"
+          : "Low";
     fetch(`${API_URL}/api/analysis/anomaly`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         river: station.name,
         location: `${station.name}, ${station.country}`,
+        type: station.water_body_type === "lake" ? "Biological" : "Chemical",
+        severity,
+        date: new Date().toISOString().slice(0, 10),
         wqi: station.wqi_current,
         risk_level: station.risk_level,
         // Best-effort placeholder metrics — the backend already accepts them as optional.
