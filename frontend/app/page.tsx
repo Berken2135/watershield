@@ -1652,9 +1652,34 @@ function WqiDetailPanel({
   // pop in/out for tiny scrubber nudges.
   const isOnToday = Math.abs(monthsSignedFromNow) < 0.5;
 
+  // ── Predictive "thinking" delay ────────────────────────────────────────────
+  // When the user scrubs into the future we don't want WQI / temperature to
+  // snap instantly — that breaks the illusion that the model is doing actual
+  // work. Hold the previously-committed values and run a ~1.8 s shimmer, then
+  // reveal the new prediction. Past / present commit immediately.
+  const [committedDate, setCommittedDate] = useState<Date>(timelineDate);
+  const [committedMonths, setCommittedMonths] = useState<number>(monthsSignedFromNow);
+  const [isPredicting, setIsPredicting] = useState(false);
+
+  useEffect(() => {
+    if (monthsSignedFromNow > 0.5) {
+      setIsPredicting(true);
+      const t = setTimeout(() => {
+        setCommittedDate(timelineDate);
+        setCommittedMonths(monthsSignedFromNow);
+        setIsPredicting(false);
+      }, 1800);
+      return () => clearTimeout(t);
+    }
+    // Past or present: commit instantly.
+    setIsPredicting(false);
+    setCommittedDate(timelineDate);
+    setCommittedMonths(monthsSignedFromNow);
+  }, [timelineDate, monthsSignedFromNow]);
+
   const historicalTempForMonth = (() => {
-    const y = timelineDate.getFullYear();
-    const m = String(timelineDate.getMonth() + 1).padStart(2, "0");
+    const y = committedDate.getFullYear();
+    const m = String(committedDate.getMonth() + 1).padStart(2, "0");
     const key = `${y}-${m}-01`;
     return histTemps[key] ?? null;
   })();
@@ -1673,11 +1698,11 @@ function WqiDetailPanel({
     const seasonal = (mo: number) =>
       5.0 * Math.cos(((mo + 1 - 8) * Math.PI) / 6);
     const seasonNow = seasonal(now.getMonth());
-    const seasonAt = seasonal(timelineDate.getMonth());
+    const seasonAt = seasonal(committedDate.getMonth());
     // Tiny climate-style drift: ±0.25 °C per year from "now", deterministic on station id.
     const yearsDelta =
-      (timelineDate.getFullYear() - now.getFullYear()) +
-      (timelineDate.getMonth() - now.getMonth()) / 12;
+      (committedDate.getFullYear() - now.getFullYear()) +
+      (committedDate.getMonth() - now.getMonth()) / 12;
     let h = 0;
     for (const c of station.water_body_id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
     const drift = yearsDelta * (((h % 100) / 100 - 0.5) * 0.5);
@@ -1685,10 +1710,27 @@ function WqiDetailPanel({
     return Math.max(1.5, Math.min(26, t));
   })();
 
-  const displayTemp = isCurrentMonth
+  const isCommittedCurrentMonth = (() => {
+    const now = new Date();
+    return committedDate.getFullYear() === now.getFullYear() &&
+           committedDate.getMonth() === now.getMonth();
+  })();
+
+  const displayTemp = isCommittedCurrentMonth
     ? (liveTemp ?? fallbackTempNow ?? projectedTemp)
     : (historicalTempForMonth ?? projectedTemp);
-  const tempIsLive = isCurrentMonth && (liveTemp != null || fallbackTempNow != null);
+  const tempIsLive = isCommittedCurrentMonth && (liveTemp != null || fallbackTempNow != null);
+
+  // Project WQI for future dates: extrapolate trend_pct_change as a monthly
+  // delta with a soft asymptote so values don't run away. For past or present
+  // we keep the snapshot WQI.
+  const projectedWqi = (() => {
+    if (committedMonths <= 0.05) return station.wqi_current;
+    const monthlyDelta = station.trend_pct_change / 100; // already small
+    const damped = Math.tanh(committedMonths / 12) * 12; // saturate at ~12 mo
+    const t = station.wqi_current * (1 + monthlyDelta * damped);
+    return Math.max(0, Math.min(200, t));
+  })();
 
   const handleGenerateReport = async () => {
     setReporting("loading");
@@ -1858,14 +1900,33 @@ function WqiDetailPanel({
       <div className="flex flex-col gap-4 p-4 overflow-y-auto flex-1">
         <TemporalBanner timelineDate={timelineDate} monthsSignedFromNow={monthsSignedFromNow} />
         <div>
-          <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2">Water Quality Index</div>
-          <div className={`grid gap-2 items-stretch ${isOnToday ? "grid-cols-3" : "grid-cols-1"}`}>
-            <WqiMetric label="Current" value={Math.round(station.wqi_current)} accent />
+          <div className="flex items-center gap-2 mb-2">
+            <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">Water Quality Index</div>
+            {isPredicting && (
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] tracking-wider uppercase bg-cyan-500/10 ring-1 ring-cyan-400/40 text-cyan-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 animate-pulse" />
+                Predicting…
+              </span>
+            )}
+          </div>
+          <div className={`relative grid gap-2 items-stretch ${isOnToday ? "grid-cols-3" : "grid-cols-1"} transition-opacity ${isPredicting ? "opacity-60" : "opacity-100"}`}>
+            <WqiMetric label="Current" value={Math.round(projectedWqi)} accent />
             {isOnToday && (
               <>
                 <WqiMetric label="7d forecast" value={Math.round(station.wqi_predicted_7d)} />
                 <WqiMetric label="30d forecast" value={Math.round(station.wqi_predicted_30d)} />
               </>
+            )}
+            {isPredicting && (
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-lg overflow-hidden"
+              >
+                <div
+                  className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-cyan-300/20 to-transparent"
+                  style={{ animation: "rc-shimmer-slide 1.6s ease-in-out infinite" }}
+                />
+              </div>
             )}
           </div>
         </div>
@@ -1898,12 +1959,18 @@ function WqiDetailPanel({
         <div>
           <div className="flex items-center gap-2 mb-2">
             <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">Water Temperature</div>
-            {tempIsLive && (
+            {tempIsLive && !isPredicting && (
               <span className="px-1.5 py-0.5 rounded-full text-[9px] tracking-wider uppercase bg-emerald-500/15 ring-1 ring-emerald-500/40 text-emerald-400">Live</span>
             )}
+            {isPredicting && (
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] tracking-wider uppercase bg-cyan-500/10 ring-1 ring-cyan-400/40 text-cyan-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 animate-pulse" />
+                Predicting…
+              </span>
+            )}
           </div>
-          <div className="rounded-lg bg-blue-500/[0.06] ring-1 ring-blue-400/20 p-3 flex items-center gap-3">
-            <Thermometer className="h-5 w-5 text-blue-400 shrink-0" strokeWidth={1.5} />
+          <div className={`relative overflow-hidden rounded-lg bg-blue-500/[0.06] ring-1 ring-blue-400/20 p-3 flex items-center gap-3 transition-opacity ${isPredicting ? "opacity-60" : "opacity-100"}`}>
+            <Thermometer className={`h-5 w-5 text-blue-400 shrink-0 ${isPredicting ? "animate-pulse" : ""}`} strokeWidth={1.5} />
             {liveTempLoading && isCurrentMonth ? (
               <span className="text-[13px] text-muted-foreground">Fetching live data…</span>
             ) : displayTemp != null ? (
@@ -1913,11 +1980,24 @@ function WqiDetailPanel({
                 <div className="text-[10px] text-muted-foreground mt-0.5">
                   {tempIsLive
                     ? "Current river temperature (ECMWF IFS)"
-                    : `${timelineDate.toLocaleDateString("en-GB", { month: "long", year: "numeric" })} — ERA5 reanalysis`}
+                    : committedMonths > 0.5
+                      ? `${committedDate.toLocaleDateString("en-GB", { month: "long", year: "numeric" })} — AI forecast`
+                      : `${committedDate.toLocaleDateString("en-GB", { month: "long", year: "numeric" })} — ERA5 reanalysis`}
                 </div>
               </div>
             ) : (
               <span className="text-[13px] text-muted-foreground">No temperature data for this period</span>
+            )}
+            {isPredicting && (
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+              >
+                <div
+                  className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-cyan-300/25 to-transparent"
+                  style={{ animation: "rc-shimmer-slide 1.6s ease-in-out infinite" }}
+                />
+              </div>
             )}
           </div>
         </div>
