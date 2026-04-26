@@ -1816,10 +1816,13 @@ function WqiDetailPanel({
   const [aiError, setAiError] = useState<string | null>(null);
   const [pdfLoading, setPdfLoading] = useState(false);
 
-  // Reset AI panel whenever a different station is selected.
+  // Reset AI panel whenever a different station is selected, or whenever the
+  // timeline scrubber moves to a meaningfully different month — the previous
+  // analysis was for a different date and must be re-run.
+  const aiAnchorMonth = `${committedDate.getFullYear()}-${committedDate.getMonth()}`;
   useEffect(() => {
     setAi(null); setAiError(null);
-  }, [station.water_body_id]);
+  }, [station.water_body_id, aiAnchorMonth]);
 
   const riverFromName = station.name.split(" - ")[0].replace(/ River$/, "");
   const cityFromName = station.name.split(" - ").slice(1).join(" - ") || station.country;
@@ -1830,6 +1833,15 @@ function WqiDetailPanel({
 
   const runAi = async () => {
     setAiLoading(true); setAiError(null); setAi(null);
+    const isFuture = committedMonths > 0.5;
+    const isPast = committedMonths < -0.5;
+    const analysisDate = committedDate.toISOString().slice(0, 10);
+    const analysisWqi = Math.round(projectedWqi);
+    const horizon = isFuture
+      ? `forecast +${Math.round(committedMonths)} mo`
+      : isPast
+        ? `historical -${Math.round(-committedMonths)} mo`
+        : "current";
     try {
       const r = await fetch(`${API_URL}/api/analysis/anomaly`, {
         method: "POST",
@@ -1839,15 +1851,15 @@ function WqiDetailPanel({
           location: cityFromName,
           type: "Chemical",
           severity,
-          date: station.last_updated.slice(0, 10),
-          description: `WQI ${Math.round(station.wqi_current)} on ${station.water_body_type}, trend ${station.trend}.`,
+          date: analysisDate,
+          description: `WQI ${analysisWqi} on ${station.water_body_type}, trend ${station.trend}, ${horizon} from ${new Date().toISOString().slice(0,10)}.`,
           metrics: {
             ph: station.metrics.ph ?? 7.2,
             dissolved_oxygen: station.metrics.oxygen_mg_l ?? 8.0,
             turbidity: station.metrics.turbidity_ntu ?? 5.0,
             contaminant: null,
           },
-          wqi: station.wqi_current,
+          wqi: analysisWqi,
           risk_level: station.risk_level,
         }),
       });
@@ -2110,6 +2122,17 @@ function WqiDetailPanel({
                 <span className="text-[10px] text-muted-foreground">
                   confidence {ai.confidence}%
                 </span>
+                <button
+                  onClick={runAi}
+                  className="ml-auto inline-flex items-center gap-1 rounded-md ring-1 ring-cyan-500/30 hover:bg-cyan-500/10 px-1.5 py-0.5 text-[10px] tracking-wider uppercase text-cyan-600 dark:text-cyan-300 transition-colors"
+                  title="Re-run AI analysis for the currently selected timeline date"
+                >
+                  <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 12a9 9 0 1 1-3-6.7" />
+                    <polyline points="21 4 21 10 15 10" />
+                  </svg>
+                  Re-analyse
+                </button>
               </div>
               <div className="text-[11px] text-foreground/85 leading-snug">{ai.summary}</div>
               {ai.source_estimate && (
