@@ -393,11 +393,12 @@ function Shell({
       </header>
 
       {/* Main */}
-      <main style={{ flex: 1, position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: "calc(110px + env(safe-area-inset-bottom, 0px))" }}>
+      <main style={{ flex: 1, position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", paddingBottom: onLogout ? "calc(110px + env(safe-area-inset-bottom, 0px))" : "40px" }}>
         <div style={{ width: "100%", maxWidth: 420 }}>{children}</div>
       </main>
 
-      {/* Bottom pill nav */}
+      {/* Bottom pill nav — hidden on the auth screen */}
+      {onLogout && (
       <nav style={{ position: "fixed", bottom: "max(20px, calc(env(safe-area-inset-bottom, 0px) + 8px))", left: "50%", transform: "translateX(-50%)", background: "white", borderRadius: 50, display: "flex", gap: 4, padding: "6px 8px", boxShadow: "0 4px 28px rgba(59,158,222,0.22), 0 1px 4px rgba(0,0,0,0.07)", border: "1.5px solid #bde0f5", zIndex: 50, whiteSpace: "nowrap" }}>
         {NAV_ITEMS.map(({ href, label, icon }) => {
           const active = pathname === href || (href.startsWith("/scan") && pathname.startsWith("/scan"));
@@ -409,6 +410,7 @@ function Shell({
           );
         })}
       </nav>
+      )}
     </div>
   );
 }
