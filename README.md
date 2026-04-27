@@ -173,6 +173,18 @@ watershield/
 │       ├── auth.py          # CDSE / openEO authentication
 │       ├── search.py        # Satellite scene search
 │       └── analysis.py      # Water quality analysis
+└── data-science/
+    ├── api/                 # FastAPI service (port 8001)
+    │   ├── main.py
+    │   └── routers/         # forecast, anomalies, history, etc.
+    ├── src/
+    │   ├── ingestion/       # Waterly, MPWiK data loaders
+    │   ├── features/        # Time-series features, indices
+    │   ├── models/          # XGBoost forecaster, IsolationForest
+    │   ├── european_data/   # Copernicus, ECMWF, EUMETSAT fetchers
+    │   └── export/          # GeoJSON builder for frontend
+    ├── notebooks/           # Exploration notebooks
+    └── data/                # Raw, processed, output data
 └── frontend/
     ├── app/                 # Next.js App Router pages
     ├── components/          # UI components (Map, shadcn/ui)
